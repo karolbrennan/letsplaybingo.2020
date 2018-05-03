@@ -225,6 +225,7 @@ class App extends Component {
     };
 
     resetPattern = () => {
+        document.getElementById('patternselect').value = "Default";
         this.setState({
             pattern: {
                 B: [false,false,false,false,false],
@@ -293,29 +294,30 @@ class App extends Component {
 
     renderButtons = () => {
         return (
-            <section id="buttons">
+            <div id="buttons">
                 <button onClick={this.callNumber}>Call Number</button>
                 <button onClick={this.resetGame}>Reset</button>
-            </section>
+            </div>
         )
     };
 
     renderPattern = () => {
         let pattern = this.state.pattern;
         return (
-            <section id="bingopattern"><div className="display-table">
-                {_.map(pattern, (column, letter) => (
-                    <div key={letter} className="pattern-col">
-                        <div className="pattern-letter">{letter}</div>
-                        {_.map(column, (slot, index) => (
-                            <div key={letter+index}
-                                className={slot ? "selected pattern-slot" : "pattern-slot"}
-                                onClick={(e) => this.updatePattern(letter, index, slot)}></div>
-                        ))}
-                    </div>
-                ))}
-            </div>
-                <select onChange={(e) => this.choosePattern(e)}>
+            <section id="bingopattern">
+                <div className="display-table">
+                    {_.map(pattern, (column, letter) => (
+                        <div key={letter} className="pattern-col">
+                            <div className="pattern-letter">{letter}</div>
+                            {_.map(column, (slot, index) => (
+                                <div key={letter+index}
+                                    className={slot ? "selected pattern-slot" : "pattern-slot"}
+                                    onClick={(e) => this.updatePattern(letter, index, slot)}></div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
+                <select id="patternselect" onChange={(e) => this.choosePattern(e)}>
                     <option value="Default">Choose a Preset</option>
                     {_.map(this.state.presets, (pattern, patternName) => {
                         if(patternName !== "Default") {
@@ -324,7 +326,7 @@ class App extends Component {
                             )
                         }
                     })}
-                </select>
+                </select><br />
                 <button onClick={this.resetPattern}>Reset</button>
             </section>
         );
@@ -333,10 +335,12 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header><img src={logo} alt="Let's Play Bingo Logo" /></header>
-                {this.renderPattern()}
+                <header>
+                    <img src={logo} alt="Let's Play Bingo Logo" />
+                </header>
                 {this.renderBoard()}
                 {this.renderButtons()}
+                {this.renderPattern()}
             </div>
         );
     }

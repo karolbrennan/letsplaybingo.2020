@@ -2,9 +2,16 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+html, body {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
 /* Header */
 header {
     padding: 1rem;
+}
+header div {
+    display: inline-block;
+    vertical-align: top;
 }
 header img {
     width: 10rem;
@@ -13,14 +20,6 @@ header img {
 }
 
 /* Layout */
-section {
-    width: 1000px;
-    margin: 0 auto;
-    max-width: 100%;
-}
-#bingoboard, #bingopattern {
-    max-width: 100%;
-}
 
 .display-table {
     display: table;
@@ -28,23 +27,11 @@ section {
     white-space: nowrap;
 }
 
-#bingoboard {
-    background: #222;
-    margin: 0 auto;
-    min-width: 600px;
-    width: 80%;
-}
+/* Pattern */
 
-#bingoboard, #bingopattern {
-    display: inline-block;
-    vertical-align: top;
-}
 #bingopattern {
-    width: 20%;
     text-align: center;
 }
-
-/* Pattern */
 
 .pattern-col {
     display: inline-block;
@@ -53,16 +40,15 @@ section {
     text-align: center;
 }
 .pattern-letter {
-    background: red;
+    background: #E53935;
     color: white;
-    font-weight: bold;
     line-height: 1.75em;
 }
 .pattern-slot {
     border: 1px solid #efefef;
     width: 1.75em;
     height: 1.75em;
-    padding: 15%;
+    padding: 10%;
 }
 .pattern-slot.selected:after {
     content: ' ';
@@ -77,6 +63,12 @@ section {
 
 /* Board */
 
+#bingoboard {
+    background: #222;
+    font-size: 1.5rem; /* fallback */
+    font-size: 2vw;
+}
+
 .board-row {
     display: table-row;
 }
@@ -85,14 +77,15 @@ section {
     display: table-cell;
     text-align: center;
     color: #444444;
-    line-height: 2;
+    line-height: 1.75;
+    line-height: 3vw;
 }
 
 .letter {
-    background: red;
-    font-weight: bold;
+    background: #E53935;
     color: white;
-    width: 1.75em;
+    padding: 0.25em;
+    padding: 0.25vw;
 }
 
 .called.ball:not(.active) {
@@ -118,16 +111,18 @@ section {
 }
 
 /* Buttons */
-
+select{
+    margin: 1em auto 0.5em;
+}
 #buttons {
-    margin: 1.75em auto;
-    text-align: center;
+    background: #111;
+    text-align: left;
 }
 
 button {
     margin: 0.5em;
     border: 0;
-    background: #00BCD4;
+    background: #1496d4;
     font-size: 1rem;
     padding: 0.5em 1em;
     color: white;
