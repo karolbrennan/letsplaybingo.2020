@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './images/logo.svg';
 import _ from 'underscore';
 import './App.css';
 
@@ -333,7 +333,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header><h1>{logo}</h1></header>
+                <header><img src={logo} alt="Let's Play Bingo Logo" /></header>
                 {this.renderPattern()}
                 {this.renderBoard()}
                 {this.renderButtons()}

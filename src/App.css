@@ -2,6 +2,22 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+/* Header */
+header {
+    padding: 1rem;
+}
+header img {
+    width: 10rem;
+    height: auto;
+    max-width: 100%;
+}
+
+/* Layout */
+section {
+    width: 1000px;
+    margin: 0 auto;
+    max-width: 100%;
+}
 #bingoboard, #bingopattern {
     max-width: 100%;
 }
@@ -9,6 +25,7 @@
 .display-table {
     display: table;
     width: 100%;
+    white-space: nowrap;
 }
 
 #bingoboard {
@@ -31,7 +48,7 @@
 
 .pattern-col {
     display: inline-block;
-    width: 1.5rem;
+    width: 1.75em;
     vertical-align: top;
     text-align: center;
 }
@@ -39,11 +56,12 @@
     background: red;
     color: white;
     font-weight: bold;
+    line-height: 1.75em;
 }
 .pattern-slot {
     border: 1px solid #efefef;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.75em;
+    height: 1.75em;
     padding: 15%;
 }
 .pattern-slot.selected:after {
@@ -74,7 +92,7 @@
     background: red;
     font-weight: bold;
     color: white;
-    width: 2rem;
+    width: 1.75em;
 }
 
 .called.ball:not(.active) {
@@ -102,7 +120,7 @@
 /* Buttons */
 
 #buttons {
-    margin: 2rem auto;
+    margin: 1.75em auto;
     text-align: center;
 }
 
