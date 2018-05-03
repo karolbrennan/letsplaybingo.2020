@@ -49,3 +49,9 @@ button {
   color: white;
   text-transform: uppercase;
 }
+button:active {
+    outline: none;
+}
+button:hover {
+    cursor: pointer;
+}
