@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import _ from 'underscore';
 import './App.css';
 
@@ -93,6 +93,13 @@ class App extends Component {
                 O: [false,false,false,false,false]
             },
             presets: {
+                "Default": {
+                    B: [false,false,false,false,false],
+                    I: [false,false,false,false,false],
+                    N: [false,false,false,false,false],
+                    G: [false,false,false,false,false],
+                    O: [false,false,false,false,false]
+                },
                 "Regular or 4 Corners": {
                     B: [true, false, false, false, true],
                     I: [false, true, false, false, false],
@@ -106,6 +113,27 @@ class App extends Component {
                     N: [false, false, true, false, false],
                     G: [false, true, false, true, false],
                     O: [true, false, false, false, true]
+                },
+                "Layer Cake": {
+                    B: [true, false, true, false ,true],
+                    I: [true, false, true, false, true],
+                    N: [true, false, true, false, true],
+                    G: [true, false, true, false, true],
+                    O: [true, false, true, false, true]
+                },
+                "Diamond": {
+                    B: [false, false, true, false ,false],
+                    I: [false, true, false, true, false],
+                    N: [true, false, false, false, true],
+                    G: [false, true, false, true, false],
+                    O: [false, false, true, false, false]
+                },
+                "Blackout": {
+                    B: [true, true, true, true ,true],
+                    I: [true, true, true, true, true],
+                    N: [true, true, true, true, true],
+                    G: [true, true, true, true, true],
+                    O: [true, true, true, true, true]
                 },
             }
         }
@@ -288,22 +316,24 @@ class App extends Component {
                 ))}
             </div>
                 <select onChange={(e) => this.choosePattern(e)}>
-                    <option>Choose a Preset</option>
+                    <option value="Default">Choose a Preset</option>
                     {_.map(this.state.presets, (pattern, patternName) => {
-                    return (
-                        <option value={patternName} key={patternName}>{patternName}</option>
-                    )})}
+                        if(patternName !== "Default") {
+                            return (
+                                <option value={patternName} key={patternName}>{patternName}</option>
+                            )
+                        }
+                    })}
                 </select>
                 <button onClick={this.resetPattern}>Reset</button>
             </section>
         );
     };
 
-
     render() {
         return (
             <div className="App">
-                <header><h1>Lets Play Bingo</h1></header>
+                <header><h1>{logo}</h1></header>
                 {this.renderPattern()}
                 {this.renderBoard()}
                 {this.renderButtons()}
