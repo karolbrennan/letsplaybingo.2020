@@ -110,6 +110,13 @@ class App extends Component {
                     G: [false, false, false, true, false],
                     O: [true, false, false, false, true]
                 },
+                "Brackets": {
+                    B: [true, true, false, true, true],
+                    I: [true, false, false, false, true],
+                    N: [false, false, false, false, false],
+                    G: [true, false, false, false, true],
+                    O: [true, true, false, true, true]
+                },
                 "Letter X": {
                     B: [true, false, false, false, true],
                     I: [false, true, false, true, false],
@@ -124,11 +131,32 @@ class App extends Component {
                     G: [true, false, true, false, true],
                     O: [true, false, true, false, true]
                 },
+                "Postage Stamps": {
+                    B: [true, true, false, false ,false],
+                    I: [true, true, false, false, false],
+                    N: [false, false, false, false, false],
+                    G: [false, false, false, true, true],
+                    O: [false, false, false, true, true]
+                },
+                "Sputnik": {
+                    B: [true, false, false, false ,true],
+                    I: [false, true, true, true, false],
+                    N: [false, true, true, true, false],
+                    G: [false, true, true, true, false],
+                    O: [true, false, false, false, true]
+                },
                 "Diamond": {
                     B: [false, false, true, false ,false],
                     I: [false, true, false, true, false],
                     N: [true, false, false, false, true],
                     G: [false, true, false, true, false],
+                    O: [false, false, true, false, false]
+                },
+                "Filled in Diamond": {
+                    B: [false, false, true, false ,false],
+                    I: [false, true, true, true, false],
+                    N: [true, true, true, true, true],
+                    G: [false, true, true, true, false],
                     O: [false, false, true, false, false]
                 },
                 "Blackout": {
