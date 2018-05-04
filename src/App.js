@@ -153,19 +153,22 @@ class App extends Component {
 
     choosePattern = (e) => {
         if(e === null){
-            this.resetPattern();
+            this.setState({
+                selectedPattern: null,
+                pattern: {
+                    B: [false,false,false,false,false],
+                    I: [false,false,false,false,false],
+                    N: [false,false,false,false,false],
+                    G: [false,false,false,false,false],
+                    O: [false,false,false,false,false]
+                }
+            });
         } else {
             this.setState({
                 selectedPattern: e.value,
                 pattern: this.state.presets[e.value]
             });
         }
-    };
-
-    resetPattern = () => {
-        this.setState({
-            selectedPattern: null,
-            pattern: this.state.presets['Custom']})
     };
 
     callNumber = () => {
