@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './images/logo.svg';
 import _ from 'underscore';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import './App.css';
 
 class App extends Component {
@@ -85,6 +87,7 @@ class App extends Component {
                 74: {letter: "O", number: 74, called: false, active: false},
                 75: {letter: "O", number: 75, called: false, active: false}
             },
+            selectedPattern: null,
             pattern: {
                 B: [false,false,false,false,false],
                 I: [false,false,false,false,false],
@@ -220,13 +223,19 @@ class App extends Component {
     };
 
     choosePattern = (e) => {
-        let pattern = e.target.value;
-        this.setState({pattern: this.state.presets[pattern]})
+        if(e === null){
+            this.resetPattern();
+        } else {
+            this.setState({
+                selectedPattern: e.value,
+                pattern: this.state.presets[e.value]
+            });
+        }
     };
 
     resetPattern = () => {
-        document.getElementById('patternselect').value = "Default";
         this.setState({
+            selectedPattern: null,
             pattern: {
                 B: [false,false,false,false,false],
                 I: [false,false,false,false,false],
@@ -261,7 +270,7 @@ class App extends Component {
     updatePattern = (letter, index, slot) => {
         let pattern = this.state.pattern;
         pattern[letter][index] = !slot; // set to opposite of existing slot value
-        this.setState({pattern: pattern});
+        this.setState({selectedPattern: "Custom", pattern: pattern});
     };
 
     renderBoard = () => {
@@ -303,6 +312,12 @@ class App extends Component {
 
     renderPattern = () => {
         let pattern = this.state.pattern;
+        let presets = this.state.presets;
+        delete presets["Default"]; // remove this so we don't show it in the options
+        let patternArray = [_.map(this.state.presets, (preset, value) => (
+            {value: value, label: value}
+        ))];
+
         return (
             <section id="bingopattern">
                 <div className="display-table">
@@ -317,17 +332,16 @@ class App extends Component {
                         </div>
                     ))}
                 </div>
-                <select id="patternselect" onChange={(e) => this.choosePattern(e)}>
-                    <option value="Default">Choose a Preset</option>
-                    {_.map(this.state.presets, (pattern, patternName) => {
-                        if(patternName !== "Default") {
-                            return (
-                                <option value={patternName} key={patternName}>{patternName}</option>
-                            )
-                        }
-                    })}
-                </select><br />
-                <button onClick={this.resetPattern}>Reset</button>
+                <Select
+                    name="patternselect"
+                    placeholder="Choose Pattern"
+                    value={this.state.selectedPattern}
+                    searchable
+                    onBlurResetsInput={true}
+                    clearable
+                    onChange={this.choosePattern}
+                    options={patternArray[0]}
+                />
             </section>
         );
     };
