@@ -145,8 +145,8 @@ class App extends Component {
     resetGame = () => {
         let resetBalls = this.state.balls;
         _.map(resetBalls, (ball, index) => {
-            this.state.balls[index].active = false;
-            this.state.balls[index].called = false;
+            resetBalls[index].active = false;
+            resetBalls[index].called = false;
         });
         this.setState({balls: resetBalls});
     };
