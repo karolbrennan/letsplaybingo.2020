@@ -117,6 +117,7 @@ header img {
 #buttons {
     background: #111;
     text-align: left;
+    margin-bottom: 1rem;
 }
 
 button {
