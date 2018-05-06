@@ -381,6 +381,46 @@ class App extends Component {
     };
 
     /*
+     *  Render Current Ball Function
+     *  Will display a CSS based ball graphic
+     */
+    renderCurrentBall = () => {
+        let currentBall = _.where(this.state.balls, {active: true})[0];
+        if(currentBall) {
+            let color = 'white';
+            switch(currentBall.letter){
+                case 'B':
+                    color = 'blue';
+                    break;
+                case 'I':
+                    color = 'red';
+                    break;
+                case 'N':
+                    color = 'white';
+                    break;
+                case 'G':
+                    color = 'green';
+                    break;
+                case 'O':
+                    color = 'orange';
+                    break;
+                default:
+                    break;
+            }
+            return (
+                <div id="currentBall" className={color}>
+                    <div className="ballCenter">
+                        <span>{currentBall.letter}</span>
+                        <span>{currentBall.number}</span>
+                    </div>
+                </div>
+            )
+        } else {
+            return null;
+        }
+    };
+
+    /*
      *  Render Method
      *  Displays the bingo page
      */
@@ -393,6 +433,7 @@ class App extends Component {
                 {this.renderBoard()}
                 {this.renderButtons()}
                 {this.renderPattern()}
+                {this.renderCurrentBall()}
             </div>
         );
     }
