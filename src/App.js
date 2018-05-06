@@ -7,6 +7,16 @@ import './App.css';
 
 class App extends Component {
 
+    /*
+     * Constructor
+     * State Variables
+     * balls: balls object, holds letter, number, called and active statues
+     * running: determines if the game is presently running
+     * interval & delay: how often the balls are generated
+     * selected pattern: name of currently selected pattern. used to display in select
+     * pattern: array representing current pattern
+     * presets: object holding a variety of preset pattern options
+     */
     constructor(props){
         super(props);
         this.state = {
@@ -87,6 +97,9 @@ class App extends Component {
                 74: {letter: "O", number: 74, called: false, active: false},
                 75: {letter: "O", number: 75, called: false, active: false}
             },
+            running: false,
+            interval: 0,
+            delay: 5000,
             selectedPattern: null,
             pattern: {
                 B: [false,false,false,false,false],
@@ -170,6 +183,11 @@ class App extends Component {
         }
     }
 
+    /*
+     *  Reset Game Function
+     *  Map out the original balls array and update
+     *  active and called statuses to false
+     */
     resetGame = () => {
         let resetBalls = this.state.balls;
         _.map(resetBalls, (ball, index) => {
@@ -179,6 +197,54 @@ class App extends Component {
         this.setState({balls: resetBalls});
     };
 
+    /*
+     *  Toggle Game Function
+     *  Check the opposite of the current running state, this will determine our new state
+     *  If the game is now running, call a number right away then set a new interval
+     *  Otherwise, clear the interval
+     *  Set the current running state
+     */
+    toggleGame = () => {
+        if(!this.state.running === true){
+            this.callNumber();
+            this.setState({interval: setInterval(this.callNumber, this.state.delay)});
+        } else {
+            clearInterval(this.state.interval);
+        }
+        this.setState({running: !this.state.running});
+    };
+
+    /*
+     *  Set Delay Function
+     *  Fires when the user uses the delay slider
+     *  If the game is running it'll clear the existing interval and set a new one
+     *  Otherwise it will just update the delay
+     */
+    setDelay = (e) => {
+        if(this.state.running){
+            clearInterval(this.state.interval);
+            this.setState({delay: e.target.value, interval: setInterval(this.callNumber, e.target.value)});
+        } else {
+            this.setState({delay: e.target.value});
+        }
+    };
+
+
+    /*
+     *  Update Pattern Function
+     *  As user clicks on slots for the pattern, update the pattern in the state
+     */
+    updatePattern = (letter, index, slot) => {
+        let pattern = this.state.pattern;
+        pattern[letter][index] = !slot;
+        this.setState({selectedPattern: "Custom", pattern: pattern});
+    };
+
+    /*
+     *  Choose Pattern Function
+     *  This sets the selected pattern
+     *  Sets to default if no pattern is selected or selection is cleared.
+     */
     choosePattern = (e) => {
         if(e === null){
             this.setState({
@@ -199,6 +265,12 @@ class App extends Component {
         }
     };
 
+    /*
+     *  Call Number Function
+     *  Will get all of the balls, find the active one and reset it
+     *  Grabs uncalled balls and determines if there are still uncalled balls
+     *  Otherwise, it'll generate a random ball, set it to called and active
+     */
     callNumber = () => {
         // get all balls
         let balls = this.state.balls;
@@ -221,12 +293,11 @@ class App extends Component {
         }
     };
 
-    updatePattern = (letter, index, slot) => {
-        let pattern = this.state.pattern;
-        pattern[letter][index] = !slot; // set to opposite of existing slot value
-        this.setState({selectedPattern: "Custom", pattern: pattern});
-    };
-
+    /*
+     *  Render Board Function
+     *  Set up rows based on the balls
+     *  Render a section that holds the bingo board
+     */
     renderBoard = () => {
         let balls = this.state.balls;
         let rows = {
@@ -255,15 +326,26 @@ class App extends Component {
         );
     };
 
+    /*
+     *  Render Buttons Function
+     *  Returns a group of buttons for controling gameplay
+     */
     renderButtons = () => {
         return (
             <div id="buttons">
-                <button onClick={this.callNumber}>Call Number</button>
+                <button onClick={this.toggleGame}>{this.state.running ? 'Pause' : 'Play'}</button>
+                <button onClick={this.callNumber} disabled={this.state.running ? 'disabled' : ''}>Next Number</button>
                 <button onClick={this.resetGame}>Reset</button>
+                <span>Slow</span><input onChange={(e) => this.setDelay(e)} type="range" min="5000" max="16000" step="1000" /><span>Fast</span>
             </div>
         )
     };
 
+    /*
+     *  Render Pattern Function
+     *  This will display a bingo card where the user can create their own pattern
+     *  Or choose a pattern from the searchable drop down
+     */
     renderPattern = () => {
         let pattern = this.state.pattern;
         let patternArray = [_.map(this.state.presets, (preset, value) => (
@@ -298,6 +380,10 @@ class App extends Component {
         );
     };
 
+    /*
+     *  Render Method
+     *  Displays the bingo page
+     */
     render() {
         return (
             <div className="App">

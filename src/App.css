@@ -129,11 +129,32 @@ button {
     color: white;
     text-transform: uppercase;
 }
-
+button:disabled {
+    background: #aaaaaa;
+}
 button:active {
     outline: none;
 }
 
 button:hover {
     cursor: pointer;
+}
+
+/* Select */
+.Select {
+    margin: 0.5em 1em;
+}
+
+
+/* Media Queries */
+@media (max-width: 400px){
+    .board-row {
+        display: inline-block;
+        width: 20%;
+    }
+    .letter, .ball {
+        display: block;
+        font-size: 1.25rem;
+        line-height: 1.5;
+    }
 }
