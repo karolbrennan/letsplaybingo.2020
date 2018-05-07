@@ -5,6 +5,9 @@
 html, body {
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
+body {
+    padding: 1rem;
+}
 /* Header */
 header {
     padding: 1rem;
@@ -25,6 +28,10 @@ header img {
     display: table;
     width: 100%;
     white-space: nowrap;
+}
+.block {
+    display: block;
+    width: 100%;
 }
 
 /* Pattern */
@@ -146,53 +153,78 @@ button:hover {
 }
 
 /* Ball Graphic */
-#bingopattern, #currentBall {
+#bingopattern, #currentCallBlock {
     display: inline-block;
     vertical-align: middle;
 }
+
+#currentCallBlock {
+    background: #efefef;
+    padding: 2rem;
+    position: relative;
+}
+#currentCallBlock .heading, #currentCallBlock .ballnum {
+    position: absolute;
+}
+
+#currentCallBlock .heading {
+    top: 0;
+    left: 0;
+    right: 0;
+}
+#currentCallBlock .ballnum {
+    bottom: 0.25em;
+    right: 0.25em;
+    display: inline;
+    width: auto;
+    padding: 0.25em 0.5em;
+    background: rgba(255,255,255,0.35);
+}
+
+#currentCallBlock .heading {
+    background: #444;
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-weight: bold;
+}
+#currentCallBlock .ballNum {
+    font-size: 0.8rem;
+}
+
 #currentBall {
     display: inline-block;
     margin: 0 auto;
     border-radius: 100%;
-    width: 15vw;
-    height: 15vw;
-    padding: 4vw;
+    width: 16vw;
+    height: 16vw;
+    padding: 3.5vw;
     box-shadow: inset 0.5rem 0.5rem 1.5rem 0.25rem rgba(255,255,255,0.3),
                 inset -0.25rem -0.25rem 1.5rem 0.5rem rgba(0,0,0,0.4);
 }
-
-#currentBall:after {
-    content: ' ';
-    height: 1.5vw;
-    -webkit-box-shadow: 0 8vw 7vw rgba(0,0,0,0.5);
-    box-shadow: 0 8vw 7vw rgba(0,0,0,0.5);
-    display: block;
-    margin-top: -3vw;
-    z-index: 0;
-}
-@keyframes bounce {
-    0% { margin-top: 0}
-    50% { margin-top: -2vw}
-    100% { margin-top: 0}
-}
-@keyframes altbounce {
-    0% { margin-top: 0}
-    25% { margin-top: 2vw}
-    50% { margin-top: 0}
-    75% { margin-top: -2vw}
-    100% { margin-top: 0}
+#shadow {
+    background: radial-gradient(circle at 50% -150%, rgba(0,0,0,0.4), transparent);
+    height: 0.75rem;
+    position: absolute;
+    bottom: 0.5rem;
+    width: 70%;
+    left: 17%;
+    border-radius: 100%;
+    margin: 0 auto;
 }
 #currentBall span {
     display: block;
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 2.5vw;
+    line-height: 1;
     font-weight: bold;
 }
 .ballCenter {
     border-radius: 100%;
-    width: 7vw;
-    height: 7vw;
-    padding: 1.25vw;
+    width: 100%;
+    height: 100%;
+    padding: 20%;
     box-shadow: inset -0.5rem -0.5rem 2rem 0 rgba(0, 0, 0, 0.16), 0 0 0 0.25rem white;
     background: radial-gradient(circle at 20% 20%, white, #efefef);
 }

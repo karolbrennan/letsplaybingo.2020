@@ -408,11 +408,16 @@ class App extends Component {
                     break;
             }
             return (
-                <div id="currentBall" className={color}>
-                    <div className="ballCenter">
-                        <span>{currentBall.letter}</span>
-                        <span>{currentBall.number}</span>
+                <div id="currentCallBlock">
+                    <div className="block heading">Current Ball</div>
+                    <div id="shadow"></div>
+                    <div id="currentBall" className={color+" block"}>
+                        <div className="ballCenter">
+                            <span>{currentBall.letter}</span>
+                            <span>{currentBall.number}</span>
+                        </div>
                     </div>
+                    <div className="ballnum">Ball #{_.where(this.state.balls, {called: true}).length}</div>
                 </div>
             )
         } else {
