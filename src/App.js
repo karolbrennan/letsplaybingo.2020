@@ -458,20 +458,23 @@ class App extends Component {
                             {this.renderButtons()}
                         </div>
                         <div className="col c40 text-right">
-                            <div class="addthis_inline_share_toolbox"></div>
+                            <div className="addthis_inline_share_toolbox"></div>
                         </div>
                     </div>
                 </section>
-
-                {this.renderPattern()}
-
-                <header>
+                <section id="infoblock">
                     <div className="row">
-                        <div className="col c20">
+                        <div className="col c25">
                             <img src={logo} alt="Let's Play Bingo Logo" />
                         </div>
+                        <div className="col c50">
+                            <p className="description">Use this free bingo caller to host your own bingo games at home! <br/> You provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!</p>
+                        </div>
+                        <div className="col c25 relative">
+                            {this.renderPattern()}
+                        </div>
                     </div>
-                </header>
+                </section>
             </div>
         );
     }
