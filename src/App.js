@@ -108,19 +108,19 @@ class App extends Component {
             delay: 5000,
             selectedPattern: null,
             pattern: {
-                B: [false,false,false,false,false],
-                I: [false,false,false,false,false],
-                N: [false,false,false,false,false],
-                G: [false,false,false,false,false],
-                O: [false,false,false,false,false]
+                B: [false, false, false, false, false],
+                I: [false, false, false, false, false],
+                N: [false, false, false, false, false],
+                G: [false, false, false, false, false],
+                O: [false, false, false, false, false]
             },
             presets: {
                 "Custom": {
-                    B: [false,false,false,false,false],
-                    I: [false,false,false,false,false],
-                    N: [false,false,false,false,false],
-                    G: [false,false,false,false,false],
-                    O: [false,false,false,false,false]
+                    B: [false, false, false, false, false],
+                    I: [false, false, false, false, false],
+                    N: [false, false, false, false, false],
+                    G: [false, false, false, false, false],
+                    O: [false, false, false, false, false]
                 },
                 "Regular or 4 Corners": {
                     B: [true, false, false, false, true],
@@ -144,56 +144,75 @@ class App extends Component {
                     O: [true, false, false, false, true]
                 },
                 "Layer Cake": {
-                    B: [true, false, true, false ,true],
+                    B: [true, false, true, false, true],
                     I: [true, false, true, false, true],
                     N: [true, false, true, false, true],
                     G: [true, false, true, false, true],
                     O: [true, false, true, false, true]
                 },
                 "Postage Stamps": {
-                    B: [true, true, false, false ,false],
+                    B: [true, true, false, false, false],
                     I: [true, true, false, false, false],
                     N: [false, false, false, false, false],
                     G: [false, false, false, true, true],
                     O: [false, false, false, true, true]
                 },
                 "Sputnik": {
-                    B: [true, false, false, false ,true],
+                    B: [true, false, false, false, true],
                     I: [false, true, true, true, false],
                     N: [false, true, true, true, false],
                     G: [false, true, true, true, false],
                     O: [true, false, false, false, true]
                 },
                 "Diamond": {
-                    B: [false, false, true, false ,false],
+                    B: [false, false, true, false, false],
                     I: [false, true, false, true, false],
                     N: [true, false, false, false, true],
                     G: [false, true, false, true, false],
                     O: [false, false, true, false, false]
                 },
                 "Filled in Diamond": {
-                    B: [false, false, true, false ,false],
+                    B: [false, false, true, false, false],
                     I: [false, true, true, true, false],
                     N: [true, true, true, true, true],
                     G: [false, true, true, true, false],
                     O: [false, false, true, false, false]
                 },
                 "Blackout": {
-                    B: [true, true, true, true ,true],
+                    B: [true, true, true, true, true],
                     I: [true, true, true, true, true],
                     N: [true, true, true, true, true],
                     G: [true, true, true, true, true],
                     O: [true, true, true, true, true]
                 },
-            }
+            },
+            speechEnabled: window.hasOwnProperty('speechSynthesis'),
+            voices: []
+        };
+        // if speech is enabled, set up a method to load voices if they change
+        if(this.state.speechEnabled) {
+            window.speechSynthesis.onvoiceschanged = this.loadVoices;
         }
     };
 
     componentDidMount() {
         window.addEventListener('onbeforeunload',
-            () => {alert("Are you sure you want to leave? You will your game if it is in progress.")});
+            () => {
+                alert("Are you sure you want to leave? You will your game if it is in progress.")
+            });
     };
 
+    componentDidUpdate() {
+        console.log("State Changed: ", this.state);
+    };
+
+    /*
+     *  Load Voices Function
+     *  Will load voices as they change within the browser
+     */
+    loadVoices = () => {
+        this.setState({voices: window.speechSynthesis.getVoices()})
+    };
 
     /*
      *  Reset Game Function
@@ -258,6 +277,7 @@ class App extends Component {
      *  Sets to default if no pattern is selected or selection is cleared.
      */
     choosePattern = (e) => {
+        console.log(this.state);
         if(e === null){
             this.setState({
                 selectedPattern: null,
@@ -446,6 +466,7 @@ class App extends Component {
      *  Displays the bingo page
      */
     render() {
+        console.log(this.state);
         return (
             <div className="App">
                 <section id="bingoboard" className="flex">
