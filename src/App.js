@@ -1,3 +1,9 @@
+/*
+ * Let's Play Bingo
+ * App written by Karol Brennan
+ * http://karolbrennan.com
+ * http://github.com/karolbrennan
+ */
 import React, { Component } from 'react';
 import logo from './images/logo.svg';
 import _ from 'underscore';
@@ -181,7 +187,13 @@ class App extends Component {
                 },
             }
         }
-    }
+    };
+
+    componentDidMount() {
+        window.addEventListener('onbeforeunload',
+            () => {alert("Are you sure you want to leave? You will your game if it is in progress.")});
+    };
+
 
     /*
      *  Reset Game Function
@@ -293,38 +305,6 @@ class App extends Component {
         }
     };
 
-    /*
-     *  Render Board Function
-     *  Set up rows based on the balls
-     *  Render a section that holds the bingo board
-     */
-    renderBoard = () => {
-        let balls = this.state.balls;
-        let rows = {
-            B: _.where(balls, {letter: "B"}),
-            I: _.where(balls, {letter: "I"}),
-            N: _.where(balls, {letter: "N"}),
-            G: _.where(balls, {letter: "G"}),
-            O: _.where(balls, {letter: "O"})};
-
-        return (
-            <section id="bingoboard"><div className="display-table">{
-                _.map(rows, (row, letter) => (
-                    <div key={"row" + letter} className="board-row">
-                        <div key={letter} className="letter">{letter}</div>
-                        {_.map(row, ball => (
-                            <div key={ball.letter + ball.number}
-                                 className={ball.called && ball.active ? "active ball"
-                                     : ball.called ? "called ball" : "ball"}>
-                                {ball.number}
-                            </div>
-                        ))}
-                    </div>
-                ))
-
-            }</div></section>
-        );
-    };
 
     /*
      *  Render Buttons Function
@@ -332,7 +312,7 @@ class App extends Component {
      */
     renderButtons = () => {
         return (
-            <div id="buttons">
+            <div>
                 <button onClick={this.toggleGame}>{this.state.running ? 'Pause' : 'Play'}</button>
                 <button onClick={this.callNumber} disabled={this.state.running ? 'disabled' : ''}>Next Number</button>
                 <button onClick={this.resetGame}>Reset</button>
@@ -408,21 +388,57 @@ class App extends Component {
                     break;
             }
             return (
-                <div id="currentCallBlock">
-                    <div className="block heading">Current Ball</div>
-                    <div id="shadow"></div>
+                <div className="balldisplay">
+                    <div className="ballcount">{_.where(this.state.balls, {called: true}).length}</div>
                     <div id="currentBall" className={color+" block"}>
                         <div className="ballCenter">
-                            <span>{currentBall.letter}</span>
-                            <span>{currentBall.number}</span>
+                            <span>{currentBall.letter}<br/>{currentBall.number}</span>
                         </div>
                     </div>
-                    <div className="ballnum">Ball #{_.where(this.state.balls, {called: true}).length}</div>
                 </div>
             )
         } else {
-            return null;
+            return (
+                <div className="balldisplay">
+                    <div id="currentBall" className={"white block"}>
+                        <div className="ballCenter">
+                            <img src={logo} alt="Lets Play Bingo Logo" />
+                        </div>
+                    </div>
+                </div>
+            )
         }
+    };
+
+    /*
+     *  Render Board Function
+     *  Set up rows based on the balls
+     *  Render a section that holds the bingo board
+     */
+    renderBoard = () => {
+        let balls = this.state.balls;
+        let rows = {
+            B: _.where(balls, {letter: "B"}),
+            I: _.where(balls, {letter: "I"}),
+            N: _.where(balls, {letter: "N"}),
+            G: _.where(balls, {letter: "G"}),
+            O: _.where(balls, {letter: "O"})};
+
+        return (
+            <div className="board">
+                {_.map(rows, (row, letter) => (
+                    <div key={"row" + letter} className="board-row">
+                        <div key={letter} className="letter">{letter}</div>
+                        {_.map(row, ball => (
+                            <div key={ball.letter + ball.number} className={ball.called && ball.active
+                                ? "active ball" : ball.called ? "called ball" : "ball"}>
+                                {ball.number}
+                            </div>
+                        ))}
+                    </div>
+                ))}
+            </div>
+        );
     };
 
     /*
@@ -432,13 +448,30 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header>
-                    <img src={logo} alt="Let's Play Bingo Logo" />
-                </header>
-                {this.renderBoard()}
-                {this.renderButtons()}
+                <section id="bingoboard" className="flex">
+                    {this.renderBoard()}
+                    {this.renderCurrentBall()}
+                </section>
+                <section id="buttons">
+                    <div className="row">
+                        <div className="col c60">
+                            {this.renderButtons()}
+                        </div>
+                        <div className="col c40 text-right">
+                            <div class="addthis_inline_share_toolbox"></div>
+                        </div>
+                    </div>
+                </section>
+
                 {this.renderPattern()}
-                {this.renderCurrentBall()}
+
+                <header>
+                    <div className="row">
+                        <div className="col c20">
+                            <img src={logo} alt="Let's Play Bingo Logo" />
+                        </div>
+                    </div>
+                </header>
             </div>
         );
     }
