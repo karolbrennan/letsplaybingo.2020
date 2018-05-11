@@ -103,6 +103,7 @@ class App extends Component {
                 74: {letter: "O", number: 74, called: false, active: false},
                 75: {letter: "O", number: 75, called: false, active: false}
             },
+            newGame: true,
             running: false,
             interval: 0,
             delay: 5000,
@@ -187,11 +188,12 @@ class App extends Component {
                 },
             },
             speechEnabled: window.hasOwnProperty('speechSynthesis'),
+            synth: window.speechSynthesis,
             voices: []
         };
         // if speech is enabled, set up a method to load voices if they change
         if(this.state.speechEnabled) {
-            window.speechSynthesis.onvoiceschanged = this.loadVoices;
+            this.state.synth.onvoiceschanged = this.loadVoices;
         }
     };
 
@@ -211,7 +213,24 @@ class App extends Component {
      *  Will load voices as they change within the browser
      */
     loadVoices = () => {
-        this.setState({voices: window.speechSynthesis.getVoices()})
+        this.setState({voices: this.state.synth.getVoices()})
+    };
+
+    /*
+     *  Say Function
+     *  Will speak any string that is passed in
+     */
+    say = (text) => {
+        if(this.state.speechEnabled) {
+            // Create a new instance of SpeechSynthesisUtterance.
+            let msg = new SpeechSynthesisUtterance();
+            msg.text = text;
+            if(this.state.hasOwnProperty('selectedVoice')){
+                msg.voice = this.state.selectedVoice;
+            }
+            this.state.synth.cancel(); // cancel anything that's already so we can say the next bit.
+            this.state.synth.speak(msg);
+        }
     };
 
     /*
@@ -225,7 +244,13 @@ class App extends Component {
             resetBalls[index].active = false;
             resetBalls[index].called = false;
         });
-        this.setState({balls: resetBalls});
+        this.setState({balls: resetBalls, newGame: true});
+    };
+
+    startGame = () => {
+        this.say("Let's Play Bingo!");
+        this.setState({newGame: false});
+        setTimeout(this.toggleGame, 1500);
     };
 
     /*
@@ -317,12 +342,39 @@ class App extends Component {
         } else {
             // choose a random ball
             let randomball = uncalled[Math.floor(Math.random() * uncalled.length)];
+            let letter = balls[randomball.number].letter;
+            let number = balls[randomball.number].number;
+            // call the number aloud
             // set the ball as called
+            this.vocalCall(letter, number);
             balls[randomball.number].called = true;
             balls[randomball.number].active = true;
             // update the state to re-render the board
             this.setState({balls: balls});
         }
+    };
+
+    /*
+     *  Call the number slowly
+     */
+    vocalCall = (letter, number) => {
+        this.say(letter + ' ' + number);
+        setTimeout(() => {
+            number = number.toString();
+            switch (number.length) {
+                case 2:
+                    this.say(letter);
+                    setTimeout(() => {this.say(number.charAt(0))}, 500);
+                    setTimeout(() => {this.say(number.charAt(1))}, 1000);
+                    break;
+                case 1:
+                    this.say(letter);
+                    setTimeout(() => {this.say(number)}, 500);
+                    break;
+                case 0:
+                    break;
+            }
+        }, 1750);
     };
 
 
@@ -333,7 +385,9 @@ class App extends Component {
     renderButtons = () => {
         return (
             <div>
-                <button onClick={this.toggleGame}>{this.state.running ? 'Pause' : 'Play'}</button>
+                <button onClick={this.state.newGame ? this.startGame : this.toggleGame}>
+                    {this.state.newGame ? 'Start' : this.state.running ? 'Pause' : 'Resume'}
+                </button>
                 <button onClick={this.callNumber} disabled={this.state.running ? 'disabled' : ''}>Next Number</button>
                 <button onClick={this.resetGame}>Reset</button>
                 <span>Slow</span><input onChange={(e) => this.setDelay(e)} type="range" min="5000" max="16000" step="1000" /><span>Fast</span>
