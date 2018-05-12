@@ -106,8 +106,9 @@ class App extends Component {
             newGame: true,
             running: false,
             interval: 0,
-            delay: 5000,
+            delay: 7000,
             selectedPattern: null,
+            selectedCaller: null,
             pattern: {
                 B: [false, false, false, false, false],
                 I: [false, false, false, false, false],
@@ -204,10 +205,6 @@ class App extends Component {
             });
     };
 
-    componentDidUpdate() {
-        console.log("State Changed: ", this.state);
-    };
-
     /*
      *  Load Voices Function
      *  Will load voices as they change within the browser
@@ -225,8 +222,8 @@ class App extends Component {
             // Create a new instance of SpeechSynthesisUtterance.
             let msg = new SpeechSynthesisUtterance();
             msg.text = text;
-            if(this.state.hasOwnProperty('selectedVoice')){
-                msg.voice = this.state.selectedVoice;
+            if(this.state.hasOwnProperty('selectedCaller')){
+                msg.voice = this.state.selectedCaller;
             }
             this.state.synth.cancel(); // cancel anything that's already so we can say the next bit.
             this.state.synth.speak(msg);
@@ -249,7 +246,6 @@ class App extends Component {
 
     startGame = () => {
         this.say("Let's Play Bingo!");
-        this.setState({newGame: false});
         setTimeout(this.toggleGame, 1500);
     };
 
@@ -267,7 +263,7 @@ class App extends Component {
         } else {
             clearInterval(this.state.interval);
         }
-        this.setState({running: !this.state.running});
+        this.setState({newGame: false, running: !this.state.running});
     };
 
     /*
@@ -302,7 +298,6 @@ class App extends Component {
      *  Sets to default if no pattern is selected or selection is cleared.
      */
     choosePattern = (e) => {
-        console.log(this.state);
         if(e === null){
             this.setState({
                 selectedPattern: null,
@@ -319,6 +314,20 @@ class App extends Component {
                 selectedPattern: e.value,
                 pattern: this.state.presets[e.value]
             });
+        }
+    };
+
+    /*
+     *  Choose Caller Function
+     */
+    chooseCaller = (e) => {
+        if(e === null) {
+            // default
+            this.setState({selectedCaller: this.state.voices[0]});
+        } else {
+            let voice = this.state.voices[e.value];
+            voice.value = e.value;
+          this.setState({selectedCaller: voice});
         }
     };
 
@@ -371,7 +380,7 @@ class App extends Component {
                     this.say(letter);
                     setTimeout(() => {this.say(number)}, 500);
                     break;
-                case 0:
+                default:
                     break;
             }
         }, 1750);
@@ -390,7 +399,6 @@ class App extends Component {
                 </button>
                 <button onClick={this.callNumber} disabled={this.state.running ? 'disabled' : ''}>Next Number</button>
                 <button onClick={this.resetGame}>Reset</button>
-                <span>Slow</span><input onChange={(e) => this.setDelay(e)} type="range" min="5000" max="16000" step="1000" /><span>Fast</span>
             </div>
         )
     };
@@ -515,34 +523,148 @@ class App extends Component {
         );
     };
 
+    getLanguageText =(text) => {
+      switch(text){
+          case 'ar-SA':
+              return 'Arabic (Saudi Arabia)';
+          case 'cs-CZ':
+              return 'Czech (Czech Republic)';
+          case 'da-DK':
+              return 'Danish (Denmark)';
+          case 'de-DE':
+              return 'German';
+          case 'el-GR':
+             return 'Greek (Greece)';
+          case 'en':
+             return 'English';
+          case 'en-AU':
+             return 'English (Australia)';
+          case 'en-GB':
+              return 'UK English';
+          case 'en-IE':
+              return 'English (Ireland)';
+          case 'en-IN':
+              return 'English (India)';
+          case 'en-US':
+             return 'US English';
+          case 'en-ZA':
+             return 'English (South Africa)';
+          case 'es-AR':
+              return 'Spanish (Argentina)';
+          case 'es-ES':
+              return 'Spanish (Spain)';
+          case 'es-MX':
+              return 'Spanish (Mexico)';
+          case 'es-US':
+              return 'Spanish (United States)';
+          case 'fi-FI':
+              return 'Finnish (Finland)';
+          case 'fr-CA':
+              return 'French (Canada)';
+          case 'fr-FR':
+              return 'French (France)';
+          case 'he-IL':
+              return 'Hebrew';
+          case 'hi-IN':
+              return 'Hindi (India)';
+          case 'hu-HU':
+              return 'Hungarian (Hungary)';
+          case 'id-ID':
+              return 'Indonesian';
+          case 'it-IT':
+              return 'Italian';
+          case 'ja-JP':
+              return 'Japanese';
+          case 'ko-KR':
+              return 'Korean (Korea)';
+          case 'nb-NO':
+              return 'Norwegian (Bokm?l) (Norway)';
+          case 'nl-BE':
+              return 'Dutch (Belgium)';
+          case 'nl-NL':
+              return 'Dutch (Netherlands)';
+          case 'pl-PL':
+              return 'Polish (Poland)';
+          case 'pt-PT':
+              return 'Portuguese (Portugal)';
+          case 'pt-BR':
+              return 'Portuguese (Brazil)';
+          case 'ro-RO':
+              return 'Romanian (Romania)';
+          case 'ru-RU':
+              return 'Russian (Russia)';
+          case 'sk-SK':
+              return 'Slovak (Slovakia)';
+          case 'sv-SE':
+              return 'Swedish';
+          case 'th-TH':
+              return 'Thai (Thailand)';
+          case 'tr-TR':
+              return 'Turkish (Turkey)';
+          case 'zh-CN':
+              return 'Chinese (S)';
+          case 'zh-HK':
+              return 'Chinese (Hong Kong)';
+          case 'zh-TW':
+              return 'Chinese (T)';
+          default:
+              return text;
+      }
+    };
+
     /*
      *  Render Method
      *  Displays the bingo page
      */
     render() {
-        console.log(this.state);
         return (
             <div className="App">
+                <header>
+                    <div className="row">
+                        <div className="col c20">
+                            <img className="logo" src={logo} alt="Let's Play Bingo Logo" />
+                        </div>
+                        <div className="col c60 text-center">
+                            <div className="addthis_inline_share_toolbox"></div>
+                        </div>
+                        <div className="col c20 text-right">
+                            <div id="google_translate_element"></div>
+                        </div>
+                    </div>
+                </header>
                 <section id="bingoboard" className="flex">
                     {this.renderBoard()}
                     {this.renderCurrentBall()}
                 </section>
                 <section id="buttons">
                     <div className="row">
-                        <div className="col c60">
+                        <div className="col c40">
                             {this.renderButtons()}
                         </div>
-                        <div className="col c40 text-right">
-                            <div className="addthis_inline_share_toolbox"></div>
+                        <div className="col c30">
+                            <div className="voices">
+                                <Select
+                                    name="voiceselect"
+                                    placeholder="Choose Caller"
+                                    searchable
+                                    onBlurResetsInput={true}
+                                    value={this.state.selectedCaller ? this.state.selectedCaller.value : ''}
+                                    onChange={this.chooseCaller}
+                                    options={_.map(this.state.voices, (voice, index) => (
+                                        {value: index, label: (voice.name + ' / ' + this.getLanguageText(voice.lang))}
+                                    ))} />
+                            </div>
+                        </div>
+                        <div className="col c30 text-right">
+                            <div id="speed">
+                                <span>Slow</span><input onChange={(e) => this.setDelay(e)} type="range" value={this.state.delay} min="5000" max="16000" step="1000" /><span>Fast</span>
+                            </div>
                         </div>
                     </div>
                 </section>
                 <section id="infoblock">
                     <div className="row">
-                        <div className="col c25">
-                            <img src={logo} alt="Let's Play Bingo Logo" />
-                        </div>
-                        <div className="col c50">
+                        <div className="col c75">
                             <p className="description">Use this free bingo caller to host your own bingo games at home! <br/> You provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!</p>
                         </div>
                         <div className="col c25 relative">

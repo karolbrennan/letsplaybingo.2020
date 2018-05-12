@@ -12,7 +12,13 @@ html, body {
 
 /* Header */
 header {
-    padding: 1rem;
+    padding: 0 1rem;
+}
+header .logo {
+    height: 2rem;
+}
+header .col {
+    vertical-align: middle;
 }
 img {
     max-width: 100%;
@@ -21,6 +27,9 @@ img {
 }
 .text-right {
     text-align: right;
+}
+.text-center {
+    text-align: center;
 }
 .description {
     line-height: 1.5;
@@ -60,9 +69,44 @@ img {
 .c95 { width: 95%; }
 .c100 { width: 100%; }
 
-input[type='range'] {
-    direction: rtl;
+/* Translations */
+.goog-te-gadget-simple {
+    border: none !important;
 }
+.goog-te-gadget-icon {
+    margin: 0;
+}
+
+/* Speed Selector */
+
+#speed {
+    margin: 1rem 0;
+    display: inline-block;
+}
+#speed span {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: white;
+    font-weight: bold;
+}
+input[type='range'] {
+    appearance:none;
+    width: 10rem;
+    height: .5rem;
+    outline: none;
+    border-radius: .25rem;
+    margin: 0 1rem;
+}
+input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #F44336;
+    border: .25rem solid white;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
 
 /* Pattern */
 
@@ -169,6 +213,9 @@ button {
     padding: 0.5em 1em;
     color: white;
     text-transform: uppercase;
+}
+#buttons button {
+    margin: 0.5em 0.25em;
 }
 button:disabled {
     background: #aaaaaa;
