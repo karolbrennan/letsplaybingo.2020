@@ -4,677 +4,325 @@
  * http://karolbrennan.com
  * http://github.com/karolbrennan
  */
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './images/logo.svg';
 import _ from 'underscore';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import './App.css';
+import './css/App.css';
+import BingoBoard from './BingoBoard.js';
+import Pattern from './Pattern.js';
+import BallDisplay from './BallDisplay.js';
+import {getLanguageText} from './helpers.js';
+
 
 class App extends Component {
 
-    /*
-     * Constructor
-     * State Variables
-     * balls: balls object, holds letter, number, called and active statues
-     * running: determines if the game is presently running
-     * interval & delay: how often the balls are generated
-     * selected pattern: name of currently selected pattern. used to display in select
-     * pattern: array representing current pattern
-     * presets: object holding a variety of preset pattern options
-     */
-    constructor(props){
-        super(props);
-        this.state = {
-            balls: {
-                1: {letter: "B", number: 1, called: false, active: false},
-                2: {letter: "B", number: 2, called: false, active: false},
-                3: {letter: "B", number: 3, called: false, active: false},
-                4: {letter: "B", number: 4, called: false, active: false},
-                5: {letter: "B", number: 5, called: false, active: false},
-                6: {letter: "B", number: 6, called: false, active: false},
-                7: {letter: "B", number: 7, called: false, active: false},
-                8: {letter: "B", number: 8, called: false, active: false},
-                9: {letter: "B", number: 9, called: false, active: false},
-                10: {letter: "B", number: 10, called: false, active: false},
-                11: {letter: "B", number: 11, called: false, active: false},
-                12: {letter: "B", number: 12, called: false, active: false},
-                13: {letter: "B", number: 13, called: false, active: false},
-                14: {letter: "B", number: 14, called: false, active: false},
-                15: {letter: "B", number: 15, called: false, active: false},
-                16: {letter: "I", number: 16, called: false, active: false},
-                17: {letter: "I", number: 17, called: false, active: false},
-                18: {letter: "I", number: 18, called: false, active: false},
-                19: {letter: "I", number: 19, called: false, active: false},
-                20: {letter: "I", number: 20, called: false, active: false},
-                21: {letter: "I", number: 21, called: false, active: false},
-                22: {letter: "I", number: 22, called: false, active: false},
-                23: {letter: "I", number: 23, called: false, active: false},
-                24: {letter: "I", number: 24, called: false, active: false},
-                25: {letter: "I", number: 25, called: false, active: false},
-                26: {letter: "I", number: 26, called: false, active: false},
-                27: {letter: "I", number: 27, called: false, active: false},
-                28: {letter: "I", number: 28, called: false, active: false},
-                29: {letter: "I", number: 29, called: false, active: false},
-                30: {letter: "I", number: 30, called: false, active: false},
-                31: {letter: "N", number: 31, called: false, active: false},
-                32: {letter: "N", number: 32, called: false, active: false},
-                33: {letter: "N", number: 33, called: false, active: false},
-                34: {letter: "N", number: 34, called: false, active: false},
-                35: {letter: "N", number: 35, called: false, active: false},
-                36: {letter: "N", number: 36, called: false, active: false},
-                37: {letter: "N", number: 37, called: false, active: false},
-                38: {letter: "N", number: 38, called: false, active: false},
-                39: {letter: "N", number: 39, called: false, active: false},
-                40: {letter: "N", number: 40, called: false, active: false},
-                41: {letter: "N", number: 41, called: false, active: false},
-                42: {letter: "N", number: 42, called: false, active: false},
-                43: {letter: "N", number: 43, called: false, active: false},
-                44: {letter: "N", number: 44, called: false, active: false},
-                45: {letter: "N", number: 45, called: false, active: false},
-                46: {letter: "G", number: 46, called: false, active: false},
-                47: {letter: "G", number: 47, called: false, active: false},
-                48: {letter: "G", number: 48, called: false, active: false},
-                49: {letter: "G", number: 49, called: false, active: false},
-                50: {letter: "G", number: 50, called: false, active: false},
-                51: {letter: "G", number: 51, called: false, active: false},
-                52: {letter: "G", number: 52, called: false, active: false},
-                53: {letter: "G", number: 53, called: false, active: false},
-                54: {letter: "G", number: 54, called: false, active: false},
-                55: {letter: "G", number: 55, called: false, active: false},
-                56: {letter: "G", number: 56, called: false, active: false},
-                57: {letter: "G", number: 57, called: false, active: false},
-                58: {letter: "G", number: 58, called: false, active: false},
-                59: {letter: "G", number: 59, called: false, active: false},
-                60: {letter: "G", number: 60, called: false, active: false},
-                61: {letter: "O", number: 61, called: false, active: false},
-                62: {letter: "O", number: 62, called: false, active: false},
-                63: {letter: "O", number: 63, called: false, active: false},
-                64: {letter: "O", number: 64, called: false, active: false},
-                65: {letter: "O", number: 65, called: false, active: false},
-                66: {letter: "O", number: 66, called: false, active: false},
-                67: {letter: "O", number: 67, called: false, active: false},
-                68: {letter: "O", number: 68, called: false, active: false},
-                69: {letter: "O", number: 69, called: false, active: false},
-                70: {letter: "O", number: 70, called: false, active: false},
-                71: {letter: "O", number: 71, called: false, active: false},
-                72: {letter: "O", number: 72, called: false, active: false},
-                73: {letter: "O", number: 73, called: false, active: false},
-                74: {letter: "O", number: 74, called: false, active: false},
-                75: {letter: "O", number: 75, called: false, active: false}
-            },
-            newGame: true,
-            running: false,
-            interval: 0,
-            delay: 7000,
-            selectedPattern: null,
-            selectedCaller: null,
-            pattern: {
-                B: [false, false, false, false, false],
-                I: [false, false, false, false, false],
-                N: [false, false, false, false, false],
-                G: [false, false, false, false, false],
-                O: [false, false, false, false, false]
-            },
-            presets: {
-                "Custom": {
-                    B: [false, false, false, false, false],
-                    I: [false, false, false, false, false],
-                    N: [false, false, false, false, false],
-                    G: [false, false, false, false, false],
-                    O: [false, false, false, false, false]
-                },
-                "Regular or 4 Corners": {
-                    B: [true, false, false, false, true],
-                    I: [false, true, false, false, false],
-                    N: [false, false, true, false, false],
-                    G: [false, false, false, true, false],
-                    O: [true, false, false, false, true]
-                },
-                "Brackets": {
-                    B: [true, true, false, true, true],
-                    I: [true, false, false, false, true],
-                    N: [false, false, false, false, false],
-                    G: [true, false, false, false, true],
-                    O: [true, true, false, true, true]
-                },
-                "Letter X": {
-                    B: [true, false, false, false, true],
-                    I: [false, true, false, true, false],
-                    N: [false, false, true, false, false],
-                    G: [false, true, false, true, false],
-                    O: [true, false, false, false, true]
-                },
-                "Layer Cake": {
-                    B: [true, false, true, false, true],
-                    I: [true, false, true, false, true],
-                    N: [true, false, true, false, true],
-                    G: [true, false, true, false, true],
-                    O: [true, false, true, false, true]
-                },
-                "Postage Stamps": {
-                    B: [true, true, false, false, false],
-                    I: [true, true, false, false, false],
-                    N: [false, false, false, false, false],
-                    G: [false, false, false, true, true],
-                    O: [false, false, false, true, true]
-                },
-                "Sputnik": {
-                    B: [true, false, false, false, true],
-                    I: [false, true, true, true, false],
-                    N: [false, true, true, true, false],
-                    G: [false, true, true, true, false],
-                    O: [true, false, false, false, true]
-                },
-                "Diamond": {
-                    B: [false, false, true, false, false],
-                    I: [false, true, false, true, false],
-                    N: [true, false, false, false, true],
-                    G: [false, true, false, true, false],
-                    O: [false, false, true, false, false]
-                },
-                "Filled in Diamond": {
-                    B: [false, false, true, false, false],
-                    I: [false, true, true, true, false],
-                    N: [true, true, true, true, true],
-                    G: [false, true, true, true, false],
-                    O: [false, false, true, false, false]
-                },
-                "Blackout": {
-                    B: [true, true, true, true, true],
-                    I: [true, true, true, true, true],
-                    N: [true, true, true, true, true],
-                    G: [true, true, true, true, true],
-                    O: [true, true, true, true, true]
-                },
-            },
-            speechEnabled: window.hasOwnProperty('speechSynthesis'),
-            synth: window.speechSynthesis,
-            voices: []
-        };
-        // if speech is enabled, set up a method to load voices if they change
-        if(this.state.speechEnabled) {
-            this.state.synth.onvoiceschanged = this.loadVoices;
-        }
+  /*
+   * Constructor
+   * State Variables
+   * balls: balls object, holds letter, number, called and active statues
+   * running: determines if the game is presently running
+   * interval & delay: how often the balls are generated
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      balls: {
+        1: {letter: "B", number: 1, called: false, active: false},
+        2: {letter: "B", number: 2, called: false, active: false},
+        3: {letter: "B", number: 3, called: false, active: false},
+        4: {letter: "B", number: 4, called: false, active: false},
+        5: {letter: "B", number: 5, called: false, active: false},
+        6: {letter: "B", number: 6, called: false, active: false},
+        7: {letter: "B", number: 7, called: false, active: false},
+        8: {letter: "B", number: 8, called: false, active: false},
+        9: {letter: "B", number: 9, called: false, active: false},
+        10: {letter: "B", number: 10, called: false, active: false},
+        11: {letter: "B", number: 11, called: false, active: false},
+        12: {letter: "B", number: 12, called: false, active: false},
+        13: {letter: "B", number: 13, called: false, active: false},
+        14: {letter: "B", number: 14, called: false, active: false},
+        15: {letter: "B", number: 15, called: false, active: false},
+        16: {letter: "I", number: 16, called: false, active: false},
+        17: {letter: "I", number: 17, called: false, active: false},
+        18: {letter: "I", number: 18, called: false, active: false},
+        19: {letter: "I", number: 19, called: false, active: false},
+        20: {letter: "I", number: 20, called: false, active: false},
+        21: {letter: "I", number: 21, called: false, active: false},
+        22: {letter: "I", number: 22, called: false, active: false},
+        23: {letter: "I", number: 23, called: false, active: false},
+        24: {letter: "I", number: 24, called: false, active: false},
+        25: {letter: "I", number: 25, called: false, active: false},
+        26: {letter: "I", number: 26, called: false, active: false},
+        27: {letter: "I", number: 27, called: false, active: false},
+        28: {letter: "I", number: 28, called: false, active: false},
+        29: {letter: "I", number: 29, called: false, active: false},
+        30: {letter: "I", number: 30, called: false, active: false},
+        31: {letter: "N", number: 31, called: false, active: false},
+        32: {letter: "N", number: 32, called: false, active: false},
+        33: {letter: "N", number: 33, called: false, active: false},
+        34: {letter: "N", number: 34, called: false, active: false},
+        35: {letter: "N", number: 35, called: false, active: false},
+        36: {letter: "N", number: 36, called: false, active: false},
+        37: {letter: "N", number: 37, called: false, active: false},
+        38: {letter: "N", number: 38, called: false, active: false},
+        39: {letter: "N", number: 39, called: false, active: false},
+        40: {letter: "N", number: 40, called: false, active: false},
+        41: {letter: "N", number: 41, called: false, active: false},
+        42: {letter: "N", number: 42, called: false, active: false},
+        43: {letter: "N", number: 43, called: false, active: false},
+        44: {letter: "N", number: 44, called: false, active: false},
+        45: {letter: "N", number: 45, called: false, active: false},
+        46: {letter: "G", number: 46, called: false, active: false},
+        47: {letter: "G", number: 47, called: false, active: false},
+        48: {letter: "G", number: 48, called: false, active: false},
+        49: {letter: "G", number: 49, called: false, active: false},
+        50: {letter: "G", number: 50, called: false, active: false},
+        51: {letter: "G", number: 51, called: false, active: false},
+        52: {letter: "G", number: 52, called: false, active: false},
+        53: {letter: "G", number: 53, called: false, active: false},
+        54: {letter: "G", number: 54, called: false, active: false},
+        55: {letter: "G", number: 55, called: false, active: false},
+        56: {letter: "G", number: 56, called: false, active: false},
+        57: {letter: "G", number: 57, called: false, active: false},
+        58: {letter: "G", number: 58, called: false, active: false},
+        59: {letter: "G", number: 59, called: false, active: false},
+        60: {letter: "G", number: 60, called: false, active: false},
+        61: {letter: "O", number: 61, called: false, active: false},
+        62: {letter: "O", number: 62, called: false, active: false},
+        63: {letter: "O", number: 63, called: false, active: false},
+        64: {letter: "O", number: 64, called: false, active: false},
+        65: {letter: "O", number: 65, called: false, active: false},
+        66: {letter: "O", number: 66, called: false, active: false},
+        67: {letter: "O", number: 67, called: false, active: false},
+        68: {letter: "O", number: 68, called: false, active: false},
+        69: {letter: "O", number: 69, called: false, active: false},
+        70: {letter: "O", number: 70, called: false, active: false},
+        71: {letter: "O", number: 71, called: false, active: false},
+        72: {letter: "O", number: 72, called: false, active: false},
+        73: {letter: "O", number: 73, called: false, active: false},
+        74: {letter: "O", number: 74, called: false, active: false},
+        75: {letter: "O", number: 75, called: false, active: false}
+      },
+      newGame: true,
+      running: false,
+      interval: 0,
+      delay: 10000,
+      selectedCaller: null,
+      speechEnabled: window.hasOwnProperty('speechSynthesis'),
+      synth: window.speechSynthesis,
+      voices: []
     };
-
-    componentDidMount() {
-        window.addEventListener('onbeforeunload',
-            () => {
-                alert("Are you sure you want to leave? You will your game if it is in progress.")
-            });
-    };
-
-    /*
-     *  Load Voices Function
-     *  Will load voices as they change within the browser
-     */
-    loadVoices = () => {
-        this.setState({voices: this.state.synth.getVoices()})
-    };
-
-    /*
-     *  Say Function
-     *  Will speak any string that is passed in
-     */
-    say = (text) => {
-        if(this.state.speechEnabled) {
-            // Create a new instance of SpeechSynthesisUtterance.
-            let msg = new SpeechSynthesisUtterance();
-            msg.text = text;
-            if(this.state.hasOwnProperty('selectedCaller')){
-                msg.voice = this.state.selectedCaller;
-            }
-            this.state.synth.cancel(); // cancel anything that's already so we can say the next bit.
-            this.state.synth.speak(msg);
-        }
-    };
-
-    /*
-     *  Reset Game Function
-     *  Map out the original balls array and update
-     *  active and called statuses to false
-     */
-    resetGame = () => {
-        let resetBalls = this.state.balls;
-        _.map(resetBalls, (ball, index) => {
-            resetBalls[index].active = false;
-            resetBalls[index].called = false;
-        });
-        this.setState({balls: resetBalls, newGame: true});
-    };
-
-    startGame = () => {
-        this.say("Let's Play Bingo!");
-        setTimeout(this.toggleGame, 1500);
-    };
-
-    /*
-     *  Toggle Game Function
-     *  Check the opposite of the current running state, this will determine our new state
-     *  If the game is now running, call a number right away then set a new interval
-     *  Otherwise, clear the interval
-     *  Set the current running state
-     */
-    toggleGame = () => {
-        if(!this.state.running === true){
-            this.callNumber();
-            this.setState({interval: setInterval(this.callNumber, this.state.delay)});
-        } else {
-            clearInterval(this.state.interval);
-        }
-        this.setState({newGame: false, running: !this.state.running});
-    };
-
-    /*
-     *  Set Delay Function
-     *  Fires when the user uses the delay slider
-     *  If the game is running it'll clear the existing interval and set a new one
-     *  Otherwise it will just update the delay
-     */
-    setDelay = (e) => {
-        if(this.state.running){
-            clearInterval(this.state.interval);
-            this.setState({delay: e.target.value, interval: setInterval(this.callNumber, e.target.value)});
-        } else {
-            this.setState({delay: e.target.value});
-        }
-    };
+    // if speech is enabled, set up a method to load voices if they change
+    if (this.state.speechEnabled) {
+      this.state.synth.onvoiceschanged = this.loadVoices;
+    }
+  };
 
 
-    /*
-     *  Update Pattern Function
-     *  As user clicks on slots for the pattern, update the pattern in the state
-     */
-    updatePattern = (letter, index, slot) => {
-        let pattern = this.state.pattern;
-        pattern[letter][index] = !slot;
-        this.setState({selectedPattern: "Custom", pattern: pattern});
-    };
+  /*
+   *  Load Voices Function
+   *  Will load voices as they change within the browser
+   */
+  loadVoices = () => {
+    this.setState({voices: this.state.synth.getVoices()})
+  };
 
-    /*
-     *  Choose Pattern Function
-     *  This sets the selected pattern
-     *  Sets to default if no pattern is selected or selection is cleared.
-     */
-    choosePattern = (e) => {
-        if(e === null){
-            this.setState({
-                selectedPattern: null,
-                pattern: {
-                    B: [false,false,false,false,false],
-                    I: [false,false,false,false,false],
-                    N: [false,false,false,false,false],
-                    G: [false,false,false,false,false],
-                    O: [false,false,false,false,false]
-                }
-            });
-        } else {
-            this.setState({
-                selectedPattern: e.value,
-                pattern: this.state.presets[e.value]
-            });
-        }
-    };
+  /*
+   *  Say Function
+   *  Will speak any string that is passed in
+   */
+  say = (text) => {
+    if (this.state.speechEnabled) {
+      // Create a new instance of SpeechSynthesisUtterance.
+      let msg = new SpeechSynthesisUtterance();
+      msg.text = text;
+      if (this.state.hasOwnProperty('selectedCaller')) {
+        msg.voice = this.state.selectedCaller;
+      }
+      if(this.state.synth.speaking){
+        this.state.synth.cancel();
+      }
+      this.state.synth.speak(msg);
+    }
+  };
 
-    /*
-     *  Choose Caller Function
-     */
-    chooseCaller = (e) => {
-        if(e === null) {
-            // default
-            this.setState({selectedCaller: this.state.voices[0]});
-        } else {
-            let voice = this.state.voices[e.value];
-            voice.value = e.value;
-          this.setState({selectedCaller: voice});
-        }
-    };
+  /*
+   *  Reset Game Function
+   *  Map out the original balls array and update
+   *  active and called statuses to false
+   */
+  resetGame = () => {
+    let resetBalls = this.state.balls;
+    _.map(resetBalls, (ball, index) => {
+      resetBalls[index].active = false;
+      resetBalls[index].called = false;
+    });
+    this.setState({balls: resetBalls, newGame: true});
+  };
 
-    /*
-     *  Call Number Function
-     *  Will get all of the balls, find the active one and reset it
-     *  Grabs uncalled balls and determines if there are still uncalled balls
-     *  Otherwise, it'll generate a random ball, set it to called and active
-     */
-    callNumber = () => {
-        // get all balls
-        let balls = this.state.balls;
-        let active = _.where(balls, {active: true});
-        active.forEach(ball => {
-            ball.active = false;
-        });
-        // get all uncalled balls
-        let uncalled = _.where(balls, {called: false});
-        if(uncalled.length === 0){
-            alert("I've given you all I've got captain! I haven't got any more balls!");
-        } else {
-            // choose a random ball
-            let randomball = uncalled[Math.floor(Math.random() * uncalled.length)];
-            let letter = balls[randomball.number].letter;
-            let number = balls[randomball.number].number;
-            // call the number aloud
-            // set the ball as called
-            this.vocalCall(letter, number);
-            balls[randomball.number].called = true;
-            balls[randomball.number].active = true;
-            // update the state to re-render the board
-            this.setState({balls: balls});
-        }
-    };
+  startGame = () => {
+    if(this.state.newGame) {
+      this.say("Let's Play Bingo!");
+    }
+    setTimeout(this.toggleGame, 1500);
+  };
 
-    /*
-     *  Call the number slowly
-     */
-    vocalCall = (letter, number) => {
-        this.say(letter + ' ' + number);
-        setTimeout(() => {
-            number = number.toString();
-            switch (number.length) {
-                case 2:
-                    this.say(letter);
-                    setTimeout(() => {this.say(number.charAt(0))}, 500);
-                    setTimeout(() => {this.say(number.charAt(1))}, 1000);
-                    break;
-                case 1:
-                    this.say(letter);
-                    setTimeout(() => {this.say(number)}, 500);
-                    break;
-                default:
-                    break;
-            }
-        }, 1750);
-    };
+  /*
+   *  Toggle Game Function
+   *  Check the opposite of the current running state, this will determine our new state
+   *  If the game is now running, call a number right away then set a new interval
+   *  Otherwise, clear the interval
+   *  Set the current running state
+   */
+  toggleGame = () => {
+    if (!this.state.running === true) {
+      this.callNumber();
+      this.setState({interval: setInterval(this.callNumber, this.state.delay)});
+    } else {
+      clearInterval(this.state.interval);
+    }
+    this.setState({newGame: false, running: !this.state.running});
+  };
+
+  /*
+   *  Set Delay Function
+   *  Fires when the user uses the delay slider
+   *  If the game is running it'll clear the existing interval and set a new one
+   *  Otherwise it will just update the delay
+   */
+  setDelay = (e) => {
+    if (this.state.running) {
+      clearInterval(this.state.interval);
+      this.setState({delay: e.target.value, interval: setInterval(this.callNumber, e.target.value)});
+    } else {
+      this.setState({delay: e.target.value});
+    }
+  };
 
 
-    /*
-     *  Render Buttons Function
-     *  Returns a group of buttons for controling gameplay
-     */
-    renderButtons = () => {
-        return (
-            <div>
+  /*
+   *  Choose Caller Function
+   */
+  chooseCaller = (e) => {
+    if (e === null) {
+      // default
+      this.setState({selectedCaller: this.state.voices[0]});
+    } else {
+      let voice = this.state.voices[e.value];
+      voice.value = e.value;
+      this.setState({selectedCaller: voice});
+    }
+  };
+
+  /*
+   *  Call Number Function
+   *  Will get all of the balls, find the active one and reset it
+   *  Grabs uncalled balls and determines if there are still uncalled balls
+   *  Otherwise, it'll generate a random ball, set it to called and active
+   */
+  callNumber = () => {
+    // get all balls
+    let balls = this.state.balls;
+    // get active bll and reset
+    let active = _.where(balls, {active: true});
+    active.forEach(ball => {ball.active = false;});
+    // get all uncalled balls
+    let uncalled = _.where(balls, {called: false});
+    if (uncalled.length === 0) {
+      alert("I've given you all I've got captain! I haven't got any more balls!");
+    } else {
+      // choose a random ball
+      let randomball = uncalled[Math.floor(Math.random() * uncalled.length)];
+      let newBall = balls[randomball.number];
+      // set status of ball as called and active
+      newBall.called = true;
+      newBall.active = true;
+      // call the new ball, first call it all together, then call each character individually
+      let ballstring = newBall.number.toString();
+      this.say([newBall.letter, newBall.number, ' ', ' ', newBall.letter, ' ',
+        (ballstring.length === 2 ? [ballstring.charAt(0), ' ', ballstring.charAt(1)] : newBall.number)]);
+      // update the state to re-render the board
+      this.setState({balls: balls});
+    }
+  };
+
+
+  /*
+   *  Render Method
+   *  Displays the bingo page
+   */
+  render() {
+    return (
+      <div className="App">
+        <header>
+          <div className="row">
+            <div className="col c20">
+              <img className="logo" src={logo} alt="Let's Play Bingo Logo"/>
+            </div>
+            <div className="col c60 text-center">
+              <div className="addthis_inline_share_toolbox"></div>
+            </div>
+            <div className="col c20 text-right">
+              <div id="google_translate_element"></div>
+            </div>
+          </div>
+        </header>
+        <section id="bingoboard">
+          <BingoBoard balls={this.state.balls}/>
+        </section>
+        <section id="buttons">
+          <div className="row">
+            <div className="col c40">
+              <div>
                 <button onClick={this.state.newGame ? this.startGame : this.toggleGame}>
-                    {this.state.newGame ? 'Start' : this.state.running ? 'Pause' : 'Resume'}
+                  {this.state.newGame ? 'Start' : this.state.running ? 'Pause' : 'Resume'}
                 </button>
                 <button onClick={this.callNumber} disabled={this.state.running ? 'disabled' : ''}>Next Number</button>
                 <button onClick={this.resetGame}>Reset</button>
+              </div>
             </div>
-        )
-    };
-
-    /*
-     *  Render Pattern Function
-     *  This will display a bingo card where the user can create their own pattern
-     *  Or choose a pattern from the searchable drop down
-     */
-    renderPattern = () => {
-        let pattern = this.state.pattern;
-        let patternArray = [_.map(this.state.presets, (preset, value) => (
-            {value: value, label: value}
-        ))];
-
-        return (
-            <section id="bingopattern">
-                <div className="display-table">
-                    {_.map(pattern, (column, letter) => (
-                        <div key={letter} className="pattern-col">
-                            <div className="pattern-letter">{letter}</div>
-                            {_.map(column, (slot, index) => (
-                                <div key={letter+index}
-                                    className={slot ? "selected pattern-slot" : "pattern-slot"}
-                                    onClick={(e) => this.updatePattern(letter, index, slot)}></div>
-                            ))}
-                        </div>
-                    ))}
-                </div>
+            <div className="col c30 text-center">
+              <div id="speed">
+                <span>Slow</span><input onChange={(e) => this.setDelay(e)} type="range" value={this.state.delay}  min="5000" max="16000" step="1000"/><span>Fast</span>
+              </div>
+            </div>
+            <div className="col c30">
+              <div className="voices">
                 <Select
-                    name="patternselect"
-                    placeholder="Choose Pattern"
-                    value={this.state.selectedPattern}
-                    searchable
-                    onBlurResetsInput={true}
-                    clearable
-                    onChange={this.choosePattern}
-                    options={patternArray[0]}
-                />
-            </section>
-        );
-    };
-
-    /*
-     *  Render Current Ball Function
-     *  Will display a CSS based ball graphic
-     */
-    renderCurrentBall = () => {
-        let currentBall = _.where(this.state.balls, {active: true})[0];
-        if(currentBall) {
-            let color = 'white';
-            switch(currentBall.letter){
-                case 'B':
-                    color = 'blue';
-                    break;
-                case 'I':
-                    color = 'red';
-                    break;
-                case 'N':
-                    color = 'white';
-                    break;
-                case 'G':
-                    color = 'green';
-                    break;
-                case 'O':
-                    color = 'orange';
-                    break;
-                default:
-                    break;
-            }
-            return (
-                <div className="balldisplay">
-                    <div className="ballcount">{_.where(this.state.balls, {called: true}).length}</div>
-                    <div id="currentBall" className={color+" block"}>
-                        <div className="ballCenter">
-                            <span>{currentBall.letter}<br/>{currentBall.number}</span>
-                        </div>
-                    </div>
-                </div>
-            )
-        } else {
-            return (
-                <div className="balldisplay">
-                    <div id="currentBall" className={"white block"}>
-                        <div className="ballCenter">
-                            <img src={logo} alt="Lets Play Bingo Logo" />
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-    };
-
-    /*
-     *  Render Board Function
-     *  Set up rows based on the balls
-     *  Render a section that holds the bingo board
-     */
-    renderBoard = () => {
-        let balls = this.state.balls;
-        let rows = {
-            B: _.where(balls, {letter: "B"}),
-            I: _.where(balls, {letter: "I"}),
-            N: _.where(balls, {letter: "N"}),
-            G: _.where(balls, {letter: "G"}),
-            O: _.where(balls, {letter: "O"})};
-
-        return (
-            <div className="board">
-                {_.map(rows, (row, letter) => (
-                    <div key={"row" + letter} className="board-row">
-                        <div key={letter} className="letter">{letter}</div>
-                        {_.map(row, ball => (
-                            <div key={ball.letter + ball.number} className={ball.called && ball.active
-                                ? "active ball" : ball.called ? "called ball" : "ball"}>
-                                {ball.number}
-                            </div>
-                        ))}
-                    </div>
-                ))}
+                  name="voiceselect"
+                  placeholder="Choose Caller"
+                  searchable
+                  onBlurResetsInput={true}
+                  value={this.state.selectedCaller ? this.state.selectedCaller.value : ''}
+                  onChange={this.chooseCaller}
+                  options={_.map(this.state.voices, (voice, index) => (
+                    {value: index, label: (voice.name + ' / ' + getLanguageText(voice.lang))}
+                  ))}/>
+              </div>
             </div>
-        );
-    };
-
-    getLanguageText =(text) => {
-      switch(text){
-          case 'ar-SA':
-              return 'Arabic (Saudi Arabia)';
-          case 'cs-CZ':
-              return 'Czech (Czech Republic)';
-          case 'da-DK':
-              return 'Danish (Denmark)';
-          case 'de-DE':
-              return 'German';
-          case 'el-GR':
-             return 'Greek (Greece)';
-          case 'en':
-             return 'English';
-          case 'en-AU':
-             return 'English (Australia)';
-          case 'en-GB':
-              return 'UK English';
-          case 'en-IE':
-              return 'English (Ireland)';
-          case 'en-IN':
-              return 'English (India)';
-          case 'en-US':
-             return 'US English';
-          case 'en-ZA':
-             return 'English (South Africa)';
-          case 'es-AR':
-              return 'Spanish (Argentina)';
-          case 'es-ES':
-              return 'Spanish (Spain)';
-          case 'es-MX':
-              return 'Spanish (Mexico)';
-          case 'es-US':
-              return 'Spanish (United States)';
-          case 'fi-FI':
-              return 'Finnish (Finland)';
-          case 'fr-CA':
-              return 'French (Canada)';
-          case 'fr-FR':
-              return 'French (France)';
-          case 'he-IL':
-              return 'Hebrew';
-          case 'hi-IN':
-              return 'Hindi (India)';
-          case 'hu-HU':
-              return 'Hungarian (Hungary)';
-          case 'id-ID':
-              return 'Indonesian';
-          case 'it-IT':
-              return 'Italian';
-          case 'ja-JP':
-              return 'Japanese';
-          case 'ko-KR':
-              return 'Korean (Korea)';
-          case 'nb-NO':
-              return 'Norwegian (Bokm?l) (Norway)';
-          case 'nl-BE':
-              return 'Dutch (Belgium)';
-          case 'nl-NL':
-              return 'Dutch (Netherlands)';
-          case 'pl-PL':
-              return 'Polish (Poland)';
-          case 'pt-PT':
-              return 'Portuguese (Portugal)';
-          case 'pt-BR':
-              return 'Portuguese (Brazil)';
-          case 'ro-RO':
-              return 'Romanian (Romania)';
-          case 'ru-RU':
-              return 'Russian (Russia)';
-          case 'sk-SK':
-              return 'Slovak (Slovakia)';
-          case 'sv-SE':
-              return 'Swedish';
-          case 'th-TH':
-              return 'Thai (Thailand)';
-          case 'tr-TR':
-              return 'Turkish (Turkey)';
-          case 'zh-CN':
-              return 'Chinese (S)';
-          case 'zh-HK':
-              return 'Chinese (Hong Kong)';
-          case 'zh-TW':
-              return 'Chinese (T)';
-          default:
-              return text;
-      }
-    };
-
-    /*
-     *  Render Method
-     *  Displays the bingo page
-     */
-    render() {
-        return (
-            <div className="App">
-                <header>
-                    <div className="row">
-                        <div className="col c20">
-                            <img className="logo" src={logo} alt="Let's Play Bingo Logo" />
-                        </div>
-                        <div className="col c60 text-center">
-                            <div className="addthis_inline_share_toolbox"></div>
-                        </div>
-                        <div className="col c20 text-right">
-                            <div id="google_translate_element"></div>
-                        </div>
-                    </div>
-                </header>
-                <section id="bingoboard" className="flex">
-                    {this.renderBoard()}
-                    {this.renderCurrentBall()}
-                </section>
-                <section id="buttons">
-                    <div className="row">
-                        <div className="col c40">
-                            {this.renderButtons()}
-                        </div>
-                        <div className="col c30">
-                            <div className="voices">
-                                <Select
-                                    name="voiceselect"
-                                    placeholder="Choose Caller"
-                                    searchable
-                                    onBlurResetsInput={true}
-                                    value={this.state.selectedCaller ? this.state.selectedCaller.value : ''}
-                                    onChange={this.chooseCaller}
-                                    options={_.map(this.state.voices, (voice, index) => (
-                                        {value: index, label: (voice.name + ' / ' + this.getLanguageText(voice.lang))}
-                                    ))} />
-                            </div>
-                        </div>
-                        <div className="col c30 text-right">
-                            <div id="speed">
-                                <span>Slow</span><input onChange={(e) => this.setDelay(e)} type="range" value={this.state.delay} min="5000" max="16000" step="1000" /><span>Fast</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="infoblock">
-                    <div className="row">
-                        <div className="col c75">
-                            <p className="description">Use this free bingo caller to host your own bingo games at home! <br/> You provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!</p>
-                        </div>
-                        <div className="col c25 relative">
-                            {this.renderPattern()}
-                        </div>
-                    </div>
-                </section>
+          </div>
+        </section>
+        <section id="infoblock">
+          <div className="row">
+            <div className="col c20">
+              <BallDisplay balls={this.state.balls}/>
+              <div className="ballcount">{_.where(this.state.balls, {called: true}).length}</div>
             </div>
-        );
-    }
+            <div className="col c50">
+              <p className="description">Use this free bingo caller to host your own bingo games at home! <br/> You
+                provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!
+              </p>
+            </div>
+            <div className="col c30 text-center">
+              <Pattern />
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
 }
 
 export default App;
