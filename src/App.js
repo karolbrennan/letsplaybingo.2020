@@ -154,12 +154,18 @@ class App extends Component {
    *  active and called statuses to false
    */
   resetGame = () => {
+    if(window.speechSynthesis.speaking){
+      window.speechSynthesis.cancel();
+    }
+    if(this.state.running === true){
+      clearInterval(this.state.interval);
+    }
     let resetBalls = this.state.balls;
     _.map(resetBalls, (ball, index) => {
       resetBalls[index].active = false;
       resetBalls[index].called = false;
     });
-    this.setState({balls: resetBalls, newGame: true});
+    this.setState({balls: resetBalls, newGame: true, running: false});
   };
 
   startGame = () => {
@@ -283,12 +289,12 @@ class App extends Component {
                 <button onClick={this.resetGame}>Reset</button>
               </div>
             </div>
-            <div className="col c30 text-center">
+            <div className="col c40 text-center">
               <div id="speed">
                 <span>Slow</span><input onChange={(e) => this.setDelay(e)} type="range" value={this.state.delay}  min="5000" max="16000" step="1000"/><span>Fast</span>
               </div>
             </div>
-            <div className="col c30">
+            <div className="col c20">
               <div className="voices">
                 <Select
                   name="voiceselect"

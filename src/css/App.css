@@ -245,7 +245,7 @@ input[type='range']::-webkit-slider-thumb {
   text-align: center;
   color: #444444;
   width: 6.25%;
-  line-height: 1.75em;
+  line-height: 1.25em;
 }
 
 .letter {
