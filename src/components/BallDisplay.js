@@ -33,7 +33,8 @@ class BallDisplay extends React.Component {
           break;
       }
       return (
-        <div id="ball" className={color}>
+        <div id="ball" className={color + ' relative'}>
+          <div id="ballcount">{_.where(this.props.balls, {called: true}).length}</div>
           <div className="content">
             <span>
               {currentBall.letter}<br />{currentBall.number}
@@ -43,7 +44,8 @@ class BallDisplay extends React.Component {
       )
     } else {
       return (
-        <div id="ball" className="white">
+        <div id="ball" className="white relative">
+          <div id="ballcount">{_.where(this.props.balls, {called: true}).length}</div>
           <div className="content">
             <span>
              <img src={logo} alt="Lets Play Bingo Logo"/>
