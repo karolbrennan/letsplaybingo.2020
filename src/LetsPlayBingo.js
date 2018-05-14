@@ -5,18 +5,21 @@
  * http://github.com/karolbrennan
  */
 import React, {Component} from 'react';
-import logo from './images/logo.svg';
 import _ from 'underscore';
 import Select from 'react-select';
+// Styles and Images
+import logo from './images/logo.svg';
 import 'react-select/dist/react-select.css';
 import './css/App.css';
-import BingoBoard from './BingoBoard.js';
-import Pattern from './Pattern.js';
-import BallDisplay from './BallDisplay.js';
+// Components
+import BingoBoard from './components/BingoBoard.js';
+import Pattern from './components/Pattern.js';
+import BallDisplay from './components/BallDisplay.js';
+// Helpers
 import {getLanguageText} from './helpers.js';
 
 
-class App extends Component {
+class LetsPlayBingo extends Component {
 
   /*
    * Constructor
@@ -141,10 +144,14 @@ class App extends Component {
       if (this.state.hasOwnProperty('selectedCaller')) {
         msg.voice = this.state.selectedCaller;
       }
-      if(this.state.synth.speaking){
-        this.state.synth.cancel();
-      }
+      this.cancelSpeech();
       this.state.synth.speak(msg);
+    }
+  };
+
+  cancelSpeech = () => {
+    if(window.speechSynthesis.speaking){
+      window.speechSynthesis.cancel();
     }
   };
 
@@ -154,9 +161,7 @@ class App extends Component {
    *  active and called statuses to false
    */
   resetGame = () => {
-    if(window.speechSynthesis.speaking){
-      window.speechSynthesis.cancel();
-    }
+    this.cancelSpeech();
     if(this.state.running === true){
       clearInterval(this.state.interval);
     }
@@ -262,73 +267,85 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
-          <div className="row">
-            <div className="col c20">
-              <img className="logo" src={logo} alt="Let's Play Bingo Logo"/>
+
+        <section id="board">
+          <div className="row flex">
+            <div className="col c85">
+              <BingoBoard balls={this.state.balls} />
             </div>
-            <div className="col c60 text-center">
-              <div className="addthis_inline_share_toolbox"></div>
-            </div>
-            <div className="col c20 text-right">
-              <div id="google_translate_element"></div>
+            <div className="col c15 padding">
+              <BallDisplay balls={this.state.balls}/>
             </div>
           </div>
-        </header>
-        <section id="bingoboard">
-          <BingoBoard balls={this.state.balls}/>
         </section>
+
         <section id="buttons">
           <div className="row">
             <div className="col c40">
-              <div>
-                <button onClick={this.state.newGame ? this.startGame : this.toggleGame}>
-                  {this.state.newGame ? 'Start' : this.state.running ? 'Pause' : 'Resume'}
-                </button>
-                <button onClick={this.callNumber} disabled={this.state.running ? 'disabled' : ''}>Next Number</button>
-                <button onClick={this.resetGame}>Reset</button>
-              </div>
+              <button onClick={this.state.newGame ? this.startGame : this.toggleGame}>
+                {this.state.newGame ? 'Start' : this.state.running ? 'Pause' : 'Resume'}
+              </button>
+              <button onClick={this.callNumber} disabled={this.state.running ? 'disabled' : ''}>Next Number</button>
+              <button onClick={this.resetGame}>Reset</button>
             </div>
             <div className="col c40 text-center">
               <div id="speed">
                 <span>Slow</span><input onChange={(e) => this.setDelay(e)} type="range" value={this.state.delay}  min="5000" max="16000" step="1000"/><span>Fast</span>
               </div>
             </div>
-            <div className="col c20">
-              <div className="voices">
-                <Select
-                  name="voiceselect"
-                  placeholder="Choose Caller"
-                  searchable
-                  onBlurResetsInput={true}
-                  value={this.state.selectedCaller ? this.state.selectedCaller.value : ''}
-                  onChange={this.chooseCaller}
-                  options={_.map(this.state.voices, (voice, index) => (
-                    {value: index, label: (voice.name + ' / ' + getLanguageText(voice.lang))}
-                  ))}/>
-              </div>
+            <div className="col c20 text-right">
+              <Select name="voiceselect" placeholder="Choose Caller" searchable
+                      onBlurResetsInput={true}
+                      value={this.state.selectedCaller ? this.state.selectedCaller.value : ''}
+                      onChange={this.chooseCaller}
+                      options={_.map(this.state.voices, (voice, index) => (
+                        {value: index, label: (voice.name + ' / ' + getLanguageText(voice.lang))}
+                      ))}
+              />
             </div>
           </div>
         </section>
-        <section id="infoblock">
+
+        <section>
           <div className="row">
-            <div className="col c20">
-              <BallDisplay balls={this.state.balls}/>
-              <div className="ballcount">{_.where(this.state.balls, {called: true}).length}</div>
-            </div>
-            <div className="col c50">
-              <p className="description">Use this free bingo caller to host your own bingo games at home! <br/> You
-                provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!
-              </p>
-            </div>
-            <div className="col c30 text-center">
+            <div className="col c20 padding text-center">
               <Pattern />
             </div>
+            <div className="col c60 padding">
+              <p className="description">Use this free bingo caller to host your own bingo games at home! <br/> You
+              provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!
+              </p>
+              <p className="disclaimer">
+                LetsPlayBingo.io does not intend for the bingo caller contained on this website to be used for illegal or gambling purposes. The information and bingo caller contained on this website is for entertainment purposes only. This website, its owners and associates do not have any control over the use of this bingo caller and cannot be held liable for any monetary or other losses incurred by unapproved use of this bingo caller or generated bingo cards.
+              </p>
+              <div className="top-bottom-padding">
+                <div className="addthis_inline_share_toolbox"></div>
+              </div>
+            </div>
+            <div className="col c20 text-center padding">
+              <img className="logo" src={logo} alt="Let's Play Bingo Logo"/>
+              <p>We're now international!</p>
+              <div id="google_translate_element"></div>
+            </div>
           </div>
         </section>
+
+        <footer>
+          <div className="row">
+            <div className="col c25 text-left">
+              <p>For entertainment purposes only.</p>
+            </div>
+            <div className="col c50 text-center">
+              <p>Let's Play Bingo! © 2018 <a href="http://karolbrennan.com" target="_blank">Karol Brennan</a></p>
+            </div>
+            <div className="col c25 text-right">
+              <p>Check out this project on <a href="http://github.com/karolbrennan/letsplaybingo" target="_blank">GitHub</a></p>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
 }
 
-export default App;
+export default LetsPlayBingo;

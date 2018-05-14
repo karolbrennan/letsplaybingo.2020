@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import _ from 'underscore';
-import logo from './images/logo.svg';
+import logo from '../images/logo.svg';
 
 class BallDisplay extends React.Component {
   render() {

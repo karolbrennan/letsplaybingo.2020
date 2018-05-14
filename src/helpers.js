@@ -87,6 +87,8 @@ let getLanguageText = (text) => {
   }
 };
 
+
+
 export {
   getLanguageText
 };

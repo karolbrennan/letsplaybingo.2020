@@ -14,17 +14,13 @@ html, body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
-/* Header */
-header {
-  padding: 0 1rem;
+a, a:visited, a:active {
+  color: #E53935;
+  text-decoration: none;
 }
-
-header .logo {
-  height: 2rem;
-}
-
-header .col {
-  vertical-align: middle;
+a:hover {
+  color: #a12828;
+  cursor: pointer;
 }
 
 img {
@@ -43,14 +39,22 @@ img {
 
 .description {
   line-height: 1.5;
+  color: #444444;
+}
+.disclaimer {
+  font-size: 0.7rem;
   font-style: italic;
-  color: #444;
+  color: #939393;
 }
 
 /* Layout */
 .row, .block {
   display: block;
-  width: 100%;
+}
+.row {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .col {
@@ -137,6 +141,26 @@ img {
 .c100 {
   width: 100%;
 }
+.padding {
+  padding: 1rem;
+}
+.side-padding {
+  padding: 0 1rem;
+}
+.top-bottom-padding {
+  padding: 1rem 0;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+footer {
+  background: #f8f8f8;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+}
+
 
 /* Translations */
 .goog-te-gadget-simple {
@@ -150,8 +174,7 @@ img {
 /* Speed Selector */
 
 #speed {
-  margin: 1rem 0;
-  display: inline-block;
+  margin: 0.75em;
 }
 
 #speed span {
@@ -198,16 +221,15 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .pattern-letter, .pattern-slot {
-  width: 2rem;
-  height: 2rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  line-height: 1rem;
-  background: #111111;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  background: #f3f3f3;
   text-align: center;
   position: relative;
   cursor: pointer;
-  border: 1px solid #222222
+  border: 1px solid #ffffff;
 }
 
 .pattern-letter {
@@ -229,11 +251,10 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 /* Board */
-
-#bingoboard {
-  background: #222;
-  font-size: 1.5rem;
-  padding: 1em 0.5em;
+#board {
+  background: #222222;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .board-row {
@@ -245,7 +266,7 @@ input[type='range']::-webkit-slider-thumb {
   text-align: center;
   color: #444444;
   width: 6.25%;
-  line-height: 1.25em;
+  line-height: 1.75em;
 }
 
 .letter {
@@ -286,7 +307,7 @@ input[type='range']::-webkit-slider-thumb {
 button {
   margin: 0 0.25em;
   border: 0;
-  background: #222;
+  background: #bd2a26;
   border-radius: 0.2em;
   font-size: 1rem;
   padding: 0.5em 1em;
@@ -295,7 +316,7 @@ button {
 }
 
 #buttons button {
-  margin: 0.5em 0.25em;
+  margin: 0.25em;
 }
 
 button:disabled {
@@ -316,6 +337,11 @@ button:hover {
   font-size: 0.8rem;
   width: 100%;
 }
+#buttons .Select {
+  width: 100%;
+  text-align: left;
+  font-size: 0.8rem;
+}
 
 /* Ball Graphic */
 
@@ -326,7 +352,7 @@ button:hover {
   position: relative;
   align-items: center;
   justify-content: center;
-  max-width: 200px;
+  max-width: 150px !important;
   margin: 0 auto;
   box-shadow: inset 0.5rem 0.5rem 1.5rem 0.25rem rgba(255,255,255,0.3),
               inset -0.25rem -0.25rem 1.5rem 0.5rem rgba(0,0,0,0.4)
@@ -356,7 +382,7 @@ button:hover {
   bottom: 0;
   display: inline-flex;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1rem;
   line-height: 1;
 }
 
@@ -470,7 +496,7 @@ button:hover {
   header .col {
     text-align: center;
   }
-  #bingoboard, #buttons {
+  #buttons {
     margin: 0 auto;
     text-align: center;
   }
@@ -489,9 +515,6 @@ button:hover {
 }
 
 @media (max-width: 800px) {
-  #bingoboard {
-    display: block;
-  }
 
   .col {
     width: 100% !important;
