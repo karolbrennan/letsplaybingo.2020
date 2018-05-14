@@ -8,9 +8,8 @@ import React, {Component} from 'react';
 import _ from 'underscore';
 import Select from 'react-select';
 // Styles and Images
-import logo from './images/logo.svg';
+import logo from './logo.svg';
 import 'react-select/dist/react-select.css';
-import './css/App.css';
 // Components
 import BingoBoard from './components/BingoBoard.js';
 import Pattern from './components/Pattern.js';
@@ -294,14 +293,16 @@ class LetsPlayBingo extends Component {
               </div>
             </div>
             <div className="col c20 text-right">
-              <Select name="voiceselect" placeholder="Choose Caller" searchable
-                      onBlurResetsInput={true}
-                      value={this.state.selectedCaller ? this.state.selectedCaller.value : ''}
-                      onChange={this.chooseCaller}
-                      options={_.map(this.state.voices, (voice, index) => (
-                        {value: index, label: (voice.name + ' / ' + getLanguageText(voice.lang))}
-                      ))}
-              />
+              {this.state.speechEnabled ?
+                <Select name="voiceselect" placeholder="Choose Caller" searchable
+                        onBlurResetsInput={true}
+                        value={this.state.selectedCaller ? this.state.selectedCaller.value : ''}
+                        onChange={this.chooseCaller}
+                        options={_.map(this.state.voices, (voice, index) => (
+                          {value: index, label: (voice.name + ' / ' + getLanguageText(voice.lang))}
+                        ))}
+                />
+              : "Sorry, your browser doesn't support our vocal caller! Try Chrome!"}
             </div>
           </div>
         </section>
