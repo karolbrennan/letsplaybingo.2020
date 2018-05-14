@@ -49,6 +49,10 @@ img {
   color: #939393;
 }
 
+.intl {
+  font-size: 0.8rem;
+}
+
 /* Layout */
 .row, .block {
   display: block;

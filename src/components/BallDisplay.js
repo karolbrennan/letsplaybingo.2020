@@ -33,7 +33,7 @@ class BallDisplay extends React.Component {
           break;
       }
       return (
-        <div id="ball" className={color + ' relative'}>
+        <div id="ball" className={color + " relative notranslate"}>
           <div id="ballcount">{_.where(this.props.balls, {called: true}).length}</div>
           <div className="content">
             <span>
@@ -44,7 +44,7 @@ class BallDisplay extends React.Component {
       )
     } else {
       return (
-        <div id="ball" className="white relative">
+        <div id="ball" className="white relative notranslate">
           <div id="ballcount">{_.where(this.props.balls, {called: true}).length}</div>
           <div className="content">
             <span>

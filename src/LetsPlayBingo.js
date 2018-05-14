@@ -312,7 +312,7 @@ class LetsPlayBingo extends Component {
               <Pattern />
             </div>
             <div className="col c60 padding">
-              <p className="description">Use this free bingo caller to host your own bingo games at home! <br/> You
+              <p className="description">Use this free bingo caller to host your own bingo games at home! You
               provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!
               </p>
               <p className="disclaimer">
@@ -324,7 +324,7 @@ class LetsPlayBingo extends Component {
             </div>
             <div className="col c20 text-center padding">
               <img className="logo" src={logo} alt="Let's Play Bingo Logo"/>
-              <p>We're now international!</p>
+              <p className="intl">We're now international!</p>
               <div id="google_translate_element"></div>
             </div>
           </div>

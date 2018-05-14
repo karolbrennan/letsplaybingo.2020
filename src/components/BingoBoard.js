@@ -19,7 +19,7 @@ class BingoBoard extends React.Component {
     };
 
     return (
-      <div className="board">
+      <div className="board notranslate">
         {_.map(rows, (row, letter) => (
           <div key={"row" + letter} className="board-row">
             <div key={letter} className="letter">{letter}</div>

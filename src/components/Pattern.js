@@ -143,7 +143,7 @@ class Pattern extends React.Component {
     ))];
 
     return (
-      <div id="bingopattern">
+      <div id="bingopattern" className="notranslate">
         {_.map(pattern, (column, letter) => (
           <div key={letter} className="pattern-col">
             <div className="pattern-letter">{letter}</div>
