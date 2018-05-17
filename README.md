@@ -21,4 +21,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - ReactJS
 
 ### Frameworks / Libraries Used
-- Web Speech Synthesis API (this is an experimental technology)
+- [Web Speech Synthesis API](https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API) (this is an experimental technology)
