@@ -12,7 +12,6 @@ import logo from './logo.svg';
 import 'react-select/dist/react-select.css';
 // Components
 import BingoBoard from './components/BingoBoard.js';
-import Pattern from './components/Pattern.js';
 import BallDisplay from './components/BallDisplay.js';
 // Helpers
 import {getLanguageText} from './helpers.js';
@@ -114,7 +113,87 @@ class LetsPlayBingo extends Component {
       selectedCaller: null,
       speechEnabled: window.hasOwnProperty('speechSynthesis'),
       synth: window.speechSynthesis,
-      voices: []
+      voices: [],
+      selectedPattern: null,
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, false, false, false, false],
+        N: [false, false, false, false, false],
+        G: [false, false, false, false, false],
+        O: [false, false, false, false, false]
+      },
+      presets: {
+        "Custom": {
+          B: [false, false, false, false, false],
+          I: [false, false, false, false, false],
+          N: [false, false, false, false, false],
+          G: [false, false, false, false, false],
+          O: [false, false, false, false, false]
+        },
+        "Regular or 4 Corners": {
+          B: [true, false, false, false, true],
+          I: [false, true, false, false, false],
+          N: [false, false, true, false, false],
+          G: [false, false, false, true, false],
+          O: [true, false, false, false, true]
+        },
+        "Brackets": {
+          B: [true, true, false, true, true],
+          I: [true, false, false, false, true],
+          N: [false, false, false, false, false],
+          G: [true, false, false, false, true],
+          O: [true, true, false, true, true]
+        },
+        "Letter X": {
+          B: [true, false, false, false, true],
+          I: [false, true, false, true, false],
+          N: [false, false, true, false, false],
+          G: [false, true, false, true, false],
+          O: [true, false, false, false, true]
+        },
+        "Layer Cake": {
+          B: [true, false, true, false, true],
+          I: [true, false, true, false, true],
+          N: [true, false, true, false, true],
+          G: [true, false, true, false, true],
+          O: [true, false, true, false, true]
+        },
+        "Postage Stamps": {
+          B: [true, true, false, false, false],
+          I: [true, true, false, false, false],
+          N: [false, false, false, false, false],
+          G: [false, false, false, true, true],
+          O: [false, false, false, true, true]
+        },
+        "Sputnik": {
+          B: [true, false, false, false, true],
+          I: [false, true, true, true, false],
+          N: [false, true, true, true, false],
+          G: [false, true, true, true, false],
+          O: [true, false, false, false, true]
+        },
+        "Diamond": {
+          B: [false, false, true, false, false],
+          I: [false, true, false, true, false],
+          N: [true, false, false, false, true],
+          G: [false, true, false, true, false],
+          O: [false, false, true, false, false]
+        },
+        "Filled in Diamond": {
+          B: [false, false, true, false, false],
+          I: [false, true, true, true, false],
+          N: [true, true, true, true, true],
+          G: [false, true, true, true, false],
+          O: [false, false, true, false, false]
+        },
+        "Blackout": {
+          B: [true, true, true, true, true],
+          I: [true, true, true, true, true],
+          N: [true, true, true, true, true],
+          G: [true, true, true, true, true],
+          O: [true, true, true, true, true]
+        }
+      }
     };
     // if speech is enabled, set up a method to load voices if they change
     if (this.state.speechEnabled) {
@@ -233,13 +312,26 @@ class LetsPlayBingo extends Component {
    *  Otherwise, it'll generate a random ball, set it to called and active
    */
   callNumber = () => {
+    let patternN = this.state.pattern.N;
+    let patternIsSelected = this.state.selectedPattern;
+    // Need to check if the pattern contains any N's (except for the free space)
+    let callNBalls = (patternN[0] === false && patternN[1] === false && patternN[3] === false && patternN[4] === false);
     // get all balls
     let balls = this.state.balls;
     // get active bll and reset
-    let active = _.where(balls, {active: true});
+    let active = _.filter(balls, {active: true});
     active.forEach(ball => {ball.active = false;});
     // get all uncalled balls
-    let uncalled = _.where(balls, {called: false});
+    // also check if pattern needs N balls called or not
+    let uncalled = []
+    if (callNBalls && patternIsSelected) {
+      uncalled = _.filter(balls,function(obj) {
+        return (!obj.called && obj.letter !== 'N')
+      });
+    } else {
+      uncalled = _.filter(balls, {called: false});
+    }
+    console.log(uncalled);
     if (uncalled.length === 0) {
       alert("I've given you all I've got captain! I haven't got any more balls!");
     } else {
@@ -258,12 +350,53 @@ class LetsPlayBingo extends Component {
     }
   };
 
+    /*
+   *  Choose Pattern Function
+   *  This sets the selected pattern
+   *  Sets to default if no pattern is selected or selection is cleared.
+   */
+  choosePattern = (e) => {
+    if (e === null) {
+      this.setState({
+        selectedPattern: null,
+        pattern: {
+          B: [false, false, false, false, false],
+          I: [false, false, false, false, false],
+          N: [false, false, false, false, false],
+          G: [false, false, false, false, false],
+          O: [false, false, false, false, false]
+        }
+      });
+    } else {
+      this.setState({
+        selectedPattern: e.value,
+        pattern: this.state.presets[e.value]
+      });
+    }
+  };
+
+  /*
+   *  Update Pattern Function
+   *  As user clicks on slots for the pattern, update the pattern in the state
+   */
+  updatePattern = (letter, index, slot) => {
+    let pattern = this.state.pattern;
+    pattern[letter][index] = !slot;
+    this.setState({selectedPattern: "Custom", pattern: pattern});
+  };
+
 
   /*
    *  Render Method
    *  Displays the bingo page
    */
   render() {
+    // For the pattern dropdown
+    let pattern = this.state.pattern;
+    let patternArray = [_.map(this.state.presets, (preset, value) => (
+      {value: value, label: value}
+    ))];
+
     return (
       <div className="App">
 
@@ -310,7 +443,29 @@ class LetsPlayBingo extends Component {
         <section>
           <div className="row">
             <div className="col c20 padding text-center">
-              <Pattern />
+            <div id="bingopattern" className="notranslate">
+                {_.map(pattern, (column, letter) => (
+                  <div key={letter} className="pattern-col">
+                    <div className="pattern-letter">{letter}</div>
+                    {_.map(column, (slot, index) => (
+                      <div key={letter + index}
+                          className={slot ? "selected pattern-slot" : "pattern-slot"}
+                          onClick={(e) => this.updatePattern(letter, index, slot)}>&nbsp;
+                      </div>
+                    ))}
+                  </div>
+                ))}
+                <Select
+                  name="patternselect"
+                  placeholder="Choose Pattern"
+                  value={this.state.selectedPattern}
+                  searchable
+                  onBlurResetsInput={true}
+                  clearable
+                  onChange={this.choosePattern}
+                  options={patternArray[0]}
+                />
+              </div>
             </div>
             <div className="col c60 padding">
               <p className="description">Use this free bingo caller to host your own bingo games at home! You
