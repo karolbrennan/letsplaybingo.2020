@@ -35,6 +35,13 @@ class Pattern extends React.Component {
           G: [false, false, false, true, false],
           O: [true, false, false, false, true]
         },
+        "Horizontal, Vertical, Diagonal": {
+          B: [true, true, true, true, true],
+          I: [true, true, false, false, false],
+          N: [true, false, true, false, false],
+          G: [true, false, false, true, false],
+          O: [true, false, false, false, true]
+        },
         "Brackets": {
           B: [true, true, false, true, true],
           I: [true, false, false, false, true],
@@ -49,6 +56,13 @@ class Pattern extends React.Component {
           G: [false, true, false, true, false],
           O: [true, false, false, false, true]
         },
+        "Letter L": {
+          B: [true, true, true, true, true],
+          I: [false, false, false, false, true],
+          N: [false, false, false, false, true],
+          G: [false, false, false, false, true],
+          O: [false, false, false, false, true]
+        },
         "Layer Cake": {
           B: [true, false, true, false, true],
           I: [true, false, true, false, true],
@@ -62,6 +76,13 @@ class Pattern extends React.Component {
           N: [false, false, false, false, false],
           G: [false, false, false, true, true],
           O: [false, false, false, true, true]
+        },
+        "Postage Stamps - All 4": {
+          B: [true, true, false, true, true],
+          I: [true, true, false, true, true],
+          N: [false, false, false, false, false],
+          G: [true, true, false, true, true],
+          O: [true, true, false, true, true]
         },
         "Sputnik": {
           B: [true, false, false, false, true],
@@ -84,7 +105,7 @@ class Pattern extends React.Component {
           G: [false, true, true, true, false],
           O: [false, false, true, false, false]
         },
-        "Blackout": {
+        "Blackout / Coverall": {
           B: [true, true, true, true, true],
           I: [true, true, true, true, true],
           N: [true, true, true, true, true],
