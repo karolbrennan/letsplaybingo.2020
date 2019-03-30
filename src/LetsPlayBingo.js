@@ -292,7 +292,6 @@ class LetsPlayBingo extends Component {
     } else {
       uncalled = _.filter(balls, {called: false});
     }
-    console.log(uncalled);
     if (uncalled.length === 0) {
       alert("I've given you all I've got captain! I haven't got any more balls!");
     } else {
