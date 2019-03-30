@@ -219,6 +219,18 @@ footer {
   line-height: 1.75em;
 }
 
+.ball-50 {
+  width: 9.375%;
+}
+
+.ball-75 {
+  width: 6.25%;
+}
+
+.ball-90 {
+  width: 5.2%;
+}
+
 .letter {
   color: #E53935;
   background: white;
@@ -244,7 +256,8 @@ footer {
 button {
   margin: 0 0.25em;
   border: 0;
-  background: #bd2a26;
+  background-color: #bd2a26;
+  border: 1px solid #bd2a26;
   border-radius: 0.2em;
   font-size: 1rem;
   padding: 0.5em 1em;
@@ -256,16 +269,60 @@ button {
   margin: 0.25em;
 }
 
-button:disabled {
-  background: #aaaaaa;
-}
-
 button:active {
   outline: none;
 }
 
+
+/* updates to disabled and hover states to more clearly show status - Justin */
+button:disabled {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  color: #666666;
+  opacity: .65;
+}
+
 button:hover {
+  background-color: #F05D59;
+  border-color: #F05D59;
   cursor: pointer;
+}
+
+button:disabled:hover {
+  cursor: not-allowed;
+  background-color: #cccccc;
+  border-color: #cccccc;
+  color: #666666;
+}
+
+
+/* 
+* Updates to make the board size button selectors
+* - Justin 
+*/
+
+.btn-group {
+  margin: 0.25em 0;
+}
+.btn-group button {
+  margin: 0 !important;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-group button:not(:first-child) {
+  border-left: none; /* Prevent double borders */
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.btn-group button.selected {
+  background-color: #F05D59;
+  border-color: #F05D59;
 }
 
 /* Speed Selector */
@@ -312,6 +369,7 @@ input[type='range']::-webkit-slider-thumb {
   margin: 0.5em auto;
   font-size: 0.8rem;
   width: 100%;
+  float: left;
 }
 
 #buttons .Select {

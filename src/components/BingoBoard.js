@@ -10,6 +10,7 @@ import _ from 'underscore';
 class BingoBoard extends React.Component {
   render() {
     let balls = this.props.balls;
+    let ballCount = this.props.ballCount;
     let rows = {
       B: _.where(balls, {letter: "B"}),
       I: _.where(balls, {letter: "I"}),
@@ -25,7 +26,7 @@ class BingoBoard extends React.Component {
             <div key={letter} className="letter">{letter}</div>
             {_.map(row, ball => (
               <div key={ball.letter + ball.number}
-                   className={ball.called && ball.active ? "active ball" : ball.called ? "called ball" : "ball"}>
+                   className={ball.called && ball.active ? "active ball ball-" + ballCount : ball.called ? "called ball ball-" + ballCount : "ball ball-" + ballCount}>
                 {ball.number}
               </div>
             ))}
