@@ -35,6 +35,13 @@ class Pattern extends React.Component {
           G: [false, false, false, true, false],
           O: [true, false, false, false, true]
         },
+        "Letter X": {
+          B: [true, false, false, false, true],
+          I: [false, true, false, true, false],
+          N: [false, false, true, false, false],
+          G: [false, true, false, true, false],
+          O: [true, false, false, false, true]
+        },
         "Brackets": {
           B: [true, true, false, true, true],
           I: [true, false, false, false, true],
@@ -42,12 +49,19 @@ class Pattern extends React.Component {
           G: [true, false, false, false, true],
           O: [true, true, false, true, true]
         },
-        "Letter X": {
-          B: [true, false, false, false, true],
-          I: [false, true, false, true, false],
+        "Bow Tie": {
+          B: [true, true, true, true, true],
+          I: [false, true, true, true, false],
           N: [false, false, true, false, false],
-          G: [false, true, false, true, false],
-          O: [true, false, false, false, true]
+          G: [false, true, true, true, false],
+          O: [true, true, true, true, true]
+        },
+        "Crazy Arrow": {
+          B: [false, false, false, false, true],
+          I: [false, false, false, true, false],
+          N: [true, false, true, false, false],
+          G: [true, true, false, false, false],
+          O: [true, true, true, false, false]
         },
         "Layer Cake": {
           B: [true, false, true, false, true],
@@ -90,7 +104,80 @@ class Pattern extends React.Component {
           N: [true, true, true, true, true],
           G: [true, true, true, true, true],
           O: [true, true, true, true, true]
+        },
+        "Crazy L": {
+          B: [false, false, false, false, true],
+          I: [false, false, false, false, true],
+          N: [false, false, false, false, true],
+          G: [false, false, false, false, true],
+          O: [true, true, true, true, true]
+        },
+        "Crazy T": {
+          B: [true, true, true, true, true],
+          I: [false, false, true, false, false],
+          N: [false, false, true, false, false],
+          G: [false, false, true, false, false],
+          O: [false, false, true, false, false]
+        },
+        "Dog Bone": {
+          B: [false, true, true, true, false],
+          I: [false, false, true, false, false],
+          N: [false, false, true, false, false],
+          G: [false, false, true, false, false],
+          O: [false, true, true, true, false]
+        },
+        "6 Pack": {
+          B: [true, true, false, false, false],
+          I: [true, true, false, false, false],
+          N: [true, true, false, false, false],
+          G: [false, false, false, false, false],
+          O: [false, false, false, false, false]
+        },
+        "8 Pack": {
+          B: [false, false, false, true, true],
+          I: [false, false, false, true, true],
+          N: [false, false, false, true, true],
+          G: [false, false, false, true, true],
+          O: [false, false, false, false, false]
+        },
+        "9 Pack": {
+          B: [false, false, false, false, false],
+          I: [false, false, false, false, false],
+          N: [false, false, true, true, true],
+          G: [false, false, true, true, true],
+          O: [false, false, true, true, true]
+        },
+        "Small Frame": {
+          B: [false, false, false, false, false],
+          I: [false, true, true, true, false],
+          N: [false, true, false, true, false],
+          G: [false, true, true, true, false],
+          O: [false, false, false, false, false]
+        },
+        "Large Frame": {
+          B: [true, true, true, true, true],
+          I: [true, false, false, false, true],
+          N: [true, false, false, false, true],
+          G: [true, false, false, false, true],
+          O: [true, true, true, true, true]
+        },
+        "Crazy Kite": {
+          B: [false, false, false, true, true],
+          I: [false, false, false, true, true],
+          N: [false, false, true, false, false],
+          G: [false, true, false, false, false],
+          O: [true, false, false, false, false]
         }
+
+
+        // Template
+        // "": {
+        //   B: [false, false, false, false, false],
+        //   I: [false, false, false, false, false],
+        //   N: [false, false, false, false, false],
+        //   G: [false, false, false, false, false],
+        //   O: [false, false, false, false, false]
+        // },
       }
     };
   }

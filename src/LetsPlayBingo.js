@@ -267,6 +267,17 @@ class LetsPlayBingo extends Component {
     return (
       <div className="App">
 
+        <header>
+          <div className="row">
+            <div className="col c50">
+              <img className="logo" src={logo} alt="Let's Play Bingo Logo"/>
+            </div>
+            <div className="col c50 text-right">
+              <div id="google_translate_element"></div>
+            </div>
+          </div>
+        </header>
+
         <section id="board">
           <div className="row flex">
             <div className="col c85">
@@ -309,24 +320,18 @@ class LetsPlayBingo extends Component {
 
         <section>
           <div className="row">
-            <div className="col c20 padding text-center">
+            <div className="col c30 padding">
               <Pattern />
             </div>
-            <div className="col c60 padding">
+            <div className="col c70 padding">
               <p className="description">Use this free bingo caller to host your own bingo games at home! You
               provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!
               </p>
+              <p className="medium-text">Love Let's Play Bingo? Tell your friends!</p>
+              <div className="addthis_inline_share_toolbox"></div>
               <p className="disclaimer">
                 LetsPlayBingo.io does not intend for the bingo caller contained on this website to be used for illegal or gambling purposes. The information and bingo caller contained on this website is for entertainment purposes only. This website, its owners and associates do not have any control over the use of this bingo caller and cannot be held liable for any monetary or other losses incurred by unapproved use of this bingo caller or generated bingo cards.
               </p>
-              <div className="top-bottom-padding">
-                <div className="addthis_inline_share_toolbox"></div>
-              </div>
-            </div>
-            <div className="col c20 text-center padding">
-              <img className="logo" src={logo} alt="Let's Play Bingo Logo"/>
-              <p className="intl">We're now international!</p>
-              <div id="google_translate_element"></div>
             </div>
           </div>
         </section>
@@ -337,10 +342,10 @@ class LetsPlayBingo extends Component {
               <p>For entertainment purposes only.</p>
             </div>
             <div className="col c50 text-center">
-              <p>Let's Play Bingo! © 2019 <a href="http://karolbrennan.com" target="_blank">Karol Brennan</a></p>
+              <p>Let's Play Bingo! © 2019 <a href="http://karolbrennan.com" rel="noopener noreferrer" target="_blank">Karol Brennan</a></p>
             </div>
             <div className="col c25 text-right">
-              <p>Check out this project on <a href="http://github.com/karolbrennan/letsplaybingo" target="_blank">GitHub</a></p>
+              <p>Check out this project on <a href="http://github.com/karolbrennan/letsplaybingo" rel="noopener noreferrer" target="_blank">GitHub</a></p>
             </div>
           </div>
         </footer>

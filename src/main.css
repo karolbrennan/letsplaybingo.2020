@@ -9,8 +9,8 @@
 }
 
 html, body {
-  font-size: 16px; /* Fall back */
-  font-size: 1.5vw;
+  font-size: 1.3rem; /* Fall back */
+  line-height: 1.5em;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   padding: 0;
   margin: 0;
@@ -46,13 +46,25 @@ img {
 }
 
 .disclaimer {
-  font-size: 0.7rem;
+  font-size: .7rem;
   font-style: italic;
   color: #939393;
+  letter-spacing: .025em;
+  line-height: 135%;
+  margin-top: 2em;
+}
+
+.medium-text {
+  font-size: .95rem;
 }
 
 .intl {
   font-size: 0.8rem;
+}
+
+.logo {
+  width: 5rem;
+  margin: .5em;
 }
 
 /* Layout */
@@ -61,14 +73,14 @@ img {
 }
 
 .row {
-  width: 1200px;
+  width: 60rem;
   max-width: 100%;
   margin: 0 auto;
 }
 
 .col {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .c5 {
@@ -319,6 +331,22 @@ input[type='range']::-webkit-slider-thumb {
   text-align: left;
   font-size: 0.8rem;
 }
+.Select-control,
+.Select-control * {
+  height: auto !important;
+}
+
+.Select-input > input {
+  padding: 0;
+}
+
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+  bottom: 0;
+  color: #aaa;
+  left: 0;
+  line-height: 2.25em;
+  font-size: .8rem;
+}
 
 /* Ball Graphic */
 
@@ -372,7 +400,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .content img {
-  padding: 1rem;
+  padding: 0.25rem;
 }
 
 #currentBall {
@@ -382,8 +410,7 @@ input[type='range']::-webkit-slider-thumb {
 
 #ballcount {
   position: absolute;
-  right: -2rem;
-  bottom: -1rem;
+  bottom: -2rem;
   color: #e63935;
   text-transform: uppercase;
   font-size: 1rem;
@@ -442,7 +469,12 @@ input[type='range']::-webkit-slider-thumb {
 #bingopattern {
   white-space: nowrap;
   text-align: center;
-  display: inline-block;
+  display: block;
+  width: 100%;
+}
+#bingopattern .Select {
+  width: 10rem;
+  max-width: 100%;
 }
 
 .pattern-col {
@@ -451,10 +483,11 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .pattern-letter, .pattern-slot {
-  width: 1.75rem;
-  height: 1.75rem;
-  padding: 0.35rem;
+  width: 2.5em;
+  height: 2.5em;
+  padding: 0.35em;
   font-size: 0.75rem;
+  line-height: 1.75em;
   background: #f3f3f3;
   text-align: center;
   position: relative;
@@ -483,11 +516,11 @@ input[type='range']::-webkit-slider-thumb {
 /* Media Queries */
 @media (max-width: 500px) {
   html, body {
-    font-size: 16px;
-    font-size: 3vh;
+    font-size: .9rem;
   }
 
-  .col, .flex {
+  section .col, section .flex,
+  footer .col, footer .flex {
     width: 100% !important;
     display: block;
   }
@@ -499,6 +532,7 @@ input[type='range']::-webkit-slider-thumb {
 
   .board {
     text-align: center;
+    font-size: 1.25rem;
   }
 
   .board-row {
@@ -523,12 +557,15 @@ input[type='range']::-webkit-slider-thumb {
   #ballcount {
     position: absolute;
     right: initial;
-    bottom: -1.25rem;
+    bottom: -2.25rem;
     color: #e63935;
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: center;
+  }
+  #ball {
+    margin-bottom: 2rem;
   }
 }
 
@@ -540,5 +577,20 @@ input[type='range']::-webkit-slider-thumb {
 
   #board .c15 {
     width: 25%;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  button {
+    font-size: 0.8rem !important;
+  }
+  #buttons * {
+    font-size: 0.8rem !important;
+  }
+  .col.c85 {
+    width: 80%;
+  }
+  .col.c15 {
+    width: 20%;
   }
 }
