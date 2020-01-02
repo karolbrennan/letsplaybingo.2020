@@ -330,7 +330,10 @@ class LetsPlayBingo extends Component {
               <p className="medium-text">Love Let's Play Bingo? Tell your friends!</p>
               <div className="addthis_inline_share_toolbox"></div>
               <p className="disclaimer">
-                LetsPlayBingo.io does not intend for the bingo caller contained on this website to be used for illegal or gambling purposes. The information and bingo caller contained on this website is for entertainment purposes only. This website, its owners and associates do not have any control over the use of this bingo caller and cannot be held liable for any monetary or other losses incurred by unapproved use of this bingo caller or generated bingo cards.
+                LetsPlayBingo.io does not intend for the bingo caller contained on this website to be used for illegal or gambling purposes. 
+                The information and bingo caller contained on this website is for entertainment purposes only. This website, its owners and 
+                associates do not have any control over the use of this bingo caller and cannot be held liable for any monetary or other losses 
+                incurred by unapproved use of this bingo caller.
               </p>
             </div>
           </div>
