@@ -320,7 +320,7 @@ class LetsPlayBingo extends Component {
 
         <section>
           <div className="row">
-            <div className="col c30 padding">
+            <div className="col c25 padding">
               <Pattern />
             </div>
             <div className="col c50 padding">
@@ -336,7 +336,7 @@ class LetsPlayBingo extends Component {
                 incurred by unapproved use of this bingo caller.
               </p>
             </div>
-            <div className="col c20 padding">
+            <div className="col c25 padding">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <ins className="adsbygoogle"
                 data-ad-client="ca-pub-8761408428595883"
