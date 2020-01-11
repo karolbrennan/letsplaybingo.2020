@@ -371,7 +371,7 @@ class LetsPlayBingo extends Component {
               <p>For entertainment purposes only.</p>
             </div>
             <div className="col c50 text-center">
-              <p>Let's Play Bingo! © 2019 <a href="https://karol.dev" rel="noopener noreferrer" target="_blank">Karol Brennan</a></p>
+              <p>Let's Play Bingo! © 2020 <a href="https://karol.dev" rel="noopener noreferrer" target="_blank">Karol Brennan</a></p>
             </div>
             <div className="col c25 text-right">
               <p>Check out this project on <a href="http://github.com/karolbrennan/letsplaybingo" rel="noopener noreferrer" target="_blank">GitHub</a></p>
