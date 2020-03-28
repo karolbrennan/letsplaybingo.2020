@@ -458,12 +458,12 @@ input[type='range']::-webkit-slider-thumb {
   border: 0.15rem solid #008000;
 }
 
-.orange {
-  background: radial-gradient(circle at 20% 20%, #FFA500, #9c6400);
+.yellow {
+  background: radial-gradient(circle at 20% 20%, #ffe52a, #f7bd00)
 }
 
-.orange .content {
-  border: 0.15rem solid #FFA500;
+.yellow .content {
+  border: 0.15rem solid #f7bd00;
 }
 
 /* Pattern */

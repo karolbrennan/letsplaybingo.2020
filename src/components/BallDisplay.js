@@ -27,7 +27,7 @@ class BallDisplay extends React.Component {
           color = 'green';
           break;
         case 'O':
-          color = 'orange';
+          color = 'yellow';
           break;
         default:
           break;
