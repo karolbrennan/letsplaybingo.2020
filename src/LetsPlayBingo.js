@@ -323,29 +323,25 @@ class LetsPlayBingo extends Component {
             <div className="col c25 padding">
               <Pattern />
             </div>
-            <div className="col c50 padding">
-              <p className="description">Use this free bingo caller to host your own bingo games at home! You
+            <div className="col c75 padding">
+              <p className="description no-margin">Use this free bingo caller to host your own bingo games at home! You
               provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!
               </p>
               <p className="medium-text">Love Let's Play Bingo? Tell your friends!</p>
               <div className="addthis_inline_share_toolbox"></div>
-              <p className="disclaimer">
+
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="row">
+            <div className="col c100">
+              <p className="disclaimer no-margin">
                 LetsPlayBingo.io does not intend for the bingo caller contained on this website to be used for illegal or gambling purposes. 
                 The information and bingo caller contained on this website is for entertainment purposes only. This website, its owners and 
                 associates do not have any control over the use of this bingo caller and cannot be held liable for any monetary or other losses 
                 incurred by unapproved use of this bingo caller.
               </p>
-            </div>
-            <div className="col c25 padding">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <ins className="adsbygoogle"
-                data-ad-client="ca-pub-8761408428595883"
-                data-ad-slot="4238024453"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
             </div>
           </div>
         </section>
