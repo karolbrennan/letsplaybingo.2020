@@ -15,12 +15,29 @@ html, body {
   padding: 0;
   margin: 0;
 }
+body {
+  position: initial !important;
+  min-height: unset !important;
+  top: unset !important;
+}
 
+.button-link {
+  padding: 0;
+  background: transparent;
+  margin: 0;
+  display: inline-block;
+  text-transform: unset;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+.button-link,
 a, a:visited, a:active {
   color: #E53935;
   text-decoration: none;
 }
 
+.button-link:hover,
 a:hover {
   color: #a12828;
   cursor: pointer;
@@ -30,6 +47,14 @@ img {
   max-width: 100%;
   height: auto;
   margin: 1em;
+}
+
+.bg-gray {
+  background-color: #efefef;
+}
+.qr-code {
+  max-width: 45%;
+  max-height: 150px;
 }
 
 .text-right {
@@ -45,21 +70,17 @@ img {
   color: #444444;
 }
 
-.disclaimer {
-  font-size: .7rem;
-  font-style: italic;
-  color: #939393;
-  letter-spacing: .025em;
-  line-height: 135%;
-  margin-top: 2em;
-}
 .no-margin {
   margin: 0;
 }
 .medium-text {
   font-size: .95rem;
+  line-height: 1.5;
 }
-
+.small-text {
+  font-size: .75rem;
+  line-height: 1.5;
+}
 .intl {
   font-size: 0.8rem;
 }
@@ -67,6 +88,44 @@ img {
 .logo {
   width: 5rem;
   margin: .5em;
+}
+.inline {
+  display: inline;
+}
+
+/* Disclaimer and Backdrop */
+.body {
+  position: initial !important;
+}
+.backdrop-visible {
+  overflow: hidden;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+#disclaimer {
+  position: fixed;
+  top: 25%;
+  width: 60%;
+  left: 20%;
+  background: white;
+  padding: 1rem;
+  z-index: 3;
+}
+#backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 2;
+  overflow: hidden;
 }
 
 /* Layout */
@@ -79,10 +138,12 @@ img {
   max-width: 100%;
   margin: 0 auto;
 }
-
 .col {
   display: inline-block;
   vertical-align: middle;
+}
+.row.vertical-top .col {
+  vertical-align: top;
 }
 
 .c5 {
@@ -515,6 +576,7 @@ input[type='range']::-webkit-slider-thumb {
   border-radius: 100%;
   margin: 20%;
 }
+
 
 /* Media Queries */
 @media (max-width: 500px) {

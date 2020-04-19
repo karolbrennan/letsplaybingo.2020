@@ -9,6 +9,8 @@ import _ from 'underscore';
 import Select from 'react-select';
 // Styles and Images
 import logo from './logo.svg';
+import venmo from './images/venmo.jpg';
+import paypal from './images/paypalme.png';
 import 'react-select/dist/react-select.css';
 // Components
 import BingoBoard from './components/BingoBoard.js';
@@ -30,6 +32,8 @@ class LetsPlayBingo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showDisclaimer: false,
+      showBackdrop: false,
       balls: {
         1: {letter: "B", number: 1, called: false, active: false},
         2: {letter: "B", number: 2, called: false, active: false},
@@ -258,6 +262,23 @@ class LetsPlayBingo extends Component {
     }
   };
 
+  openDisclaimer = () => {
+    window.scrollTo(0,0);
+    document.body.classList.add('backdrop-visible');
+    this.setState({showDisclaimer: true, showBackdrop: true});
+  }
+
+  closeDisclaimer = () => {
+    document.body.classList.remove('backdrop-visible');
+    this.setState({showDisclaimer: false, showBackdrop: false});
+  }
+
+  get backdropClasses() {
+    return this.state.showBackdrop ? 'show' : 'hide';
+  }
+  get disclaimerClasses() {
+    return this.state.showBackdrop ? 'show text-center' : 'hide';
+  }
 
   /*
    *  Render Method
@@ -265,7 +286,20 @@ class LetsPlayBingo extends Component {
    */
   render() {
     return (
-      <div className="App">
+      <div>
+        <div id="backdrop" className={this.backdropClasses}></div>
+        <div id="disclaimer" className={this.disclaimerClasses}>
+          <h4 className="no-margin">Disclaimer</h4>
+          <p className="small-text">
+            LetsPlayBingo.io does not intend for the bingo caller contained on this website to be used for illegal or gambling purposes. 
+            The information and bingo caller contained on this website is for entertainment purposes only. This website, its owners and 
+            associates do not have any control over the use of this bingo caller and cannot be held liable for any monetary or other losses 
+            incurred by unapproved use of this bingo caller.
+          </p>
+          <p>
+            <button onClick={this.closeDisclaimer}>Close</button>
+          </p>
+        </div>
 
         <header>
           <div className="row">
@@ -324,52 +358,64 @@ class LetsPlayBingo extends Component {
               <Pattern />
             </div>
             <div className="col c75 padding">
-              <p className="description no-margin">Use this free bingo caller to host your own bingo games at home! You
-              provide the cards, we generate the bingo numbers! Completely free bingo app - no downloads necessary!
+              <p className="medium-text">
+                Use this free bingo caller to host your own bingo games at home! You provide the cards, we generate the bingo numbers! 
+                No downloads, no ads and <strong>completely free</strong>! 
               </p>
-              <p className="medium-text">Love Let's Play Bingo? Tell your friends!</p>
+              <p className="small-text">
+                Thank you to those who have reached out to me to tell me how much they enjoy my bingo caller. I created this site in honor of my 
+                late grandmother, we used to play bingo together using a little electronic bingo caller. Grandma Jo - this is for you. &hearts; - Karol
+              </p>
+              <p className="medium-text">
+                Love Let's Play Bingo? Tell your friends!<br/>
+              </p>
               <div className="addthis_inline_share_toolbox"></div>
-
-            </div>
-          </div>
-        </section>
-        <section>
-          <div className="row">
-            <div className="col c100">
-              <p className="disclaimer no-margin">
-                LetsPlayBingo.io does not intend for the bingo caller contained on this website to be used for illegal or gambling purposes. 
-                The information and bingo caller contained on this website is for entertainment purposes only. This website, its owners and 
-                associates do not have any control over the use of this bingo caller and cannot be held liable for any monetary or other losses 
-                incurred by unapproved use of this bingo caller.
+              <p className="small-text">
+                Have ideas for how to make Let's Play Bingo even better? Send a message to <a href="mailto:hello@letsplaybingo.io">hello@letsplaybingo.io</a>!
               </p>
             </div>
           </div>
         </section>
-        <section>
-          <div className="row">
-            <div className="col c100">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-              <ins class="adsbygoogle"
-                  data-ad-client="ca-pub-8761408428595883"
-                  data-ad-slot="4413284272"
-                  data-ad-format="auto"
-                  data-full-width-responsive="true"></ins>
-              <script>
-                  (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
+
+        <section className="bg-gray">
+          <div className="row vertical-top">
+            <div className="col c60 padding">
+              <h5 className="no-margin">Pandemic Update</h5>
+              <p className="small-text">
+                  With so many people living under safer at home orders, myself included, I have decided to dedicate some time to make Let's Play Bingo even better! <br/>
+                  Please watch for the following updates in the coming weeks!
+              </p>
+              <ul className="small-text">
+                <li>A bingo card generation tool so you can print your own cards at home!</li>
+                <li>Larger text for better visibility during screen sharing and projecting.</li>
+                <li>Revamped design featuring a full width bingo board very similiar to the live bingo halls.</li>
+                <li>The option to skip calls based on whether they'd be used in the pattern or not (for example Bs and Os when playing small picture frame).</li>
+                <li>Display of the previous number called.</li>
+              </ul>
+              <p className="small-text no-margin">
+                <em>If you have ideas you'd like to share, send them to <a href="mailto:hello@letsplaybingo.io">hello@letsplaybingo.io</a>!</em>
+              </p>
+            </div>
+            <div className="col c40 padding">
+              <h5 className="no-margin">Donate to Let's Play Bingo!</h5>
+              <p className="small-text">If you'd like to contribute toward the operating costs of Let's Play Bingo you can send donations
+              of any amount via Venmo or Paypal!<br/>
+              <a href="https://venmo.com/karolbrennan" target="_blank" rel="noopener noreferrer"><img className="qr-code" src={venmo} alt="venmo" /></a>
+                <a href="https://paypal.me/karolbrennan" target="_blank" rel="noopener noreferrer"><img className="qr-code" src={paypal} alt="paypal" /></a>
+              </p>
             </div>
           </div>
         </section>
 
         <footer>
           <div className="row">
-            <div className="col c25 text-left">
-              <p>For entertainment purposes only.</p>
+            <div className="col c30 text-left">
+              <button className="button-link" onClick={this.openDisclaimer}>Disclaimer: For entertainment purposes only.</button>
             </div>
-            <div className="col c50 text-center">
+            <div className="col c40 text-center">
               <p>Let's Play Bingo! © 2020 <a href="https://karol.dev" rel="noopener noreferrer" target="_blank">Karol Brennan</a></p>
             </div>
-            <div className="col c25 text-right">
+            <div className="col c30 text-right">
               <p>Check out this project on <a href="http://github.com/karolbrennan/letsplaybingo" rel="noopener noreferrer" target="_blank">GitHub</a></p>
             </div>
           </div>
