@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+.flex {
+  display: flex;
+  @media screen and (min-width: 816px){
+    display: block;
+  }
+}
+.row {
+  display: flex; /* flex box */
+  flex-flow: row wrap; /* items are aligned in a row and allow for wrapping */
+  justify-content: space-between; /* horizontal justifcation */
+  align-items: stretch; /* vertical alignment */
+  align-content: stretch; /* alignment when multiple rows */
+  
+  @media screen and (max-width: 815px){
+    display: inline-flex;
+    flex-basis: 20%;
+    flex-flow: column;
+  }
+  &.vertical {
+    flex-flow: column;
+  }
+  &.vertical-row {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    flex-basis: 20%;
+  }
+  &.no-padding,
+  &.no-padding .col {
+    padding: 0;
+  }
+  &.horizontal-start {
+    justify-content: flex-start;
+  }
+  &.vertical-start {
+    align-items: start;
+  }
+  &.vertical-center {
+    align-items: center;
+  }
+  &.no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  &.set-size {
+    > .col {
+      flex-basis: 0;
+    }
+  }
+
+  &.gutters { /* Add gutters around columns */
+    &-sm > .col {
+      margin: .25rem;
+    }
+    &-md > .col {
+      margin: .5rem;
+    }
+    &-lg > .col {
+      margin: 1rem;
+    }
+  }
+
+  > .col {
+    flex: 1 1 auto; /* grow, shrink and basis */
+
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    &.shrink {
+      flex: 0;
+    }
+    &.stretch {
+      align-self: stretch;
+    }
+  }
+}

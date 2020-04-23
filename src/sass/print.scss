@@ -1,0 +1,34 @@
+@media print {
+  @page {
+    margin: 0.25in 0.25in 0.25in 0.25in !important;
+    .print-two {
+      orientation: landscape;
+      size: landscape;
+    }
+    .print-four {
+      orientation: portrait;
+      size: portrait;
+    }
+  }
+  @page:blank {
+    display: none;
+  }
+  header, footer, .no-print {
+    display: none;
+  }
+  body {
+    -webkit-print-color-adjust: exact !important;
+  }
+  .card {
+    width: 49%;
+    margin: .5%;
+    break-inside: avoid;
+  }
+
+  .print-bw {
+     filter: Gray();
+     filter: url('#grayscale'); 
+     -webkit-filter: grayscale(100%); 
+     filter: grayscale(100%); 
+  }
+}
