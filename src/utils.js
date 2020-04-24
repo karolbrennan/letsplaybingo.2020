@@ -165,156 +165,6 @@ export const getPresetPatterns = () => {
         O: [false, false, false, false, false]
       }
     },
-    { value: "Regular or 4 Corners",
-      label: "Regular or 4 Corners",
-      pattern: {
-        B: [true, false, false, false, true],
-        I: [false, true, false, false, false],
-        N: [false, false, true, false, false],
-        G: [false, false, false, true, false],
-        O: [true, false, false, false, true]
-      }
-    },
-    { value: "Letter X",
-      label: "Letter X",
-      pattern: {
-        B: [true, false, false, false, true],
-        I: [false, true, false, true, false],
-        N: [false, false, true, false, false],
-        G: [false, true, false, true, false],
-        O: [true, false, false, false, true]
-      }
-    },
-    { value: "Clover",
-      label: "Clover",
-      pattern: {
-        B: [true, true, false, true, true],
-        I: [true, true, false, true, true],
-        N: [false, false, true, false, false],
-        G: [true, true, false, true, true],
-        O: [true, true, false, true, true]
-      }
-    },
-    { value: "Brackets",
-      label: "Brackets",
-      pattern: {
-        B: [true, true, false, true, true],
-        I: [true, false, false, false, true],
-        N: [false, false, false, false, false],
-        G: [true, false, false, false, true],
-        O: [true, true, false, true, true]
-      }
-    },
-    { value: "Bow Tie",
-      label: "Bow Tie",
-      pattern: {
-        B: [true, true, true, true, true],
-        I: [false, true, true, true, false],
-        N: [false, false, true, false, false],
-        G: [false, true, true, true, false],
-        O: [true, true, true, true, true]
-      }
-    },
-    { value: "Crazy Arrow",
-      label: "Crazy Arrow",
-      pattern: {
-        B: [false, false, false, false, true],
-        I: [false, false, false, true, false],
-        N: [true, false, true, false, false],
-        G: [true, true, false, false, false],
-        O: [true, true, true, false, false]
-      }
-    },
-    { value: "Layer Cake",
-      label: "Layer Cake",
-      pattern: {
-        B: [true, false, true, false, true],
-        I: [true, false, true, false, true],
-        N: [true, false, true, false, true],
-        G: [true, false, true, false, true],
-        O: [true, false, true, false, true]
-      }
-    },
-    { value: "Postage Stamps",
-      label: "Postage Stamps",
-      pattern: {
-        B: [true, true, false, false, false],
-        I: [true, true, false, false, false],
-        N: [false, false, false, false, false],
-        G: [false, false, false, true, true],
-        O: [false, false, false, true, true]
-      }
-    },
-    { value: "Sputnik",
-      label: "Sputnik",
-      pattern: {
-        B: [true, false, false, false, true],
-        I: [false, true, true, true, false],
-        N: [false, true, true, true, false],
-        G: [false, true, true, true, false],
-        O: [true, false, false, false, true]
-      }
-    },
-    { value: "Diamond",
-      label: "Diamond",
-      pattern: {
-        B: [false, false, true, false, false],
-        I: [false, true, false, true, false],
-        N: [true, false, false, false, true],
-        G: [false, true, false, true, false],
-        O: [false, false, true, false, false]
-      }
-    },
-    { value: "Filled in Diamond",
-      label: "Filled in Diamond",
-      pattern: {
-        B: [false, false, true, false, false],
-        I: [false, true, true, true, false],
-        N: [true, true, true, true, true],
-        G: [false, true, true, true, false],
-        O: [false, false, true, false, false]
-      }
-    },
-    { value: "Blackout",
-      label: "Blackout",
-      pattern: {
-        B: [true, true, true, true, true],
-        I: [true, true, true, true, true],
-        N: [true, true, true, true, true],
-        G: [true, true, true, true, true],
-        O: [true, true, true, true, true]
-      }
-    },
-    { value: "Crazy L",
-      label: "Crazy L",
-      pattern: {
-        B: [false, false, false, false, true],
-        I: [false, false, false, false, true],
-        N: [false, false, false, false, true],
-        G: [false, false, false, false, true],
-        O: [true, true, true, true, true]
-      }
-    },
-    { value: "Crazy T",
-      label: "Crazy T",
-      pattern: {
-        B: [true, true, true, true, true],
-        I: [false, false, true, false, false],
-        N: [false, false, true, false, false],
-        G: [false, false, true, false, false],
-        O: [false, false, true, false, false]
-      }
-    },
-    { value: "Dog Bone",
-      label: "Dog Bone",
-      pattern: {
-        B: [false, true, true, true, false],
-        I: [false, false, true, false, false],
-        N: [false, false, true, false, false],
-        G: [false, false, true, false, false],
-        O: [false, true, true, true, false]
-      }
-    },
     { value: "6 Pack",
       label: "6 Pack",
       pattern: {
@@ -345,14 +195,114 @@ export const getPresetPatterns = () => {
         O: [false, false, true, true, true]
       }
     },
-    { value: "Small Frame",
-      label: "Small Frame",
+    { value: "Blackout",
+      label: "Blackout",
       pattern: {
-        B: [false, false, false, false, false],
+        B: [true, true, true, true, true],
+        I: [true, true, true, true, true],
+        N: [true, true, true, true, true],
+        G: [true, true, true, true, true],
+        O: [true, true, true, true, true]
+      }
+    },
+    { value: "Bow Tie",
+      label: "Bow Tie",
+      pattern: {
+        B: [true, true, true, true, true],
         I: [false, true, true, true, false],
-        N: [false, true, false, true, false],
+        N: [false, false, true, false, false],
         G: [false, true, true, true, false],
-        O: [false, false, false, false, false]
+        O: [true, true, true, true, true]
+      }
+    },
+    { value: "Brackets",
+      label: "Brackets",
+      pattern: {
+        B: [true, true, false, true, true],
+        I: [true, false, false, false, true],
+        N: [false, false, false, false, false],
+        G: [true, false, false, false, true],
+        O: [true, true, false, true, true]
+      }
+    },
+    { value: "Clover",
+      label: "Clover",
+      pattern: {
+        B: [true, true, false, true, true],
+        I: [true, true, false, true, true],
+        N: [false, false, true, false, false],
+        G: [true, true, false, true, true],
+        O: [true, true, false, true, true]
+      }
+    },
+    { value: "Crazy Arrow",
+      label: "Crazy Arrow",
+      pattern: {
+        B: [false, false, false, false, true],
+        I: [false, false, false, true, false],
+        N: [true, false, true, false, false],
+        G: [true, true, false, false, false],
+        O: [true, true, true, false, false]
+      }
+    },
+    { value: "Crazy Kite",
+      label: "Crazy Kite",
+      pattern: {
+        B: [false, false, false, true, true],
+        I: [false, false, false, true, true],
+        N: [false, false, true, false, false],
+        G: [false, true, false, false, false],
+        O: [true, false, false, false, false]
+      }
+    },
+    { value: "Crazy L",
+      label: "Crazy L",
+      pattern: {
+        B: [false, false, false, false, true],
+        I: [false, false, false, false, true],
+        N: [false, false, false, false, true],
+        G: [false, false, false, false, true],
+        O: [true, true, true, true, true]
+      }
+    },
+    { value: "Crazy T",
+      label: "Crazy T",
+      pattern: {
+        B: [true, true, true, true, true],
+        I: [false, false, true, false, false],
+        N: [false, false, true, false, false],
+        G: [false, false, true, false, false],
+        O: [false, false, true, false, false]
+      }
+    },
+    { value: "Diamond",
+      label: "Diamond",
+      pattern: {
+        B: [false, false, true, false, false],
+        I: [false, true, false, true, false],
+        N: [true, false, false, false, true],
+        G: [false, true, false, true, false],
+        O: [false, false, true, false, false]
+      }
+    },
+    { value: "Dog Bone",
+      label: "Dog Bone",
+      pattern: {
+        B: [false, true, true, true, false],
+        I: [false, false, true, false, false],
+        N: [false, false, true, false, false],
+        G: [false, false, true, false, false],
+        O: [false, true, true, true, false]
+      }
+    },
+    { value: "Filled in Diamond",
+      label: "Filled in Diamond",
+      pattern: {
+        B: [false, false, true, false, false],
+        I: [false, true, true, true, false],
+        N: [true, true, true, true, true],
+        G: [false, true, true, true, false],
+        O: [false, false, true, false, false]
       }
     },
     { value: "Large Frame",
@@ -365,14 +315,64 @@ export const getPresetPatterns = () => {
         O: [true, true, true, true, true]
       }
     },
-    { value: "Crazy Kite",
-      label: "Crazy Kite",
+    { value: "Layer Cake",
+      label: "Layer Cake",
       pattern: {
-        B: [false, false, false, true, true],
-        I: [false, false, false, true, true],
+        B: [true, false, true, false, true],
+        I: [true, false, true, false, true],
+        N: [true, false, true, false, true],
+        G: [true, false, true, false, true],
+        O: [true, false, true, false, true]
+      }
+    },
+    { value: "Letter X",
+      label: "Letter X",
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [false, true, false, true, false],
         N: [false, false, true, false, false],
-        G: [false, true, false, false, false],
-        O: [true, false, false, false, false]
+        G: [false, true, false, true, false],
+        O: [true, false, false, false, true]
+      }
+    },
+    { value: "Postage Stamps",
+      label: "Postage Stamps",
+      pattern: {
+        B: [true, true, false, false, false],
+        I: [true, true, false, false, false],
+        N: [false, false, false, false, false],
+        G: [false, false, false, true, true],
+        O: [false, false, false, true, true]
+      }
+    },
+    { value: "Regular or 4 Corners",
+      label: "Regular or 4 Corners",
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [false, true, false, false, false],
+        N: [false, false, true, false, false],
+        G: [false, false, false, true, false],
+        O: [true, false, false, false, true]
+      }
+    },
+    { value: "Small Frame",
+      label: "Small Frame",
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, true, true, true, false],
+        N: [false, true, false, true, false],
+        G: [false, true, true, true, false],
+        O: [false, false, false, false, false]
+      }
+    },
+    { value: "Sputnik",
+      label: "Sputnik",
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [false, true, true, true, false],
+        N: [false, true, true, true, false],
+        G: [false, true, true, true, false],
+        O: [true, false, false, false, true]
       }
     },
     // {
