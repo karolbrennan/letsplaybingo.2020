@@ -44,6 +44,5 @@ const routing = (
     </div>
     <Footer />
   </Router>
-
 )
 ReactDOM.render(routing, document.getElementById('root'));

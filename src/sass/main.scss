@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,900|ZCOOL+QingKe+HuangYou&display=swap');
 
+/* Primary Styles */
 body, html, * {
   box-sizing: border-box;
 }
@@ -15,7 +16,6 @@ p {
 header, footer {
   padding: 1rem;
 }
-
 .logo {
   height: 3.5rem;
   width: auto;
@@ -24,6 +24,7 @@ header, footer {
   max-height: 150px;
 }
 
+/* Bingo Board */
 #board {
   padding: 1rem;
   .ball {
@@ -39,7 +40,7 @@ header, footer {
   }
   * {
     font-size: 3.5rem;
-    font-size: 3.75vw;
+    font-size: 3.5vw;
     line-height: 1.25;
   }
   .board-letter {
@@ -58,32 +59,6 @@ header, footer {
   }
   100% {
     color: white;
-  }
-}
-
-/* Google Translate */
-.goog-te-gadget-simple {
-  border: none;
-  font-family: 'Roboto', sans-serif;
-  .goog-te-menu-value {
-    span {
-      &:first-child {
-        font-family: 'Roboto', sans-serif;
-        font-size: .85rem;
-        line-height: 2.5;
-      }
-      &:last-child {
-        font-size: 0;
-        color: #3c3c3c !important;
-        &:before {
-          display: inline-block;
-          content: '\2329';
-          font-size: 1.5rem;
-          transform: rotate(-90deg);
-          padding-right: 1rem;
-        }
-      }
-    }
   }
 }
 
@@ -141,77 +116,6 @@ button {
     width: 200px;
     * {
       color: black;
-    }
-  }
-}
-
-/* Delay Slider */
-.rc-slider {
-  position: relative;
-  touch-action: none;
-  max-width: 300px;
-  min-width: 200px;
-
-  .rc-slider-rail,
-  .rc-slider-track {
-    height: 10px;
-    border-radius: 5px;
-  }
-  .rc-slider-track {
-    position: absolute;
-    top: 0;
-    background: #00365d;
-    border: 1px solid #002038;
-  }
-  .rc-slider-rail {
-    background: #ffffff;
-  }
-  .rc-slider-handle {
-    cursor: grab;
-    touch-action: pan-x;
-    position: absolute;
-    background: #212121;
-    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
-    border-radius: 0;
-    width: 15px;
-    height: 24px;
-    margin-top: -16px;
-  }
-}
-
-/* Toggles */
-.toggle {
-  position: relative;
-  cursor: pointer;
-  white-space: nowrap;
-  input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    -webkit-appearance: none;
-  }
-  .toggle-span {
-    width: 1rem;
-    height: 1rem;
-    background: #00355d;
-    border: 1px solid #011f37;
-    color: white;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: .5em;
-  }
-  &.checked {
-    .toggle-span {
-      &:before {
-        content: "\2713";
-        text-align: center;
-        width: 100%;
-        display: block;
-        font-size: 1.25rem;
-        position: relative;
-        top: -.25em;
-      }
     }
   }
 }

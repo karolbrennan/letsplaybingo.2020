@@ -36,11 +36,30 @@ a {
   display: none;
 }
 
-/* Selects */
-
-.number-select {
-  max-width: 250px;
-  min-width: 175px;
+/* Google Translate */
+.goog-te-gadget-simple {
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  .goog-te-menu-value {
+    span {
+      &:first-child {
+        font-family: 'Roboto', sans-serif;
+        font-size: .85rem;
+        line-height: 2.5;
+      }
+      &:last-child {
+        font-size: 0;
+        color: #3c3c3c !important;
+        &:before {
+          display: inline-block;
+          content: '\2329';
+          font-size: 1.5rem;
+          transform: rotate(-90deg);
+          padding-right: 1rem;
+        }
+      }
+    }
+  }
 }
 
 /* Menu */
@@ -57,6 +76,85 @@ a {
       border: 3px solid transparent;
       &:hover {
         border: 3px solid #00487b;
+      }
+    }
+  }
+}
+
+/* Form Elements */
+
+/* Slider */
+.rc-slider {
+  position: relative;
+  touch-action: none;
+  max-width: 300px;
+  min-width: 200px;
+
+  .rc-slider-rail,
+  .rc-slider-track {
+    height: 10px;
+    border-radius: 5px;
+  }
+  .rc-slider-track {
+    position: absolute;
+    top: 0;
+    background: #00365d;
+    border: 1px solid #002038;
+  }
+  .rc-slider-rail {
+    background: #ffffff;
+  }
+  .rc-slider-handle {
+    cursor: grab;
+    touch-action: pan-x;
+    position: absolute;
+    background: #212121;
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+    width: 15px;
+    height: 24px;
+    margin-top: -16px;
+  }
+}
+
+/* Selects */
+.number-select {
+  max-width: 250px;
+  min-width: 175px;
+}
+
+/* Toggles */
+.toggle {
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+  input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+  .toggle-span {
+    width: 1rem;
+    height: 1rem;
+    background: #00355d;
+    border: 1px solid #011f37;
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: .5em;
+  }
+  &.checked {
+    .toggle-span {
+      &:before {
+        content: "\2713";
+        text-align: center;
+        width: 100%;
+        display: block;
+        font-size: 1.25rem;
+        position: relative;
+        top: -.25em;
       }
     }
   }
