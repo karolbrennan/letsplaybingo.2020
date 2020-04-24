@@ -27,12 +27,19 @@
     flex-flow: column nowrap;
     flex-basis: 20%;
   }
+  &.justify-center {
+    justify-content: center;
+  }
   &.no-padding,
   &.no-padding .col {
     padding: 0;
   }
   &.horizontal-start {
     justify-content: flex-start;
+    > .col {
+      flex: 0 1;
+      white-space: nowrap;
+    }
   }
   &.vertical-start {
     align-items: start;
@@ -73,6 +80,9 @@
     }
     &.shrink {
       flex: 0;
+    }
+    &.grow {
+      flex: 1;
     }
     &.stretch {
       align-self: stretch;

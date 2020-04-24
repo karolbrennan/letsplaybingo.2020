@@ -38,9 +38,9 @@ header, footer {
     color: #ffffff;
   }
   * {
-    font-size: 2.5rem;
-    font-size: 2.75vw;
-    line-height: 1;
+    font-size: 3.5rem;
+    font-size: 3.75vw;
+    line-height: 1.25;
   }
   .board-letter {
     flex: 0 0 1.25em !important;
@@ -149,6 +149,8 @@ button {
 .rc-slider {
   position: relative;
   touch-action: none;
+  max-width: 300px;
+  min-width: 200px;
 
   .rc-slider-rail,
   .rc-slider-track {
@@ -239,39 +241,54 @@ button {
 }
 
 /* Cards */
+.card-block {
+  max-width: 80%;
+  margin: 1rem auto;
+}
 .card {
-  width: 500px;
+  width: 49%;
   display: inline-block;
-  vertical-align: top;
+  margin: .5%;
   border-radius: 0.5rem;
   padding: 0.5rem;
 
   .col {
     padding: 0 !important;
     margin: 0 !important;
+    flex-basis: 20%;
+    max-width: 20%;
 
-    .freespace > span {
-      display: block;
-      font-size: .5em;
-      text-transform: uppercase;
-      font-weight: 700;
+    .freespace {
+      padding: 0.55rem 0;
+      > span {
+        display: block;
+        text-align: center;
+        font-size: 1.25rem;
+        line-height: 1;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
     }
     
     .card-number,
     .card-letter {
       text-align: center;
-      padding: .75rem;
+      padding: .25em;
       margin: 0;
     }
 
     .card-letter {
       font-size: 3rem;
+      line-height: 1.5;
       color: white;
     }
 
     .card-numbers {
+      border-top: 1px solid #cecece;
+      border-bottom: 1px solid #cecece;
+
       .card-number {
-        font-size: 2rem;
+        font-size: 3rem;
         background: white;
 
         border: 1px solid #cecece;
@@ -292,7 +309,7 @@ button {
   width: 100%;
   min-width: 120px;
   min-width: 7vw;
-  max-width: 200px;
+  max-width: 180px;
   display: flex;
   border-radius: 100%;
   position: relative;
@@ -330,8 +347,8 @@ button {
       bottom: 0;
       display: inline-flex;
       font-weight: bold;
-      font-size: 1.25rem;
-      font-size: 1.5vw;
+      font-size: 2.25rem;
+      font-size: 2.5vw;
       line-height: 1;
     }
 

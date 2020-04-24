@@ -8,11 +8,12 @@ class CardGenerator extends React.Component {
     super(props);
     this.state = {
       generatedCards: [],
-      numberOfCards: 1,
+      numberOfCards: null,
       blackWhite: false,
-      color: "red",
-      fourPerPage: false,
+      color: null,
+      twoPerPage: false,
     }
+    window.addEventListener("beforeprint", this.printCards);
   }
 
   generateBingoNumbers = () => {
@@ -42,7 +43,7 @@ class CardGenerator extends React.Component {
   }
 
   handlePPCheckbox = (e) => {
-    this.setState({fourPerPage: e.currentTarget.checked});
+    this.setState({twoPerPage: e.currentTarget.checked});
   }
 
   handleButton = (event) => {
@@ -53,7 +54,7 @@ class CardGenerator extends React.Component {
     this.setState({generatedCards: cards});
   }
 
-  generateCard() {
+  generateCard = () => {
     let numbers = this.generateBingoNumbers();
     let card = {};
     Object.keys(numbers).map(letter => {
@@ -65,6 +66,16 @@ class CardGenerator extends React.Component {
       return letter;
     });
     return card;
+  }
+
+  printCards = () => {
+    let style = document.createElement('style');
+    if(this.state.twoPerPage) {
+      style.appendChild(document.createTextNode('@page { orientation: landscape; size: landscape; }'));
+    } else {
+      style.appendChild(document.createTextNode('@page { orientation: portrait; size: portrait; margin: .5in 0in; }'));
+    }
+    document.head.appendChild(style);
   }
 
   get numberOfCardsOptions() {
@@ -99,9 +110,13 @@ class CardGenerator extends React.Component {
 
   get sectionClasses() {
     let classes = "";
-    classes+= this.state.fourPerPage ? 'print-four ' : 'print-two ';
+    classes+= this.state.twoPerPage ? 'print-two ' : 'print-four ';
     classes+= this.state.blackWhite ? 'print-bw ' : 'print-color ';
     return classes;
+  }
+
+  get generateButtonDisabled(){
+    return this.state.numberOfCards === null || this.state.color === null;
   }
 
   render() {
@@ -113,7 +128,8 @@ class CardGenerator extends React.Component {
               <h1>Card Generator</h1>
               <p>Generate your own cards for printing!<br/>
                 Simply choose how many cards you'd like to generate and click the button!</p>
-              <p>Printing your cards will default to color and 2 cards per page. Use the options below to change these settings.</p>
+              <p>Printing your cards will default to color and 4 cards per page. Use the options below to change these settings. <br/>
+                Printing 2 per page will result in larger cards for people who like bigger cards or have vision impairment.</p>
             
               <div className="row horizontal-start vertical-center pale-gray-bg padding-xlg">
                 <div className="col shrink padding-horizontal-md">
@@ -133,33 +149,37 @@ class CardGenerator extends React.Component {
                   />
                 </div>
                 <div className="col shrink padding-horizontal-md">
-                  <button className="altBtn" onClick={this.handleButton.bind(this)}>Generate Card</button>
+                  <button className="altBtn" onClick={this.handleButton.bind(this)} disabled={this.generateButtonDisabled}>Generate Cards</button>
                 </div>
                 <div className="col shrink padding-horizontal-md">
                   <label className={this.state.blackWhite ? 'toggle checked' : 'toggle'}>
                     <input type="checkbox" onChange={this.handleBWCheckbox} checked={this.state.blackWhite}></input>
-                    <span className="small-text">Print in Black/White</span>
+                    <span>Print in Black/White</span>
                     <span className="toggle-span"></span>
                   </label>
                 </div>
                 <div className="col shrink padding-horizontal-md">
-                  <label className={this.state.fourPerPage ? 'toggle checked' : 'toggle'}>
-                    <input type="checkbox" onChange={this.handlePPCheckbox} checked={this.state.fourPerPage}></input>
-                    <span className="small-text">Print 4 Cards Per Page</span>
+                  <label className={this.state.twoPerPage ? 'toggle checked' : 'toggle'}>
+                    <input type="checkbox" onChange={this.handlePPCheckbox} checked={this.state.twoPerPage}></input>
+                    <span>Print 2 Cards Per Page</span>
                     <span className="toggle-span"></span>
                   </label>
                 </div>
                 <div className="col padding-horizontal-md text-right">
-                  <button data-visibility={this.state.generatedCards.length > 0 ? 'show' : 'hide'} className="primaryBtn" onClick={()=>{window.print();return false;}}>Print Cards</button>
+                  <button data-visibility={this.state.generatedCards.length > 0 ? 'show' : 'hide'} className="primaryBtn" onClick={() => {window.print();return false;}}>Print Cards</button>
                 </div>
               </div>
             </div>
             
-            <div className="row margin-vertical-lg">
+            <div className="row card-block justify-center margin-vertical-lg">
               <div className="col">
                 {this.state.generatedCards.map((card, index) => {
-                  return( <div data-color={this.state.blackWhite ? 'dk-gray' : this.state.color} className="card margin-md" key={"a" + index}><BingoCard card={card} /></div> )
-                })}
+                    return( 
+                      <div data-color={this.state.blackWhite ? 'dk-gray' : this.state.color} className="card" key={"a" + index}>
+                        <BingoCard card={card} />
+                      </div>
+                    )
+                  })}
               </div>
             </div>
           </div>

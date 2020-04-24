@@ -7,7 +7,7 @@ import logo from './images/logo.svg';
  * @var  {Object}
  */
 export const generateBingoBalls = () => {
-  let board = {}
+  let board = {};
   let letters = ["B", "I", "N", "G", "O"];
   let count = 1;
   letters.forEach(letter => {

@@ -21,19 +21,19 @@ class BingoGame extends Component {
     super(props);
     // Set initial state
     // Generate bingo balls
+    this.patternPlaceholder = "Choose a pattern";
     this.state = {
       board: generateBingoBalls(),
       previousBall: null,
       currentBall: null,
       totalBallsCalled: 0,
       running: false,
-      skipUnused: false,
       interval: null,
       delay: 6000,
       presets: getPresetPatterns(),
       selectedPattern: {
-        value: "Choose a pattern",
-        label: "Choose a pattern",
+        value: this.patternPlaceholder,
+        label: this.patternPlaceholder,
         pattern: {
           B: [false, false, false, false, false],
           I: [false, false, false, false, false],
@@ -41,12 +41,59 @@ class BingoGame extends Component {
           G: [false, false, false, false, false],
           O: [false, false, false, false, false]
         }
-      }
+      },
+      // Checkbox values
+      skipUnused: false,
+      crazyBingo: false,
+      muteCaller: true,
     }
   }
 
 
   /* ------------------- Gameplay Functions */
+
+  startNewGame = () => {
+    // If this is a crazy bingo game...
+    if(this.state.crazyBingo){
+      // start up a new game, but do not initialize interval.
+      let boardClone = {...this.state.board};
+      let currentBall = null;
+      let updateState = false;
+      let totalBallsCalled = this.state.totalBallsCalled;
+      // get a random bingo numbers from the utils method
+      let randomBingoNumber = getRandomBingoNumber();
+      let crazyNumber = randomBingoNumber.toString().slice(-1);
+      Object.keys(boardClone).map((letter) => {
+        if(this.state.board.hasOwnProperty(letter)){
+          this.state.board[letter].map((number) => {
+            if(number.number === randomBingoNumber){
+              currentBall = number;
+              number.active = true;
+            }
+            if(number.number.toString().slice(-1) === crazyNumber){
+              number.called = true;
+              totalBallsCalled++;
+            }
+            return number;
+          })
+        }
+        return letter;
+      });
+      updateState = true;
+
+      if(updateState === true){
+        this.setState({
+          board: boardClone,
+          previousBall: this.state.currentBall,
+          currentBall: currentBall,
+          totalBallsCalled: totalBallsCalled
+        });
+      }
+    } else {
+      // if not a crazy bingo game, toggle game as usual
+      this.toggleGame();
+    }
+  }
 
   toggleGame = () => {
     let running = this.state.running;
@@ -87,8 +134,22 @@ class BingoGame extends Component {
   }
 
   handleCheckbox = (e) => {
-    this.setState({skipUnused: e.currentTarget.checked});
+    let gamemode = e.currentTarget.dataset.gamemode;
+    switch(gamemode){
+      case 'skip-unused':
+        this.setState({skipUnused: e.currentTarget.checked});
+        break;
+      case 'crazy-bingo':
+        this.setState({crazyBingo: e.currentTarget.checked});
+        break;
+      case 'mute-caller':
+        this.setState({muteCaller: e.currentTarget.checked});
+        break;
+      default:
+        break;
+    }
   }
+
 
   /*
   *  Update Pattern Function
@@ -116,33 +177,47 @@ class BingoGame extends Component {
    * the bingo board accordingly
    */
   callBingoNumber = () => {
-    // get a random bingo numbers from the utils method
-    let randomBingoNumber = getRandomBingoNumber();
-    let boardClone = {...this.state.board};
+    let board = this.state.board;
     let currentBall = null;
     let updateState = false;
     let totalBallsCalled = this.state.totalBallsCalled;
+    let selectedPattern = this.state.selectedPattern;
+
+    // get a random bingo numbers from the utils method
+    let randomBingoNumber = getRandomBingoNumber();
     if(totalBallsCalled < 75){
       // loop through the board to find the number
-      Object.keys(boardClone).map((letter) => {
-        if(this.state.board.hasOwnProperty(letter)){
-          this.state.board[letter].map((number) => {
-            if(number.active === true){
-              // if number is currently active, unset it.
-              number.active = false;
-            }
+      Object.keys(board).map((letter) => {
+        if(board.hasOwnProperty(letter)){
+          board[letter].map((number) => {
+            // if number is currently active, unset it.
+            number.active = false;
             if(number.number === randomBingoNumber){
-              // if the number has not already been called,
-              // set to called, and set to active.
-              if(number.called === false){
+              if(number.called){
+                // call a new number
+                this.callBingoNumber();
+              }
+              else {
                 number.called = true;
                 number.active = true;
                 currentBall = number;
                 updateState = true;
                 totalBallsCalled++;
-              } else {
-                // otherwise call a new number
-                this.callBingoNumber();
+                // If user has Skip Unused turned on and has chosen a pattern
+                // Run the logic to skip unused numbers
+                if(this.state.skipUnused && selectedPattern.value !== this.patternPlaceholder){
+                  // Loop through the letters of the card
+                  Object.keys(selectedPattern.pattern).forEach(letter => {
+                    // If the letters match, check the pattern for a used slot
+                    if(letter === number.letter){
+                      if(selectedPattern.pattern[letter].indexOf(true) < 0){
+                        // if unused, call next number. Else do nothing.
+                        this.callBingoNumber();
+                      }
+                    }
+                    return letter;
+                  })
+                }
               }
             }
             return number;
@@ -153,7 +228,7 @@ class BingoGame extends Component {
     }
     if(updateState === true){
       this.setState({
-        board: boardClone,
+        board: board,
         previousBall: this.state.currentBall,
         currentBall: currentBall,
         totalBallsCalled: totalBallsCalled
@@ -221,25 +296,54 @@ class BingoGame extends Component {
     }
   }
 
+  /**
+   * Get the previous call display
+   *
+   * @return  {JSX}  html element
+   */
+  get previousCallDisplay() {
+    const previousCall = this.state.previousBall;
+    if(previousCall){
+      let numbers = ["0"];
+      if(previousCall.hasOwnProperty('number')){
+        numbers = previousCall.number.toString().split('');
+      }
+      if(numbers.length === 1){
+        return <div><span>&nbsp;</span><span>{numbers[0]}</span></div>
+      } else {
+        return numbers.map((number, index) => (
+          <span key={"call" + number + index}>{number}</span>
+        ))
+      }
+    } else {
+      return <div><span>&nbsp;</span><span>&nbsp;</span></div>
+    }
+  }
+
 
   /* ------------------- Render */
   render(){
     return(
       <div>
-        <section className="dark-blue-bg padding-sm">
-        </section>
+        <section className="dark-blue-bg padding-sm"></section>
+        {/* ----------- Bingo Board ------------- */}
         <section className="board-block dark-bg">
           <div className="row no-wrap vertical-center">
             <div className="col shrink">
-              <div className="padding-xlg">
-                <div className="row no-wrap margin-bottom-lg white-text uppercase small-text">
+              <div className="padding-vertical-md padding-horizontal-xlg">
+                <div className="ball-row row vertical">
+                  <div className="col">
+                    {this.currentBallDisplay}
+                  </div>
+                </div>
+                <div className="row no-wrap margin-vertical-lg white-text uppercase small-text">
                   <div className="col text-center">
                     <div className="callNumber">{this.numberDisplay}</div>
                     <strong>Total Calls</strong>
                   </div>
                   <div className="col text-center">
-                    <div className="callNumber">{this.currentCallDisplay}</div>
-                    <strong>Current Call</strong>
+                    <div className="callNumber">{this.previousCallDisplay}</div>
+                    <strong>Previous Call</strong>
                   </div>
                 </div>
                 <Pattern pattern={this.state.selectedPattern} update={this.updatePattern} />
@@ -248,24 +352,12 @@ class BingoGame extends Component {
             <div className="col">
               <BingoBoard board={this.state.board} />
             </div>
-            <div className="col padding-xlg shrink stretch dark-gray-bg">
-              <div className="ball-row row vertical">
-                <div className="col padding-top-xlg padding-bottom-sm">
-                  {this.currentBallDisplay}
-                  <h3 className="text-center margin-bottom-sm white-text">Current Ball</h3>
-                </div>
-                <div className="col padding-top-sm">
-                  <div className={this.state.previousBall === null ? "hide":"show"}>
-                    {this.previousBallDisplay}
-                    <h3 className="text-center margin-bottom-sm white-text">Previous Ball</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
+        
+        {/* ----------- Game Controls ------------- */}
         <section className="game-controls dark-blue-bg padding-md">
-          <div className="row no-wrap vertical-center">
+          <div className="row no-wrap vertical-center horizontal-start">
             <div className="col shrink padding-horizontal-sm">
               <Select 
                 className="pattern-select"
@@ -279,24 +371,48 @@ class BingoGame extends Component {
               <button onClick={this.resetGame} disabled={this.state.running}>New Game</button>
             </div>
             <div className="col shrink padding-horizontal-sm">
-              <button onClick={this.toggleGame}>{this.state.running ? "Pause" : "Start"}</button>
+              <button onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.toggleGame}>{this.state.running ? "Pause" : this.state.totalBallsCalled === 0 ? "Start" : "Resume"}</button>
             </div>
             <div className="col shrink padding-horizontal-sm">
               <button onClick={this.callBingoNumber} disabled={this.state.running}>Next Number</button>
             </div>
-            <div className="col padding-horizontal-sm">
-              <label className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
-                <input type="checkbox" onChange={this.handleCheckbox} checked={this.state.skipUnused}></input>
-                <span className="small-text">SKIP UNUSED NUMBERS</span>
-                <span className="toggle-span"></span>
-              </label>
-            </div>
-            <div className="col text-center padding-horizontal-sm">
+            <div className="col shrink text-center padding-horizontal-sm">
               <div className="row no-wrap vertical-center">
                 <div className="col shrink padding-right-lg small-text">SLOW</div>
                 <div className="col"><Slider min={1500} max={10000} step={500} value={this.state.delay} onChange={this.updateDelay} reverse={true} /></div>
                 <div className="col shrink padding-left-lg small-text">FAST</div>
               </div>
+            </div>
+            <div className="col grow padding-horizontal-md text-right">
+              <label className={this.state.muteCaller ? 'toggle checked' : 'toggle'}>
+                <input type="checkbox" data-gamemode="mute-caller" onChange={this.handleCheckbox} checked={this.state.muteCaller}></input>
+                <span>Mute Caller</span>
+                <span className="toggle-span"></span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        {/* ----------- Game Settings ------------- */}
+
+        <section className="game-settings pale-gray-bg padding-md">
+          <div className="row no-wrap vertical-center horizontal-start">
+            <div className="col padding-horizontal-sm">
+              <h4 className="no-margin">GAME MODES:</h4>
+            </div>
+            <div className="col shrink padding-horizontal-md">
+              <label className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
+                <input type="checkbox" data-gamemode="skip-unused" onChange={this.handleCheckbox} checked={this.state.skipUnused}></input>
+                <span>Skip Unused Numbers</span>
+                <span className="toggle-span"></span>
+              </label>
+            </div>
+            <div className="col shink padding-horizontal-md">
+              <label className={this.state.crazyBingo ? 'toggle checked' : 'toggle'}>
+                <input type="checkbox" data-gamemode="crazy-bingo" onChange={this.handleCheckbox} checked={this.state.crazyBingo}></input>
+                <span>Crazy Bingo</span>
+                <span className="toggle-span"></span>
+              </label>
             </div>
           </div>
         </section>
