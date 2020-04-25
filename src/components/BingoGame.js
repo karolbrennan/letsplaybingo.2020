@@ -466,7 +466,7 @@ class BingoGame extends Component {
         <section className="board-block dark-bg">
           <div className="row no-wrap align-stretch">
             {/* ------ Board ------- */}
-            <div className="col shrink min-size-250 padding-xlg">
+            <div className="col shrink min-size-225 padding-xlg">
               {/* -------- Digital Displays --------- */}
               <div className="row no-wrap margin-vertical-lg white-text uppercase small-text">
                 <div className="col text-center">
@@ -504,12 +504,12 @@ class BingoGame extends Component {
           <div className="row justify-start align-center">
 
             {/* ----------- Current Ball Display ------------- */}
-            <div className="col shrink min-size-250 padding-xxlg">
+            <div className="col shrink min-size-225 padding-xxlg">
               {this.currentBallDisplay}
             </div>
 
             {/* ----------- Gameplay Controls ------------- */}
-            <div className="col shrink min-size-250 padding-xxlg">
+            <div className="col shrink min-size-225 padding-xxlg">
               <section className="gameplay-controls">
                 <button data-disabled={this.state.displayBoardOnly} 
                   onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.toggleGame}>
