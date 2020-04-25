@@ -66,13 +66,16 @@ button {
       background-color: transparent;
     }
   }
-
   &.altBtn {
     border-color: #00487b;
     color: #00487b;
     &:hover {
       background-color: #00487b;
       color: #ffffff;
+    }
+    &[disabled]:hover {
+      border-color: #00487b;
+      color: #00487b;
     }
   }
   &.primaryBtn {
@@ -82,6 +85,11 @@ button {
     &:hover {
       background-color: #efefef;
       color: #00487b;
+    }
+    &[disabled]:hover {
+      background-color: #00487b;
+      color: #ffffff;
+      border-color: #00487b;
     }
   }
 }

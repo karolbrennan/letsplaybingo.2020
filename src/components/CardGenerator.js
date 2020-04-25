@@ -149,7 +149,10 @@ class CardGenerator extends React.Component {
                   />
                 </div>
                 <div className="col shrink padding-horizontal-md">
-                  <button className="altBtn" onClick={this.handleButton.bind(this)} disabled={this.generateButtonDisabled}>Generate Cards</button>
+                  <button className="primaryBtn" onClick={this.handleButton.bind(this)} disabled={this.generateButtonDisabled}>Generate Cards</button>
+                </div>
+                <div className="col shrink padding-left-xlg">
+                  <h4>Printing Options</h4>
                 </div>
                 <div className="col shrink padding-horizontal-md">
                   <label className={this.state.blackWhite ? 'toggle checked' : 'toggle'}>
@@ -166,7 +169,7 @@ class CardGenerator extends React.Component {
                   </label>
                 </div>
                 <div className="col padding-horizontal-md text-right">
-                  <button data-visibility={this.state.generatedCards.length > 0 ? 'show' : 'hide'} className="primaryBtn" onClick={() => {window.print();return false;}}>Print Cards</button>
+                  <button data-visibility={this.state.generatedCards.length > 0 ? 'show' : 'hide'} className="altBtn" onClick={() => {window.print();return false;}}>Print Cards</button>
                 </div>
               </div>
             </div>
