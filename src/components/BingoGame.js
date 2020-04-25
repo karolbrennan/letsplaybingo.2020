@@ -60,7 +60,7 @@ class BingoGame extends Component {
   }
 
   initializeFromLocalStorage = () => {
-    let skipUnused, enableCaller, displayBoardOnly = false;
+    let skipUnused, enableCaller, displayBoardOnly, wildBingo = false;
 
     if(localStorage.getItem('lpb-skipUnused')){
       skipUnused = localStorage.getItem('lpb-skipUnused') === "true";
@@ -71,9 +71,12 @@ class BingoGame extends Component {
     if(localStorage.getItem('lpb-displayBoardOnly')){
       displayBoardOnly = localStorage.getItem('lpb-displayBoardOnly') === "true";
     }
+    if(localStorage.getItem('lpb-wildBingo')){
+      wildBingo = localStorage.getItem('lpb-wildBingo') === "true";
+    }
 
     this.setState({
-      skipUnused: skipUnused, enableCaller: enableCaller, displayBoardOnly: displayBoardOnly
+      skipUnused: skipUnused, enableCaller: enableCaller, displayBoardOnly: displayBoardOnly, wildBingo: wildBingo
     })
   }
 
@@ -141,15 +144,21 @@ class BingoGame extends Component {
       (ballstring.length === 2 ? [ballstring.charAt(0), ' ', ballstring.charAt(1)] : ball.number)]);
   }
 
+  wildBallCall = (ball) => {
+    // call the wild ball, 
+    let ballstring = ball.number.toString();
+    this.say(['The wild number ', ' ', ' ', ball.letter, ' ', ball.number, ' ', ' ', ' mark every number ending in ', ballstring.substr(-1)]);
+  }
+
 
   /* ------------------- Gameplay Functions */
 
-  startNewGame = () => {
+  startNewGame = (event) => {
     // Start with the Let's Play Bingo call out 
     // (the .say method will not run if caller is not enabled)
-    this.say("Let's Play Bingo!");
-    window.setTimeout(()=> {
-      if(this.state.wildBingo){
+    if(this.state.wildBingo){
+      this.say("Let's Play Wild Bingo!");
+      window.setTimeout(() => {
         // Variables used for wild bingo
         let randomBingoNumber = getRandomBingoNumber();
         let wildNumber = randomBingoNumber.toString().substr(-1);
@@ -165,7 +174,10 @@ class BingoGame extends Component {
               number.active = true;
               wildBall = number;
               totalBallsCalled++;
-              this.voiceCall(number);
+
+              window.setTimeout(() => {
+                this.wildBallCall(number);
+              },2500);
             }
             if(number.number.toString().substr(-1) === wildNumber){
               lastBall = number;
@@ -182,10 +194,22 @@ class BingoGame extends Component {
           currentBall: wildBall,
           totalBallsCalled: totalBallsCalled
         });
-      } else {
-        this.callBingoNumber();
-      }
-    },2000);
+      },2500)
+    } else {
+      this.say("Let's Play Bingo!");
+      window.setTimeout(() => {this.callBingoNumber();},2500);
+    }
+  }
+
+  startNewAutoplayGame = () => {
+    if(this.state.wildBingo){
+      this.startNewGame();
+    } else {
+      this.say("Let's Play Bingo!");
+      window.setTimeout(()=> {
+        this.toggleGame();
+      },2000);
+    }
   }
 
   toggleGame = () => {
@@ -225,9 +249,9 @@ class BingoGame extends Component {
     let totalBallsCalled = this.state.totalBallsCalled;
     let selectedPattern = this.state.selectedPattern;
     let randomBingoNumber = getRandomBingoNumber();
-    let callAgain = false;
 
     if(totalBallsCalled < 75){
+      let callAgain = false;
       Object.keys(board).map(letter => {
         board[letter].map((number)=>{
           number.active = false;
@@ -253,6 +277,9 @@ class BingoGame extends Component {
         })
         return letter;
       })
+      if(callAgain){
+        this.callBingoNumber();
+      }
     } else {
       // stop running if there's 75+ balls called.
       running = false;
@@ -265,9 +292,6 @@ class BingoGame extends Component {
         previousBall: previousBall,
         totalBallsCalled: totalBallsCalled
       });
-    }
-    if(callAgain){
-      this.callBingoNumber();
     }
   }
 
@@ -291,6 +315,7 @@ class BingoGame extends Component {
         break;
       case 'wild-bingo':
         this.setState({wildBingo: e.currentTarget.checked});
+        localStorage.setItem('lpb-wildBingo', e.currentTarget.checked);
         break;
       case 'enable-caller':
         if(this.state.synth.speaking){
@@ -518,20 +543,20 @@ class BingoGame extends Component {
           <div className="row justify-start align-start">
 
             {/* ----------- Current Ball Display ------------- */}
-            <div className="col max-size-250 padding-xxlg">
+            <div className="col max-size-250 padding-vertical-xxlg padding-horizontal-md">
               {this.currentBallDisplay}
             </div>
 
             {/* ----------- Gameplay Controls ------------- */}
-            <div className="col shrink padding-xxlg">
+            <div className="col shrink padding-vertical-xxlg padding-horizontal-md">
               <section className="gameplay-controls">
 
                 <button data-disabled={this.state.displayBoardOnly} onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.callBingoNumber} disabled={this.state.running}>
                   {this.state.totalBallsCalled === 0 ? "Start New Game" : "Call Next Number"}
                 </button>
 
-                <button data-disabled={this.state.displayBoardOnly} 
-                  onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.toggleGame}>
+                <button data-disabled={this.state.displayBoardOnly} data-newgame={this.state.totalBallsCalled === 0}
+                  onClick={this.state.totalBallsCalled === 0 ? this.startNewAutoplayGame : this.toggleGame}>
                     {this.state.running ? "Pause Autoplay" : "Start Autoplay"}
                 </button>
 
@@ -542,7 +567,7 @@ class BingoGame extends Component {
             </div>
 
             {/* ----------- Game Settings ------------- */}
-            <div className="col no-wrap padding-xxlg white-text">
+            <div className="col no-wrap padding-vertical-xxlg padding-horizontal-md white-text">
               <section className="game-settings">
 
                 {/* ----------- Autoplay Settings ---------- */}
@@ -619,14 +644,13 @@ class BingoGame extends Component {
             </div>
 
             {/* ----------- Donation ------------- */}
-            <div className="col grow padding-xxlg white-text">
+            <div className="col grow padding-vertical-xxlg padding-horizontal-lg white-text">
               <h3 className="no-margin">Donate to Let's Play Bingo!</h3>
               <p className="wrap-text small-text">
                 <strong>Let's Play Bingo is the #1 Bingo Caller on Google!</strong><br/>
                 Requiring no downloads, and with no ads, it is completely <strong>free</strong> and always will be.
-                If you'd like to contribute toward operating costs we are accepting <a href="/donate">donations</a> of any amount via 
-                <a href="https://venmo.com/karolbrennan" target="_blank" rel="noopener noreferrer">Venmo</a> or 
-                <a href="https://paypal.me/karolbrennan" target="_blank" rel="noopener noreferrer">Paypal</a>!
+                If you'd like to contribute toward operating costs we are accepting <a href="/donate">donations</a> of any amount 
+                via <a href="https://venmo.com/karolbrennan" target="_blank" rel="noopener noreferrer">Venmo</a> or <a href="https://paypal.me/karolbrennan" target="_blank" rel="noopener noreferrer">Paypal</a>!
               </p>
               <p><a href="/donate" className="button">Donate Now</a></p>
             </div>
