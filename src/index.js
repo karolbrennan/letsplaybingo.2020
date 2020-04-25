@@ -43,7 +43,6 @@ const routing = (
       <Route path="/about" component={About} />
       <Route path="/donate" component={Donate} />
       <Route path="/generator" component={CardGenerator} />
-      {/* <Route path="/cookies" component={Cookies} /> */}
       <Route path="/terms" component={Terms} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/releases" component={ReleaseNotes} />

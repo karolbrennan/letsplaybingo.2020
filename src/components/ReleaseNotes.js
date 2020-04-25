@@ -9,7 +9,7 @@ class ReleaseNotes extends React.Component {
             <h1>Release Notes!</h1>
             <h2><span className="date">4/25/2020</span> | The Pandemic Update!</h2>
             <ul>
-                <li>A brand new <a href="https://letsplaybingo.io/generate">card generation tool</a>!!! You asked, we listened!
+                <li>A brand new <a href="/generate">card generation tool</a>!!! You asked, we listened!
                   <p>You can now generate your own bingo cards and print them at home on any standard printer! All cards are created individually and completely at random and the chances of duplicate cards are extremely slim.</p>
                 </li>
                 <li>New design and layout!

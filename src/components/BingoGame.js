@@ -63,7 +63,7 @@ class BingoGame extends Component {
     let skipUnused, enableCaller, displayBoardOnly, wildBingo, callDelay = false;
 
     if(localStorage.getItem('lpb-callDelay')){
-      callDelay = localStorage.getItem('lpb-callDelay') === "true";
+      callDelay = parseInt(localStorage.getItem('lpb-callDelay'));
     }
     if(localStorage.getItem('lpb-skipUnused')){
       skipUnused = localStorage.getItem('lpb-skipUnused') === "true";
@@ -304,10 +304,10 @@ class BingoGame extends Component {
     if(this.state.interval !== null){
       clearInterval(this.state.interval);
       this.setState({delay: e, interval: setInterval(this.callBingoNumber, e)});
-      localStorage.setItem('lpb-callDelay', e);
     } else {
       this.setState({delay: e});
     }
+    localStorage.setItem('lpb-callDelay', e);
   }
 
   handleCheckbox = (e) => {
@@ -612,7 +612,7 @@ class BingoGame extends Component {
                       <span className="toggle-span"></span>
                     </label>
                   </div>
-                  <div className="col padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
+                  <div className="col padding-horizontal-lg" data-disabled={this.state.displayBoardOnly || this.state.totalBallsCalled > 0}>
                     <label className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
                       <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
                       <span>Wild Bingo</span>
