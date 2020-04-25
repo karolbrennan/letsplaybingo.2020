@@ -192,12 +192,11 @@ class BingoGame extends Component {
         });
         return letter;
       });
-
+      this.totalBallsCalled = totalBallsCalled;
       this.setState({
         board: board,
         previousBall: lastBall,
-        currentBall: wildBall,
-        totalBallsCalled: totalBallsCalled
+        currentBall: wildBall
       });
     } else {
       if(this.state.enableCaller){
