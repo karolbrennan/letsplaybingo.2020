@@ -199,6 +199,18 @@ export const getPresetPatterns = () => {
         O: [false, false, true, true, true]
       }
     },
+    {
+      value: "Add Subtract",
+      label: "Add & Subtract",
+      unusedLetters: ["B","O"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, true, false, false, true],
+        N: [true, true, true, false, true],
+        G: [false, true, false, false, true],
+        O: [false, false, false, false, false]
+      },
+    },
     { value: "Blackout",
       label: "Blackout",
       unusedLetters: [],
@@ -232,6 +244,30 @@ export const getPresetPatterns = () => {
         O: [true, true, false, true, true]
       }
     },
+    {
+      value: "Broken Frame",
+      label: "Broken Frame",
+      unusedLetters: ["I","G"],
+      pattern: {
+        B: [true, false, true, false, true],
+        I: [false, false, false, false, false],
+        N: [true, false, false, false, true],
+        G: [false, false, false, false, false],
+        O: [true, false, true, false, true]
+      },
+    },
+    {
+      value: "Cent Sign",
+      label: "Cent Sign",
+      unusedLetters: ["B","O"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, true, true, true, false],
+        N: [true, true, false, true, true],
+        G: [false, true, false, true, false],
+        O: [false, false, false, false, false]
+      },
+    },
     { value: "Clover",
       label: "Clover",
       unusedLetters: [],
@@ -243,6 +279,18 @@ export const getPresetPatterns = () => {
         O: [false, true, true, true, false]
       }
     },
+    {
+      value: "Clover Leaf",
+      label: "Clover Leaf",
+      unusedLetters: ["N"],
+      pattern: {
+        B: [true, true, false, false, false],
+        I: [true, true, false, false, false],
+        N: [false, false, false, false, false],
+        G: [false, false, false, true, true],
+        O: [false, false, false, true, true]
+      },
+    },
     { value: "Crazy Arrow",
       label: "Crazy Arrow",
       unusedLetters: [],
@@ -253,6 +301,18 @@ export const getPresetPatterns = () => {
         G: [true, true, false, false, false],
         O: [true, true, true, false, false]
       }
+    },
+    {
+      value: "Crazy Arrowhead",
+      label: "Crazy Arrowhead",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, false, false, false, false],
+        N: [true, false, false, false, false],
+        G: [true, true, false, false, false],
+        O: [true, true, true, false, false]
+      },
     },
     { value: "Crazy Kite",
       label: "Crazy Kite",
@@ -309,6 +369,18 @@ export const getPresetPatterns = () => {
         O: [false, true, true, true, false]
       }
     },
+    {
+      value: "Double Chevron",
+      label: "Double Chevron",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, true, false, true],
+        I: [false, true, false, true, false],
+        N: [true, false, true, false, false],
+        G: [false, true, false, true, false],
+        O: [false, false, true, false, true]
+      },
+    },
     { value: "Filled in Diamond",
       label: "Filled in Diamond",
       unusedLetters: [],
@@ -319,6 +391,30 @@ export const getPresetPatterns = () => {
         G: [false, true, true, true, false],
         O: [false, false, true, false, false]
       }
+    },
+    {
+      value: "Hardway",
+      label: "Hardway",
+      unusedLetters: [],
+      pattern: {
+        B: [false, true, false, false, false],
+        I: [false, true, false, false, false],
+        N: [false, true, false, false, false],
+        G: [false, true, false, false, false],
+        O: [false, true, false, false, false]
+      },
+    },
+    {
+      value: "Heart",
+      label: "Heart",
+      unusedLetters: [],
+      pattern: {
+        B: [false, true, true, false, false],
+        I: [true, true, true, true, false],
+        N: [false, true, true, true, true],
+        G: [true, true, true, true, false],
+        O: [false, true, true, false, false]
+      },
     },
     { value: "Large Frame",
       label: "Large Frame",
@@ -352,6 +448,18 @@ export const getPresetPatterns = () => {
         G: [false, true, false, true, false],
         O: [true, false, false, false, true]
       }
+    },
+    {
+      value: "Picnic Table",
+      label: "Picnic Table",
+      unusedLetters: [],
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [true, true, false, true, false],
+        N: [true, false, true, false, false],
+        G: [true, true, false, true, false],
+        O: [true, false, false, false, true]
+      },
     },
     { value: "Postage Stamps",
       label: "Postage Stamps",
@@ -397,6 +505,42 @@ export const getPresetPatterns = () => {
         O: [true, false, false, false, true]
       }
     },
+    {
+      value: "Starburst",
+      label: "Starburst",
+      unusedLetters: [],
+      pattern: {
+        B: [true, false, true, false, true],
+        I: [false, true, true, true, false],
+        N: [true, true, true, true, true],
+        G: [false, true, true, true, false],
+        O: [true, false, true, false, true]
+      },
+    },
+    {
+      value: "Triangle Game",
+      label: "Triangle Game",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, true, true, true],
+        I: [true, true, true, true, false],
+        N: [true, true, true, false, false],
+        G: [true, true, false, false, false],
+        O: [true, false, false, false, false]
+      },
+    },
+    {
+      value: "Two Brackets",
+      label: "Two Brackets",
+      unusedLetters: ["N"],
+      pattern: {
+        B: [true, true, false, false, false],
+        I: [true, false, false, false, false],
+        N: [false, false, false, false, false],
+        G: [false, false, false, false, true],
+        O: [false, false, false, true, true]
+      },
+    },
     // {
     //   value: "",
     //   label: "",
@@ -408,6 +552,7 @@ export const getPresetPatterns = () => {
     //     G: [false, false, false, false, false],
     //     O: [false, false, false, false, false]
     //   },
+    // },
   ]
 }
 
