@@ -22,11 +22,11 @@ class BingoGame extends Component {
     // Set initial state
     // Generate bingo balls
     this.patternPlaceholder = "Choose a pattern";
+    this.totalBallsCalled = 0;
     this.state = {
       board: generateBingoBalls(),
       previousBall: null,
       currentBall: null,
-      totalBallsCalled: 0,
       running: false,
       interval: null,
       delay: 6000,
@@ -158,7 +158,7 @@ class BingoGame extends Component {
 
   /* ------------------- Gameplay Functions */
 
-  startNewGame = (event) => {
+  startNewGame = () => {
     // Start with the Let's Play Bingo call out 
     // (the .say method will not run if caller is not enabled)
     if(this.state.wildBingo){
@@ -170,7 +170,7 @@ class BingoGame extends Component {
       let wildBall = null;
       let lastBall = null;
       let board = this.state.board;
-      let totalBallsCalled = this.state.totalBallsCalled;
+      let totalBallsCalled = this.totalBallsCalled;
 
       Object.keys(board).forEach(letter => {
         board[letter].forEach(number => {
@@ -253,36 +253,50 @@ class BingoGame extends Component {
   }
 
   callBingoNumber = () => {
-    let board = this.state.board;
-    let running = this.state.running;
-    let currentBall = null;
-    let previousBall = this.state.currentBall;
-    let updateState = false;
-    let totalBallsCalled = this.state.totalBallsCalled;
-    let selectedPattern = this.state.selectedPattern;
-    let randomBingoNumber = getRandomBingoNumber();
-
+    let totalBallsCalled = this.totalBallsCalled;
     if(totalBallsCalled < 75){
+      let board = this.state.board;
+      let currentBall = null;
+      let previousBall = this.state.currentBall;
+      let selectedPattern = this.state.selectedPattern;
+      let randomBingoNumber = getRandomBingoNumber();
       let callAgain = false;
+  
+      // Map through the letters on the board
       Object.keys(board).map(letter => {
+        // Map through each number 1-15 under each letter on the board
         board[letter].map((number)=>{
+          // automatically set the number as not active (this will clear any previously active numbers)
           number.active = false;
+          // If this is the match to the random number we called, do logic
           if(number.number === randomBingoNumber){
-            if(number.called){
-              callAgain = true;
-            } else {
-              updateState = true;
+            // if the number was not called, do logic. Else call again
+            if(!number.called){
+              // increment the total balls called.
+              totalBallsCalled++;
+              // set to called
               number.called = true;
-              number.active = true;
-              currentBall = number;
-              callAgain = this.state.skipUnused && selectedPattern.value !== this.patternPlaceholder && selectedPattern.unusedLetters.indexOf(letter) >= 0;
 
-              if(callAgain){
-                number.active = false;
+              currentBall = number;
+              // if we are skipping unused numbers, a pattern has been selected, and this letter is not in use, we want to call a new number when 
+              // we are done here.
+              if(this.state.skipUnused && selectedPattern.value !== this.patternPlaceholder && selectedPattern.unusedLetters.indexOf(letter) >= 0){
+                callAgain = true;
               } else {
+                // set ball to active since we won't be calling again
+                number.active = true;
                 this.voiceCall(number);
               }
-              totalBallsCalled++;
+
+              this.totalBallsCalled = totalBallsCalled;
+              this.setState({
+                board: board,
+                currentBall: currentBall,
+                previousBall: previousBall
+              });
+            } else {
+              // call again cause we got a ball we already called
+              callAgain = true;
             }
           }
           return number;
@@ -293,17 +307,10 @@ class BingoGame extends Component {
         this.callBingoNumber();
       }
     } else {
-      // stop running if there's 75+ balls called.
-      running = false;
-    }
-    if(updateState){
-      this.setState({
-        board: board,
-        running: running,
-        currentBall: currentBall,
-        previousBall: previousBall,
-        totalBallsCalled: totalBallsCalled
-      });
+      alert("We're all out of balls!");
+      clearInterval(this.state.interval);
+      this.totalBallsCalled = 75;
+      this.setState({running: false, previousBall: this.state.currentBall, currentBall: null});
     }
   }
 
@@ -394,7 +401,7 @@ class BingoGame extends Component {
    * @return  {JSX}  html element
    */
   get numberDisplay() {
-    let numbers = this.state.totalBallsCalled.toString().split('');
+    let numbers = this.totalBallsCalled.toString().split('');
     if(numbers.length === 1){
       return <div><span>&nbsp;</span><span>{numbers[0]}</span></div>
     } else {
@@ -488,7 +495,7 @@ class BingoGame extends Component {
     let board = this.state.board;
     let currentBall = null;
     let previousBall = this.state.currentBall;
-    let totalBallsCalled = this.state.totalBallsCalled;
+    let totalBallsCalled = this.totalBallsCalled;
     Object.keys(board).forEach(letter => {
       board[letter].forEach(number => {
         number.active = false;
@@ -507,7 +514,8 @@ class BingoGame extends Component {
       })
       return letter;
     })
-    this.setState({board: board, currentBall: currentBall, previousBall: previousBall, totalBallsCalled: totalBallsCalled});
+    this.totalBallsCalled = totalBallsCalled;
+    this.setState({board: board, currentBall: currentBall, previousBall: previousBall});
   }
 
 
@@ -567,18 +575,18 @@ class BingoGame extends Component {
 
             {/* ----------- Gameplay Controls ------------- */}
             <div className="col shrink padding-vertical-xxlg padding-horizontal-md">
-              <section className="gameplay-controls">
+              <section className="gameplay-controls" data-disabled={this.totalBallsCalled >= 75}>
 
-                <button data-disabled={this.state.displayBoardOnly} onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.callBingoNumber} disabled={this.state.running}>
-                  {this.state.totalBallsCalled === 0 ? "Start New Game" : "Call Next Number"}
+                <button data-disabled={this.state.displayBoardOnly} onClick={this.totalBallsCalled === 0 ? this.startNewGame : this.callBingoNumber} disabled={this.state.running}>
+                  {this.totalBallsCalled === 0 ? "Start New Game" : "Call Next Number"}
                 </button>
 
-                <button data-disabled={this.state.displayBoardOnly} data-newgame={this.state.totalBallsCalled === 0}
-                  onClick={this.state.totalBallsCalled === 0 ? this.startNewAutoplayGame : this.toggleGame}>
+                <button data-disabled={this.state.displayBoardOnly} data-newgame={this.totalBallsCalled === 0}
+                  onClick={this.totalBallsCalled === 0 ? this.startNewAutoplayGame : this.toggleGame}>
                     {this.state.running ? "Pause Autoplay" : "Start Autoplay"}
                 </button>
 
-                <button onClick={this.resetGame} disabled={this.state.running || this.state.totalBallsCalled === 0}>
+                <button onClick={this.resetGame} disabled={this.state.running || this.totalBallsCalled === 0}>
                   Reset Board
                 </button>
               </section>
@@ -596,7 +604,7 @@ class BingoGame extends Component {
                   <div className="col shrink text-center padding-vertical-lg padding-horizontal-lg">
                     <div className="row no-wrap align-center" data-disabled={this.state.displayBoardOnly}>
                       <div className="col shrink padding-right-lg white-text">Slower</div>
-                      <div className="col"><Slider min={2500} max={10000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
+                      <div className="col"><Slider min={3000} max={10000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
                       <div className="col shrink padding-left-lg white-text">Faster</div>
                     </div>
                   </div>
@@ -625,7 +633,7 @@ class BingoGame extends Component {
                           <span className="toggle-span"></span>
                         </label>
                       </div>
-                      <div className="col" data-disabled={this.state.displayBoardOnly || this.state.totalBallsCalled > 0}>
+                      <div className="col" data-disabled={this.state.displayBoardOnly || this.totalBallsCalled > 0}>
                         <label className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
                           <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
                           <span>Wild Bingo</span>
