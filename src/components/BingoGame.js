@@ -148,9 +148,11 @@ class BingoGame extends Component {
   }
 
   wildBallCall = (ball) => {
-    // call the wild ball, 
-    let ballstring = ball.number.toString();
-    this.say(['The wild number ', ' ', ' ', ball.letter, ' ', ball.number, ' ', ' ', ' mark every number ending in ', ballstring.substr(-1)]);
+    window.setTimeout(()=> {
+      // call the wild ball, 
+      let ballstring = ball.number.toString();
+      this.say(['The wild number ', ' ', ' ', ball.letter, ' ', ball.number, ' ', ' ', ' mark every number ending in ', ballstring.substr(-1)]);
+    },2500);
   }
 
 
@@ -160,47 +162,50 @@ class BingoGame extends Component {
     // Start with the Let's Play Bingo call out 
     // (the .say method will not run if caller is not enabled)
     if(this.state.wildBingo){
-      this.say("Let's Play Wild Bingo!");
-      window.setTimeout(() => {
-        // Variables used for wild bingo
-        let randomBingoNumber = getRandomBingoNumber();
-        let wildNumber = randomBingoNumber.toString().substr(-1);
-        let wildBall = null;
-        let lastBall = null;
-        let board = this.state.board;
-        let totalBallsCalled = this.state.totalBallsCalled;
+      if(this.state.enableCaller){this.say("Let's Play Wild Bingo!")};
+      
+      // Variables used for wild bingo
+      let randomBingoNumber = getRandomBingoNumber();
+      let wildNumber = randomBingoNumber.toString().substr(-1);
+      let wildBall = null;
+      let lastBall = null;
+      let board = this.state.board;
+      let totalBallsCalled = this.state.totalBallsCalled;
 
-        Object.keys(board).forEach(letter => {
-          board[letter].forEach(number => {
-            if(number.number === randomBingoNumber){
-              number.called = true;
-              number.active = true;
-              wildBall = number;
-              totalBallsCalled++;
+      Object.keys(board).forEach(letter => {
+        board[letter].forEach(number => {
+          if(number.number === randomBingoNumber){
+            number.called = true;
+            number.active = true;
+            wildBall = number;
+            totalBallsCalled++;
+            if(this.state.enableCaller){
+              this.wildBallCall(number);
+            }
+          }
+          if(number.number.toString().substr(-1) === wildNumber){
+            lastBall = number;
+            number.called = true;
+            totalBallsCalled++;
+          }
+          return number;
+        });
+        return letter;
+      });
 
-              window.setTimeout(() => {
-                this.wildBallCall(number);
-              },2500);
-            }
-            if(number.number.toString().substr(-1) === wildNumber){
-              lastBall = number;
-              number.called = true;
-              totalBallsCalled++;
-            }
-            return number;
-          })
-          return letter;
-        });
-        this.setState({
-          board: board,
-          previousBall: lastBall,
-          currentBall: wildBall,
-          totalBallsCalled: totalBallsCalled
-        });
-      },2500)
+      this.setState({
+        board: board,
+        previousBall: lastBall,
+        currentBall: wildBall,
+        totalBallsCalled: totalBallsCalled
+      });
     } else {
-      this.say("Let's Play Bingo!");
-      window.setTimeout(() => {this.callBingoNumber();},2500);
+      if(this.state.enableCaller){
+        this.say("Let's Play Bingo!");
+        window.setTimeout(() => {this.callBingoNumber();},2500);
+      } else {
+        this.callBingoNumber();
+      }
     }
   }
 
@@ -208,10 +213,14 @@ class BingoGame extends Component {
     if(this.state.wildBingo){
       this.startNewGame();
     } else {
-      this.say("Let's Play Bingo!");
-      window.setTimeout(()=> {
+      if(this.state.enableCaller){
+        this.say("Let's Play Bingo!");
+        window.setTimeout(()=> {
+          this.toggleGame();
+        },2000);
+      } else {
         this.toggleGame();
-      },2000);
+      }
     }
   }
 
@@ -552,7 +561,7 @@ class BingoGame extends Component {
           <div className="row justify-start align-start">
 
             {/* ----------- Current Ball Display ------------- */}
-            <div className="col max-size-250 padding-vertical-xxlg padding-horizontal-md">
+            <div className="col min-size-250 padding-vertical-xxlg padding-horizontal-md">
               {this.currentBallDisplay}
             </div>
 
@@ -594,30 +603,34 @@ class BingoGame extends Component {
                 </div>
               
                 {/* ----------- Gameplay Settings ---------- */}
-                <div className="row no-wrap align-center justify-start">
-                  <div className="col shrink min-size-150 padding-horizontal-lg">
+                <div className="row align-top justify-start">
+                  <div className="col shrink min-size-150 padding-horizontal-lg padding-vertical-md">
                     <h4 className="no-margin blue-text">Gameplay Settings:</h4>
                   </div>
-                  <div className="col padding-horizontal-lg">
-                    <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
-                      <input type="checkbox" data-gamemode="display-board" onChange={this.handleCheckbox} checked={this.state.displayBoardOnly}></input>
-                      <span>Manual Calling Mode</span>
-                      <span className="toggle-span"></span>
-                    </label>
-                  </div>
-                  <div className="col padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
-                    <label className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
-                      <input type="checkbox" data-gamemode="skip-unused" onChange={this.handleCheckbox} checked={this.state.skipUnused}></input>
-                      <span>Skip Unused Numbers</span>
-                      <span className="toggle-span"></span>
-                    </label>
-                  </div>
-                  <div className="col padding-horizontal-lg" data-disabled={this.state.displayBoardOnly || this.state.totalBallsCalled > 0}>
-                    <label className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
-                      <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
-                      <span>Wild Bingo</span>
-                      <span className="toggle-span"></span>
-                    </label>
+                  <div className="col grow min-size-150 padding-horizontal-lg">
+                    <div className="row">
+                      <div className="col">
+                        <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
+                          <input type="checkbox" data-gamemode="display-board" onChange={this.handleCheckbox} checked={this.state.displayBoardOnly}></input>
+                          <span>Manual Calling Mode</span>
+                          <span className="toggle-span"></span>
+                        </label>
+                      </div>
+                      <div className="col" data-disabled={this.state.displayBoardOnly}>
+                        <label className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
+                          <input type="checkbox" data-gamemode="skip-unused" onChange={this.handleCheckbox} checked={this.state.skipUnused}></input>
+                          <span>Skip Unused Numbers</span>
+                          <span className="toggle-span"></span>
+                        </label>
+                      </div>
+                      <div className="col" data-disabled={this.state.displayBoardOnly || this.state.totalBallsCalled > 0}>
+                        <label className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
+                          <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
+                          <span>Wild Bingo</span>
+                          <span className="toggle-span"></span>
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
