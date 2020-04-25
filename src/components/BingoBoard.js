@@ -1,39 +1,45 @@
-/*
- *  Bingo Board Class
- *  Karol Brennan
- *  5.13.2018
- *  This class is used to display the bingo board
- */
-import React from 'react';
-import _ from 'underscore';
+import React, {Component} from 'react';
 
-class BingoBoard extends React.Component {
-  render() {
-    let balls = this.props.balls;
-    let rows = {
-      B: _.where(balls, {letter: "B"}),
-      I: _.where(balls, {letter: "I"}),
-      N: _.where(balls, {letter: "N"}),
-      G: _.where(balls, {letter: "G"}),
-      O: _.where(balls, {letter: "O"})
-    };
+class BingoBoard extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      board: props.board,
+      manualMode: props.manualMode,
+      manualCall: props.manualCall
+    }
+  }
 
-    return (
-      <div className="board notranslate">
-        {_.map(rows, (row, letter) => (
-          <div key={"row" + letter} className="board-row">
-            <div key={letter} className="letter">{letter}</div>
-            {_.map(row, ball => (
-              <div key={ball.letter + ball.number}
-                   className={ball.called && ball.active ? "active ball" : ball.called ? "called ball" : "ball"}>
-                {ball.number}
-              </div>
-            ))}
-          </div>
-        ))}
+  static getDerivedStateFromProps(props, state){
+    if(props !== state){
+      state = props;
+    }
+    return state;
+  }
+  
+  render(){
+    return(
+      <div id="board" className="flex">
+        {Object.keys(this.state.board).map((letter, i) => {
+          return(
+            <div key={"board-row-" + letter} className="row no-wrap set-size text-center">
+              <div className="col board-letter white-bg red-text notranslate">{letter}</div>
+              {
+                this.state.board[letter].map((number) => {
+                  return(
+                    <div key={number.display}
+                        className={number.active ?  "col ball active" : 
+                        number.called ?  "col ball called" : "col ball"}>
+                          {this.state.manualMode ? <button onClick={() => this.state.manualCall(number)}>{number.number}</button> : number.number}
+                    </div>
+                  )
+                })
+              }
+            </div>
+          )
+        })}
       </div>
-    );
-  };
+    )
+  }
 }
-
 export default BingoBoard;

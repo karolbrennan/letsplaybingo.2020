@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,900|ZCOOL+QingKe+HuangYou&display=swap');
+
+/* Primary Styles */
+body, html, * {
+  box-sizing: border-box;
+}
+body, html {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+ul, ol, p {
+  font-size: 1.25rem;
+  font-family: "Roboto", sans-serif;
+}
+ul p,
+ol p {
+  font-size: 0.8em;
+}
+header, footer {
+  padding: 1rem;
+}
+
+.logo {
+  height: 3.5rem;
+  width: auto;
+}
+
+.donate {
+  max-height: 150px;
+  margin: 0.5rem;
+}
+
+.tell-your-friends {
+  text-align: center;
+  > div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+
+/* Buttons */
+button {
+  white-space: nowrap;
+  font-size: 1rem;
+  border-radius: 0;
+  padding: 0.55rem 1rem;
+  margin: 0.25rem;
+  border: 2px solid #ffffff;
+  color: #FFFFFF;
+  background-color: transparent;
+  transition: all ease 0.25s;
+
+  &:hover {
+    cursor: pointer;
+    color: #00487b;
+    background-color: #F8F8F8;
+  }
+  &[disabled] {
+    opacity: 0.25;
+    cursor: not-allowed;
+    &:hover {
+      color: #FFFFFF;
+      background-color: transparent;
+    }
+  }
+  &.altBtn {
+    border-color: #00487b;
+    color: #00487b;
+    &:hover {
+      background-color: #00487b;
+      color: #ffffff;
+    }
+    &[disabled]:hover {
+      border-color: #00487b;
+      color: #00487b;
+    }
+  }
+  &.primaryBtn {
+    background-color: #00487b;
+    color: #ffffff;
+    border-color: #00487b;
+    &:hover {
+      background-color: #efefef;
+      color: #00487b;
+    }
+    &[disabled]:hover {
+      background-color: #00487b;
+      color: #ffffff;
+      border-color: #00487b;
+    }
+  }
+}
