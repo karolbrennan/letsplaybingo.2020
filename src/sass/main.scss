@@ -30,6 +30,26 @@ header, footer {
   .ball {
     color: #3c3c3c;
     padding: .75rem .5rem;
+
+    button {
+      font-family: inherit;
+      white-space: nowrap;
+      font-size: inherit;
+      border-radius: unset;
+      padding: unset;
+      margin: unset;
+      border: unset;
+      color: inherit;
+      background-color: inherit;
+      transition: inherit;
+      &:hover {
+        background: inherit;
+        color: inherit;
+      }  
+      &:focus {
+        outline: none;
+      }
+    }
   }
   .active {
     animation: blink 1s infinite;
@@ -111,12 +131,16 @@ button {
 .game-controls {
   color: #ffffff;
 
-  /* Pattern Select */
-  .pattern-select {
-    width: 200px;
-    * {
+  /* Selects */
+  .pattern-select,
+  .voice-select {
+    min-width: 200px;
+    div[class$="-menu"] * {
       color: black;
     }
+  }
+  .voice-select div[class$="-menu"] {
+    width: 300px;
   }
 }
 

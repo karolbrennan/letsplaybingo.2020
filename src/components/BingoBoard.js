@@ -4,7 +4,9 @@ class BingoBoard extends Component {
   constructor(props){
     super(props);
     this.state = {
-      board: props.board
+      board: props.board,
+      manualMode: props.manualMode,
+      manualCall: props.manualCall
     }
   }
 
@@ -18,17 +20,17 @@ class BingoBoard extends Component {
   render(){
     return(
       <div id="board" className="flex">
-        {Object.keys(this.state.board).map((key, i) => {
+        {Object.keys(this.state.board).map((letter, i) => {
           return(
-            <div key={"board" + key} className="row no-wrap set-size text-center">
-              <div className="col board-letter white-bg red-text notranslate">{key}</div>
+            <div key={"board-row-" + letter} className="row no-wrap set-size text-center">
+              <div className="col board-letter white-bg red-text notranslate">{letter}</div>
               {
-                this.state.board[key].map((letter, i) => {
+                this.state.board[letter].map((number) => {
                   return(
-                    <div key={this.state.board[key][i].display}
-                        className={this.state.board[key][i].active ?  "col ball active" : 
-                        this.state.board[key][i].called ?  "col ball called" : "col ball"}>
-                      {this.state.board[key][i].number}
+                    <div key={number.display}
+                        className={number.active ?  "col ball active" : 
+                        number.called ?  "col ball called" : "col ball"}>
+                          {this.state.manualMode ? <button onClick={() => this.state.manualCall(number)}>{number.number}</button> : number.number}
                     </div>
                   )
                 })
