@@ -174,19 +174,20 @@ class BingoGame extends Component {
 
       Object.keys(board).forEach(letter => {
         board[letter].forEach(number => {
-          if(number.number === randomBingoNumber){
-            number.called = true;
-            number.active = true;
-            wildBall = number;
-            totalBallsCalled++;
-            if(this.state.enableCaller){
-              this.wildBallCall(number);
+          if(!number.called){
+            if(number.number === randomBingoNumber){
+              number.called = true;
+              number.active = true;
+              wildBall = number;
+              if(this.state.enableCaller){
+                this.wildBallCall(number);
+              }
+              totalBallsCalled++;
+            } else if(number.number.toString().substr(-1) === wildNumber){
+              lastBall = number;
+              number.called = true;
+              totalBallsCalled++;
             }
-          }
-          if(number.number.toString().substr(-1) === wildNumber){
-            lastBall = number;
-            number.called = true;
-            totalBallsCalled++;
           }
           return number;
         });
