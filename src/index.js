@@ -64,6 +64,9 @@ const routing = (
             <p>The site is still undergoing some stylistic updates to make it mobile friendly, so watch for that. I wanted to get the desktop version released as quickly as possible.</p>
             <p>Thanks to everyone who reached out and offered suggestions for how to make the site better! I love hearing from y'all.</p>
             <p>If you have ideas you'd like to share on how I can improve Let's Play Bingo please send them to <a href="mailto:hello@letsplaybingo.io">hello@letsplaybingo.io</a></p>
+            <h4>Report Issues</h4>
+            <p className="small-text">If you come across any issues with the game, please submit a detailed report either via email to <a href="mailto:hello@letsplaybingo.io">hello@letsplaybingo.io</a> or
+             via <a href="https://github.com/karolbrennan/letsplaybingo/issues" target="_blank" rel="noopener noreferrer">GitHub</a></p>
           </div>
         </div>
       </section>

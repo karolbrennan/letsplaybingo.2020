@@ -28,7 +28,7 @@ header, footer {
 }
 
 .donate {
-  max-height: 100px;
+  max-height: 150px;
   margin: 0.5rem;
 }
 
@@ -37,5 +37,51 @@ header, footer {
   > div {
     display: inline-block;
     vertical-align: middle;
+  }
+}
+
+
+/* Buttons */
+button {
+  white-space: nowrap;
+  font-size: 1rem;
+  border-radius: 0;
+  padding: 0.55rem 1rem;
+  margin: 0.25rem;
+  border: 2px solid #ffffff;
+  color: #FFFFFF;
+  background-color: transparent;
+  transition: all ease 0.25s;
+
+  &:hover {
+    cursor: pointer;
+    color: #00487b;
+    background-color: #F8F8F8;
+  }
+  &[disabled] {
+    opacity: 0.25;
+    cursor: not-allowed;
+    &:hover {
+      color: #FFFFFF;
+      background-color: transparent;
+    }
+  }
+
+  &.altBtn {
+    border-color: #00487b;
+    color: #00487b;
+    &:hover {
+      background-color: #00487b;
+      color: #ffffff;
+    }
+  }
+  &.primaryBtn {
+    background-color: #00487b;
+    color: #ffffff;
+    border-color: #00487b;
+    &:hover {
+      background-color: #efefef;
+      color: #00487b;
+    }
   }
 }

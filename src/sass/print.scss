@@ -20,6 +20,9 @@
     max-width: unset;
     margin: 1rem auto;
   }
+  .pale-gray-bg {
+    background: white;
+  }
   .print-bw {
      filter: Gray();
      filter: url('#grayscale'); 

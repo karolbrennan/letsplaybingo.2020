@@ -109,7 +109,7 @@ class CardGenerator extends React.Component {
   }
 
   get sectionClasses() {
-    let classes = "";
+    let classes = "pale-gray-bg ";
     classes+= this.state.twoPerPage ? 'print-two ' : 'print-four ';
     classes+= this.state.blackWhite ? 'print-bw ' : 'print-color ';
     return classes;
@@ -131,7 +131,7 @@ class CardGenerator extends React.Component {
               <p>Printing your cards will default to color and 4 cards per page. Use the options below to change these settings. <br/>
                 Printing 2 per page will result in larger cards for people who like bigger cards or have vision impairment.</p>
             
-              <div className="row justify-start align-center pale-gray-bg padding-xlg">
+              <div className="row justify-start align-center extra-pale-gray-bg padding-xlg">
                 <div className="col shrink padding-horizontal-md">
                   <Select 
                     className="number-select"

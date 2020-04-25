@@ -1,52 +1,199 @@
-/* Bingo Board */
 .board-block {
-  .board-side {
-    display: flex;
-    flex-flow: column;
-    align-self: stretch;
-    justify-content: space-between;
+  @media screen and (max-width: 1024px){
+    > .row {
+      align-items: center;
+    }
   }
-}
-#board {
-  padding: 1rem;
-  .ball {
-    color: #3c3c3c;
+  .pattern-side {
+    /* Called Numbers */
+    .callNumber {
+      font-family: "ZCOOL QingKe HuangYou", "Roboto Condensed", "Helvetica", cursive;
+      width: 100%;
+      font-size: 3rem;
+      font-size: 3.5vw;
+      text-align: center;
+      color: red;
+      margin-bottom: .5rem;
 
-    button {
-      font-family: inherit;
-      white-space: nowrap;
-      font-size: inherit;
-      border-radius: unset;
-      padding: unset;
-      margin: unset;
-      border: unset;
-      color: inherit;
-      background-color: inherit;
-      transition: inherit;
-      &:hover {
-        background: inherit;
-        color: inherit;
-      }  
-      &:focus {
-        outline: none;
+      span {
+        background: #161616;
+        text-align: center;
+        width: 50%;
+        display: inline-block;
+        padding: .25rem;
+      }
+    }
+    .callNumber-text {
+      font-family: "Roboto Condensed", sans-serif;
+      font-size: 0.8rem;
+      font-size: 0.8vw;
+    }
+    /* Pattern */
+    #bingopattern {
+      display: flex;
+      margin: 0 auto;
+      align-items: flex-start;
+      .row {
+        flex-basis: 1 1 20%;
+        &:nth-child(1) .col:first-child{
+          span {
+            transform: rotate(-15deg);
+          }
+        }
+        &:nth-child(2) .col:first-child{
+          span {
+            margin-top: -.5rem;
+            transform: rotate(-7deg);
+          }
+        }
+        &:nth-child(3) .col:first-child{
+          span {
+            margin-top: -.75rem;
+          }
+        }
+        &:nth-child(4) .col:first-child{
+          span {
+            margin-top: -.5rem;
+            transform: rotate(7deg);
+          }
+        }
+        &:nth-child(5) .col:first-child{
+          span {
+            transform: rotate(15deg);
+          }
+        }
+      }
+      .col {
+        padding: 1.75vh 0.5vw;
+        @media screen and (max-width: 1024px){
+          padding: 2vh 0.5vw;
+        }
+        position: relative;
+        // Letters along the top
+        &:first-child {
+          line-height: 1.5;
+          height: 3rem;
+          height: 3vw;
+          span {
+            font-size: 1.5rem;
+            font-size: 1.5vw;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 800;
+          }
+        }
+        // Pattern letters
+        &:not(:first-child) {
+          background: #efefef;
+          border: 1px solid #ffffff;
+        }
+        span {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 100%;
+          margin: 0 auto;
+
+          &.free-space {
+            font-size: 0.5rem;
+            font-size: 1vh;
+            line-height: 1.5;
+            margin: 0.2vw;
+            text-align: center;
+            text-transform: uppercase;
+            color: #676767;
+          }
+        }
+        &.selected {
+          span {
+            background-color:#c70600;
+            margin: 0.25vw;
+            @media screen and (max-width: 1024px){
+              margin: 0.5vw;
+            }
+            &.free-space {
+              overflow: hidden;
+              color: #c70600;
+            }
+          }
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    /* Pattern Select */
+    .pattern-select {
+      width: 100%;
+      display: block;
+      border: 1px solid #fff;
+      
+      div[class$="-singleValue"] {
+        color: #888888;
+      }
+      div[class$="-Input"] {
+        color: white;
+      }
+      div[class$="-control"] {
+        background: #222;
+        border: none;
+        color: #efefef;
+        border-radius: 0;
+      }
+      div[class$="-menu"] * {
+        color:#222222;
       }
     }
   }
-  .active {
-    animation: blink 1s infinite;
-    color: #ffffff;
-  }
-  .called {
-    color: #ffffff;
-  }
-  * {
-    font-size: 2.7rem;
-    font-size: 3vw;
-    line-height: 1.5;
-  }
-  .board-letter {
-    flex: 0 0 1.25em !important;
-    font-weight: bold;
+  .board-side {
+    #board {
+      padding: 1rem;
+      display: flex;
+      flex-flow: column;
+      align-self: stretch;
+      justify-content: space-between;
+
+      * {
+        font-size: 2.7rem;
+        font-size: 3vw;
+        line-height: 1.5;
+      }
+      .board-letter {
+        flex: 0 0 1.25em !important;
+        font-weight: bold;
+      }
+      .ball {
+        color: #3c3c3c;
+      
+        button {
+          font-family: inherit;
+          white-space: nowrap;
+          font-size: inherit;
+          border-radius: unset;
+          padding: unset;
+          margin: unset;
+          border: unset;
+          color: inherit;
+          background-color: inherit;
+          transition: inherit;
+          &:hover {
+            background: inherit;
+            color: inherit;
+          }  
+          &:focus {
+            outline: none;
+          }
+        }
+        &.called {
+          color: #ffffff;
+        }
+        &.active {
+          animation: blink 1s infinite;
+          color: #ffffff;
+        }
+      }
+    }
   }
 }
 
@@ -63,374 +210,196 @@
   }
 }
 
-/* Buttons */
-button {
-  white-space: nowrap;
-  font-size: 1rem;
-  border-radius: 0;
-  padding: 0.55rem 1rem;
-  margin: 0.25rem;
-  border: 2px solid #ffffff;
-  color: #FFFFFF;
-  background-color: transparent;
-  transition: all ease 0.25s;
-
-  &:hover {
-    cursor: pointer;
-    color: #00487b;
-    background-color: #F8F8F8;
-  }
-  &[disabled] {
-    opacity: 0.25;
-    cursor: not-allowed;
-    &:hover {
-      color: #FFFFFF;
-      background-color: transparent;
-    }
-  }
-
-  &.altBtn {
-    border-color: #00487b;
-    color: #00487b;
-    &:hover {
-      background-color: #00487b;
-      color: #ffffff;
-    }
-  }
-  &.primaryBtn {
-    background-color: #00487b;
-    color: #ffffff;
-    border-color: #00487b;
-    &:hover {
-      background-color: #efefef;
-      color: #00487b;
-    }
-  }
-}
-
-.pattern-select {
-  width: 100%;
-  border: 1px solid #fff;
-  
-  div[class$="-singleValue"] {
-    color: #888888;
-  }
-  div[class$="-Input"] {
-    color: white;
-  }
-  div[class$="-control"] {
-    background: #222;
-    border: none;
-    color: #efefef;
-    border-radius: 0;
-  }
-  div[class$="-menu"] * {
-    color:#222222;
-  }
-}
-
-/* Gameplay Controls */
-.gameplay-controls {
-  button {
+/* Game Controls */
+.game-controls {
+  /* Ball Display */
+  .ball-display {
     width: 100%;
-    display: block;
-  }
-}
+    min-width: 150px;
+    max-width: 180px;
+    display: flex;
+    border-radius: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: inset 0.5rem 0.5rem 1.5rem 0.25rem rgba(255, 255, 255, 0.3),
+                inset -0.25rem -0.25rem 1.5rem 0.5rem rgba(0, 0, 0, 0.4);
 
-/* Game Settings */
-.game-settings {
-  span {
-    line-height: 2.5;
-  }
-}
+    &::after {
+      content: '';
+      display: block;
+      padding-bottom: 100%;
+    }
 
-.voice-select {
-  width: 100%;
-  min-width: 200px;
-  max-width: 360px;
-  border: 1px solid #fff;
-  
-  div[class$="-singleValue"] {
-    color: #888888;
-  }
-  div[class$="-Input"] {
-    color: white;
-  }
-  div[class$="-control"] {
-    background: #222;
-    border: none;
-    color: #efefef;
-    border-radius: 0;
-  }
-  div[class$="-menu"] * {
-    color:#222222;
-  }
-}
-
-/* Board */
-.board-block {
-  flex: 2 2 70% !important;
-}
-
-/* Called Numbers */
-.callNumber {
-  font-family: "ZCOOL QingKe HuangYou", cursive;
-  display: block;
-  width: 100%;
-  font-size: 3.5rem;
-  text-align: center;
-  color: red;
-  margin-bottom: .5rem;
-
-  span {
-    background: #161616;
-    text-align: center;
-    width: .75em;
-    display: inline-block;
-    padding: .25rem;
-  }
-}
-.callNumber-text {
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 0.8rem;
-}
-
-/* Cards */
-.card-block {
-  max-width: 80%;
-  margin: 1rem auto;
-}
-.card {
-  width: 49%;
-  display: inline-block;
-  margin: .5%;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-
-  .col {
-    padding: 0 !important;
-    margin: 0 !important;
-    flex-basis: 20%;
-    max-width: 20%;
-
-    .freespace {
-      padding: 0.55rem 0;
-      > span {
-        display: block;
+    .content {
+      text-align: center;
+      border-radius: 100%;
+      background: white;
+      position: relative;
+      min-width: 60px;
+      min-width: 3vw;
+      padding: 28%;
+      box-shadow: inset -0.5rem -0.5rem 2rem 0 rgba(0, 0, 0, 0.16), 0 0 0 0.25rem white;
+      background: radial-gradient(circle at 20% 20%, white, #efefef);
+    
+      span {
+        justify-content: center;
+        align-items: center;
+        position: absolute;
         text-align: center;
-        font-size: 1.25rem;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: inline-flex;
+        font-weight: bold;
+        font-size: 2rem;
+        font-size: 2vw;
         line-height: 1;
-        text-transform: uppercase;
-        font-weight: 700;
+      }
+
+      img {
+        padding: 0.25rem;
+        max-width: 100%;
       }
     }
     
-    .card-number,
-    .card-letter {
-      text-align: center;
-      padding: .25em;
-      margin: 0;
+    &.blue {
+      background: radial-gradient(circle at 20% 20%, #0000FF, #0000ad);
+      .content {
+        border: 0.15rem solid #0000FF;
+      }
     }
 
-    .card-letter {
-      font-size: 3rem;
-      line-height: 1.5;
-      color: white;
+    &.red {
+      background: radial-gradient(circle at 20% 20%, #FF0000, #910000);
+      .content {
+        border: 0.15rem solid #FF0000;
+      }
     }
 
-    .card-numbers {
-      border-top: 1px solid #cecece;
-      border-bottom: 1px solid #cecece;
+    &.white {
+      background: radial-gradient(circle at 20% 20%, #ffffff, #b6b6b6);
+      .content {
+        border: 0.15rem solid #FF0000;
+      }
+    }
 
-      .card-number {
-        font-size: 3rem;
-        background: white;
+    &.green {
+      background: radial-gradient(circle at 20% 20%, #008000, #004a00);
+      .content {
+        border: 0.15rem solid #008000;
+      }
+    }
 
-        border: 1px solid #cecece;
-
-        &:first-child {
-          border-top: 0;
-        }
-        &:last-child {
-          border-bottom: 0;
-        }
+    &.yellow {
+      background: radial-gradient(circle at 20% 20%, #ffe52a, #f7bd00);
+      .content {
+        border: 0.15rem solid #f7bd00;
       }
     }
   }
-}
 
-/* Ball Graphic */
-.ball-display {
-  width: 100%;
-  min-width: 150px;
-  max-width: 180px;
-  display: flex;
-  border-radius: 100%;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  box-shadow: inset 0.5rem 0.5rem 1.5rem 0.25rem rgba(255, 255, 255, 0.3),
-              inset -0.25rem -0.25rem 1.5rem 0.5rem rgba(0, 0, 0, 0.4);
-
-  &::after {
-    content: '';
-    display: block;
-    padding-bottom: 100%;
-  }
-
-  .content {
-    text-align: center;
-    border-radius: 100%;
-    background: white;
-    position: relative;
-    min-width: 60px;
-    min-width: 3vw;
-    padding: 28%;
-    box-shadow: inset -0.5rem -0.5rem 2rem 0 rgba(0, 0, 0, 0.16), 0 0 0 0.25rem white;
-    background: radial-gradient(circle at 20% 20%, white, #efefef);
-  
-    span {
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      text-align: center;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: inline-flex;
-      font-weight: bold;
-      font-size: 2rem;
-      font-size: 2vw;
-      line-height: 1;
-    }
-
-    img {
-      padding: 0.25rem;
-      max-width: 100%;
-    }
-  }
-  
-  &.blue {
-    background: radial-gradient(circle at 20% 20%, #0000FF, #0000ad);
-    .content {
-      border: 0.15rem solid #0000FF;
-    }
-  }
-
-  &.red {
-    background: radial-gradient(circle at 20% 20%, #FF0000, #910000);
-    .content {
-      border: 0.15rem solid #FF0000;
-    }
-  }
-
-  &.white {
-    background: radial-gradient(circle at 20% 20%, #ffffff, #b6b6b6);
-    .content {
-      border: 0.15rem solid #FF0000;
-    }
-  }
-
-  &.green {
-    background: radial-gradient(circle at 20% 20%, #008000, #004a00);
-    .content {
-      border: 0.15rem solid #008000;
-    }
-  }
-
-  &.yellow {
-    background: radial-gradient(circle at 20% 20%, #ffe52a, #f7bd00);
-    .content {
-      border: 0.15rem solid #f7bd00;
-    }
-  }
-}
-
-
-@-moz-document url-prefix() {
-  .ball-display {
-    height: 150px;
-  }
-}
-
-/* Pattern */
-#bingopattern {
-  display: flex;
-  margin: 0 auto;
-  .row {
-    &:nth-child(1) .col:first-child{
-      span {
-        transform: rotate(-15deg);
-      }
-    }
-    &:nth-child(2) .col:first-child{
-      span {
-        margin-top: -.5rem;
-        transform: rotate(-7deg);
-      }
-    }
-    &:nth-child(3) .col:first-child{
-      span {
-        margin-top: -.75rem;
-      }
-    }
-    &:nth-child(4) .col:first-child{
-      span {
-        margin-top: -.5rem;
-        transform: rotate(7deg);
-      }
-    }
-    &:nth-child(5) .col:first-child{
-      span {
-        transform: rotate(15deg);
-      }
-    }
-  }
-  .col {
-    padding: .5em;
-    &:first-child {
-      line-height: 1.5;
-      height: 3rem;
-      span {
-        font-size: 1.5rem;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 800;
-      }
-    }
-    &:not(:first-child) {
-      background: #efefef;
-      border: 1px solid #ffffff;
-    }
-    &.selected {
-      span {
-        background-color:#c70600;
-      }
-    }
-    span {
+  /* Gameplay Controls */
+  .gameplay-controls {
+    button {
+      width: 100%;
       display: block;
-      border-radius: 100%;
-      width: 1.25rem;
-      height: 1.25rem;
-      margin: 0 auto;
     }
-    &:hover, 
-    span:hover {
-      cursor: pointer;
+  }
+
+  /* Game Settings */
+  .game-settings {
+    span {
+      line-height: 2.5;
     }
-    &.selected {
-      .free-space {
-        overflow: hidden;
-        color: #c70600;
+    .voice-select {
+      width: 100%;
+      min-width: 200px;
+      max-width: 360px;
+      border: 1px solid #fff;
+      
+      div[class$="-singleValue"] {
+        color: #888888;
+      }
+      div[class$="-Input"] {
+        color: white;
+      }
+      div[class$="-control"] {
+        background: #222;
+        border: none;
+        color: #efefef;
+        border-radius: 0;
+      }
+      div[class$="-menu"] * {
+        color:#222222;
       }
     }
-    .free-space {
-      font-size: 0.5rem;
-      line-height: 1.5;
-      text-align: center;
-      text-transform: uppercase;
-      color: #676767;
+  }
+}
+
+/* Card Generator */
+.card-block {
+  max-width: 80%;
+  margin: 1rem auto;
+
+  .card {
+    width: 49%;
+    display: inline-block;
+    margin: .5%;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  
+    .col {
+      padding: 0 !important;
+      margin: 0 !important;
+      flex-basis: 20%;
+      max-width: 20%;
+  
+      .freespace {
+        padding: 0.55rem 0;
+        > span {
+          display: block;
+          text-align: center;
+          font-size: 1.25rem;
+          line-height: 1;
+          text-transform: uppercase;
+          font-weight: 700;
+        }
+      }
+      
+      .card-number,
+      .card-letter {
+        text-align: center;
+        padding: .25em;
+        margin: 0;
+      }
+  
+      .card-letter {
+        font-size: 3rem;
+        line-height: 1.5;
+        color: white;
+      }
+  
+      .card-numbers {
+        border-top: 1px solid #cecece;
+        border-bottom: 1px solid #cecece;
+  
+        .card-number {
+          font-size: 3rem;
+          background: white;
+  
+          border: 1px solid #cecece;
+  
+          &:first-child {
+            border-top: 0;
+          }
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+      }
     }
   }
 }
