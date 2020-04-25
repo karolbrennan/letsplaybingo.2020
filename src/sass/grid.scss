@@ -14,11 +14,6 @@
   align-items: stretch; /* vertical alignment */
   align-content: stretch; /* alignment when multiple rows */
   
-  @media screen and (max-width: 815px){
-    display: inline-flex;
-    flex-basis: 20%;
-    flex-flow: column;
-  }
   &.vertical {
     flex-flow: column;
   }
@@ -30,22 +25,28 @@
   &.justify-center {
     justify-content: center;
   }
-  &.no-padding,
-  &.no-padding .col {
-    padding: 0;
-  }
-  &.horizontal-start {
+  &.justify-start {
     justify-content: flex-start;
     > .col {
       flex: 0 1;
       white-space: nowrap;
     }
   }
-  &.vertical-start {
+  &.align-stretch {
+    align-items: stretch;
+  }
+  &.align-start {
     align-items: start;
   }
-  &.vertical-center {
+  &.align-end {
+    align-items: flex-end;
+  }
+  &.align-center {
     align-items: center;
+  }
+  &.no-padding,
+  &.no-padding .col {
+    padding: 0;
   }
   &.no-wrap {
     flex-wrap: nowrap;
@@ -72,6 +73,15 @@
   > .col {
     flex: 1 1 auto; /* grow, shrink and basis */
 
+    &.min-size-250{
+      min-width: 250px;
+    }
+    &.min-size-150{
+      min-width: 150px;
+    }
+    &.min-size-100{
+      min-width: 100px;
+    }
     &:first-child {
       margin-left: 0;
     }
@@ -87,5 +97,13 @@
     &.stretch {
       align-self: stretch;
     }
+  }
+}
+
+@media screen and (max-width: 700px){
+  #board .row {
+    display: inline-flex;
+    flex-basis: 20%;
+    flex-flow: column;
   }
 }

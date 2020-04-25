@@ -9,10 +9,10 @@
   text-transform: uppercase;
 }
 .medium-text {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 .small-text {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 .no-text-wrap {
   white-space: nowrap;
@@ -29,11 +29,18 @@ a {
 }
 
 /* Show/Hide */
-[data-visibility="show"]{
-  display: block;
-}
+// [data-visibility="show"]{
+//   display: initial;
+// }
 [data-visibility="hide"]{
-  display: none;
+  display: none !important;
+}
+
+/* Generic Disabled */
+[data-disabled="true"]{
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 /* Google Translate */
@@ -98,8 +105,8 @@ a {
   .rc-slider-track {
     position: absolute;
     top: 0;
-    background: #00365d;
-    border: 1px solid #002038;
+    background: #0c0c0c;
+    border: 1px solid #000000;
   }
   .rc-slider-rail {
     background: #ffffff;
@@ -108,7 +115,7 @@ a {
     cursor: grab;
     touch-action: pan-x;
     position: absolute;
-    background: #212121;
+    background: #00477a;
     box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
     border-radius: 0;
     width: 15px;
@@ -128,6 +135,8 @@ a {
   position: relative;
   cursor: pointer;
   white-space: nowrap;
+  border: none;
+  padding: 0;
   input {
     position: absolute;
     top: 0;
@@ -136,11 +145,12 @@ a {
     -webkit-appearance: none;
   }
   .toggle-span {
-    width: 1rem;
-    height: 1rem;
-    background: #00355d;
-    border: 1px solid #011f37;
-    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+    border: 2px solid #011f37;
+    color: #011f37;
+    background: #ffffff;
     display: inline-block;
     vertical-align: middle;
     margin-left: .5em;
@@ -153,8 +163,8 @@ a {
         width: 100%;
         display: block;
         font-size: 1.25rem;
+        line-height: 1;
         position: relative;
-        top: -.25em;
       }
     }
   }
@@ -303,6 +313,12 @@ a {
 }
 .gray-text {
   color: #888888 !important;
+}
+.blue-text {
+  color: #1396d3 !important;
+}
+.yellow-text {
+  color: #ffca28 !important;
 }
 
 [data-color="red"] {

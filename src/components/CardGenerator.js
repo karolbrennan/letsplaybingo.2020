@@ -131,7 +131,7 @@ class CardGenerator extends React.Component {
               <p>Printing your cards will default to color and 4 cards per page. Use the options below to change these settings. <br/>
                 Printing 2 per page will result in larger cards for people who like bigger cards or have vision impairment.</p>
             
-              <div className="row horizontal-start vertical-center pale-gray-bg padding-xlg">
+              <div className="row justify-start align-center pale-gray-bg padding-xlg">
                 <div className="col shrink padding-horizontal-md">
                   <Select 
                     className="number-select"

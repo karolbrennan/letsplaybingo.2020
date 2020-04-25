@@ -1,35 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,900|ZCOOL+QingKe+HuangYou&display=swap');
-
-/* Primary Styles */
-body, html, * {
-  box-sizing: border-box;
-}
-body, html {
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-}
-p {
-  font-size: 1.5rem;
-}
-header, footer {
-  padding: 1rem;
-}
-.logo {
-  height: 3.5rem;
-  width: auto;
-}
-.donate {
-  max-height: 150px;
-}
-
 /* Bingo Board */
+.board-block {
+  .board-side {
+    display: flex;
+    flex-flow: column;
+    align-self: stretch;
+    justify-content: space-between;
+  }
+}
 #board {
   padding: 1rem;
   .ball {
     color: #3c3c3c;
-    padding: .75rem .5rem;
 
     button {
       font-family: inherit;
@@ -59,13 +40,12 @@ header, footer {
     color: #ffffff;
   }
   * {
-    font-size: 3.5rem;
-    font-size: 3.5vw;
-    line-height: 1.25;
+    font-size: 2.7rem;
+    font-size: 3vw;
+    line-height: 1.5;
   }
   .board-letter {
     flex: 0 0 1.25em !important;
-    padding: .75rem .25rem;
   }
 }
 
@@ -127,20 +107,48 @@ button {
   }
 }
 
-/* Game Controls */
-.game-controls {
-  color: #ffffff;
-
-  /* Selects */
-  .pattern-select,
-  .voice-select {
-    min-width: 200px;
-    div[class$="-menu"] * {
-      color: black;
-    }
+.pattern-select {
+  width: 100%;
+  border: 1px solid #fff;
+  
+  div[class$="-singleValue"] {
+    color: #888888;
   }
-  .voice-select div[class$="-menu"] {
-    width: 300px;
+  div[class$="-Input"] {
+    color: white;
+  }
+  div[class$="-control"] {
+    background: #222;
+    border: none;
+    color: #efefef;
+    border-radius: 0;
+  }
+  div[class$="-menu"] * {
+    color:#222222;
+  }
+}
+
+/* Gameplay Controls */
+.gameplay-controls {
+  button {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Game Settings */
+.game-settings {
+  span {
+    line-height: 2.5;
+  }
+}
+
+.voice-select {
+  width: 100%;
+  min-width: 200px;
+  max-width: 420px;
+  div[class$="-menu"] * {
+    color: black;
   }
 }
 
@@ -235,8 +243,7 @@ button {
 /* Ball Graphic */
 .ball-display {
   width: 100%;
-  min-width: 120px;
-  min-width: 7vw;
+  min-width: 150px;
   max-width: 180px;
   display: flex;
   border-radius: 100%;
@@ -288,9 +295,9 @@ button {
   
   &.blue {
     background: radial-gradient(circle at 20% 20%, #0000FF, #0000ad);
-     .content {
+    .content {
       border: 0.15rem solid #0000FF;
-     }
+    }
   }
 
   &.red {
@@ -321,6 +328,7 @@ button {
     }
   }
 }
+
 
 @-moz-document url-prefix() {
   .ball-display {

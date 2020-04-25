@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,900|ZCOOL+QingKe+HuangYou&display=swap');
+
+/* Primary Styles */
+body, html, * {
+  box-sizing: border-box;
+}
+body, html {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+p {
+  font-size: 1.5rem;
+}
+header, footer {
+  padding: 1rem;
+}
+
+.logo {
+  height: 3.5rem;
+  width: auto;
+}
+.donate {
+  max-height: 150px;
+}

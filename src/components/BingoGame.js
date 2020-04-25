@@ -49,7 +49,7 @@ class BingoGame extends Component {
       // Checkbox values
       skipUnused: true,
       wildBingo: false,
-      muteCaller: false,
+      enableCaller: true,
       displayBoardOnly: false
     }
     // if speech is enabled, initialize other speech properties
@@ -60,20 +60,20 @@ class BingoGame extends Component {
   }
 
   initializeFromLocalStorage = () => {
-    let skipUnused, muteCaller, displayBoardOnly = false;
+    let skipUnused, enableCaller, displayBoardOnly = false;
 
     if(localStorage.getItem('lpb-skipUnused')){
       skipUnused = localStorage.getItem('lpb-skipUnused') === "true";
     }
-    if(localStorage.getItem('lpb-muteCaller')){
-      muteCaller = localStorage.getItem('lpb-muteCaller') === "true";
+    if(localStorage.getItem('lpb-enableCaller')){
+      enableCaller = localStorage.getItem('lpb-enableCaller') === "true";
     }
     if(localStorage.getItem('lpb-displayBoardOnly')){
       displayBoardOnly = localStorage.getItem('lpb-displayBoardOnly') === "true";
     }
 
     this.setState({
-      skipUnused: skipUnused, muteCaller: muteCaller, displayBoardOnly: displayBoardOnly
+      skipUnused: skipUnused, enableCaller: enableCaller, displayBoardOnly: displayBoardOnly
     })
   }
 
@@ -112,7 +112,7 @@ class BingoGame extends Component {
    *  Will speak any string that is passed in
    */
   say = (text) => {
-    if (this.state.speechEnabled && !this.state.muteCaller) {
+    if (this.state.speechEnabled && this.state.enableCaller) {
       // Create a new instance of SpeechSynthesisUtterance.
       let msg = new SpeechSynthesisUtterance();
       msg.text = text;
@@ -146,7 +146,7 @@ class BingoGame extends Component {
 
   startNewGame = () => {
     // Start with the Let's Play Bingo call out 
-    // (the .say method will mute if caller is muted)
+    // (the .say method will not run if caller is not enabled)
     this.say("Let's Play Bingo!");
     if(this.state.wildBingo){
       // Variables used for wild bingo
@@ -216,6 +216,7 @@ class BingoGame extends Component {
 
   callBingoNumber = () => {
     let board = this.state.board;
+    let running = this.state.running;
     let currentBall = null;
     let previousBall = this.state.currentBall;
     let updateState = false;
@@ -235,7 +236,7 @@ class BingoGame extends Component {
               updateState = true;
               number.called = true;
               currentBall = number;
-              if(this.state.skipUnused && selectedPattern.value !== this.patternPlaceholder && selectedPattern.pattern[letter].indexOf(true) < 0){
+              if(this.state.skipUnused && selectedPattern.value !== this.patternPlaceholder && selectedPattern.unusedLetters.indexOf(letter) >= 0){
                 callAgain = true;
               } else {
                 number.active = true;
@@ -248,10 +249,14 @@ class BingoGame extends Component {
         })
         return letter;
       })
+    } else {
+      // stop running if there's 75+ balls called.
+      running = false;
     }
     if(updateState){
       this.setState({
         board: board,
+        running: running,
         currentBall: currentBall,
         previousBall: previousBall,
         totalBallsCalled: totalBallsCalled
@@ -283,12 +288,12 @@ class BingoGame extends Component {
       case 'wild-bingo':
         this.setState({wildBingo: e.currentTarget.checked});
         break;
-      case 'mute-caller':
+      case 'enable-caller':
         if(this.state.synth.speaking){
           this.cancelSpeech();
         }
-        this.setState({muteCaller: e.currentTarget.checked});
-        localStorage.setItem('lpb-muteCaller', e.currentTarget.checked);
+        this.setState({enableCaller: e.currentTarget.checked});
+        localStorage.setItem('lpb-enableCaller', e.currentTarget.checked);
         break;
       case 'display-board':
         if(e.currentTarget.checked && this.state.running){
@@ -459,107 +464,144 @@ class BingoGame extends Component {
         <section className="dark-blue-bg padding-sm"></section>
         {/* ----------- Bingo Board ------------- */}
         <section className="board-block dark-bg">
-          <div className="row no-wrap vertical-center">
-            <div className="col shrink">
-              <div className="padding-vertical-md padding-horizontal-xlg">
-                <div className="ball-row row vertical">
-                  <div className="col">
-                    {this.currentBallDisplay}
-                  </div>
+          <div className="row no-wrap align-stretch">
+            {/* ------ Board ------- */}
+            <div className="col shrink min-size-250 padding-xlg">
+              {/* -------- Digital Displays --------- */}
+              <div className="row no-wrap margin-vertical-lg white-text uppercase small-text">
+                <div className="col text-center">
+                  <div className="callNumber">{this.numberDisplay}</div>
+                  <strong>Total Calls</strong>
                 </div>
-                <div className="row no-wrap margin-vertical-lg white-text uppercase small-text">
-                  <div className="col text-center">
-                    <div className="callNumber">{this.numberDisplay}</div>
-                    <strong>Total Calls</strong>
-                  </div>
-                  <div className="col text-center">
-                    <div className="callNumber">{this.previousCallDisplay}</div>
-                    <strong>Previous Call</strong>
-                  </div>
+                <div className="col text-center">
+                  <div className="callNumber">{this.previousCallDisplay}</div>
+                  <strong>Previous Call</strong>
                 </div>
-                <Pattern pattern={this.state.selectedPattern} update={this.handleUpdatePattern} />
               </div>
+
+              {/* -------- Pattern --------- */}
+                <Pattern pattern={this.state.selectedPattern} update={this.handleUpdatePattern} />
+                <div className="padding-vertical-lg">
+                  <Select 
+                    className="pattern-select"
+                    placeholder="Choose Pattern"
+                    value={this.state.selectedPattern}
+                    onChange={this.handleChoosePattern}
+                    options={this.state.presets}
+                  />
+                </div>
             </div>
-            <div className="col">
+            <div className="col board-side">
               <BingoBoard board={this.state.board} manualMode={this.state.displayBoardOnly} manualCall={this.manualCall} />
             </div>
-          </div>
-        </section>
-        
-        {/* ----------- Game Controls ------------- */}
-        <section className="game-controls dark-blue-bg padding-md">
-          <div className="row no-wrap vertical-center horizontal-start">
-            <div className="col shrink padding-horizontal-sm">
-              <Select 
-                className="pattern-select"
-                placeholder="Choose Pattern"
-                value={this.state.selectedPattern}
-                onChange={this.handleChoosePattern}
-                options={this.state.presets}
-              />
-            </div>
-            <div className="col shrink padding-horizontal-sm">
-              <button onClick={this.resetGame} disabled={this.state.running}>New Game</button>
-            </div>
-            <div data-visibility={this.state.displayBoardOnly ? "hide" : "show"} className="col shrink padding-horizontal-sm">
-              <button onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.toggleGame}>{this.state.running ? "Pause" : this.state.totalBallsCalled === 0 ? "Start" : "Resume"}</button>
-            </div>
-            <div data-visibility={this.state.displayBoardOnly ? "hide" : "show"} className="col shrink padding-horizontal-sm">
-              <button onClick={this.callBingoNumber} disabled={this.state.running}>Next Number</button>
-            </div>
-            <div data-visibility={this.state.displayBoardOnly ? "hide" : "show"} className="col shrink text-center padding-horizontal-sm">
-              <div className="row no-wrap vertical-center">
-                <div className="col shrink padding-right-lg small-text">SLOW</div>
-                <div className="col"><Slider min={1500} max={10000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
-                <div className="col shrink padding-left-lg small-text">FAST</div>
-              </div>
-            </div>
-            <div data-visibility={this.state.displayBoardOnly ? "hide" : "show"} className="col shrink padding-horizontal-md">
-              <label className={this.state.muteCaller ? 'toggle checked' : 'toggle'}>
-                <input type="checkbox" data-gamemode="mute-caller" onChange={this.handleCheckbox} checked={this.state.muteCaller}></input>
-                <span>Mute Caller</span>
-                <span className="toggle-span"></span>
-              </label>
-            </div>
-            <div data-visibility={this.state.displayBoardOnly ? "hide" : "show"} className="col shrink padding-horizontal-sm">
-              <Select 
-                className="voice-select"
-                placeholder="Choose Caller"
-                value={this.state.selectedCaller}
-                onChange={this.handleChooseCaller}
-                options={this.voiceOptions}
-              />
-            </div>
+
           </div>
         </section>
 
-        {/* ----------- Game Settings ------------- */}
+        <section className="dark-blue-bg padding-sm"></section>
 
-        <section className="game-settings pale-gray-bg padding-md">
-          <div className="row no-wrap vertical-center horizontal-start">
-            <div className="col padding-horizontal-sm">
-              <h4 className="no-margin">GAME MODES:</h4>
+        <section className="dark-bg">
+          <div className="row justify-start align-center">
+
+            {/* ----------- Current Ball Display ------------- */}
+            <div className="col shrink min-size-250 padding-xxlg">
+              {this.currentBallDisplay}
             </div>
-            <div className="col shrink padding-horizontal-md">
-              <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
-                <input type="checkbox" data-gamemode="display-board" onChange={this.handleCheckbox} checked={this.state.displayBoardOnly}></input>
-                <span>Display Board Only</span>
-                <span className="toggle-span"></span>
-              </label>
+
+            {/* ----------- Gameplay Controls ------------- */}
+            <div className="col shrink min-size-250 padding-xxlg">
+              <section className="gameplay-controls">
+                <button data-disabled={this.state.displayBoardOnly} 
+                  onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.toggleGame}>
+                    {this.state.running ? "Pause Autoplay" : "Start Autoplay"}
+                </button>
+              
+                <button data-disabled={this.state.displayBoardOnly} onClick={this.callBingoNumber} disabled={this.state.running}>
+                  Call Number
+                </button>
+
+                <button data-visibility={this.state.totalBallsCalled === 0 ? "hide" : "show"} onClick={this.resetGame} disabled={this.state.running}>
+                  Reset Board
+                </button>
+              </section>
             </div>
-            <div className="col shrink padding-horizontal-md">
-              <label data-visibility={this.state.displayBoardOnly ? "hide" : "show"} className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
-                <input type="checkbox" data-gamemode="skip-unused" onChange={this.handleCheckbox} checked={this.state.skipUnused}></input>
-                <span>Skip Unused Numbers</span>
-                <span className="toggle-span"></span>
-              </label>
+
+            {/* ----------- Game Settings ------------- */}
+            <div className="col grow padding-xxlg white-text">
+              <section className="game-settings">
+                <div className="row align-center justify-start">
+                  <div className="col shrink min-size-150 padding-horizontal-lg">
+                    <h4 className="no-margin blue-text">Autoplay Speed:</h4>
+                  </div>
+                  <div className="col shrink text-center padding-vertical-lg padding-horizontal-lg">
+                    <div className="row no-wrap align-center" data-disabled={this.state.displayBoardOnly}>
+                      <div className="col shrink padding-right-lg white-text">Slower</div>
+                      <div className="col"><Slider min={1500} max={10000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
+                      <div className="col shrink padding-left-lg white-text">Faster</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row align-center justify-start">
+                  <div className="col shrink min-size-150 padding-horizontal-lg">
+                    <h4 className="no-margin blue-text">Bingo Caller:</h4>
+                  </div>
+                  <div className="col grow padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
+                    <div className="row">
+                      <div className="col shrink">
+                        <label className={this.state.enableCaller ? 'toggle checked' : 'toggle'}>
+                          <input type="checkbox" data-gamemode="enable-caller" onChange={this.handleCheckbox} checked={this.state.enableCaller}></input>
+                          <span>Enable</span>
+                          <span className="toggle-span"></span>
+                        </label>
+                      </div>
+                      <div className="col padding-horizontal-xxlg" data-disabled={this.state.displayBoardOnly} data-visibility={this.state.enableCaller ? "show" : "hide"}>
+                        <Select 
+                          className="voice-select"
+                          placeholder="Choose Caller"
+                          value={this.state.selectedCaller}
+                          onChange={this.handleChooseCaller}
+                          options={this.voiceOptions}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div className="row align-center justify-start">
+                  <div className="col shrink min-size-150 padding-horizontal-lg">
+                    <h4 className="no-margin blue-text">Gameplay Settings:</h4>
+                  </div>
+                  <div className="col padding-horizontal-lg">
+                    <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
+                      <input type="checkbox" data-gamemode="display-board" onChange={this.handleCheckbox} checked={this.state.displayBoardOnly}></input>
+                      <span>Display Board Only</span>
+                      <span className="toggle-span"></span>
+                    </label>
+                  </div>
+                  <div className="col padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
+                    <label className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
+                      <input type="checkbox" data-gamemode="skip-unused" onChange={this.handleCheckbox} checked={this.state.skipUnused}></input>
+                      <span>Skip Unused Numbers</span>
+                      <span className="toggle-span"></span>
+                    </label>
+                  </div>
+                  <div className="col padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
+                    <label className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
+                      <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
+                      <span>Wild Bingo</span>
+                      <span className="toggle-span"></span>
+                    </label>
+                  </div>
+                </div>
+                
+              </section>
             </div>
-            <div className="col shink padding-horizontal-md">
-              <label data-visibility={this.state.displayBoardOnly ? "hide" : "show"} className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
-                <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
-                <span>Wild Bingo</span>
-                <span className="toggle-span"></span>
-              </label>
+            
+            {/* ----------- Text ---------------- */}
+            <div className="col padding-xxlg white-text">
+              <h3>Love Let's Play Bingo? Tell your friends!</h3>
+              <div className="addthis_inline_share_toolbox"></div>
             </div>
           </div>
         </section>

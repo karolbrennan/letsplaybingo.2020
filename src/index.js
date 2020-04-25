@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // Styles
+import './sass/core.scss';
 import './sass/grid.scss';
 import './sass/main.scss';
 import './sass/utilities.scss';
@@ -13,7 +14,6 @@ import About from './components/About.js';
 import Donate from './components/Donate.js';
 import Disclaimer from './components/Disclaimer.js';
 import CardGenerator from './components/CardGenerator.js';
-import Footer from './components/Footer.js';
 
 const routing = (
   <Router>
@@ -26,7 +26,6 @@ const routing = (
           <ul className="menu">
             <li><Link to="/about">About</Link></li>
             <li><Link to="/donate">Donate</Link></li>
-            <li><Link to="/disclaimer">Disclaimer</Link></li>
             <li><Link to="/generator">Card Generator</Link></li>
           </ul>
         </div>
@@ -39,10 +38,18 @@ const routing = (
       <Route exact path="/" component={BingoGame} />
       <Route path="/about" component={About} />
       <Route path="/donate" component={Donate} />
-      <Route path="/disclaimer" component={Disclaimer} />
       <Route path="/generator" component={CardGenerator} />
+      <Route path="/disclaimer" component={Disclaimer} />
     </div>
-    <Footer />
+    
+    <footer>
+      <div className="row">
+        <div className="col">&copy; {new Date().getFullYear()} <a href="mailto:hello@letsplaybingo.io">Karol Brennan</a></div>
+        <div className="col grow text-right">
+          For entertainment purposes only. <Link to="/disclaimer">Full Disclaimer</Link>
+        </div>
+      </div>
+    </footer>
   </Router>
 )
 ReactDOM.render(routing, document.getElementById('root'));
