@@ -242,11 +242,11 @@ class BingoGame extends Component {
   resetGame = () => {
     clearInterval(this.state.interval);
     this.cancelSpeech();
+    this.totalBallsCalled = 0;
     this.setState({
       board: generateBingoBalls(),
       previousBall: null,
       currentBall: null,
-      totalBallsCalled: 0,
       running: false,
       interval: null
     })
