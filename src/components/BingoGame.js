@@ -60,8 +60,11 @@ class BingoGame extends Component {
   }
 
   initializeFromLocalStorage = () => {
-    let skipUnused, enableCaller, displayBoardOnly, wildBingo = false;
+    let skipUnused, enableCaller, displayBoardOnly, wildBingo, callDelay = false;
 
+    if(localStorage.getItem('lpb-callDelay')){
+      callDelay = localStorage.getItem('lpb-callDelay') === "true";
+    }
     if(localStorage.getItem('lpb-skipUnused')){
       skipUnused = localStorage.getItem('lpb-skipUnused') === "true";
     }
@@ -76,7 +79,7 @@ class BingoGame extends Component {
     }
 
     this.setState({
-      skipUnused: skipUnused, enableCaller: enableCaller, displayBoardOnly: displayBoardOnly, wildBingo: wildBingo
+      skipUnused: skipUnused, enableCaller: enableCaller, displayBoardOnly: displayBoardOnly, wildBingo: wildBingo, delay: callDelay
     })
   }
 
@@ -301,6 +304,7 @@ class BingoGame extends Component {
     if(this.state.interval !== null){
       clearInterval(this.state.interval);
       this.setState({delay: e, interval: setInterval(this.callBingoNumber, e)});
+      localStorage.setItem('lpb-callDelay', e);
     } else {
       this.setState({delay: e});
     }
@@ -480,10 +484,15 @@ class BingoGame extends Component {
       board[letter].forEach(number => {
         number.active = false;
         if(ball.number === number.number){
-          number.called = true;
-          number.active = true;
-          currentBall = number;
-          totalBallsCalled++;
+          if(number.called){
+            number.called = false;
+            totalBallsCalled--;
+          } else {
+            number.called = true;
+            number.active = true;
+            totalBallsCalled++;
+            currentBall = number;
+          }
         }
         return number;
       })
@@ -578,7 +587,7 @@ class BingoGame extends Component {
                   <div className="col shrink text-center padding-vertical-lg padding-horizontal-lg">
                     <div className="row no-wrap align-center" data-disabled={this.state.displayBoardOnly}>
                       <div className="col shrink padding-right-lg white-text">Slower</div>
-                      <div className="col"><Slider min={1500} max={10000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
+                      <div className="col"><Slider min={2500} max={10000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
                       <div className="col shrink padding-left-lg white-text">Faster</div>
                     </div>
                   </div>
@@ -592,7 +601,7 @@ class BingoGame extends Component {
                   <div className="col padding-horizontal-lg">
                     <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
                       <input type="checkbox" data-gamemode="display-board" onChange={this.handleCheckbox} checked={this.state.displayBoardOnly}></input>
-                      <span>Display Board Only</span>
+                      <span>Manual Calling Mode</span>
                       <span className="toggle-span"></span>
                     </label>
                   </div>
