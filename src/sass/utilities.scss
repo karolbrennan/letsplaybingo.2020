@@ -137,8 +137,11 @@ a {
   white-space: nowrap;
   border: none;
   padding: 0;
+  outline: none;
   input {
     position: absolute;
+    border: none;
+    outline: none;
     top: 0;
     right: 0;
     width: 100%;
