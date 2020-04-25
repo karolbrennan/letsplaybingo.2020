@@ -261,6 +261,7 @@ class BingoGame extends Component {
       let selectedPattern = this.state.selectedPattern;
       let randomBingoNumber = getRandomBingoNumber();
       let callAgain = false;
+      let updateState = false;
   
       // Map through the letters on the board
       Object.keys(board).map(letter => {
@@ -284,16 +285,11 @@ class BingoGame extends Component {
                 callAgain = true;
               } else {
                 // set ball to active since we won't be calling again
-                number.active = true;
                 this.voiceCall(number);
+                number.active = true;
               }
-
+              updateState = true;
               this.totalBallsCalled = totalBallsCalled;
-              this.setState({
-                board: board,
-                currentBall: currentBall,
-                previousBall: previousBall
-              });
             } else {
               // call again cause we got a ball we already called
               callAgain = true;
@@ -303,6 +299,14 @@ class BingoGame extends Component {
         })
         return letter;
       })
+
+      if(updateState){
+        this.setState({
+          board: board,
+          currentBall: currentBall,
+          previousBall: previousBall
+        });
+      }
       if(callAgain){
         this.callBingoNumber();
       }
