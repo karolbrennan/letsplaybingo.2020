@@ -9,13 +9,22 @@
   text-transform: uppercase;
 }
 .medium-text {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 .small-text {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 .no-text-wrap {
   white-space: nowrap;
+}
+.wrap-text {
+  white-space: normal !important;
+}
+
+.date {
+  color: #00487B;
 }
 
 /* Links */
@@ -25,6 +34,20 @@ a {
   transition: all ease .25s;
   &:hover {
     color: #222222;
+  }
+}
+
+.light-links {
+  .button {
+    border: 2px solid #1396d3;
+    padding: 0.25em 1em;
+  }
+
+   a {
+    color: #1396d3;
+    &:hover {
+      color: #ffffff;
+    }
   }
 }
 
@@ -74,10 +97,12 @@ a {
   list-style: none;
   margin: 0;
   padding: 0;
+  font-family: "Roboto Condensed", sans-serif;
   li {
     display: inline-block;
     padding: 0.25em 0.5em;
     a {
+      font-size: 1.5rem;
       padding: 0.5em;
       font-weight: 700;
       border: 3px solid transparent;
@@ -177,6 +202,9 @@ a {
 .inline-block {
   display: inline-block;
 }
+.block {
+  display: block;
+}
 .vertical-align-middle {
   vertical-align: middle;
 }
@@ -243,6 +271,7 @@ a {
   &-xlg { margin: 1rem; }
   &-xxlg { margin: 2rem; }
   &-top {
+    &-none { margin-top: 0;}
     &-sm { margin-top: .25rem; }
     &-md { margin-top: .5rem; }
     &-lg { margin-top: .75rem; }
@@ -250,6 +279,7 @@ a {
     &-xxlg { margin-top: 2rem; }
   }
   &-bottom {
+    &-none { margin-bottom: 0;}
     &-sm { margin-bottom: .25rem; }
     &-md { margin-bottom: .5rem; }
     &-lg { margin-bottom: .75rem; }
@@ -257,6 +287,7 @@ a {
     &-xxlg { margin-bottom: 2rem; }
   }
   &-left {
+    &-none { margin-left: 0;}
     &-sm { margin-left: .25rem; }
     &-md { margin-left: .5rem; }
     &-lg { margin-left: .75rem; }
@@ -264,6 +295,7 @@ a {
     &-xxlg { margin-left: 2rem; }
   }
   &-right {
+    &-none { margin-right: 0;}
     &-sm { margin-right: .25rem; }
     &-md { margin-right: .5rem; }
     &-lg { margin-right: .75rem; }
@@ -271,6 +303,7 @@ a {
     &-xxlg { margin-right: 2rem; }
   }
   &-horizontal {
+    &-none { margin-left: 0; margin-right: 0;}
     &-sm { margin-left: .25rem; margin-right: .25rem; }
     &-md { margin-left: .5rem; margin-right: .5rem; }
     &-lg { margin-left: .75rem; margin-right: .75rem; }
@@ -278,6 +311,7 @@ a {
     &-xxlg { margin-left: 2rem; margin-right: 2rem; }
   }
   &-vertical {
+    &-none { margin-top: 0; margin-bottom: 0;}
     &-sm { margin-top: .25rem; margin-bottom: .25rem; }
     &-md { margin-top: .5rem; margin-bottom: .5rem; }
     &-lg { margin-top: .75rem; margin-bottom: .75rem; }

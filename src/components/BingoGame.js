@@ -235,11 +235,12 @@ class BingoGame extends Component {
             } else {
               updateState = true;
               number.called = true;
+              number.active = true;
               currentBall = number;
-              if(this.state.skipUnused && selectedPattern.value !== this.patternPlaceholder && selectedPattern.unusedLetters.indexOf(letter) >= 0){
-                callAgain = true;
-              } else {
-                number.active = true;
+              callAgain = this.state.skipUnused && selectedPattern.value !== this.patternPlaceholder && selectedPattern.unusedLetters.indexOf(letter) >= 0;
+
+              if(callAgain){
+                number.active = false;
                 this.voiceCall(number);
               }
               totalBallsCalled++;
@@ -309,7 +310,14 @@ class BingoGame extends Component {
 
   handleUpdatePattern = (pattern, letter, index, slot) => {
     pattern[letter][index] = !slot;
-    let customPattern = {value: "Custom", label: "Custom", pattern: pattern};
+    let unusedLetters = [];
+    Object.keys(pattern).map(letter => {
+      if(pattern[letter].indexOf(true) < 0){
+        unusedLetters.push(letter);
+      }
+      return letter;
+    })
+    let customPattern = {value: "Custom", label: "Custom", unusedLetters: unusedLetters, pattern: pattern};
     this.setState({selectedPattern: customPattern});
   };
 
@@ -460,7 +468,7 @@ class BingoGame extends Component {
   /* ------------------- Render */
   render(){
     return(
-      <div>
+      <div className="light-links">
         <section className="dark-blue-bg padding-sm"></section>
         {/* ----------- Bingo Board ------------- */}
         <section className="board-block dark-bg">
@@ -468,14 +476,14 @@ class BingoGame extends Component {
             {/* ------ Board ------- */}
             <div className="col shrink min-size-225 padding-xlg">
               {/* -------- Digital Displays --------- */}
-              <div className="row no-wrap margin-vertical-lg white-text uppercase small-text">
+              <div className="row no-wrap margin-vertical-lg white-text">
                 <div className="col text-center">
                   <div className="callNumber">{this.numberDisplay}</div>
-                  <strong>Total Calls</strong>
+                  <div className="callNumber-text uppercase">Total Calls</div>
                 </div>
                 <div className="col text-center">
                   <div className="callNumber">{this.previousCallDisplay}</div>
-                  <strong>Previous Call</strong>
+                  <div className="callNumber-text uppercase">Previous Call</div>
                 </div>
               </div>
 
@@ -500,36 +508,42 @@ class BingoGame extends Component {
 
         <section className="dark-blue-bg padding-sm"></section>
 
-        <section className="dark-bg">
-          <div className="row justify-start align-center">
+
+        {/* ----------- BOTTOM SECTION ------------- */}
+        
+        <section className="game-controls dark-bg">
+          <div className="row justify-start align-start">
 
             {/* ----------- Current Ball Display ------------- */}
-            <div className="col shrink min-size-225 padding-xxlg">
+            <div className="col max-size-250 padding-xxlg">
               {this.currentBallDisplay}
             </div>
 
             {/* ----------- Gameplay Controls ------------- */}
-            <div className="col shrink min-size-225 padding-xxlg">
+            <div className="col shrink padding-xxlg">
               <section className="gameplay-controls">
-                <button data-disabled={this.state.displayBoardOnly} 
-                  onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.toggleGame}>
-                    {this.state.running ? "Pause Autoplay" : "Start Autoplay"}
-                </button>
-              
+
                 <button data-disabled={this.state.displayBoardOnly} onClick={this.callBingoNumber} disabled={this.state.running}>
                   Call Number
                 </button>
 
-                <button data-visibility={this.state.totalBallsCalled === 0 ? "hide" : "show"} onClick={this.resetGame} disabled={this.state.running}>
+                <button data-disabled={this.state.displayBoardOnly} 
+                  onClick={this.state.totalBallsCalled === 0 ? this.startNewGame : this.toggleGame}>
+                    {this.state.running ? "Pause Autoplay" : "Start Autoplay"}
+                </button>
+
+                <button onClick={this.resetGame} disabled={this.state.running || this.state.totalBallsCalled === 0}>
                   Reset Board
                 </button>
               </section>
             </div>
 
             {/* ----------- Game Settings ------------- */}
-            <div className="col grow padding-xxlg white-text">
+            <div className="col no-wrap padding-xxlg white-text">
               <section className="game-settings">
-                <div className="row align-center justify-start">
+
+                {/* ----------- Autoplay Settings ---------- */}
+                <div className="row no-wrap align-center justify-start">
                   <div className="col shrink min-size-150 padding-horizontal-lg">
                     <h4 className="no-margin blue-text">Autoplay Speed:</h4>
                   </div>
@@ -541,34 +555,9 @@ class BingoGame extends Component {
                     </div>
                   </div>
                 </div>
-
-                <div className="row align-center justify-start">
-                  <div className="col shrink min-size-150 padding-horizontal-lg">
-                    <h4 className="no-margin blue-text">Bingo Caller:</h4>
-                  </div>
-                  <div className="col grow padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
-                    <div className="row">
-                      <div className="col shrink">
-                        <label className={this.state.enableCaller ? 'toggle checked' : 'toggle'}>
-                          <input type="checkbox" data-gamemode="enable-caller" onChange={this.handleCheckbox} checked={this.state.enableCaller}></input>
-                          <span>Enable</span>
-                          <span className="toggle-span"></span>
-                        </label>
-                      </div>
-                      <div className="col padding-horizontal-xxlg" data-disabled={this.state.displayBoardOnly} data-visibility={this.state.enableCaller ? "show" : "hide"}>
-                        <Select 
-                          className="voice-select"
-                          placeholder="Choose Caller"
-                          value={this.state.selectedCaller}
-                          onChange={this.handleChooseCaller}
-                          options={this.voiceOptions}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
               
-                <div className="row align-center justify-start">
+                {/* ----------- Gameplay Settings ---------- */}
+                <div className="row no-wrap align-center justify-start">
                   <div className="col shrink min-size-150 padding-horizontal-lg">
                     <h4 className="no-margin blue-text">Gameplay Settings:</h4>
                   </div>
@@ -594,15 +583,51 @@ class BingoGame extends Component {
                     </label>
                   </div>
                 </div>
+
+
+                {/* ----------- Caller Settings ---------- */}
+                <div className="row no-wrap align-center justify-start">
+                  <div className="col shrink min-size-150 padding-horizontal-lg">
+                    <h4 className="no-margin blue-text">Bingo Caller:</h4>
+                  </div>
+                  <div className="col grow padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
+                    <div className="row no-wrap">
+                      <div className="col shrink">
+                        <label className={this.state.enableCaller ? 'toggle checked' : 'toggle'}>
+                          <input type="checkbox" data-gamemode="enable-caller" onChange={this.handleCheckbox} checked={this.state.enableCaller}></input>
+                          <span>Enable</span>
+                          <span className="toggle-span"></span>
+                        </label>
+                      </div>
+                      <div className="col padding-horizontal-xxlg" data-disabled={this.state.displayBoardOnly} data-visibility={this.state.enableCaller ? "show" : "hide"}>
+                        <Select 
+                          className="voice-select"
+                          placeholder="Choose Caller"
+                          value={this.state.selectedCaller}
+                          onChange={this.handleChooseCaller}
+                          options={this.voiceOptions}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 
               </section>
             </div>
-            
-            {/* ----------- Text ---------------- */}
-            <div className="col padding-xxlg white-text">
-              <h3>Love Let's Play Bingo? Tell your friends!</h3>
-              <div className="addthis_inline_share_toolbox"></div>
+
+            {/* ----------- Donation ------------- */}
+            <div className="col grow padding-xxlg white-text">
+              <h3 className="no-margin">Donate to Let's Play Bingo!</h3>
+              <p className="wrap-text small-text">
+                <strong>Let's Play Bingo is the #1 Bingo Caller on Google!</strong><br/>
+                Requiring no downloads, and with no ads, it is completely <strong>free</strong> and always will be.
+                If you'd like to contribute toward operating costs we are accepting <a href="/donate">donations</a> of any amount via 
+                <a href="https://venmo.com/karolbrennan" target="_blank" rel="noopener noreferrer">Venmo</a> or 
+                <a href="https://paypal.me/karolbrennan" target="_blank" rel="noopener noreferrer">Paypal</a>!
+              </p>
+              <p><a href="/donate" className="button">Donate Now</a></p>
             </div>
+
           </div>
         </section>
       </div>

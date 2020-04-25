@@ -46,6 +46,7 @@
   }
   .board-letter {
     flex: 0 0 1.25em !important;
+    font-weight: bold;
   }
 }
 
@@ -146,9 +147,23 @@ button {
 .voice-select {
   width: 100%;
   min-width: 200px;
-  max-width: 420px;
+  max-width: 360px;
+  border: 1px solid #fff;
+  
+  div[class$="-singleValue"] {
+    color: #888888;
+  }
+  div[class$="-Input"] {
+    color: white;
+  }
+  div[class$="-control"] {
+    background: #222;
+    border: none;
+    color: #efefef;
+    border-radius: 0;
+  }
   div[class$="-menu"] * {
-    color: black;
+    color:#222222;
   }
 }
 
@@ -174,6 +189,10 @@ button {
     display: inline-block;
     padding: .25rem;
   }
+}
+.callNumber-text {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 0.8rem;
 }
 
 /* Cards */
@@ -282,8 +301,8 @@ button {
       bottom: 0;
       display: inline-flex;
       font-weight: bold;
-      font-size: 2.25rem;
-      font-size: 2.5vw;
+      font-size: 2rem;
+      font-size: 2vw;
       line-height: 1;
     }
 
