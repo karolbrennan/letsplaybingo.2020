@@ -100,8 +100,14 @@
     &.min-size-250{
       min-width: 250px;
     }
+    &.min-size-300{
+      min-width: 300px;
+    }
     &.max-size-250 {
       max-width: 250px;
+    }
+    &.max-size-400 {
+      max-width: 400px;
     }
     &:first-child {
       margin-left: 0;

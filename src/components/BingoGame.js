@@ -585,7 +585,7 @@ class BingoGame extends Component {
             </div>
 
             {/* ----------- Game Settings ------------- */}
-            <div className="col no-wrap padding-vertical-xxlg padding-horizontal-md white-text">
+            <div className="col grow no-wrap padding-vertical-xxlg padding-horizontal-md white-text">
               <section className="game-settings">
 
                 {/* ----------- Autoplay Settings ---------- */}
@@ -609,14 +609,16 @@ class BingoGame extends Component {
                   </div>
                   <div className="col grow min-size-150 padding-horizontal-lg">
                     <div className="row">
-                      <div className="col">
+                      <div className="col grow">
                         <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
                           <input type="checkbox" data-gamemode="display-board" onChange={this.handleCheckbox} checked={this.state.displayBoardOnly}></input>
                           <span>Manual Calling Mode</span>
                           <span className="toggle-span"></span>
                         </label>
                       </div>
-                      <div className="col" data-disabled={this.state.displayBoardOnly}>
+                    </div>
+                    <div className="row justify-start">
+                      <div className="col padding-right-lg" data-disabled={this.state.displayBoardOnly}>
                         <label className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
                           <input type="checkbox" data-gamemode="skip-unused" onChange={this.handleCheckbox} checked={this.state.skipUnused}></input>
                           <span>Skip Unused Numbers</span>
@@ -649,7 +651,7 @@ class BingoGame extends Component {
                           <span className="toggle-span"></span>
                         </label>
                       </div>
-                      <div className="col padding-horizontal-xxlg" data-disabled={this.state.displayBoardOnly} data-visibility={this.state.enableCaller ? "show" : "hide"}>
+                      <div className="col grow padding-horizontal-xxlg" data-disabled={this.state.displayBoardOnly} data-visibility={this.state.enableCaller ? "show" : "hide"}>
                         <Select 
                           className="voice-select"
                           placeholder="Choose Caller"
@@ -666,7 +668,7 @@ class BingoGame extends Component {
             </div>
 
             {/* ----------- Donation ------------- */}
-            <div className="col grow padding-vertical-xxlg padding-horizontal-lg white-text">
+            <div className="col min-size-300 grow padding-vertical-xxlg padding-horizontal-lg white-text">
               <h3 className="no-margin">Donate to Let's Play Bingo!</h3>
               <p className="wrap-text small-text">
                 <strong>Let's Play Bingo is the #1 Bingo Caller on Google!</strong><br/>
