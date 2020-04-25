@@ -311,7 +311,6 @@ class BingoGame extends Component {
         this.callBingoNumber();
       }
     } else {
-      alert("We're all out of balls!");
       clearInterval(this.state.interval);
       this.totalBallsCalled = 75;
       this.setState({running: false, previousBall: this.state.currentBall, currentBall: null});
@@ -579,16 +578,18 @@ class BingoGame extends Component {
 
             {/* ----------- Gameplay Controls ------------- */}
             <div className="col shrink padding-vertical-xxlg padding-horizontal-md">
-              <section className="gameplay-controls" data-disabled={this.totalBallsCalled >= 75}>
+              <section className="gameplay-controls">
 
-                <button data-disabled={this.state.displayBoardOnly} onClick={this.totalBallsCalled === 0 ? this.startNewGame : this.callBingoNumber} disabled={this.state.running}>
-                  {this.totalBallsCalled === 0 ? "Start New Game" : "Call Next Number"}
-                </button>
+                <div data-disabled={this.totalBallsCalled >= 75}
+                  ><button data-disabled={this.state.displayBoardOnly} onClick={this.totalBallsCalled === 0 ? this.startNewGame : this.callBingoNumber} disabled={this.state.running}>
+                    {this.totalBallsCalled === 0 ? "Start New Game" : "Call Next Number"}
+                  </button>
 
-                <button data-disabled={this.state.displayBoardOnly} data-newgame={this.totalBallsCalled === 0}
-                  onClick={this.totalBallsCalled === 0 ? this.startNewAutoplayGame : this.toggleGame}>
-                    {this.state.running ? "Pause Autoplay" : "Start Autoplay"}
-                </button>
+                  <button data-disabled={this.state.displayBoardOnly} data-newgame={this.totalBallsCalled === 0}
+                    onClick={this.totalBallsCalled === 0 ? this.startNewAutoplayGame : this.toggleGame}>
+                      {this.state.running ? "Pause Autoplay" : "Start Autoplay"}
+                  </button>
+                </div>
 
                 <button onClick={this.resetGame} disabled={this.state.running || this.totalBallsCalled === 0}>
                   Reset Board
