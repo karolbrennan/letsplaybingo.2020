@@ -307,7 +307,7 @@ class BingoGame extends Component {
           previousBall: previousBall
         });
       }
-      if(callAgain){
+      if(callAgain && totalBallsCalled < 75){
         this.callBingoNumber();
       }
     } else {
@@ -609,7 +609,7 @@ class BingoGame extends Component {
                   <div className="col shrink text-center padding-vertical-lg padding-horizontal-lg">
                     <div className="row no-wrap align-center" data-disabled={this.state.displayBoardOnly}>
                       <div className="col shrink padding-right-lg white-text">Slower</div>
-                      <div className="col"><Slider min={3000} max={10000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
+                      <div className="col"><Slider min={7500} max={30000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
                       <div className="col shrink padding-left-lg white-text">Faster</div>
                     </div>
                   </div>
