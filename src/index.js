@@ -8,6 +8,9 @@ import './sass/main.scss';
 import './sass/utilities.scss';
 import './sass/print.scss';
 import logo from './images/logo.svg';
+import facebook from './images/icons/facebook.svg';
+import twitter from './images/icons/twitter.svg';
+import instagram from './images/icons/instagram.svg';
 // Custom Components
 import BingoGame from './components/BingoGame.js';
 import About from './components/About.js';
@@ -55,7 +58,14 @@ const routing = (
     <Route exact path="/">
       <section className="pale-gray-bg">
         <div className="row">
-          {/* ----------- Text ---------------- */}
+          {/* ----------- Updates ---------------- */}
+          <div className="col shrink padding-xxlg">
+            <h3>Let's Get Social!</h3>
+            <a href="https://facebook.com/letsplaybingo.io" target="_blank" rel="noopener noreferrer"><img src={facebook} alt="Facebook" className="social-icon" /></a>
+            <a href="https://twitter.com/Lets_Play_Bingo" target="_blank" rel="noopener noreferrer"><img src={twitter} alt="Twitter" className="social-icon" /></a>
+            <a href="https://www.instagram.com/letsplaybingo.io/" target="_blank" rel="noopener noreferrer"><img src={instagram} alt="Instagram" className="social-icon" /></a>
+          </div>
+        
           <div className="col grow padding-xxlg wrap-text">
             <h3><span className="date">4/25/2020</span> | The Pandemic Update!</h3>
             <p>Welcome to the pandemic update! As you can see there have been some major improvements and changes to Let's Play Bingo! See what's new in the <a href="/releases">Release Notes</a>!</p>
@@ -76,7 +86,7 @@ const routing = (
         <div className="col">
           For entertainment purposes only.
         </div>
-        <div className="col text-center">&copy; {new Date().getFullYear()} <a href="mailto:hello@letsplaybingo.io">Let's Play Bingo</a></div>
+        <div className="col text-center">&copy; 2017 - {new Date().getFullYear()} <a href="mailto:hello@letsplaybingo.io">Let's Play Bingo</a></div>
         <div className="col text-right">
           <Link to="/terms">Terms of Use</Link> | <Link to="/privacy">Cookies &amp; Privacy Policy</Link>
         </div>
