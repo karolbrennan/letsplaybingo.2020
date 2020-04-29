@@ -56,4 +56,23 @@
       }
     }
   }
+  .print-six {
+    .card {
+      width: 30%;
+      .col {
+        .card-letter,
+        .card-number {
+          font-size: 2.5rem !important; 
+          line-height: 1 !important;
+        }
+        .freespace {
+          padding: 0.25rem 0;
+          span {
+            font-size: 1rem;
+            line-height: 1;
+          }
+        }
+      }
+    }
+  }
 }

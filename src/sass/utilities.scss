@@ -114,6 +114,10 @@ div[class$="-indicatorContainer"] svg {
 .number-select {
   max-width: 250px;
   min-width: 175px;
+  &.single {
+    max-width: 150px;
+    min-width: 125px;
+  }
 }
 
 /* Toggles */
