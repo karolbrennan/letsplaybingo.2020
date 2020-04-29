@@ -120,8 +120,8 @@ class CardGenerator extends React.Component {
             <div className="no-print">
               <h1>Card Generator</h1>
               <p>Generate your own cards for printing!<br/>
-                Simply choose how many cards you'd like to generate and click the button!</p>
-              <p>Printing your cards will default to color and 4 cards per page. Use the options below to change these settings. <br/>
+                Simply choose how many cards you'd like, what colors you want the cards to be and click Generate!</p>
+              <p className="medium-text">Printing your cards will default to color and 4 cards per page. Use the options below to change these settings. <br/>
                 Printing 2 per page will result in larger cards for people who like bigger cards or have vision impairment.</p>
             
               <div className="row justify-start align-center extra-pale-gray-bg padding-xlg">
@@ -141,24 +141,24 @@ class CardGenerator extends React.Component {
                     options={this.colorOptions}
                   />
                 </div>
-                <div className="col shrink padding-horizontal-md">
+                <div className="col shrink padding-horizontal-md margin-right-xlg">
                   <button className="primaryBtn" onClick={this.handleButton.bind(this)} disabled={this.generateButtonDisabled}>Generate Cards</button>
                 </div>
-                <div className="col shrink padding-left-xlg">
-                  <h4>Printing Options</h4>
+                <div className="col shrink padding-horizontal-lg">
+                  <h5>Printing Options</h5>
                 </div>
                 <div className="col shrink padding-horizontal-md">
                   <label className={this.state.blackWhite ? 'toggle checked' : 'toggle'}>
-                    <input type="checkbox" onChange={this.handleBWCheckbox} checked={this.state.blackWhite}></input>
-                    <span>Print in Black/White</span>
                     <span className="toggle-span"></span>
+                    <span>Print in Black/White</span>
+                    <input type="checkbox" onChange={this.handleBWCheckbox} checked={this.state.blackWhite}></input>
                   </label>
                 </div>
                 <div className="col shrink padding-horizontal-md">
                   <label className={this.state.twoPerPage ? 'toggle checked' : 'toggle'}>
-                    <input type="checkbox" onChange={this.handlePPCheckbox} checked={this.state.twoPerPage}></input>
-                    <span>Print 2 Cards Per Page</span>
                     <span className="toggle-span"></span>
+                    <span>Print 2 Cards Per Page</span>
+                    <input type="checkbox" onChange={this.handlePPCheckbox} checked={this.state.twoPerPage}></input>
                   </label>
                 </div>
                 <div className="col padding-horizontal-md text-right">

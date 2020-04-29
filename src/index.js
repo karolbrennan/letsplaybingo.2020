@@ -51,7 +51,7 @@ const routing = (
       <Route path="/releases" component={ReleaseNotes} />
     </div>
 
-    <section className="white-text dark-blue-bg">
+    <section className="white-text dark-blue-bg no-print">
       <TellYourFriends />
     </section>
 
