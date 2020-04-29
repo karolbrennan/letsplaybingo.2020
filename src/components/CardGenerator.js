@@ -119,8 +119,7 @@ class CardGenerator extends React.Component {
           <div className="col padding-xxlg">
             <div className="no-print">
               <h1>Card Generator</h1>
-              <p>Generate your own cards for printing!<br/>
-                Simply choose how many cards you'd like, what colors you want the cards to be and click Generate!</p>
+              <p>Generate your own cards to print for playing at home! Simply choose a number and a color and click Generate!</p>
               <p className="medium-text">Printing your cards will default to color and 4 cards per page. Use the options below to change these settings. <br/>
                 Printing 2 per page will result in larger cards for people who like bigger cards or have vision impairment.</p>
             
