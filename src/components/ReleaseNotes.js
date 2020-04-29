@@ -10,7 +10,7 @@ class ReleaseNotes extends React.Component {
             
             <h2><span className="date">4/28/2020</span> | Pandemic Patch</h2>
             <ul>
-              <li>Added information to the About page to ass clarification how the game works and what the game modes mean</li>
+              <li>Added information to the About page to add clarification how the game works and what the game modes mean</li>
               <li>Moved the speech synthesis out of the state object to stabilize vocal calls and fix an issue with speech lag.</li>
               <li>Added two new modes for speech synthesis including Double Calls and Chatty mode.</li>
               <li>Made the text larger on the current ball display. </li>
