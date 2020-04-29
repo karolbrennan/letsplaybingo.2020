@@ -16,6 +16,7 @@ class ReleaseNotes extends React.Component {
               <li>Made the text larger on the current ball display. </li>
               <li>Adjusted the CSS for heading stylings.</li>
               <li>Fixed some bugs with manual calling mode where previous calls were inaccurate.</li>
+              <li>Added a proper error notice if the user's browser/device doesn't support audible calling</li>
             </ul>
             <h2><span className="date">4/25/2020</span> | The Pandemic Update!</h2>
             <ul>
