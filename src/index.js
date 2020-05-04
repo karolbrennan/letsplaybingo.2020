@@ -31,6 +31,7 @@ const routing = (
         <div className="col grow padding-md no-text-wrap text-right">
           <ul className="menu">
             <li><Link to="/">Play</Link></li>
+            <li><a href="https://classic.letsplaybingo.io">Classic</a></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/donate">Donate</Link></li>
             <li><Link to="/generator">Card Generator</Link></li>
@@ -67,15 +68,37 @@ const routing = (
           </div>
         
           <div className="col grow padding-xxlg wrap-text">
-            <h3><span className="date">4/25/2020</span> | The Pandemic Update!</h3>
-            <p>Welcome to the pandemic update! As you can see there have been some major improvements and changes to Let's Play Bingo! See what's new in the <a href="/releases">Release Notes</a>!</p>
-            <p>If you prefer the original version you can always play it at <a href="https://classic.letsplaybingo.io">Let's Play Bingo Classic</a>!</p>
-            <p>The site is still undergoing some stylistic updates to make it mobile friendly, so watch for that. I wanted to get the desktop version released as quickly as possible.</p>
-            <p>Thanks to everyone who reached out and offered suggestions for how to make the site better! I love hearing from y'all.</p>
-            <p>If you have ideas you'd like to share on how I can improve Let's Play Bingo please send them to <a href="mailto:hello@letsplaybingo.io">hello@letsplaybingo.io</a></p>
-            <h4>Report Issues</h4>
+            <h3 className="margin-bottom-lg"><span className="date">5/4/2020</span> | Thank Yous, Updates and Hotfixes!</h3>
+            <p>Thank you so much to everyone who has reached out to me and has donated to the operating costs of the site. I appreciate all of your emails and
+              comments and I love hearing from you. I didn't set out on creating this app to make lots of money from it it was just a fun little project in honor of my grandma.
+              I'm happy just to cover the costs of keeping it running!</p>
+            <p className="medium-text">I have decided that if I receive more donations than the operating costs of this project I will be donating the excess to 
+              <a href="https://kiva.org" target="_blank" rel="noopener noreferrer">Kiva.org</a>. Kiva is an international non profit with this vision: 
+              <em>"We envision a financially inclusive world where all people hold the power to improve their lives."</em>  Let's Play Bingo is reached by people world wide now - something I never expected - and with the global pandemic affecting economies and entrepreneurs
+              everywhere, I'd like to give back to those in need in the form of business loans to help them keep their livelihoods open.
+              While this is technically "lending" and not charity, it empowers the borrowers and doesn't feel like a hand out. 
+              I've been partnering with Kiva for a while now and every time I receive a repayment it goes right back into the hands of another entrepreneur in need.</p>
+            <p className="medium-text">This is so close to my heart as in 2008/09 I was living in poverty, bordering homelessness and had to rely on my family to keep me and my young daughter afloat 
+              while I attended school and worked full time to better my life and provide for my child. I'm happy to say that I now have a successful career as a web 
+              developer/development manager. I came up from nothing and I like to give back every chance I get.</p>
+              
+            <h4 className="margin-bottom-lg">Hotfixes</h4>
+            <h5 className="margin-top-none margin-bottom-sm">Unable to pause number calling on some devices</h5>
+            <p className="margin-top-none margin-bottom-lg medium-text">I have dug into the code and believe I have this fixed, however I have personally been unable to replicate it so I'm kind of fixing it blindly.</p>
+            
+            <h5 className="margin-top-none margin-bottom-sm">Odd behavior with audible calling</h5>
+            <p className="margin-top-none margin-bottom-sm medium-text">The audible calling uses an experimental technology called the Speech Synthesis API which is built into the browser. 
+            This can sometimes get laggy depending on a variety of factors and can cause unexpected delays in calling numbers out loud. I've made some changes to hopefully help stabilize it, 
+            but it can still act unexpectedly. It will help if you don't make any game option changes in the middle of playing.</p>
+            <p className="medium-text"><strong>Reminder:</strong> if you run into bugs that break gameplay or you prefer the original version you can always play the stable <a href="https://classic.letsplaybingo.io">Let's Play Bingo Classic</a>!</p>
+            
+            <h5 className="margin-bottom-lg">Questions, Suggestions, Comments, Reporting Issues</h5>
+            <p>Please feel free to reach out via email, on Facebook, Instagram, Twitter, etc with any questions, comments, concerns, etc! I love hearing from players!
+            I'm just one developer, but I do my best to respond to everyone who emails me and help them however I can!</p>
             <p className="small-text">If you come across any issues with the game, please submit a detailed report either via email to <a href="mailto:hello@letsplaybingo.io">hello@letsplaybingo.io</a> or
-             via <a href="https://github.com/karolbrennan/letsplaybingo/issues" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+             via <a href="https://github.com/karolbrennan/letsplaybingo/issues" target="_blank" rel="noopener noreferrer">GitHub</a>. When making a bug report please include how you came across the bug,
+             what device you are using, PC/Mac/Laptop/Desktop/Tablet/Mobile/etc and which browser (Chrome, Safari, Edge, Firefox). If it's a stylistic issue please also include what size screen you are viewing on.</p>
+             <p className="small-text">This site is still undergoing some stylistic updates to make it mobile friendly, so watch for that. I wanted to get the desktop version released as quickly as possible.</p>
           </div>
         </div>
       </section>
