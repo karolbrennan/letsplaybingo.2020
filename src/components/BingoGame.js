@@ -26,6 +26,7 @@ class BingoGame extends Component {
     this.previousBall = null;
     this.currentBall = null;
     this.previousBallList = [];
+    this.interval = null;
 
     // Patterns
     this.patternPlaceholder = "Choose a pattern";
@@ -36,7 +37,7 @@ class BingoGame extends Component {
     this.synth = window.speechSynthesis;
 
     // if speech is enabled, initialize other speech properties
-    if (this.speechEnabled) {
+    if (this.speechEnabled === true) {
       this.synth.onvoiceschanged = this.loadVoices;
       this.voices = this.synth.getVoices();
     }
@@ -121,7 +122,7 @@ class BingoGame extends Component {
    *  Will speak any string that is passed in
    */
   say = (text) => {
-    if (this.speechEnabled && this.state.enableCaller) {
+    if (this.speechEnabled === true && this.state.enableCaller === true) {
       // Create a new instance of SpeechSynthesisUtterance.
       let msg = new SpeechSynthesisUtterance();
       msg.text = text;
@@ -258,22 +259,22 @@ class BingoGame extends Component {
 
   toggleGame = () => {
     let running = this.state.running;
-    if(running){
-      clearInterval(this.state.interval);
-      this.setState({running: false, interval: null});
+    if(running === true){
+      clearInterval(this.interval);
     } else {
       this.callBingoNumber();
-      this.setState({running: true, interval: setInterval(this.callBingoNumber, this.state.delay)});
+      this.interval = setInterval(this.callBingoNumber, this.state.delay);
     }
+    this.setState({running: !running});
   }
 
   resetGame = () => {
-    clearInterval(this.state.interval);
+    clearInterval(this.interval);
     this.cancelSpeech();
     this.totalBallsCalled = 0;
     this.previousBall = null;
     this.currentBall = null;
-    this.setState({board: generateBingoBalls(), running: false, interval: null})
+    this.setState({board: generateBingoBalls(), running: false})
   }
 
   callBingoNumber = () => {
@@ -333,24 +334,23 @@ class BingoGame extends Component {
         this.callBingoNumber();
       }
     } else {
-      clearInterval(this.state.interval);
+      clearInterval(this.interval);
       this.totalBallsCalled = 75;
       this.say("Someone better have a bingo because we have run out of balls to call!");
       this.previousBall = this.currentBall;
       this.currentBall = null;
-      this.setState({running: false, interval: null});
+      this.setState({running: false});
     }
   }
 
 
   /* ------------------ Handlers */
   handleDelayChange = (e) => {
-    if(this.state.interval !== null){
-      clearInterval(this.state.interval);
-      this.setState({interval:setInterval(this.callBingoNumber, e), delay: e});
-    } else {
-      this.setState({delay: e});
+    if(this.state.running === true){
+      clearInterval(this.interval);
+      this.interval = setInterval(this.callBingoNumber, e);
     }
+    this.setState({delay: e});
     localStorage.setItem('lpb-callDelay', e);
   }
 
@@ -382,7 +382,7 @@ class BingoGame extends Component {
         break;
       case 'display-board':
         if(e.currentTarget.checked && this.state.running){
-          clearInterval(this.state.interval);
+          clearInterval(this.interval);
         }
         this.setState({displayBoardOnly: e.currentTarget.checked, running: false});
         localStorage.setItem('lpb-displayBoardOnly', e.currentTarget.checked);
@@ -489,7 +489,7 @@ class BingoGame extends Component {
    */
   get voiceOptions(){
     let voiceOptions = [];
-    if(this.speechEnabled){
+    if(this.speechEnabled === true){
       this.voices.forEach(voice => {
         let voiceObj = voice;
         voiceObj.value = voice.name;
@@ -681,7 +681,7 @@ class BingoGame extends Component {
                   <div className="col grow padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
                     {/* Disabled if manual calling mode is on */}
 
-                    <div className="row no-wrap justify-start" data-visibility={this.speechEnabled ? "show" : "hide"}>
+                    <div className="row no-wrap justify-start" data-visibility={this.speechEnabled === true ? "show" : "hide"}>
                       {/* Only shown if speech is enabled by the browser */}
                       <div className="col shrink">
                         <label className={this.state.enableCaller ? 'toggle checked' : 'toggle'}>
@@ -706,12 +706,12 @@ class BingoGame extends Component {
                       </div>
                     </div>
 
-                    <div className="row no-wrap" data-visibility={this.speechEnabled ? "hide" : "show"}>
+                    <div className="row no-wrap" data-visibility={this.speechEnabled === true ? "hide" : "show"}>
                       {/* Only shown if speech is DISABLED by the browser */}
                       <div className="col grow">Sorry, but your browser does not support the audible bingo caller.</div>
                     </div>
 
-                    <div className="row no-wrap" data-visibility={this.speechEnabled && this.state.enableCaller ? "show" : "hide"}>
+                    <div className="row no-wrap" data-visibility={this.speechEnabled === true && this.state.enableCaller === true ? "show" : "hide"}>
                       {/* Only shown if speech is enabled by the browser AND caller is enabled by the user */}
                       <div className="col grow margin-top-sm" data-disabled={this.state.displayBoardOnly}>
                         <Select 
