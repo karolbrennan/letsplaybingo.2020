@@ -643,7 +643,7 @@ class BingoGame extends Component {
                   </div>
                   <div className="col grow min-size-150 padding-horizontal-lg">
                     <div className="row">
-                      <div className="col grow">
+                      <div className="col grow" data-disabled={this.totalBallsCalled > 0}>
                         <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Manual Calling Mode</span>
