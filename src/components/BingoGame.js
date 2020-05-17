@@ -650,8 +650,8 @@ class BingoGame extends Component {
             <div className="col shrink padding-vertical-xxlg padding-horizontal-md">
               <section className="gameplay-controls">
 
-                <div data-disabled={this.totalBallsCalled >= 75}
-                  ><button data-disabled={this.state.displayBoardOnly} onClick={this.totalBallsCalled === 0 ? this.startNewGame : this.callBingoNumber} disabled={this.state.running}>
+                <div data-disabled={this.totalBallsCalled >= 75}>
+                  <button data-disabled={this.state.displayBoardOnly} onClick={this.totalBallsCalled === 0 ? this.startNewGame : this.callBingoNumber} disabled={this.state.running}>
                     {this.totalBallsCalled === 0 ? "Start New Game" : "Call Next Number"}
                   </button>
 
@@ -661,7 +661,7 @@ class BingoGame extends Component {
                   </button>
                 </div>
 
-                <button onClick={this.resetGame} disabled={this.staterunning || this.totalBallsCalled === 0}>
+                <button onClick={this.resetGame} disabled={this.state.running || this.totalBallsCalled === 0}>
                   Reset Board
                 </button>
               </section>
