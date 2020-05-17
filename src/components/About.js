@@ -93,8 +93,9 @@ class About extends React.Component {
 
             <h3>Evens/Odds</h3>
             <p>Much like Wild Bingo, the first number called is wild. However in this game mode, you'd dab all even or all odd numbers depending on even/odd status
-              of the wild number that was first selected.
+              of the wild number that was first selected. 
             </p>
+            <p className="small-text"><em>Note:</em> In order to be able to play this game mode wild bingo must be selected as this mode depends on that setting.</p>
           </div>
         </div>
       </section>

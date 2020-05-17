@@ -717,7 +717,7 @@ class BingoGame extends Component {
                           <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
                         </label>
                       </div>
-                      <div className="col" data-visible={this.state.wildBingo} data-disabled={this.state.displayBoardOnly || this.totalBallsCalled > 0}>
+                      <div className="col" data-disabled={!this.state.wildBingo || this.state.displayBoardOnly || this.totalBallsCalled > 0}>
                         <label className={this.state.evensOdds ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Evens/Odds</span>
