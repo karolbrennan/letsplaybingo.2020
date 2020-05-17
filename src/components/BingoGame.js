@@ -25,8 +25,8 @@ class BingoGame extends Component {
     this.totalBallsCalled = 0;
     this.previousBall = null;
     this.currentBall = null;
-    this.previousBallList = [];
     this.interval = null;
+    this.previousCallList = [];
 
     // Patterns
     this.patternPlaceholder = "Choose a pattern";
@@ -251,14 +251,17 @@ class BingoGame extends Component {
               this.wildBallCall(number);
             }
             totalBallsCalled++;
+            this.previousCallList.push(number);
           } else if(!this.state.evensOdds && number.number.toString().substr(-1) === wildNumber){
             lastBall = number;
             number.called = true;
             totalBallsCalled++;
+            this.previousCallList.push(number);
           } else if(this.state.evensOdds && ((number.number % 2 === 1) === odd)){
             lastBall = number;
             number.called = true;
             totalBallsCalled++;
+            this.previousCallList.push(number);
           }
         }
         return number;
@@ -285,6 +288,7 @@ class BingoGame extends Component {
   resetGame = () => {
     clearInterval(this.interval);
     this.cancelSpeech();
+    this.previousCallList = [];
     this.totalBallsCalled = 0;
     this.previousBall = null;
     this.currentBall = null;
@@ -314,8 +318,9 @@ class BingoGame extends Component {
             if(!number.called){
               // increment the total balls called.
               totalBallsCalled++;
-              // set to called
+              // set to called and add to previously called numbers
               number.called = true;
+              this.previousCallList.push(number);
 
               currentBall = number;
               // if we are skipping unused numbers, a pattern has been selected, and this letter is not in use, we want to call a new number when 
@@ -498,6 +503,32 @@ class BingoGame extends Component {
     }
   }
 
+  /**
+   * [previousCallList description]
+   *
+   * @return  {[JSX]}  [return description]
+   */
+  get previousCallListDisplay() {
+    const previousCallList = JSON.parse(JSON.stringify(this.previousCallList));
+    let last5Calls = previousCallList.reverse().slice(1,6);
+    if(last5Calls.length > 0){
+      return (
+        <div>
+          <h6 className="blue-text text-center margin-top-xlg margin-bottom-md">Last 5 Calls</h6>
+          <div className="previous-calls">
+            {last5Calls.map(call => {
+              return (
+                <div className={call.color}><span>{call.number}</span></div>
+              )
+            })}
+          </div>
+        </div>
+      );
+    } else {
+      return <div></div>
+    }
+  }
+
   /* ------------------- Speech Synthesis */
   
   /**
@@ -540,10 +571,10 @@ class BingoGame extends Component {
           if(number.called){
             number.called = false;
             totalBallsCalled--;
-            this.previousBallList = this.previousBallList.filter((previousBall) => {return previousBall !== ball});
-            previousBall = this.previousBallList[this.previousBallList.length - 1];
+            this.previousCallList = this.previousCallList.filter((previousBall) => {return previousBall !== ball});
+            previousBall = this.previousCallList[this.previousCallList.length - 1];
           } else {
-            this.previousBallList.push(number);
+            this.previousCallList.push(number);
             number.called = true;
             number.active = true;
             totalBallsCalled++;
@@ -634,6 +665,8 @@ class BingoGame extends Component {
                   Reset Board
                 </button>
               </section>
+
+              {this.previousCallListDisplay}
             </div>
 
             {/* ----------- Game Settings ------------- */}
