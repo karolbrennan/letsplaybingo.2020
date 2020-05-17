@@ -51,6 +51,7 @@ class BingoGame extends Component {
       enableCaller: false,
       skipUnused: true,
       wildBingo: false,
+      evensOdds: false,
       doubleCall: false,
       extraTalk: true,
       selectedCaller: null,
@@ -72,6 +73,7 @@ class BingoGame extends Component {
     let skipUnused = localStorage.getItem('lpb-skipUnused');
     let enableCaller = localStorage.getItem('lpb-enableCaller');
     let wildBingo = localStorage.getItem('lpb-wildBingo');
+    let evensOdds = localStorage.getItem('lpb-evensOdds');
     let doubleCall = localStorage.getItem('lpb-doubleCall');
     let extraTalk = localStorage.getItem('lpb-extraTalk');
     let callDelay = localStorage.getItem('lpb-callDelay');
@@ -83,6 +85,7 @@ class BingoGame extends Component {
       skipUnused: skipUnused !== undefined ? skipUnused === "true" : true,
       enableCaller: enableCaller !== undefined ? enableCaller === "true" : false,
       wildBingo: wildBingo !== undefined ? wildBingo === "true" : false,
+      evensOdds: evensOdds !== undefined ? evensOdds === "true" : false,
       doubleCall: doubleCall !== undefined ? doubleCall === "true" : false,
       extraTalk: extraTalk !== undefined ? extraTalk === "true" : false,
       callDelay: callDelay !== undefined ? parseInt(callDelay) : 6000,
@@ -160,9 +163,15 @@ class BingoGame extends Component {
     // call the wild ball, 
     let ballstring = ball.number.toString();
     if(this.state.extraTalk){
-      window.setTimeout(() => {
-        this.say(['The wild number ', ' ', ' ', ball.letter, ' ', ball.number, ' ', ' ', ' mark every number ending in ', ballstring.substr(-1)])
-      },2500);
+      if(this.state.evensOdds){
+        window.setTimeout(() => {
+          this.say(['The wild number ', ' ', ball.letter, ' ', ball.number, ' ', ' ', ` mark every ${(ball.number % 2) === 1 ? 'odd number' : 'even number'}`])
+        },2000);
+      } else {
+        window.setTimeout(() => {
+          this.say(['The wild number ', ' ', ball.letter, ' ', ball.number, ' ', ' ', ` mark every number ending in ${ballstring.substr(-1)}`])
+        },2000);
+      }
     } else {
       if(this.state.doubleCall){
         this.say([ball.letter, ball.number, ' ', ' ', ball.letter, ' ',
@@ -225,6 +234,7 @@ class BingoGame extends Component {
     // Variables used for wild bingo
     let randomBingoNumber = getRandomBingoNumber();
     let wildNumber = randomBingoNumber.toString().substr(-1);
+    let odd = (wildNumber % 2) === 1;
     let wildBall = null;
     let lastBall = null;
     let board = this.state.board;
@@ -241,7 +251,11 @@ class BingoGame extends Component {
               this.wildBallCall(number);
             }
             totalBallsCalled++;
-          } else if(number.number.toString().substr(-1) === wildNumber){
+          } else if(!this.state.evensOdds && number.number.toString().substr(-1) === wildNumber){
+            lastBall = number;
+            number.called = true;
+            totalBallsCalled++;
+          } else if(this.state.evensOdds && ((number.number % 2 === 1) === odd)){
             lastBall = number;
             number.called = true;
             totalBallsCalled++;
@@ -373,6 +387,10 @@ class BingoGame extends Component {
         this.setState({wildBingo: e.currentTarget.checked});
         localStorage.setItem('lpb-wildBingo', e.currentTarget.checked);
         break;
+        case 'evens-odds':
+          this.setState({evensOdds: e.currentTarget.checked});
+          localStorage.setItem('lpb-evensOdds', e.currentTarget.checked);
+          break;
       case 'enable-caller':
         if(this.synth.speaking){
           this.cancelSpeech();
@@ -643,27 +661,34 @@ class BingoGame extends Component {
                   </div>
                   <div className="col grow min-size-150 padding-horizontal-lg">
                     <div className="row">
-                      <div className="col grow" data-disabled={this.totalBallsCalled > 0}>
+                      <div className="col padding-right-lg grow" data-disabled={this.totalBallsCalled > 0}>
                         <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Manual Calling Mode</span>
                           <input type="checkbox" data-gamemode="display-board" onChange={this.handleCheckbox} checked={this.state.displayBoardOnly}></input>
                         </label>
                       </div>
-                    </div>
-                    <div className="row justify-start">
-                      <div className="col padding-right-lg" data-disabled={this.state.displayBoardOnly}>
+                      <div className="col" data-disabled={this.state.displayBoardOnly}>
                         <label className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Skip Unused Numbers</span>
                           <input type="checkbox" data-gamemode="skip-unused" onChange={this.handleCheckbox} checked={this.state.skipUnused}></input>
                         </label>
                       </div>
-                      <div className="col" data-disabled={this.state.displayBoardOnly || this.totalBallsCalled > 0}>
+                    </div>
+                    <div className="row justify-start">
+                      <div className="col padding-right-lg" data-disabled={this.state.displayBoardOnly || this.totalBallsCalled > 0}>
                         <label className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Wild Bingo</span>
                           <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
+                        </label>
+                      </div>
+                      <div className="col" data-visible={this.state.wildBingo} data-disabled={this.state.displayBoardOnly || this.totalBallsCalled > 0}>
+                        <label className={this.state.evensOdds ? 'toggle checked' : 'toggle'}>
+                          <span className="toggle-span"></span>
+                          <span>Evens/Odds</span>
+                          <input type="checkbox" data-gamemode="evens-odds" onChange={this.handleCheckbox} checked={this.state.evensOdds}></input>
                         </label>
                       </div>
                     </div>

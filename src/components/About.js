@@ -91,6 +91,10 @@ class About extends React.Component {
             <p className="small-text"><em>Note:</em> Even if you select autoplay, when playing Wild Bingo the game will pause on the initial call to give players
             time to dab all of the numbers.</p>
 
+            <h3>Evens/Odds</h3>
+            <p>Much like Wild Bingo, the first number called is wild. However in this game mode, you'd dab all even or all odd numbers depending on even/odd status
+              of the wild number that was first selected.
+            </p>
           </div>
         </div>
       </section>
