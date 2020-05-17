@@ -515,7 +515,7 @@ class BingoGame extends Component {
       return (
         <div>
           <h6 className="blue-text text-center margin-top-xlg margin-bottom-md">Last 5 Calls</h6>
-          <div className="previous-calls">
+          <div className="previous-calls notranslate">
             {last5Calls.map(call => {
               return (
                 <div className={call.color}><span>{call.number}</span></div>
@@ -605,11 +605,11 @@ class BingoGame extends Component {
               {/* -------- Digital Displays --------- */}
               <div className="row no-wrap margin-bottom-lg justify-space-between white-text">
                 <div className="col text-center margin-sm">
-                  <div className="callNumber">{this.numberDisplay}</div>
+                  <div className="callNumber notranslate">{this.numberDisplay}</div>
                   <div className="callNumber-text uppercase">Total Calls</div>
                 </div>
                 <div className="col text-center margin-sm">
-                  <div className="callNumber">{this.previousCallDisplay}</div>
+                  <div className="callNumber notranslate">{this.previousCallDisplay}</div>
                   <div className="callNumber-text uppercase">Previous Call</div>
                 </div>
               </div>
@@ -642,7 +642,7 @@ class BingoGame extends Component {
           <div className="row justify-start align-start">
 
             {/* ----------- Current Ball Display ------------- */}
-            <div className="col min-size-250 padding-vertical-xxlg padding-horizontal-md">
+            <div className="col min-size-250 padding-vertical-xxlg padding-horizontal-md notranslate">
               {this.currentBallDisplay}
             </div>
 
