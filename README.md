@@ -14,7 +14,7 @@ HTML, CSS and ReactJS
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 #### Future Improvements
-- add a feature where you can generate random bingo cards and print them out
+- add tracked bingo cards that can be checked against the current game via an ientification number
 
 ### Languages Used
 - HTML
