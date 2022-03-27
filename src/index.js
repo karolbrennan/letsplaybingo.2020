@@ -56,14 +56,14 @@ const routing = (
       <section className="pale-gray-bg">
         <div className="row">
           {/* ----------- Updates ---------------- */}
-          <div className="col shrink padding-xxlg">
+          <div className="social col shrink padding-xxlg">
             <h3>Let's Get Social!</h3>
             <a href="https://facebook.com/letsplaybingo.io" target="_blank" rel="noopener noreferrer"><img src={facebook} alt="Facebook" className="social-icon" /></a>
             <a href="https://twitter.com/Lets_Play_Bingo" target="_blank" rel="noopener noreferrer"><img src={twitter} alt="Twitter" className="social-icon" /></a>
             <a href="https://www.instagram.com/letsplaybingo.io/" target="_blank" rel="noopener noreferrer"><img src={instagram} alt="Instagram" className="social-icon" /></a>
           </div>
         
-          <div className="col grow padding-xxlg wrap-text">
+          <div className="updates col grow padding-xxlg wrap-text">
             <h3 className="margin-bottom-lg"><span className="date">5/17/2020</span> | Quick updates!</h3>
             <ul>
               <li>Added last 5 numbers display below the game play buttons</li>

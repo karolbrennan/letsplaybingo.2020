@@ -22,6 +22,17 @@ header, footer {
   padding: 1rem;
 }
 
+@media screen and (max-width: 700px){
+  header .row {
+    .col:nth-of-type(2) {
+      order: 2;
+    }
+    .col:last-child {
+      order: 1;
+    }
+  }
+}
+
 .logo {
   height: 3.5rem;
   width: auto;
@@ -160,6 +171,46 @@ button {
           transform: rotate(-90deg);
           padding-right: 1rem;
         }
+      }
+    }
+  }
+}
+
+
+/* Mobile */
+
+@media screen and (max-width: 700px){
+  .board-block {
+    > .row {
+      display: block;
+    }
+    .board-side, 
+    .pattern-side {
+      #board {
+        padding: 1rem;
+        display: block !important;
+        flex-flow: unset;
+        align-self: unset;
+        justify-content: unset;
+        width: 350px;
+        max-width: 100%;
+        margin: 0 auto;
+        .row {
+          display: inline-block;
+          width: 20%;
+        }
+      }
+      #bingopattern {
+        width: 250px;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+      &.min-size-200 {
+        width: 250px;
+        max-width: 100%;
+        display: block;
+        flex: none !important;
+        margin: 0 auto !important;
       }
     }
   }
