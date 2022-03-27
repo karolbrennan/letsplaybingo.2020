@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+.flex {
+  display: flex;
+  @media screen and (min-width: 816px){
+    display: block;
+  }
+}
+.row {
+  display: flex; /* flex box */
+  flex-flow: row wrap; /* items are aligned in a row and allow for wrapping */
+  justify-content: space-between; /* horizontal justifcation */
+  align-items: stretch; /* vertical alignment */
+  align-content: stretch; /* alignment when multiple rows */
+  
+  &.vertical {
+    flex-flow: column;
+  }
+  &.vertical-row {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    flex: 1 1 20%;
+  }
+  &.justify-center {
+    justify-content: center;
+  }
+  &.justify-start {
+    justify-content: flex-start;
+    > .col {
+      flex: 0 1;
+      white-space: nowrap;
+    }
+  }
+  &.justify-end {
+    justify-content: flex-end;
+  }
+  &.justify-space-between {
+    justify-content: space-between;
+  }
+  &.align-stretch {
+    align-items: stretch;
+  }
+  &.align-start {
+    align-items: start;
+  }
+  &.align-end {
+    align-items: flex-end;
+  }
+  &.align-center {
+    align-items: center;
+  }
+  &.no-padding,
+  &.no-padding .col {
+    padding: 0;
+  }
+  &.no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  &.set-size {
+    > .col {
+      flex-basis: 0;
+    }
+  }
+
+  &.gutters { /* Add gutters around columns */
+    &-sm > .col {
+      margin: .25rem;
+    }
+    &-md > .col {
+      margin: .5rem;
+    }
+    &-lg > .col {
+      margin: 1rem;
+    }
+  }
+
+  &.three-cols {
+    > .col {
+      width: 33%;
+    }
+  }
+
+  > .col {
+    flex: 1 1 auto; /* grow, shrink and basis */
+
+    &.min-size-100{
+      min-width: 100px;
+    }
+    &.min-size-150{
+      min-width: 150px;
+    }
+    &.min-size-200{
+      min-width: 200px;
+    }
+    &.min-size-225{
+      min-width: 225px;
+    }
+    &.min-size-250{
+      min-width: 250px;
+    }
+    &.min-size-300{
+      min-width: 300px;
+    }
+    &.max-size-250 {
+      max-width: 250px;
+    }
+    &.max-size-400 {
+      max-width: 400px;
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    &.shrink {
+      flex: 0;
+    }
+    &.grow {
+      flex: 1;
+    }
+    &.stretch {
+      align-self: stretch;
+    }
+  }
+}
+
+@media screen and (max-width: 700px){
+  #board .row {
+    display: inline-flex;
+    flex-basis: 20%;
+    flex-flow: column;
+  }
+}
