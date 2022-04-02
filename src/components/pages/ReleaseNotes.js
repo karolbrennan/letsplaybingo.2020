@@ -68,7 +68,7 @@ class ReleaseNotes extends React.Component {
             </ul>
             {/* ---------------------------------- */}
             <h2>
-              <span className="date">4/25/2020</span> | Release: The Pandemic Update! |
+              <span className="date">4/25/2020</span> | The Pandemic Update! |
               <span className="version">v2.1.0</span><span class="tag release">release</span>
             </h2>
             <ul>
