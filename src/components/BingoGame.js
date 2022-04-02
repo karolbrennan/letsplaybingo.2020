@@ -18,7 +18,10 @@ import CallHistory from './subcomponents/CallHistory.js';
 // Utilities
 import { generateBingoBoard, getRandomBingoNumber, getPresetPatterns, getBallDisplay, getLogoBallDisplay, getLanguageText} from '../utils.js';
 
+// Chimes
+import {chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime9, chime10} from '../chimes';
 class BingoGame extends Component {
+  
   constructor(props) {
     super(props);
     // -------------------------- Set properties ----- //
@@ -27,6 +30,18 @@ class BingoGame extends Component {
     this.previousBall = null;
     this.currentBall = null;
     this.interval = null;
+    this.chimes = [
+      {label: 'Chime 1', value: chime1},
+      {label: 'Chime 2', value: chime2},
+      {label: 'Chime 3', value: chime3},
+      {label: 'Chime 4', value: chime4},
+      {label: 'Chime 5', value: chime5},
+      {label: 'Chime 6', value: chime6},
+      {label: 'Chime 7', value: chime7},
+      {label: 'Chime 8', value: chime8},
+      {label: 'Chime 9', value: chime9},
+      {label: 'Chime 10', value: chime10},
+    ]
 
     // Patterns
     this.patternPlaceholder = "Choose a pattern";
@@ -66,9 +81,12 @@ class BingoGame extends Component {
       enableCaller: false,
       skipUnused: true,
       wildBingo: false,
+      wildNumber: null,
       evensOdds: false,
       doubleCall: false,
       extraTalk: true,
+      chime: false,
+      selectedChime: this.chimes[0],
       selectedCaller: null,
       selectedPattern: {
         value: this.patternPlaceholder,
@@ -130,27 +148,6 @@ class BingoGame extends Component {
       }
       this.setState(...gameState);
     }
-    // let skipUnused = localStorage.getItem('lpb-skipUnused');
-    // let enableCaller = localStorage.getItem('lpb-enableCaller');
-    // let wildBingo = localStorage.getItem('lpb-wildBingo');
-    // let evensOdds = localStorage.getItem('lpb-evensOdds');
-    // let doubleCall = localStorage.getItem('lpb-doubleCall');
-    // let extraTalk = localStorage.getItem('lpb-extraTalk');
-    // let callDelay = localStorage.getItem('lpb-callDelay');
-    // let displayBoardOnly = localStorage.getItem('lpb-displayBoardOnly');
-    // let selectedCaller = localStorage.getItem('lpb-selectedCaller');
-
-    // this.setState({
-    //   displayBoardOnly: displayBoardOnly !== undefined ? displayBoardOnly === "true" : false,
-    //   skipUnused: skipUnused !== undefined ? skipUnused === "true" : true,
-    //   enableCaller: enableCaller !== undefined ? enableCaller === "true" : false,
-    //   wildBingo: wildBingo !== undefined ? wildBingo === "true" : false,
-    //   evensOdds: evensOdds !== undefined ? evensOdds === "true" : false,
-    //   doubleCall: doubleCall !== undefined ? doubleCall === "true" : false,
-    //   extraTalk: extraTalk !== undefined ? extraTalk === "true" : false,
-    //   callDelay: callDelay !== undefined ? parseInt(callDelay) : 6000,
-    //   selectedCaller: selectedCaller !== undefined ? JSON.parse(selectedCaller) : null
-    // })
   }
 
   /* ------------------- Speech Synthesis Functions */
@@ -249,7 +246,7 @@ class BingoGame extends Component {
         randomVals.push(randomVal)
       }
     }
-    // console.log("RandomVals", randomVals);
+
     // Start with the Let's Play Bingo call out 
     // (the .say method will not run if caller is not enabled)
     if(this.state.wildBingo){
@@ -297,7 +294,7 @@ class BingoGame extends Component {
   startWildBingo = () => {
     // Variables used for wild bingo
     let randomBingoNumber = getRandomBingoNumber();
-    let wildNumber = randomBingoNumber.toString().substr(-1);
+    let wildNumber = randomBingoNumber.toString().slice(-1);
     let odd = (wildNumber % 2) === 1;
     let wildBall = null;
     let lastBall = null;
@@ -309,6 +306,7 @@ class BingoGame extends Component {
       board[letter].forEach(number => {
         if(!number.called){
           if(number.number === randomBingoNumber){
+            this.setState({wildBall: (letter + ' ' + randomBingoNumber)});
             number.called = true;
             number.active = true;
             wildBall = number;
@@ -317,7 +315,7 @@ class BingoGame extends Component {
             }
             totalBallsCalled++;
             previousCallList.push(number);
-          } else if(!this.state.evensOdds && number.number.toString().substr(-1) === wildNumber){
+          } else if(!this.state.evensOdds && number.number.toString().slice(-1) === wildNumber){
             lastBall = number;
             number.called = true;
             totalBallsCalled++;
@@ -362,7 +360,7 @@ class BingoGame extends Component {
     this.totalBallsCalled = 0;
     this.previousBall = null;
     this.currentBall = null;
-    this.setState({board: generateBingoBoard(), running: false, showResetModal: false, previousCallList: []})
+    this.setState({board: generateBingoBoard(), wildBall: null, running: false, showResetModal: false, previousCallList: []})
   }
 
   callBingoNumber = () => {
@@ -400,7 +398,19 @@ class BingoGame extends Component {
                 callAgain = true;
               } else {
                 // set ball to active since we won't be calling again
-                this.voiceCall(number);
+                if(this.state.chime){
+                  let chime = new Audio(this.state.selectedChime.value);
+                  chime.play();
+                }
+                // if caller is enabled AND chimes are enabled, wait a sec to trigger the voice
+                // else just call the voice right away
+                if(this.state.enableCaller){
+                  setTimeout(() => {
+                    this.voiceCall(number);
+                  },1000)
+                } else {
+                  this.voiceCall(number);
+                }
                 number.active = true;
               }
               updateState = true;
@@ -449,37 +459,33 @@ class BingoGame extends Component {
     switch(gamemode){
       case 'skip-unused':
         this.setState({skipUnused: e.currentTarget.checked});
-        localStorage.setItem('lpb-skipUnused', e.currentTarget.checked);
         break;
       case 'enable-doublecall':
         this.setState({doubleCall: e.currentTarget.checked});
-        localStorage.setItem('lpb-doubleCall', e.currentTarget.checked);
         break;
       case 'enable-extratalk':
         this.setState({extraTalk: e.currentTarget.checked});
-        localStorage.setItem('lpb-extraTalk', e.currentTarget.checked);
         break;
       case 'wild-bingo':
         this.setState({wildBingo: e.currentTarget.checked});
-        localStorage.setItem('lpb-wildBingo', e.currentTarget.checked);
         break;
         case 'evens-odds':
           this.setState({evensOdds: e.currentTarget.checked});
-          localStorage.setItem('lpb-evensOdds', e.currentTarget.checked);
           break;
       case 'enable-caller':
         if(this.synth.speaking){
           this.cancelSpeech();
         }
         this.setState({enableCaller: e.currentTarget.checked});
-        localStorage.setItem('lpb-enableCaller', e.currentTarget.checked);
         break;
       case 'display-board':
         if(e.currentTarget.checked && this.state.running){
           clearInterval(this.interval);
         }
         this.setState({displayBoardOnly: e.currentTarget.checked, running: false});
-        localStorage.setItem('lpb-displayBoardOnly', e.currentTarget.checked);
+        break;
+      case 'enable-chime':
+        this.setState({chime: e.currentTarget.checked});
         break;
       default:
         break;
@@ -627,8 +633,19 @@ class BingoGame extends Component {
   */
   handleChooseCaller = (e) => {
     this.setState({selectedCaller: e})
-    localStorage.setItem('lpb-selectedCaller', JSON.stringify(e));
   };
+
+  /**
+   * Choose Chime Function
+   * Sets the selected chime audible
+   *
+   * @param   {event}  e  Event
+   */
+  handleChooseChime = (e) => {
+    let chime = new Audio(e.value);
+    chime.play();
+    this.setState({selectedChime: e})
+  }
 
   /* ------------------- Display Board Only Mode */
   manualCall = (ball) => {
@@ -717,6 +734,9 @@ class BingoGame extends Component {
             {/* ----------- Current Ball Display ------------- */}
             <div className="col min-size-250 padding-vertical-xxlg padding-horizontal-md notranslate">
               {this.currentBallDisplay}
+              <div data-visibility={this.state.wildBingo ? "show" : "hide"} className="white-text text-center margin-top-lg">
+                <strong>Wild Ball: </strong> {this.state.wildBall}
+              </div>
             </div>
 
             {/* ----------- Gameplay Controls ------------- */}
@@ -856,7 +876,34 @@ class BingoGame extends Component {
 
                   </div>
                 </div>
-                
+
+                {/* ----------- Chime Settings ----------- */}
+                <div className="row no-wrap align-start justify-start margin-top-sm">
+                  <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
+                    <h6 className="no-margin blue-text">Audible Chime:</h6>
+                  </div>
+
+                  <div className="col grow padding-horizontal-lg">
+                    <div className="row no-wrap justify-start">
+                      <div className="col margin-top-sm">
+                        <label className={this.state.chime ? 'toggle checked' : 'toggle'}>
+                          <span className="toggle-span"></span>
+                          <span>Enable</span>
+                          <input type="checkbox" data-gamemode="enable-chime" onChange={this.handleCheckbox} checked={this.state.chime}></input>
+                        </label>
+                      </div>
+                      <div className="col margin-left-xlg margin-top-sm" data-visibility={this.state.chime ? "show" : "hide"}>
+                        <Select 
+                            className="voice-select"
+                            placeholder="Choose Chime"
+                            value={this.state.selectedChime}
+                            onChange={this.handleChooseChime}
+                            options={this.chimes}
+                          />
+                      </div>
+                    </div>
+                  </div>  
+                </div>
               </section>
             </div>
 
