@@ -7,6 +7,19 @@ class ReleaseNotes extends React.Component {
         <div className="row">
           <div className="col padding-xxlg">
             <h1>Release Notes!</h1>
+            <h2><span className="date">4/1/2022</span> | This isn't an April Fool's Joke!</h2>
+            <ul>
+              <li>Added a way to show the full history of balls called (see show full history link below the last 5 calls).</li>
+              <li>Added a confirmation alert before games are reset to prevent accidental resets on click.</li>
+              <li>Added a way for games to be stored locally so if you accidentally refresh or navigate away from the game your game will be stored. Games now can ONLY reset if you explicitly click reset game and confirm.</li>
+              <li>Improved the mobile view so it doesn't look so horrible. This still needs some more work.</li>
+              <li>Added a small reminder of what the Wild Ball is for Wild Bingo game mode (shown below the current ball graphic).</li>
+              <li>Added a new subtle chime option that can be played when balls are called along with 10 chime options! This can also be used in conjunction with the vocal caller as a heads up that a new ball is coming!</li>
+              <li>Upgraded the core technology behind the game and fixed some bugs such as voice failing to set on vocal calls randomly.</li>
+            </ul>
+            <p>I know I haven't updated this in an incredibly long time and this is long over due. The pandemic was rough for my mental health and then I went through 2 pregnancy losses. September of 2021 brought us our little rainbow baby so we have been enjoying watching him grow and discover the world around him! :)</p>
+            <p>Thanks to everyone who has continued to play and reach out to me via email. I never expected this site to end up with so many users. I am so glad it was able to bring people together during the uncertainty in the last 2 years. Thanks for playing, stay safe and healthy!</p>
+            {/* ---------------------------------- */}
             <h2><span className="date">5/17/2020</span> | New game mode, bug fixes</h2>
             <ul>
               <li>Added last 5 numbers display below the game play buttons</li>

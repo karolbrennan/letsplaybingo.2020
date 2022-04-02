@@ -64,15 +64,19 @@ const routing = (
           </div>
         
           <div className="updates col grow padding-xxlg wrap-text">
-            <h3 className="margin-bottom-lg"><span className="date">5/17/2020</span> | Quick updates!</h3>
+            <h3 className="margin-bottom-lg"><span className="date">4/1/2022</span> | This isn't an April Fool's Joke!</h3>
             <ul>
-              <li>Added last 5 numbers display below the game play buttons</li>
-              <li>Added an evens/odds game mode - in order to play this mode wild bingo mode must be on.</li>
-              <li>Fixed a typo within the code that would sometimes break the reset button</li>
-              <li>Fixed an issue where the bingo board was writing out the numbers with letters for certain languages.</li>
+              <li>Added a way to show the full history of balls called (see show full history link below the last 5 calls).</li>
+              <li>Added a confirmation alert before games are reset to prevent accidental resets on click.</li>
+              <li>Added a way for games to be stored locally so if you accidentally refresh or navigate away from the game your game will be stored. Games now can ONLY reset if you explicitly click reset game and confirm.</li>
+              <li>Improved the mobile view so it doesn't look so horrible. This still needs some more work.</li>
+              <li>Added a small reminder of what the Wild Ball is for Wild Bingo game mode (shown below the current ball graphic).</li>
+              <li>Added a new subtle chime option that can be played when balls are called along with 10 chime options! This can also be used in conjunction with the vocal caller as a heads up that a new ball is coming!</li>
+              <li>Upgraded the core technology behind the game and fixed some bugs such as voice failing to set on vocal calls randomly.</li>
             </ul>
-            <p className="medium-text"><strong>Reminder:</strong> if you run into bugs that break gameplay or you prefer the original version you can always play the stable <a href="https://classic.letsplaybingo.io">Let's Play Bingo Classic</a>!</p>
-            
+            <p>I know I haven't updated this in an incredibly long time and this is long over due. The pandemic was rough for my mental health and then I went through 2 pregnancy losses. September of 2021 brought us our little rainbow baby so we have been enjoying watching him grow and discover the world around him! :)</p>
+            <p>Thanks to everyone who has continued to play and reach out to me via email. I never expected this site to end up with so many users. I am so glad it was able to bring people together during the uncertainty in the last 2 years. Thanks for playing, stay safe and healthy!</p>
+
             <h5 className="margin-bottom-lg">Questions, Suggestions, Comments, Reporting Issues</h5>
             <p>Please feel free to reach out via email, on Facebook, Instagram, Twitter, etc with any questions, comments, concerns, etc! I love hearing from players!
             I'm just one developer, but I do my best to respond to everyone who emails me and help them however I can!</p>
@@ -92,7 +96,7 @@ const routing = (
         </div>
         <div className="col text-center">&copy; 2017 - {new Date().getFullYear()} <a href="mailto:hello@letsplaybingo.io">Let's Play Bingo</a></div>
         <div className="col text-right">
-          <Link to="/terms">Terms of Use</Link> | <Link to="/privacy">Cookies &amp; Privacy Policy</Link>
+        <Link to="/releases">Release Notes</Link> | <Link to="/terms">Terms of Use</Link> | <Link to="/privacy">Cookies &amp; Privacy Policy</Link>
         </div>
       </div>
     </footer>
