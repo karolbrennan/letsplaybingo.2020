@@ -4,9 +4,9 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // Styles
 import './sass/dependencies.scss';
 import logo from './images/logo.svg';
-import facebook from './images/icons/facebook.svg';
-import twitter from './images/icons/twitter.svg';
-import instagram from './images/icons/instagram.svg';
+// import facebook from './images/icons/facebook.svg';
+// import twitter from './images/icons/twitter.svg';
+// import instagram from './images/icons/instagram.svg';
 // Custom Components
 import BingoGame from './components/BingoGame.js';
 import About from './components/pages/About.js';
@@ -56,12 +56,12 @@ const routing = (
       <section className="pale-gray-bg">
         <div className="row">
           {/* ----------- Updates ---------------- */}
-          <div className="social col shrink padding-xxlg">
+          {/* <div className="social col shrink padding-xxlg">
             <h3>Let's Get Social!</h3>
             <a href="https://facebook.com/letsplaybingo.io" target="_blank" rel="noopener noreferrer"><img src={facebook} alt="Facebook" className="social-icon" /></a>
             <a href="https://twitter.com/Lets_Play_Bingo" target="_blank" rel="noopener noreferrer"><img src={twitter} alt="Twitter" className="social-icon" /></a>
             <a href="https://www.instagram.com/letsplaybingo.io/" target="_blank" rel="noopener noreferrer"><img src={instagram} alt="Instagram" className="social-icon" /></a>
-          </div>
+          </div> */}
         
           <div className="updates col grow padding-xxlg wrap-text">
             <h3 className="margin-bottom-lg"><span className="date">4/1/2022</span> | This isn't an April Fool's Joke!</h3>
