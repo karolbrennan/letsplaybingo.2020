@@ -1,6 +1,6 @@
 {
   "name": "letsplaybingo-react",
-  "version": "0.1.0",
+  "version": "2.3.0",
   "private": true,
   "dependencies": {
     "ajv": "^8.11.0",

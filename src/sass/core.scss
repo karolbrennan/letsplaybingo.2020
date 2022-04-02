@@ -176,6 +176,33 @@ button {
   }
 }
 
+/* Release Notes */
+span{
+  &.version {
+    color: #aaa;
+    font-family: 'Roboto';
+    font-weight: normal;
+    vertical-align: middle;
+    margin: 0 10px;
+    font-size: 14px;
+  }
+  &.tag {
+    font-size: 12px;
+    font-family: 'Roboto';
+    font-weight: normal;
+    background-color: #ccc;
+    padding: 0.5em 1em;
+    vertical-align: middle;
+    border-radius: 12px;
+    &.release {
+      background-color: #5cb3ee;
+    }
+    &.bugfix {
+      background-color: #ff8b9f;
+    }
+  }
+}
+
 
 /* Mobile */
 
