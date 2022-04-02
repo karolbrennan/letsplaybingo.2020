@@ -83,12 +83,21 @@
   top: 10%;
   left: calc(50% - 25vw);
   width: 50vw;
+  margin: 0 auto;
   display: block;
   text-align: center;
   background: #222222;
   box-shadow: 0 0 5px 1px rgb(0 0 0 / 40%);
   padding: 2rem;
   z-index:999;
+  white-space: pre-wrap;
+  @media screen and (max-width: 700px){
+    top: unset;
+    left: 0;
+    right: 0;
+    margin: -50vh 5%;
+    width: 90%;
+  }
 }
 
 .modal-backdrop {
@@ -100,7 +109,7 @@
   bottom: 0;
   width: 100%;
   overflow: hidden;
-  background: rgba(255,255,255,0.3);
+  background: rgb(0 0 0 / 65%);
 }
 
 .modal-backdrop:hover {
