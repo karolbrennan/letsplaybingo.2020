@@ -19,7 +19,7 @@ import CallHistory from './subcomponents/CallHistory.js';
 import { generateBingoBoard, getRandomBingoNumber, getPresetPatterns, getBallDisplay, getLogoBallDisplay, getLanguageText} from '../utils.js';
 
 // Chimes
-import {chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime9, chime10} from '../chimes';
+import {chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime9, chime10, chime11, chime12, pop1, pop2, pop3, pop4} from '../chimes';
 class BingoGame extends Component {
   
   constructor(props) {
@@ -41,6 +41,12 @@ class BingoGame extends Component {
       {label: 'Chime 8', value: chime8},
       {label: 'Chime 9', value: chime9},
       {label: 'Chime 10', value: chime10},
+      {label: 'Chime 11', value: chime11},
+      {label: 'Chime 12', value: chime12},
+      {label: 'Pop 1', value: pop1},
+      {label: 'Pop 2', value: pop2},
+      {label: 'Pop 3', value: pop3},
+      {label: 'Pop 4', value: pop4}
     ]
 
     // Patterns
