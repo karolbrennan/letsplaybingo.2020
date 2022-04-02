@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/chimes/index.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/chimes/index.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/chimes/index" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/BingoGame.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/BingoGame.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/BingoGame" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/About.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/About.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/About" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/CardGenerator.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/CardGenerator.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/CardGenerator" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Donate.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Donate.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Donate" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Privacy.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Privacy.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Privacy" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/ReleaseNotes.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/ReleaseNotes.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/ReleaseNotes" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Terms.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Terms.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/pages/Terms" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/BingoBoard.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/BingoBoard.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/BingoBoard" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/BingoCard.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/BingoCard.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/BingoCard" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/CallHistory.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/CallHistory.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/CallHistory" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/Footer.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/Footer.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/Footer" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/Pattern.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/Pattern.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/Pattern" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/TellYourFriends.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/TellYourFriends.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/components/subcomponents/TellYourFriends" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/images/index.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/images/index.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/images/index" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/index.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/index.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/index" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/sass/index.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/sass/index.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/sass/index" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/karol/_Projects/letsplaybingo-react/src/utils.js">
+<testcase time="0" name="/Users/karol/_Projects/letsplaybingo-react/src/utils.js" classname="/Users/karol/_Projects/letsplaybingo-react/src/utils" />
+</testsuite>
+</testsuites>
