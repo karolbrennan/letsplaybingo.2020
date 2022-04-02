@@ -398,20 +398,22 @@ class BingoGame extends Component {
                 callAgain = true;
               } else {
                 // set ball to active since we won't be calling again
+                number.active = true;
+
+                //If chime is enabled, play the chime
                 if(this.state.chime){
                   let chime = new Audio(this.state.selectedChime.value);
                   chime.play();
                 }
                 // if caller is enabled AND chimes are enabled, wait a sec to trigger the voice
                 // else just call the voice right away
-                if(this.state.enableCaller){
+                if(this.state.chime && this.state.enableCaller){
                   setTimeout(() => {
                     this.voiceCall(number);
                   },1000)
                 } else {
                   this.voiceCall(number);
                 }
-                number.active = true;
               }
               updateState = true;
               this.totalBallsCalled = totalBallsCalled;
