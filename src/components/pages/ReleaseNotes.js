@@ -28,8 +28,8 @@ class ReleaseNotes extends React.Component {
               <span className="version">v2.1.0</span><span class="tag release">release</span>
               </h2>
             <ul>
-              <li>Added last 5 numbers display below the game play buttons</li>
               <li>Added an evens/odds game mode - in order to play this mode wild bingo mode must be on.</li>
+              <li>Added last 5 numbers display below the game play buttons</li>
               <li>Fixed a typo within the code that would sometimes break the reset button</li>
               <li>Fixed an issue where the bingo board was writing out the numbers with letters for certain languages.</li>
             </ul>
