@@ -48,7 +48,7 @@ class BingoGame extends Component {
     this.presets = getPresetPatterns();
 
     // Speech Synthesis
-    this.speechEnabled = window.hasOwnProperty('speechSynthesis');
+    this.speechEnabled = Object.prototype.hasOwnProperty.call(window,'speechSynthesis');
     this.synth = window.speechSynthesis;
 
     // if speech is enabled, initialize other speech properties
@@ -176,7 +176,7 @@ class BingoGame extends Component {
       let msg = new SpeechSynthesisUtterance();
       msg.text = text;
       msg.volume = 1;
-      if (this.state.hasOwnProperty('selectedCaller')) {
+      if (Object.prototype.hasOwnProperty.call(this.state,'selectedCaller')) {
         this.voices.forEach(caller => {
           if(caller.value === this.state.selectedCaller.value){
             msg.voice = caller;
@@ -394,7 +394,7 @@ class BingoGame extends Component {
               currentBall = number;
               // if we are skipping unused numbers, a pattern has been selected, and this letter is not in use, we want to call a new number when 
               // we are done here.
-              if(this.state.skipUnused && selectedPattern.value !== this.patternPlaceholder && selectedPattern.unusedLetters.indexOf(letter) >= 0){
+              if(this.state.skipUnused && (selectedPattern.value !== this.patternPlaceholder) && (selectedPattern.unusedLetters.indexOf(letter) >= 0)){
                 callAgain = true;
               } else {
                 // set ball to active since we won't be calling again
@@ -451,7 +451,6 @@ class BingoGame extends Component {
       this.interval = setInterval(this.callBingoNumber, e);
     }
     this.setState({delay: e});
-    localStorage.setItem('lpb-callDelay', e);
   }
 
   handleCheckbox = (e) => {
@@ -541,7 +540,7 @@ class BingoGame extends Component {
     const currentCall = this.currentBall;
     if(currentCall){
       let numbers = ["0"];
-      if(currentCall.hasOwnProperty('number')){
+      if(Object.prototype.hasOwnProperty.call(currentCall,'number')){
         numbers = currentCall.number.toString().split('');
       }
       if(numbers.length === 1){
@@ -566,7 +565,7 @@ class BingoGame extends Component {
     const previousCall = this.previousBall;
     if(previousCall){
       let numbers = ["0"];
-      if(previousCall.hasOwnProperty('number')){
+      if(Object.prototype.hasOwnProperty.call(previousCall,'number')){
         numbers = previousCall.number.toString().split('');
       }
       if(numbers.length === 1){
