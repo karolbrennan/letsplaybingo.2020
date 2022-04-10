@@ -914,16 +914,20 @@ class BingoGame extends Component {
               </section>
             </div>
 
-            {/* ----------- Donation ------------- */}
-            <div className="col min-size-300 grow padding-vertical-xxlg padding-horizontal-lg white-text">
-              <h4 className="no-margin">Donate to Let's Play Bingo!</h4>
+            {/* ----------- Mini Updates ------------- */}
+            <div className="col grow padding-vertical-xxlg padding-horizontal-lg white-text">
+              <h4 className="no-margin">Latest Updates</h4>
               <p className="wrap-text small-text">
-                <strong>Let's Play Bingo is the #1 Bingo Caller on Google!</strong><br/>
-                Requiring no downloads, and with no ads, it is completely <strong>free</strong> and always will be.
-                If you'd like to contribute toward operating costs we are accepting <a href="/donate">donations</a> of any amount 
-                via <a href="https://venmo.com/karolbrennan" target="_blank" rel="noopener noreferrer">Venmo</a> or <a href="https://paypal.me/karolbrennan" target="_blank" rel="noopener noreferrer">Paypal</a>!
+                Let's Play Bingo was last updated on <strong>4/10/2022</strong><br/>
+                <ul className="padding-left-xlg">
+                  <li>Full call history added</li>
+                  <li>Reset game confirmation</li>
+                  <li>Local storage of games</li>
+                  <li>Audible chime option for when balls are called</li>
+                </ul>
               </p>
-              <p><a href="/donate" className="button">Donate Now</a></p>
+              <p className="x-small-text">See the full <a href="/releases">Release Notes</a>!</p>
+              <p className="x-small-text"><strong>Need Help?</strong> check out the FAQs and <a href="/help">get help</a>.</p>
             </div>
 
           </div>
