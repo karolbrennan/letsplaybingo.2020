@@ -1,0 +1,12 @@
+/* Animations */
+@keyframes blink {
+  0% {
+    color: white;
+  }
+  50% {
+    color: #3c3c3c;
+  }
+  100% {
+    color: white;
+  }
+}

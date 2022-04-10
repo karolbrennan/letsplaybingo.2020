@@ -1,0 +1,80 @@
+
+/* Colors */
+.red-bg {
+  background-color: red !important;
+}
+.dark-red-bg {
+  background-color: #7b0000 !important;
+}
+.dark-blue-bg {
+  background-color: #00487b !important;
+}
+.white-bg {
+  background-color: white !important;
+}
+.dark-bg {
+  background-color: #222222 !important;
+}
+.dark-gray-bg {
+  background: #1b1b1b !important;
+}
+.pale-gray-bg {
+  background: #efefef;
+}
+.extra-pale-gray-bg {
+  background: #f9f9f9;
+}
+.red-text {
+  color: red !important;
+}
+.white-text {
+  color: white !important;
+}
+.gray-text {
+  color: #888888 !important;
+}
+.blue-text {
+  color: #1396d3 !important;
+}
+.yellow-text {
+  color: #ffca28 !important;
+}
+
+[data-color="red"] {
+  background-color: red;
+}
+[data-color="orange"] {
+  background-color: orange;
+  .card-letter { color: black !important; }
+}
+[data-color="yellow"] {
+  background-color: yellow;
+  .card-letter { color: black !important; }
+}
+[data-color="green"] {
+  background-color: green;
+}
+[data-color="blue"] {
+  background-color: blue;
+}
+[data-color="purple"] {
+  background-color: purple;
+}
+[data-color="aqua"] {
+  background-color: aqua;
+  .card-letter { color: black !important; }
+}
+[data-color="brown"] {
+  background-color: brown;
+}
+[data-color="gray"] {
+  background-color: gray;
+  .card-letter { color: black !important; }
+}
+[data-color="pink"] {
+  background-color: pink;
+  .card-letter { color: black !important; }
+}
+[data-color="dk-gray"] {
+  background-color: rgb(53, 53, 53);
+}

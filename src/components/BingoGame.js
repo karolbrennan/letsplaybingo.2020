@@ -775,10 +775,10 @@ class BingoGame extends Component {
                 {/* ----------- Autoplay Settings ---------- */}
                 <div className="row no-wrap align-center justify-start">
                   <div className="col shrink min-size-150 padding-horizontal-lg">
-                    <h6 className="no-margin blue-text">Autoplay Speed:</h6>
+                    <h6>Autoplay Speed:</h6>
                   </div>
                   <div className="col shrink text-center padding-vertical-lg padding-horizontal-lg">
-                    <div className="row no-wrap align-center" data-disabled={this.state.displayBoardOnly}>
+                    <div className="row no-wrap align-center slider" data-disabled={this.state.displayBoardOnly}>
                       <div className="col shrink padding-right-lg white-text">Slower</div>
                       <div className="col"><Slider min={3500} max={30000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
                       <div className="col shrink padding-left-lg white-text">Faster</div>
@@ -789,7 +789,7 @@ class BingoGame extends Component {
                 {/* ----------- Gameplay Settings ---------- */}
                 <div className="row align-top justify-start">
                   <div className="col shrink min-size-150 padding-horizontal-lg padding-vertical-md">
-                    <h6 className="no-margin blue-text">Gameplay Settings:</h6>
+                    <h6>Gameplay Settings:</h6>
                   </div>
                   <div className="col grow min-size-150 padding-horizontal-lg">
                     <div className="row">
@@ -832,7 +832,7 @@ class BingoGame extends Component {
                 <div className="row no-wrap align-start justify-start margin-top-sm">
                   
                   <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
-                    <h6 className="no-margin blue-text">Bingo Caller:</h6>
+                    <h6>Bingo Caller:</h6>
                   </div>
 
                   <div className="col grow padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
@@ -847,14 +847,14 @@ class BingoGame extends Component {
                           <input type="checkbox" data-gamemode="enable-caller" onChange={this.handleCheckbox} checked={this.state.enableCaller}></input>
                         </label>
                       </div>
-                      <div className="col shrink padding-horizontal-lg" data-visibility={this.state.enableCaller ? "show" : "hide"}>
+                      <div className="col shrink padding-horizontal-lg mobile-no-horizontal-padding" data-visibility={this.state.enableCaller ? "show" : "hide"}>
                         <label className={this.state.doubleCall ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Double Call</span>
                           <input type="checkbox" data-gamemode="enable-doublecall" onChange={this.handleCheckbox} checked={this.state.doubleCall}></input>
                         </label>
                       </div>
-                      <div className="col shrink padding-horizontal-lg" data-visibility={this.state.enableCaller ? "show" : "hide"}>
+                      <div className="col shrink padding-horizontal-lg mobile-no-horizontal-padding" data-visibility={this.state.enableCaller ? "show" : "hide"}>
                         <label className={this.state.extraTalk ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Chatty</span>
@@ -887,7 +887,7 @@ class BingoGame extends Component {
                 {/* ----------- Chime Settings ----------- */}
                 <div className="row no-wrap align-start justify-start margin-top-sm">
                   <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
-                    <h6 className="no-margin blue-text">Audible Chime:</h6>
+                    <h6>Audible Chime:</h6>
                   </div>
 
                   <div className="col grow padding-horizontal-lg">

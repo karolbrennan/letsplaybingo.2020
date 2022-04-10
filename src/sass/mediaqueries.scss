@@ -1,0 +1,89 @@
+/* Mobile to Portrait Tablet */
+@media screen and (max-width: 700px){
+  // Header
+  header .row {
+    .col:nth-of-type(2) {
+      order: 2;
+    }
+    .col:last-child {
+      order: 1;
+    }
+  }
+
+  // Menu
+  .menu li a {
+    font-size: 18px;
+    padding: 0.25em;
+  }
+
+  // Slider
+  .slider {
+    flex: none;
+    display: block;
+    .col {
+      width: 55%;
+      vertical-align: middle;
+      flex: none !important;
+      display: inline-block !important;
+      &.shrink {
+        flex: none !important;
+        width: 15%;
+        margin: 0 !important;
+      }
+    }
+  }
+
+  // Social icons
+  .social.col {
+    display: block;
+    width: 100%;
+    flex: none !important;
+  }
+
+  // Footer
+  footer .row {
+    flex-flow: column;
+    text-align: center;
+    > .col {
+      width: 100% !important;
+      text-align: center;
+      padding: 0.5em;
+    }
+  }
+
+  // Board display
+  .board-block {
+    > .row {
+      display: block;
+    }
+    .board-side, 
+    .pattern-side {
+      #board {
+        padding: 1rem;
+        display: block !important;
+        flex-flow: unset;
+        align-self: unset;
+        justify-content: unset;
+        width: 350px;
+        max-width: 100%;
+        margin: 0 auto;
+        .row {
+          display: inline-block;
+          width: 20%;
+        }
+      }
+      #bingopattern {
+        width: 175px;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+      &.min-size-200 {
+        width: 250px;
+        max-width: 100%;
+        display: block;
+        flex: none !important;
+        margin: 0 auto !important;
+      }
+    }
+  }
+}

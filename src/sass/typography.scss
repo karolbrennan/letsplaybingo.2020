@@ -1,0 +1,25 @@
+body, html {
+  font-family: var(--heading-font);
+  font-size: 16px;
+}
+
+ul, ol, p {
+  font-size: 1.25rem;
+  font-family: var(--body-font);
+}
+
+ul p,
+ol p {
+  font-size: 0.8em;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { 
+  font-size: 1rem; 
+  margin: 0; 
+  color: var(--secondary-color);
+}

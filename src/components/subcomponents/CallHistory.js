@@ -60,7 +60,7 @@ class CallHistory extends React.Component {
       if(last5Calls.length > 0){
         return (
           <div>
-            <h6 className="blue-text text-center margin-top-xlg margin-bottom-md">Last 5 Calls</h6>
+            <h6 className="text-center margin-top-xlg margin-bottom-md">Last 5 Calls</h6>
             <div className="previous-calls notranslate">
               {last5Calls.map(call => {
                 return (

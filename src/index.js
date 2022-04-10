@@ -2,20 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 // Styles
-import './sass/dependencies.scss';
+import './sass/main.scss';
+// Images
 import logo from './images/logo.svg';
-// import facebook from './images/icons/facebook.svg';
-// import twitter from './images/icons/twitter.svg';
-// import instagram from './images/icons/instagram.svg';
 // Custom Components
-import BingoGame from './components/BingoGame.js';
 import About from './components/pages/About.js';
-import Donate from './components/pages/Donate.js';
+import BingoGame from './components/BingoGame.js';
 import CardGenerator from './components/pages/CardGenerator.js';
-import Terms from './components/pages/Terms.js';
+import Donate from './components/pages/Donate.js';
 import Privacy from './components/pages/Privacy.js';
-import TellYourFriends from './components/subcomponents/TellYourFriends.js';
 import ReleaseNotes from './components/pages/ReleaseNotes.js';
+import Terms from './components/pages/Terms.js';
+import TellYourFriends from './components/subcomponents/TellYourFriends.js';
 
 const routing = (
   <Router>
@@ -25,7 +23,7 @@ const routing = (
           <Link to="/"><img src={logo} alt="Let's Play Bingo!" className="logo" /></Link>
         </div>
         <div className="col grow padding-md no-text-wrap text-right">
-          <ul className="menu">
+          <ul className='menu'>
             <li><Link to="/">Play</Link></li>
             <li><a href="https://classic.letsplaybingo.io">Classic</a></li>
             <li><Link to="/about">About</Link></li>
