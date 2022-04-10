@@ -60,6 +60,7 @@ class Help extends React.Component {
             <p>Choose what settings you wish to play with. You can learn more about game settings by reviewing the <a href="#game-modes">game modes</a> section.</p>
             <p>Use the <a href="/generator">card generation tool</a> to generate and print out bingo cards to distribute among your players. If playing virtually, you can have your players visit the site directly to get cards for themselves.</p>
             <p>Once players have their cards, the caller should share their screen so all players can see the board. Consider mirroring your screen to a television or other display by using a device such as ChromeCast, AppleTV, Roku, etc.</p>
+            <p>If playing virtually, use the screen share option available in your meeting application of choice. Examples of apps to use include Zoom, Google Meet, Microsoft Teams, Skype, etc. Please refer to the application's documentation for how to share your screen in that particular app.</p>
 
             <section className="margin-top-xxlg padding-top-sm pale-gray-bg"></section>
 
