@@ -87,7 +87,6 @@ class BingoGame extends Component {
       enableCaller: false,
       skipUnused: true,
       wildBingo: false,
-      wildNumber: null,
       evensOdds: false,
       doubleCall: false,
       extraTalk: true,
@@ -136,6 +135,10 @@ class BingoGame extends Component {
       currentBall: this.currentBall,
       interval: this.interval
     }
+    // eslint-disable-next-line 
+    console.log("GameData", JSON.parse(JSON.stringify(gameData)));
+    // eslint-disable-next-line 
+    console.log("gameState", JSON.parse(JSON.stringify(this.state)));
     localStorage.setItem('lpb-gameData', JSON.stringify(gameData));
     localStorage.setItem('lpb-gameState', JSON.stringify(this.state));
   }
@@ -361,6 +364,10 @@ class BingoGame extends Component {
   }
 
   confirmResetGame = () => {
+    // Clear out local storage
+    localStorage.removeItem('lpb-gameData');
+    localStorage.removeItem('lpb-gameState');
+    // reset everything with the board
     clearInterval(this.interval);
     this.cancelSpeech();
     this.totalBallsCalled = 0;
@@ -693,12 +700,11 @@ class BingoGame extends Component {
   render(){
     return(
       <div className="dark-bg light-links">
-        <section className="dark-blue-bg padding-sm"></section>
         {/* ----------- Bingo Board ------------- */}
         <section className="board-block">
-          <div className="row no-wrap align-stretch">
+          <div className="container row no-wrap align-stretch">
             {/* ------ Board ------- */}
-            <div className="col pattern-side shrink min-size-200 padding-xlg">
+            <div className="col pattern-side shrink padding-xlg">
               {/* -------- Digital Displays --------- */}
               <div className="row no-wrap margin-bottom-lg justify-space-between white-text">
                 <div className="col text-center margin-sm">
@@ -730,17 +736,17 @@ class BingoGame extends Component {
           </div>
         </section>
 
-        <section className="dark-blue-bg padding-sm"></section>
-
 
         {/* ----------- BOTTOM SECTION ------------- */}
-        
         <section className="game-controls dark-bg">
-          <div className="row justify-start align-start">
+          <div className="container row justify-start align-start">
 
             {/* ----------- Current Ball Display ------------- */}
             <div className="col min-size-250 padding-vertical-xxlg padding-horizontal-md notranslate">
               {this.currentBallDisplay}
+
+              <CallHistory calledBalls={this.state.previousCallList}></CallHistory>
+
               <div data-visibility={this.state.wildBingo ? "show" : "hide"} className="white-text text-center margin-top-lg">
                 <strong>Wild Ball: </strong> {this.state.wildBall}
               </div>
@@ -764,7 +770,6 @@ class BingoGame extends Component {
                   Reset Board
                 </button>
               </section>
-              <CallHistory calledBalls={this.state.previousCallList}></CallHistory>
               {this.resetConfirmationModalDisplay}
             </div>
 
@@ -772,20 +777,6 @@ class BingoGame extends Component {
             <div className="col grow no-wrap padding-vertical-xxlg padding-horizontal-md white-text">
               <section className="game-settings">
 
-                {/* ----------- Autoplay Settings ---------- */}
-                <div className="row no-wrap align-center justify-start">
-                  <div className="col shrink min-size-150 padding-horizontal-lg">
-                    <h6>Autoplay Speed:</h6>
-                  </div>
-                  <div className="col shrink text-center padding-vertical-lg padding-horizontal-lg">
-                    <div className="row no-wrap align-center slider" data-disabled={this.state.displayBoardOnly}>
-                      <div className="col shrink padding-right-lg white-text">Slower</div>
-                      <div className="col"><Slider min={3500} max={30000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
-                      <div className="col shrink padding-left-lg white-text">Faster</div>
-                    </div>
-                  </div>
-                </div>
-              
                 {/* ----------- Gameplay Settings ---------- */}
                 <div className="row align-top justify-start">
                   <div className="col shrink min-size-150 padding-horizontal-lg padding-vertical-md">
@@ -793,14 +784,30 @@ class BingoGame extends Component {
                   </div>
                   <div className="col grow min-size-150 padding-horizontal-lg">
                     <div className="row">
-                      <div className="col padding-right-lg grow" data-disabled={this.totalBallsCalled > 0}>
+                      <div className="col grow" data-disabled={this.totalBallsCalled > 0}>
                         <label className={this.state.displayBoardOnly ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Manual Calling Mode</span>
                           <input type="checkbox" data-gamemode="display-board" onChange={this.handleCheckbox} checked={this.state.displayBoardOnly}></input>
                         </label>
                       </div>
-                      <div className="col" data-disabled={this.state.displayBoardOnly}>
+                    </div>
+                    <div className="row justify-start" data-visibility={this.state.displayBoardOnly === false ? "show" : "hide"}>
+                      <div className="col padding-right-xlg" data-disabled={this.totalBallsCalled > 0}>
+                        <label className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
+                          <span className="toggle-span"></span>
+                          <span>Wild Bingo</span>
+                          <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
+                        </label>
+                      </div>
+                      <div className="col padding-right-xlg" data-disabled={!this.state.wildBingo || this.totalBallsCalled > 0}>
+                        <label className={this.state.evensOdds ? 'toggle checked' : 'toggle'}>
+                          <span className="toggle-span"></span>
+                          <span>Evens/Odds</span>
+                          <input type="checkbox" data-gamemode="evens-odds" onChange={this.handleCheckbox} checked={this.state.evensOdds}></input>
+                        </label>
+                      </div>
+                      <div className="col padding-right-xlg">
                         <label className={this.state.skipUnused ? 'toggle checked' : 'toggle'}>
                           <span className="toggle-span"></span>
                           <span>Skip Unused Numbers</span>
@@ -808,126 +815,133 @@ class BingoGame extends Component {
                         </label>
                       </div>
                     </div>
-                    <div className="row justify-start">
-                      <div className="col padding-right-lg" data-disabled={this.state.displayBoardOnly || this.totalBallsCalled > 0}>
-                        <label className={this.state.wildBingo ? 'toggle checked' : 'toggle'}>
-                          <span className="toggle-span"></span>
-                          <span>Wild Bingo</span>
-                          <input type="checkbox" data-gamemode="wild-bingo" onChange={this.handleCheckbox} checked={this.state.wildBingo}></input>
-                        </label>
-                      </div>
-                      <div className="col" data-disabled={!this.state.wildBingo || this.state.displayBoardOnly || this.totalBallsCalled > 0}>
-                        <label className={this.state.evensOdds ? 'toggle checked' : 'toggle'}>
-                          <span className="toggle-span"></span>
-                          <span>Evens/Odds</span>
-                          <input type="checkbox" data-gamemode="evens-odds" onChange={this.handleCheckbox} checked={this.state.evensOdds}></input>
-                        </label>
-                      </div>
-                    </div>
                   </div>
                 </div>
 
+                {/* ----------- Settings when using generation ---------- */}
+                <div  data-visibility={this.state.displayBoardOnly === false ? "show" : "hide"}>
 
-                {/* ----------- Caller Settings ---------- */}
-                <div className="row no-wrap align-start justify-start margin-top-sm">
-                  
-                  <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
-                    <h6>Bingo Caller:</h6>
-                  </div>
-
-                  <div className="col grow padding-horizontal-lg" data-disabled={this.state.displayBoardOnly}>
-                    {/* Disabled if manual calling mode is on */}
-
-                    <div className="row no-wrap justify-start" data-visibility={this.speechEnabled === true ? "show" : "hide"}>
-                      {/* Only shown if speech is enabled by the browser */}
-                      <div className="col shrink">
-                        <label className={this.state.enableCaller ? 'toggle checked' : 'toggle'}>
-                          <span className="toggle-span"></span>
-                          <span>Enable</span>
-                          <input type="checkbox" data-gamemode="enable-caller" onChange={this.handleCheckbox} checked={this.state.enableCaller}></input>
-                        </label>
-                      </div>
-                      <div className="col shrink padding-horizontal-lg mobile-no-horizontal-padding" data-visibility={this.state.enableCaller ? "show" : "hide"}>
-                        <label className={this.state.doubleCall ? 'toggle checked' : 'toggle'}>
-                          <span className="toggle-span"></span>
-                          <span>Double Call</span>
-                          <input type="checkbox" data-gamemode="enable-doublecall" onChange={this.handleCheckbox} checked={this.state.doubleCall}></input>
-                        </label>
-                      </div>
-                      <div className="col shrink padding-horizontal-lg mobile-no-horizontal-padding" data-visibility={this.state.enableCaller ? "show" : "hide"}>
-                        <label className={this.state.extraTalk ? 'toggle checked' : 'toggle'}>
-                          <span className="toggle-span"></span>
-                          <span>Chatty</span>
-                          <input type="checkbox" data-gamemode="enable-extratalk" onChange={this.handleCheckbox} checked={this.state.extraTalk}></input>
-                        </label>
+                  {/* ----------- Autoplay Settings ---------- */}
+                  <div className="row no-wrap align-center justify-start">
+                    <div className="col shrink min-size-150 padding-horizontal-lg">
+                      <h6>Autoplay Speed:</h6>
+                    </div>
+                    <div className="col shrink text-center padding-vertical-lg padding-horizontal-lg">
+                      <div className="row no-wrap align-center slider" data-disabled={this.state.displayBoardOnly}>
+                        <div className="col shrink padding-right-lg white-text">Slower</div>
+                        <div className="col"><Slider min={3500} max={30000} step={500} value={this.state.delay} onChange={this.handleDelayChange} reverse={true} /></div>
+                        <div className="col shrink padding-left-lg white-text">Faster</div>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="row no-wrap" data-visibility={this.speechEnabled === true ? "hide" : "show"}>
+                  {/* ----------- Caller ---------- */}
+                  <div className="row align-start justify-start">
+                    <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
+                      <h6>Audible Caller:</h6>
+                    </div>
+                    <div className="col grow min-size-150 padding-horizontal-lg">
+                      {/* Disabled if manual calling mode is on */}
+                      <div className="row no-wrap justify-start" data-visibility={this.speechEnabled === true ? "show" : "hide"}>
+                        {/* Only shown if speech is enabled by the browser */}
+                        <div className="col shrink padding-right-xlg">
+                          <label className={this.state.enableCaller ? 'toggle checked' : 'toggle'}>
+                            <span className="toggle-span"></span>
+                            <span>Enable</span>
+                            <input type="checkbox" data-gamemode="enable-caller" onChange={this.handleCheckbox} checked={this.state.enableCaller}></input>
+                          </label>
+                        </div>
+                        <div className="col shrink padding-right-xlg mobile-no-horizontal-padding" data-visibility={this.state.enableCaller ? "show" : "hide"}>
+                          <label className={this.state.doubleCall ? 'toggle checked' : 'toggle'}>
+                            <span className="toggle-span"></span>
+                            <span>Double Call</span>
+                            <input type="checkbox" data-gamemode="enable-doublecall" onChange={this.handleCheckbox} checked={this.state.doubleCall}></input>
+                          </label>
+                        </div>
+                        <div className="col shrink padding-right-xlg mobile-no-horizontal-padding" data-visibility={this.state.enableCaller ? "show" : "hide"}>
+                          <label className={this.state.extraTalk ? 'toggle checked' : 'toggle'}>
+                            <span className="toggle-span"></span>
+                            <span>Chatty</span>
+                            <input type="checkbox" data-gamemode="enable-extratalk" onChange={this.handleCheckbox} checked={this.state.extraTalk}></input>
+                          </label>
+                        </div>
+                      </div>
+
                       {/* Only shown if speech is DISABLED by the browser */}
-                      <div className="col grow">Sorry, but your browser does not support the audible bingo caller.</div>
+                      <div className="row no-wrap" data-visibility={this.speechEnabled === true ? "hide" : "show"}>
+                        <div className="col grow">Sorry, but your browser does not support the audible bingo caller.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ----------- Caller Selection ----------- */}
+                  <div className="row align-start justify-start" data-visibility={this.speechEnabled === true && this.state.enableCaller === true ? "show" : "hide"}>
+                    <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
+                      <h6>Caller Selection:</h6>
+                    </div>
+                    <div className="col grow min-size-150 padding-horizontal-lg">
+                      <Select 
+                        className="select-input"
+                        placeholder="Choose Caller"
+                        menuPlacement="auto"
+                        value={this.state.selectedCaller}
+                        onChange={this.handleChooseCaller}
+                        options={this.voiceOptions}
+                      />
+                    </div>
+                  </div>
+
+                  {/* ----------- Chime ----------- */}
+                  <div className="row no-wrap align-start justify-start">
+                    <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
+                      <h6>Audible Chime:</h6>
                     </div>
 
-                    <div className="row no-wrap" data-visibility={this.speechEnabled === true && this.state.enableCaller === true ? "show" : "hide"}>
-                      {/* Only shown if speech is enabled by the browser AND caller is enabled by the user */}
-                      <div className="col grow margin-top-sm" data-disabled={this.state.displayBoardOnly}>
-                        <Select 
-                          className="voice-select"
-                          placeholder="Choose Caller"
-                          value={this.state.selectedCaller}
-                          onChange={this.handleChooseCaller}
-                          options={this.voiceOptions}
+                    <div className="col grow padding-horizontal-lg">
+                      <label className={this.state.chime ? 'toggle checked' : 'toggle'}>
+                        <span className="toggle-span"></span>
+                        <span>Enable</span>
+                        <input type="checkbox" data-gamemode="enable-chime" onChange={this.handleCheckbox} checked={this.state.chime}></input>
+                      </label>
+                    </div>  
+                  </div>
+
+                  {/* ----------- Chime Selection ----------- */}
+                  <div className="row no-wrap align-start justify-start"  data-visibility={this.state.chime ? "show" : "hide"}>
+                    <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
+                      <h6>Chime Selection:</h6>
+                    </div>
+
+                    <div className="col grow padding-horizontal-lg">
+                      <Select 
+                          className="select-input"
+                          placeholder="Choose Chime"
+                          menuPlacement="auto"
+                          value={this.state.selectedChime}
+                          onChange={this.handleChooseChime}
+                          options={this.chimes}
                         />
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                {/* ----------- Chime Settings ----------- */}
-                <div className="row no-wrap align-start justify-start margin-top-sm">
-                  <div className="col shrink min-size-150 padding-vertical-md padding-horizontal-lg">
-                    <h6>Audible Chime:</h6>
+                    </div>  
                   </div>
 
-                  <div className="col grow padding-horizontal-lg">
-                    <div className="row no-wrap justify-start">
-                      <div className="col margin-top-sm">
-                        <label className={this.state.chime ? 'toggle checked' : 'toggle'}>
-                          <span className="toggle-span"></span>
-                          <span>Enable</span>
-                          <input type="checkbox" data-gamemode="enable-chime" onChange={this.handleCheckbox} checked={this.state.chime}></input>
-                        </label>
-                      </div>
-                      <div className="col margin-left-xlg margin-top-sm" data-visibility={this.state.chime ? "show" : "hide"}>
-                        <Select 
-                            className="voice-select"
-                            placeholder="Choose Chime"
-                            value={this.state.selectedChime}
-                            onChange={this.handleChooseChime}
-                            options={this.chimes}
-                          />
-                      </div>
-                    </div>
-                  </div>  
                 </div>
               </section>
             </div>
 
+
             {/* ----------- Mini Updates ------------- */}
-            <div className="col grow padding-vertical-xxlg padding-horizontal-lg white-text">
-              <h4 className="no-margin">Latest Updates</h4>
+            <div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
+              <h4 className="margin-vertical-md">Latest Updates</h4>
               <p className="wrap-text small-text">
-                Let's Play Bingo was last updated on <strong>4/10/2022</strong><br/>
-                <ul className="padding-left-xlg">
-                  <li>Full call history added</li>
-                  <li>Reset game confirmation</li>
-                  <li>Local storage of games</li>
-                  <li>Audible chime option for when balls are called</li>
-                </ul>
+                Let's Play Bingo was last updated on <strong>4/10/2022</strong>
               </p>
+              <ul className="small-text padding-left-xlg">
+                <li>Full call history added</li>
+                <li>Reset game confirmation</li>
+                <li>Local storage of games</li>
+                <li>Audible chime option for when balls are called</li>
+              </ul>
               <p className="x-small-text">See the full <a href="/releases">Release Notes</a>!</p>
-              <p className="x-small-text"><strong>Need Help?</strong> check out the FAQs and <a href="/help">get help</a>.</p>
             </div>
 
           </div>

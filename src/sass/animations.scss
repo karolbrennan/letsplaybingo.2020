@@ -10,3 +10,15 @@
     color: white;
   }
 }
+
+@keyframes bounce {
+  0% {
+    bottom: 2rem;
+  }
+  50% {
+    bottom: 2.5rem;
+  }
+  100% {
+    bottom: 2rem;
+  }
+}

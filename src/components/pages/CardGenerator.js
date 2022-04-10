@@ -144,8 +144,8 @@ class CardGenerator extends React.Component {
   render() {
     return(
       <section className={this.sectionClasses}>
-        <div className="row no-print">
-          <div className="col padding-xxlg">
+        <div className="container row no-print">
+          <div className="col padding-vertical-xxlg">
             <h1>Card Generator</h1>
             <p>Generate your own cards to print for playing at home! Simply choose a number and a color and click Generate!</p>
             <p className="medium-text">Printing your cards will default to color and 4 cards per page. Use the options below to change these settings. <br/>
@@ -195,8 +195,8 @@ class CardGenerator extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row card-block justify-center margin-vertical-lg">
-            <div className="col">
+        <div className="row card-block justify-center margin-vertical-lg padding-bottom-xxlg">
+            <div className="col text-center">
               {this.state.generatedCards.map((card, index) => {
                   return( 
                     <div data-color={this.state.blackWhite ? 'dk-gray' : this.state.color} className="card" key={"a" + index}>

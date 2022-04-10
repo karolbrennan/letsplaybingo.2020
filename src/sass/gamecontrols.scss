@@ -105,44 +105,52 @@
     flex-flow: row wrap;
     justify-content: center;
     text-align: center;
+    margin: 0 auto;
     div {
       display: flex;
       justify-content: center;
       align-items: center;
       align-content: stretch;
-      flex: 0 0 18%;
+      flex: 0 0 34px;
       margin: 0 1%;
       border-radius: 100%;
       height: 2rem;
-      border: 2px solid #ffffff;
+      padding: 3px;
+      box-sizing: content-box;
       
       span {
         color: white;
       }
 
       &.blue {
-        border-color: #0000FF;
+        background-color: #0000FF;
       }
   
       &.red {
-        border-color: #FF0000;
+        background-color: #FF0000;
       }
   
       &.white {
-        border-color: #FFFFFF;
+        background-color: #FFFFFF;
+        span {
+          color: #222222;
+        }
       }
   
       &.green {
-        border-color: #008000;
+        background-color: #008000;
       }
   
       &.yellow {
-        border-color: #f7bd00;
+        background-color: #f7bd00;
+        span {
+          color: #222222;
+        }
       }
     }
   }
   .modal .previous-calls {
-    justify-content: start;
+    max-width: 300px;
     div {
       flex: 0 0 32px;
       margin: 5px;
@@ -164,8 +172,8 @@
     span {
       line-height: 2.5;
     }
-    .voice-select {
-      margin: 10px auto;
+    .select-input {
+      margin: 10px 0;
       width: 100%;
       min-width: 200px;
       max-width: 360px;

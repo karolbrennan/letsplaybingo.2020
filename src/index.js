@@ -19,18 +19,18 @@ import Terms from './components/pages/Terms.js';
 const routing = (
   <Router>
     <header>
-      <div className="row align-center">
+      <div className="container row align-center">
         <div className="col shrink">
           <Link to="/"><img src={logo} alt="Let's Play Bingo!" className="logo" /></Link>
         </div>
         <div className="col grow padding-md no-text-wrap text-right">
           <ul className='menu'>
             <li><Link to="/">Play</Link></li>
-            <li><a href="https://classic.letsplaybingo.io">Classic</a></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/donate">Donate</Link></li>
             <li><Link to="/generator">Card Generator</Link></li>
+            <li><a href="https://classic.letsplaybingo.io">Classic</a></li>
+            {/* <li><Link to="/about">About</Link></li> */}
             <li><Link to="/help">Help</Link></li>
+            <li><Link to="/donate">Donate</Link></li>
           </ul>
         </div>
         <div className="col shrink text-right margin-left-lg">
@@ -38,19 +38,18 @@ const routing = (
         </div>
       </div>
     </header>
-    <div>
-      <Route exact path="/" component={BingoGame} />
-      <Route path="/about" component={About} />
-      <Route path="/donate" component={Donate} />
-      <Route path="/generator" component={CardGenerator} />
-      <Route path="/terms" component={Terms} />
-      <Route path="/privacy" component={Privacy} />
-      <Route path="/releases" component={ReleaseNotes} />
-      <Route path="/help" component={Help} />
-    </div>
+    
+    <Route exact path="/" component={BingoGame} />
+    <Route path="/about" component={About} />
+    <Route path="/donate" component={Donate} />
+    <Route path="/generator" component={CardGenerator} />
+    <Route path="/terms" component={Terms} />
+    <Route path="/privacy" component={Privacy} />
+    <Route path="/releases" component={ReleaseNotes} />
+    <Route path="/help" component={Help} />
     
     <footer>
-      <div className="row three-cols align-center">
+      <div className="container row three-cols align-center">
         <div className="col">
           <div className="addthis_inline_share_toolbox"></div>
         </div>

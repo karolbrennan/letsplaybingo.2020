@@ -31,7 +31,7 @@ class CallHistory extends React.Component {
             <div className="previous-calls notranslate">
               {ballHistory.map(call => {
                 return (
-                  <div key={call.number} className={call.color}><span>{call.number}</span></div>
+                  <div key={call.number} className={call.color}><span>{call.letter}{call.number}</span></div>
                 )
               })}
             </div>
@@ -59,15 +59,17 @@ class CallHistory extends React.Component {
       let last5Calls = previousCallList.reverse().slice(1,6);
       if(last5Calls.length > 0){
         return (
-          <div>
-            <h6 className="text-center margin-top-xlg margin-bottom-md">Last 5 Calls</h6>
-            <div className="previous-calls notranslate">
+          <div className="margin-vertical-xlg">
+            <h6 className="text-center">Last 5 Calls</h6>
+            <div className="previous-calls padding-vertical-xlg notranslate">
               {last5Calls.map(call => {
                 return (
-                  <div key={call.number} className={call.color}><span>{call.number}</span></div>
+                  <div key={call.number} className={call.color}><span>{call.letter}{call.number}</span></div>
                 )
               })}
             </div>
+            <button className="textOnly x-small-text" onClick={() => {this.setState({showFullCallHistory:true})}}>show full history</button>
+            {this.fullHistoryDisplay}
           </div>
         );
       } else {
@@ -83,10 +85,6 @@ class CallHistory extends React.Component {
       return (
         <div className="text-center">
           {this.previousCallListDisplay}
-          <p>
-            <button className="textOnly x-small-text" onClick={() => {this.setState({showFullCallHistory:true})}}>show full history</button>
-          </p>
-          {this.fullHistoryDisplay}
         </div>
       );
     } else {

@@ -12,6 +12,12 @@ body, html {
 header, footer {
   padding: 1rem;
 }
+header {
+  border-bottom: 5px solid var(--primary-color);
+}
+footer {
+  border-top: 5px solid var(--primary-color);
+}
 
 /* Menu */
 .menu {

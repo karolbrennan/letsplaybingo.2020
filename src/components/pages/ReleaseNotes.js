@@ -10,7 +10,7 @@ class ReleaseNotes extends React.Component {
 
             <h2>
               <span className="date">4/10/2022</span> | Bug fixes |
-              <span className="version">v3.2.1</span><span class="tag bugfix">bug fixes</span>
+              <span className="version">v3.2.1</span><span className="tag bugfix">bug fixes</span>
               </h2>
             <ul>
               <li>Optimized the chime files to make them shorter and smaller files.</li>
@@ -29,7 +29,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">4/1/2022</span> | This isn't an April Fool's Joke!  |
-              <span className="version">v3.2.0</span><span class="tag release">release</span>
+              <span className="version">v3.2.0</span><span className="tag release">release</span>
             </h2>
             <ul>
               <li>Added a way to show the full history of balls called (see show full history link below the last 5 calls).</li>
@@ -45,7 +45,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">5/17/2020</span> | New game mode, bug fixes |
-              <span className="version">v3.1.0</span><span class="tag release">release</span>
+              <span className="version">v3.1.0</span><span className="tag release">release</span>
               </h2>
             <ul>
               <li>Added an evens/odds game mode - in order to play this mode wild bingo mode must be on.</li>
@@ -56,7 +56,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">5/4/2020</span> | Bug fixes |
-              <span className="version">v3.0.2</span><span class="tag bugfix">bug fixes</span>
+              <span className="version">v3.0.2</span><span className="tag bugfix">bug fixes</span>
             </h2>
             <ul>
               <li>
@@ -75,7 +75,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">4/28/2020</span> | Pandemic Patch  |
-              <span className="version">v3.0.1</span><span class="tag bugfix">bug fixes</span>
+              <span className="version">v3.0.1</span><span className="tag bugfix">bug fixes</span>
             </h2>
             <ul>
               <li>Added information to the About page to add clarification how the game works and what the game modes mean</li>
@@ -89,7 +89,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">4/25/2020</span> | The Pandemic Update! |
-              <span className="version">v3.0.0</span><span class="tag release">release</span>
+              <span className="version">v3.0.0</span><span className="tag release">release</span>
             </h2>
             <ul>
                 <li>A brand new <a href="/generate">card generation tool</a>!!! You asked, I listened!

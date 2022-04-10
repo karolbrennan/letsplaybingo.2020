@@ -28,11 +28,25 @@
   white-space: normal !important;
 }
 
+/* Back to Top */
+.back-to-top {
+  transform: rotate(90deg);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 2rem;
+  background: #eee;
+  padding: 0.5rem 1rem;
+  border-radius: 100%;
+  animation: bounce 1s infinite;
+}
+
 /* Show/Hide */
 [data-visibility="show"]{
-  display: initial;
+  visibility: visible;
 }
 [data-visibility="hide"]{
+  visibility: hidden;
   display: none !important;
 }
 
