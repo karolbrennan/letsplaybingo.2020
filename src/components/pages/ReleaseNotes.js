@@ -4,7 +4,7 @@ class ReleaseNotes extends React.Component {
   render() {
     return(
       <section>
-        <div className="row">
+        <div className="container row">
           <div className="col padding-xxlg">
             <h1>Release Notes!</h1>
 

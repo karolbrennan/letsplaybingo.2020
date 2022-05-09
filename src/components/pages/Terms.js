@@ -4,7 +4,7 @@ class Disclaimer extends React.Component {
   render() {
     return(
       <section>
-        <div className="row">
+        <div className="container row">
           <div className="col padding-xxlg">
             <h1>Terms of Use</h1>
             <h5>Last updated 04/25/2020</h5>

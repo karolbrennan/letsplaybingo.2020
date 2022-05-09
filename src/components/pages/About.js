@@ -1,4 +1,6 @@
 import React from 'react';
+import venmo from '../../images/venmo.jpg';
+import paypal from '../../images/paypalme.png';
 class About extends React.Component {
   render() {
     return (
@@ -18,6 +20,21 @@ class About extends React.Component {
               We also found ourselves wishing it had other features or a bigger display. So in honor of Grandma Jo, in 2017 Let's Play Bingo was born!</em><br/>
               - Karol
            </p>
+          </div>
+        </div>
+        <div className="container row no-wrap">
+          <div className="col">
+            <h1 className="no-margin">Donate to Let's Play Bingo!</h1>
+            <p>Let's Play Bingo is completely <strong>free</strong> and always will be. If you'd like to contribute toward operating costs we are accepting donations of any amount via Venmo or Paypal!</p>
+
+            <div className="row no-wrap justify-start">
+              <div className="col">
+                <a href="https://venmo.com/karolbrennan" target="_blank" rel="noopener noreferrer"><img className="donate" src={venmo} alt="venmo" /></a>
+              </div>
+              <div className="col">
+                <a href="https://paypal.me/karolbrennan" target="_blank" rel="noopener noreferrer"><img className="donate" src={paypal} alt="paypal" /></a>
+              </div>
+            </div>
           </div>
           <div className="col padding-left-xxlg">
             {/* --------------- RELEASE NOTES --------------- */}

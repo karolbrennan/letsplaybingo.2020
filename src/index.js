@@ -27,10 +27,9 @@ const routing = (
           <ul className='menu'>
             <li><Link to="/">Play</Link></li>
             <li><Link to="/generator">Card Generator</Link></li>
-            <li><a href="https://classic.letsplaybingo.io">Classic</a></li>
-            {/* <li><Link to="/about">About</Link></li> */}
             <li><Link to="/help">Help</Link></li>
-            <li><Link to="/donate">Donate</Link></li>
+            <li><Link to="/about">About / Donate</Link></li>
+            <li><a href="https://classic.letsplaybingo.io">Classic</a></li>
           </ul>
         </div>
         <div className="col shrink text-right margin-left-lg">
