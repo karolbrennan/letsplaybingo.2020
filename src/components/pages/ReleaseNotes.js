@@ -8,21 +8,24 @@ class ReleaseNotes extends React.Component {
           <div className="col padding-xxlg">
             <h1>Release Notes!</h1>
 
+            {/* ---------------------------------- */}
+
             <h2>
-              <span className="date">4/10/2022</span> | Bug fixes |
+              <span className="date">5/8/2022</span> | Bug fixes |
               <span className="version">v3.2.1</span><span className="tag bugfix">bug fixes</span>
               </h2>
             <ul>
               <li>Optimized the chime files to make them shorter and smaller files.</li>
               <li>Added 4 additional pop style chime options.</li>
               <li>Fixed a bug where when you had both the audible chime and caller enabled it would cause a delay that would end up skipping audio.</li>
+              <li>Fixed a bug where if you didn't choose a caller the audible calling would be messed up.</li>
               <li>Fixed mobile navigation font size and added wrapping so it doesn't go off the screen causing a horizontal scrollbar.</li>
               <li>Fixed bingo pattern size on mobile, it was very distorted.</li>
               <li>Removed social links since those accounts aren't active.</li>
               <li>Fixed the mobile modal positioning.</li>
               <li>Cleaned up some code, optimized CSS</li>
-              <li></li>
-              <li></li>
+              <li>Combined the about and donation pages.</li>
+              <li>Rearranged menu items</li>
               <li>Updated some styling and formatting on the Release Notes, added version numbers and tags for releases vs bug fixes. Added a link to them in the footer.</li>
             </ul>
 

@@ -962,9 +962,12 @@ class BingoGame extends Component {
             <div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
               <h4 className="margin-vertical-md">Latest Updates</h4>
               <p className="wrap-text small-text">
-                Let's Play Bingo was last updated on <strong>4/10/2022</strong>
+                Let's Play Bingo was last updated on <strong>5/8/2022</strong>. Recent updates include:
               </p>
               <ul className="small-text padding-left-xlg">
+                <li>Combined about and donation pages.</li>
+                <li>Added help/faq page.</li>
+                <li>Minimized info on home page</li>
                 <li>Full call history added</li>
                 <li>Reset game confirmation</li>
                 <li>Local storage of games</li>
