@@ -135,10 +135,6 @@ class BingoGame extends Component {
       currentBall: this.currentBall,
       interval: this.interval
     }
-    // eslint-disable-next-line 
-    console.log("GameData", JSON.parse(JSON.stringify(gameData)));
-    // eslint-disable-next-line 
-    console.log("gameState", JSON.parse(JSON.stringify(this.state)));
     localStorage.setItem('lpb-gameData', JSON.stringify(gameData));
     localStorage.setItem('lpb-gameState', JSON.stringify(this.state));
   }
@@ -166,13 +162,27 @@ class BingoGame extends Component {
    */
   loadVoices = () => {
     this.voices = this.synth.getVoices();
-    if(this.state.selectedCaller !== null){
-      this.voices.forEach(voice => {
-        if(voice.name === this.state.selectedCaller.value){
+    let selectedCaller = this.state.selectedCaller;
+    let userLanguage = window.navigator.userLanguage || window.navigator.language;
+    // loop through voices and either choose the one that matches the selection or choose the first one that matches user's language
+    this.voices.forEach(voice => {
+      if(selectedCaller !== null && Object.prototype.hasOwnProperty.call(selectedCaller, 'value')){
+        if(voice.name === selectedCaller.value){
           this.setState({selectedCaller: voice});
         }
-      })
+      } else {
+        if(voice.lang === userLanguage){
+          selectedCaller = voice;
+        }
+      }
+    });
+    if(selectedCaller === null){
+      // if the selected caller is STILL null, set to the first voice available.
+      // this is a one off that really would only happen if the user's browser
+      // has a language that doesn't have a caller available for it.
+      selectedCaller = this.voices[0];
     }
+    this.setState({selectedCaller: selectedCaller});
   };
 
   /*
@@ -695,6 +705,25 @@ class BingoGame extends Component {
     this.setState({board: board, previousCallList});
   }
 
+  /**
+   * Sends an email that contains game 
+   * settings and device info to help with
+   * replicating user issues
+   */
+  handleBugReport = () => {
+    let subject = 'Let\'s Play Bingo bug report';
+    let body = `Thank you for playing let's play bingo and for taking the time to report a bug! Please describe what is happening to you so I may fix it ASAP.`;
+    body += `%0D%0A%0D%0A%0D%0A -------------------------------- PLEASE LEAVE EVERYTHING BELOW THIS LINE IN TACT --------------------------------`;
+    body += `%0D%0A%0D%0A The data below includes information about your device and your game settings. This information will help me replicate your issue so I can fix it.`;
+    body += `%0D%0A%0D%0A----- Browser/Device Info ------ %0D%0A`;
+    const {userAgent} = navigator;
+    body += JSON.stringify(userAgent);
+    body += `%0D%0A%0D%0A----- Game State ------ %0D%0A`;
+    let gameData = this.state;
+    body += JSON.stringify(gameData);
+    window.open(`mailto:hello@letsplaybingo.io?subject=${subject}&body=${body}`);
+  }
+
 
   /* ------------------- Render */
   render(){
@@ -942,6 +971,7 @@ class BingoGame extends Component {
                 <li>Audible chime option for when balls are called</li>
               </ul>
               <p className="x-small-text">See the full <a href="/releases">Release Notes</a>!</p>
+              <p className="x-small-text">Need to report a bug? <button className="textOnly secondary" onClick={this.handleBugReport}>Email me!</button></p>
             </div>
 
           </div>

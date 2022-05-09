@@ -35,10 +35,13 @@
   bottom: 2rem;
   right: 2rem;
   font-size: 2rem;
-  background: #eee;
-  padding: 0.5rem 1rem;
   border-radius: 100%;
   animation: bounce 1s infinite;
+  a {
+    display: block;
+    padding: 0.25em 0.5em;
+    background: #eee;
+  }
 }
 
 /* Show/Hide */
