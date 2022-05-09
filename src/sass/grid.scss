@@ -1,12 +1,25 @@
 * {
   box-sizing: border-box;
 }
+
 .flex {
   display: flex;
   @media screen and (min-width: 816px){
     display: block;
   }
 }
+
+.container {
+  // width: 1600px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  @media screen and (min-width: 700px){
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 .row {
   display: flex; /* flex box */
   flex-flow: row wrap; /* items are aligned in a row and allow for wrapping */
@@ -85,6 +98,11 @@
   > .col {
     flex: 1 1 auto; /* grow, shrink and basis */
 
+    @media screen and (min-width: 700px){
+      &:first-of-type { padding-left: 0; }
+      &:last-of-type { padding-right: 0; }
+    }
+
     &.min-size-100{
       min-width: 100px;
     }
@@ -102,6 +120,12 @@
     }
     &.min-size-300{
       min-width: 300px;
+    }
+    &.min-size-350{
+      min-width: 350px;
+    }
+    &.min-size-400{
+      min-width: 400px;
     }
     &.max-size-250 {
       max-width: 250px;

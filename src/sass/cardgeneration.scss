@@ -1,0 +1,95 @@
+
+/* Card Generator */
+.card-block {
+  max-width: 80%;
+  margin: 1rem auto;
+
+  .card {
+    width: 49%;
+    display: inline-block;
+    margin: .5%;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  
+    .col {
+      padding: 0 !important;
+      margin: 0 !important;
+      flex-basis: 20%;
+      max-width: 20%;
+  
+      .freespace {
+        padding: 0.55rem 0;
+        > span {
+          display: block;
+          text-align: center;
+          font-size: 1.25rem;
+          line-height: .96;
+          text-transform: uppercase;
+          font-weight: 700;
+        }
+      }
+      
+      .card-number,
+      .card-letter {
+        text-align: center;
+        padding: .25em;
+        margin: 0;
+      }
+  
+      .card-letter {
+        font-size: 3rem;
+        line-height: 1.5;
+        color: white;
+      }
+  
+      .card-numbers {
+        border-top: 1px solid #cecece;
+        border-bottom: 1px solid #cecece;
+  
+        .card-number {
+          font-size: 3rem;
+          background: white;
+  
+          border: 1px solid #cecece;
+  
+          &:first-child {
+            border-top: 0;
+          }
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.print-six .card-block {
+  max-width: 1024px;
+  margin: 0 auto;
+  .card {
+    width: 32%;
+    .col {
+      .card-letter {
+        font-size: 2.25rem;
+        height: 3.25rem;
+        max-height: 3.25rem;
+        line-height: 1;
+      }
+      .card-numbers {
+        .card-number {
+          font-size: 2.25rem;
+          max-height: 3.5rem;
+          height: 3.5rem;
+
+          .freespace {
+            padding: 0.57rem 0;
+            > span {
+              font-size: .8rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,204 @@
+
+/* Game Controls */
+.game-controls {
+  /* Ball Display */
+  .ball-display {
+    width: 100%;
+    min-width: 160px;
+    max-width: 200px;
+    display: flex;
+    border-radius: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: inset 0.5rem 0.5rem 1.5rem 0.25rem rgba(255, 255, 255, 0.3),
+                inset -0.25rem -0.25rem 1.5rem 0.5rem rgba(0, 0, 0, 0.4);
+
+    &::after {
+      content: '';
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    .content {
+      text-align: center;
+      border-radius: 100%;
+      background: white;
+      position: relative;
+      min-width: 60px;
+      min-width: 3vw;
+      padding: 28%;
+      box-shadow: inset -0.5rem -0.5rem 2rem 0 rgba(0, 0, 0, 0.16), 0 0 0 0.25rem white;
+      background: radial-gradient(circle at 20% 20%, white, #efefef);
+    
+      .ball-content {
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: inline-flex;
+        flex-direction: column;
+        .ball-letter, 
+        .ball-number {
+          line-height: 1;
+          display: block;
+          width: 100%;
+        }
+        .ball-letter {
+          font-size: 2rem;
+          font-weight: bold;
+        }
+        .ball-number {
+          font-size: 3.25rem;
+        }
+      }
+
+      img {
+        padding: 0.25rem;
+        max-width: 100%;
+      }
+    }
+    
+    &.blue {
+      background: radial-gradient(circle at 20% 20%, #0000FF, #0000ad);
+      .content {
+        border: 0.15rem solid #0000FF;
+      }
+    }
+
+    &.red {
+      background: radial-gradient(circle at 20% 20%, #FF0000, #910000);
+      .content {
+        border: 0.15rem solid #FF0000;
+      }
+    }
+
+    &.white {
+      background: radial-gradient(circle at 20% 20%, #ffffff, #b6b6b6);
+      .content {
+        border: 0.15rem solid #FF0000;
+      }
+    }
+
+    &.green {
+      background: radial-gradient(circle at 20% 20%, #008000, #004a00);
+      .content {
+        border: 0.15rem solid #008000;
+      }
+    }
+
+    &.yellow {
+      background: radial-gradient(circle at 20% 20%, #ffe52a, #f7bd00);
+      .content {
+        border: 0.15rem solid #f7bd00;
+      }
+    }
+  }
+  /* Previous Calls Display */
+  .previous-calls {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: stretch;
+      flex: 0 0 34px;
+      margin: 0 1%;
+      border-radius: 100%;
+      height: 2rem;
+      padding: 3px;
+      box-sizing: content-box;
+      
+      span {
+        color: white;
+      }
+
+      &.blue {
+        background-color: #0000FF;
+      }
+  
+      &.red {
+        background-color: #FF0000;
+      }
+  
+      &.white {
+        background-color: #FFFFFF;
+        span {
+          color: #222222;
+        }
+      }
+  
+      &.green {
+        background-color: #008000;
+      }
+  
+      &.yellow {
+        background-color: #f7bd00;
+        span {
+          color: #222222;
+        }
+      }
+    }
+  }
+  .modal .previous-calls {
+    max-width: 300px;
+    div {
+      flex: 0 0 32px;
+      margin: 5px;
+    }
+  }
+
+  /* Gameplay Controls */
+  .gameplay-controls {
+    button {
+      min-width: 175px;
+      width: 80%;
+      display: block;
+      margin: 0.5rem auto;
+    }
+  }
+
+  /* Game Settings */
+  .game-settings {
+    span {
+      line-height: 2.5;
+    }
+    .select-input {
+      margin: 10px 0;
+      width: 100%;
+      min-width: 200px;
+      max-width: 360px;
+      border: 1px solid #fff;
+      
+      div[class$="-singleValue"] {
+        color: #888888;
+      }
+      div[class$="-Input"] {
+        color: white;
+      }
+      div[class$="-control"] {
+        background: #222;
+        border: none;
+        color: #efefef;
+        border-radius: 0;
+      }
+      div[class$="-menu"] * {
+        color:#222222;
+      }
+    }
+    @media screen and (max-width: 700px){
+      .row {
+        flex-direction: column;
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+
+/* Links & Buttons */
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: all ease .25s;
+  &:hover {
+    color: #222222;
+  }
+}
+
+.light-links {
+  .button {
+    border: 2px solid #1396d3;
+    padding: 0.25em 1em;
+  }
+
+   a {
+    color: #1396d3;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+button {
+  white-space: nowrap;
+  font-size: 1rem;
+  border-radius: 0;
+  padding: 0.55rem 1rem;
+  margin: 0.25rem;
+  border: 2px solid #ffffff;
+  color: #FFFFFF;
+  background-color: transparent;
+  transition: all ease 0.25s;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+    background-color: #F8F8F8;
+  }
+  &[disabled] {
+    opacity: 0.25;
+    cursor: not-allowed;
+    &:hover {
+      color: #FFFFFF;
+      background-color: transparent;
+    }
+  }
+  &.textOnly {
+    font-size: inherit;
+    border: none;
+    padding: 0;
+    color: #ffffff;
+    background:transparent;
+    &.primary{
+      color: var(--primary-color);
+      &:hover {
+        color: var(--secondary-color);
+      }
+    }
+    &.secondary{
+      color: var(--secondary-color);
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+  &.altBtn {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    &:hover {
+      background-color: var(--primary-color);
+      color: #ffffff;
+    }
+    &[disabled]:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+  }
+  &.primaryBtn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    &:hover {
+      background-color: #efefef;
+      color: var(--primary-color);
+    }
+    &[disabled]:hover {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+    }
+  }
+}

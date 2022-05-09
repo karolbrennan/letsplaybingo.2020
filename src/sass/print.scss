@@ -1,6 +1,7 @@
 @media print {
   @page {
-    margin: 0.5in 0.25in 0.5in 0.25in !important;
+    margin: 0.15in 0.15in 0.15in 0.15in !important;
+    orientation: landscape;
   }
   @page:blank {
     display: none;
@@ -33,7 +34,7 @@
     .card {
       .col {
         .freespace {
-          padding: 0.52rem 0;
+          padding: 0.58rem 0 !important;
         }
       }
     }
@@ -49,7 +50,7 @@
         .freespace {
           padding: 0.25rem 0;
           span {
-            font-size: 1rem;
+            font-size: .74rem !important;
             line-height: 1;
           }
         }

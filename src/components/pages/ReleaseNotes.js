@@ -4,12 +4,35 @@ class ReleaseNotes extends React.Component {
   render() {
     return(
       <section>
-        <div className="row">
+        <div className="container row">
           <div className="col padding-xxlg">
             <h1>Release Notes!</h1>
+
+            {/* ---------------------------------- */}
+
+            <h2>
+              <span className="date">5/8/2022</span> | Bug fixes |
+              <span className="version">v3.2.1</span><span className="tag bugfix">bug fixes</span>
+              </h2>
+            <ul>
+              <li>Optimized the chime files to make them shorter and smaller files.</li>
+              <li>Added 4 additional pop style chime options.</li>
+              <li>Fixed a bug where when you had both the audible chime and caller enabled it would cause a delay that would end up skipping audio.</li>
+              <li>Fixed a bug where if you didn't choose a caller the audible calling would be messed up.</li>
+              <li>Fixed mobile navigation font size and added wrapping so it doesn't go off the screen causing a horizontal scrollbar.</li>
+              <li>Fixed bingo pattern size on mobile, it was very distorted.</li>
+              <li>Removed social links since those accounts aren't active.</li>
+              <li>Fixed the mobile modal positioning.</li>
+              <li>Cleaned up some code, optimized CSS</li>
+              <li>Combined the about and donation pages.</li>
+              <li>Rearranged menu items</li>
+              <li>Updated some styling and formatting on the Release Notes, added version numbers and tags for releases vs bug fixes. Added a link to them in the footer.</li>
+            </ul>
+
+            {/* ---------------------------------- */}
             <h2>
               <span className="date">4/1/2022</span> | This isn't an April Fool's Joke!  |
-              <span className="version">v2.2.0</span><span class="tag release">release</span>
+              <span className="version">v3.2.0</span><span className="tag release">release</span>
             </h2>
             <ul>
               <li>Added a way to show the full history of balls called (see show full history link below the last 5 calls).</li>
@@ -25,7 +48,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">5/17/2020</span> | New game mode, bug fixes |
-              <span className="version">v2.1.0</span><span class="tag release">release</span>
+              <span className="version">v3.1.0</span><span className="tag release">release</span>
               </h2>
             <ul>
               <li>Added an evens/odds game mode - in order to play this mode wild bingo mode must be on.</li>
@@ -36,7 +59,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">5/4/2020</span> | Bug fixes |
-              <span className="version">v2.0.2</span><span class="tag bugfix">bug fixes</span>
+              <span className="version">v3.0.2</span><span className="tag bugfix">bug fixes</span>
             </h2>
             <ul>
               <li>
@@ -55,7 +78,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">4/28/2020</span> | Pandemic Patch  |
-              <span className="version">v2.0.1</span><span class="tag bugfix">bug fixes</span>
+              <span className="version">v3.0.1</span><span className="tag bugfix">bug fixes</span>
             </h2>
             <ul>
               <li>Added information to the About page to add clarification how the game works and what the game modes mean</li>
@@ -69,7 +92,7 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
             <h2>
               <span className="date">4/25/2020</span> | The Pandemic Update! |
-              <span className="version">v2.0.0</span><span class="tag release">release</span>
+              <span className="version">v3.0.0</span><span className="tag release">release</span>
             </h2>
             <ul>
                 <li>A brand new <a href="/generate">card generation tool</a>!!! You asked, I listened!
@@ -81,6 +104,13 @@ class ReleaseNotes extends React.Component {
                   <p>More preset patterns and the ability to skip numbers that are not used in the selected or custom pattern! <br/>
                   <em>Be sure to turn this feature off if you're doing back to back patterns in a single game without a board reset!</em></p></li>
                 <li>A manual display board option for those who have a number generation tool and only need a way to display called numbers.</li>
+              </ul>
+
+              {/* ---------------------------------- */}
+              <h2>Previous Versions</h2>
+              <ul>
+                <li><span className="version">v2.0.0</span> May 14, 2018 - <a href="https://classic.letsplaybingo.io">Classic</a> edition built in ReactJS </li>
+                <li><span className="version">v1.0.0</span> Jan 1, 2017 - Pure Object Oriented JavaScript App - <a href="https://codepen.io/karolbrennan/pen/GxKZWX">Codepen</a></li>
               </ul>
           </div>
         </div>

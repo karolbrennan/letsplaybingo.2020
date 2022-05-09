@@ -1,0 +1,215 @@
+.board-block {
+  border-bottom: 5px solid var(--primary-color);
+  @media screen and (max-width: 1024px){
+    > .row {
+      align-items: center;
+    }
+  }
+  .pattern-side {
+    /* Called Numbers */
+    .callNumber {
+      font-family: var(--digital-font);
+      width: 100%;
+      font-size: 3rem;
+      text-align: center;
+      color: red;
+      margin-bottom: .5rem;
+
+      span {
+        background: #161616;
+        text-align: center;
+        width: 45%;
+        display: inline-block;
+        padding: .25rem;
+      }
+    }
+    .callNumber-text {
+      font-family: var(--condensed-font);
+      font-size: 0.8rem;
+      font-size: 0.8vw;
+
+      @media screen and (max-width: 700px) {
+        font-size: 1rem;
+      }
+    }
+    /* Pattern */
+    #bingopattern {
+      display: flex;
+      margin: 0 auto;
+      align-items: flex-start;
+      width: 160px;
+      .row {
+        flex-basis: 1 1 20%;
+        &:nth-child(1) .col:first-child{
+          span {
+            transform: rotate(-15deg);
+          }
+        }
+        &:nth-child(2) .col:first-child{
+          span {
+            margin-top: -.5rem;
+            transform: rotate(-7deg);
+          }
+        }
+        &:nth-child(3) .col:first-child{
+          span {
+            margin-top: -.75rem;
+          }
+        }
+        &:nth-child(4) .col:first-child{
+          span {
+            margin-top: -.5rem;
+            transform: rotate(7deg);
+          }
+        }
+        &:nth-child(5) .col:first-child{
+          span {
+            transform: rotate(15deg);
+          }
+        }
+      }
+      .col {
+        padding: 1.75vh 0.5vw;
+        @media screen and (max-width: 1024px){
+          padding: 2vh 0.5vw;
+        }
+        position: relative;
+        // Letters along the top
+        &:first-child {
+          line-height: 1.5;
+          height: 3rem;
+          height: 3vw;
+          span {
+            font-size: 1.5rem;
+            font-size: 1.5vw;
+            font-family: var(--body-font);
+            font-weight: 800;
+
+            @media screen and (max-width: 700px) {
+              font-size: 1.5rem;
+            }
+          }
+        }
+        // Pattern letters
+        &:not(:first-child) {
+          background: #efefef;
+          border: 1px solid #ffffff;
+        }
+        span {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 100%;
+          margin: 0 auto;
+
+          &.free-space {
+            font-size: 0.5rem;
+            font-size: 1vh;
+            line-height: 1.5;
+            margin: 0.2vw;
+            text-align: center;
+            text-transform: uppercase;
+            color: #676767;
+            @media screen and (max-width: 700px) {
+              font-size: 10px;
+              margin: 0.25em;
+            }
+          }
+        }
+        &.selected {
+          span {
+            background-color:#c70600;
+            margin: 0.25vw;
+            @media screen and (max-width: 1024px){
+              margin: 0.5vw;
+            }
+            &.free-space {
+              overflow: hidden;
+              color: #c70600;
+            }
+          }
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    /* Pattern Select */
+    .pattern-select {
+      width: 100%;
+      display: block;
+      border: 1px solid #fff;
+      
+      div[class$="-singleValue"] {
+        color: #888888;
+      }
+      div[class$="-Input"] {
+        color: white;
+      }
+      div[class$="-control"] {
+        background: #222;
+        border: none;
+        color: #efefef;
+        border-radius: 0;
+      }
+      div[class$="-menu"] * {
+        color:#222222;
+      }
+    }
+  }
+  .board-side {
+    #board {
+      padding: 1rem;
+      display: flex;
+      flex-flow: column;
+      align-self: stretch;
+      justify-content: space-between;
+
+      * {
+        font-size: 2.7rem;
+        font-size: 3vw;
+        line-height: 1.5;
+
+        @media screen and (max-width: 700px){
+          font-size: 20px;
+        }
+      }
+      .board-letter {
+        flex: 0 0 1.25em !important;
+        font-weight: bold;
+      }
+      .ball {
+        color: #3c3c3c;
+      
+        button {
+          font-family: inherit;
+          white-space: nowrap;
+          font-size: inherit;
+          border-radius: unset;
+          padding: unset;
+          margin: unset;
+          border: unset;
+          color: inherit;
+          background-color: inherit;
+          transition: inherit;
+          &:hover {
+            background: inherit;
+            color: inherit;
+          }  
+          &:focus {
+            outline: none;
+          }
+        }
+        &.called {
+          color: #ffffff;
+        }
+        &.active {
+          animation: blink 1s infinite;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
