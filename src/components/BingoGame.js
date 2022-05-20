@@ -478,6 +478,35 @@ class BingoGame extends Component {
     }
   }
 
+  shuffleBalls = () => {
+    let balls = generateBingoBoard();
+    let letters = ['B','I','N','G','O'];
+    for(let i = 0; i < 376; i++){
+      window.setTimeout(() => {
+        let randomLetter = letters[Math.floor(Math.random() * 5)];
+        let randomNumber = Math.floor(Math.random() * 15);
+        Object.keys(balls).forEach(letter => {
+          Object.values(balls[letter]).forEach(ball => {
+            if(ball.letter === randomLetter){
+              balls[randomLetter][randomNumber].active = !balls[randomLetter][randomNumber].active;
+              balls[randomLetter][randomNumber].called = !balls[randomLetter][randomNumber].called;
+            }
+            return ball;
+          })
+        })
+
+        if(i === 375){
+          // eslint-disable-next-line
+          console.log(i);
+          window.setTimeout(() => {
+            this.confirmResetGame();
+          },0);
+        } else {
+          this.setState({board: balls});
+        }
+      },600);
+    }
+  }
 
   /* ------------------ Handlers */
   handleDelayChange = (e) => {
@@ -823,6 +852,10 @@ class BingoGame extends Component {
 
                 <button onClick={this.toggleResetModal} disabled={this.state.running || this.totalBallsCalled === 0}>
                   Reset Board
+                </button>
+
+                <button onClick={this.shuffleBalls} disabled={this.state.running || this.totalBallsCalled > 0}>
+                  Shuffle Board
                 </button>
               </section>
               {this.resetConfirmationModalDisplay}
