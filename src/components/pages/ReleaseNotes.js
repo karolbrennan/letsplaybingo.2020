@@ -11,6 +11,16 @@ class ReleaseNotes extends React.Component {
             {/* ---------------------------------- */}
 
             <h2>
+              <span className="date">5/19/2022</span> | Bug fixes |
+              <span className="version">v3.2.2</span><span className="tag bugfix">bug fixes</span>
+              </h2>
+            <ul>
+              <li>Fixed an issue where Ns were still called even though only the freespace was marked in a pattern.</li>
+            </ul>
+
+            {/* ---------------------------------- */}
+
+            <h2>
               <span className="date">5/8/2022</span> | Bug fixes |
               <span className="version">v3.2.1</span><span className="tag bugfix">bug fixes</span>
               </h2>

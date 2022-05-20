@@ -217,6 +217,11 @@ class BingoGame extends Component {
     }
   };
 
+  /**
+   * Handles the audible call of the ball
+   *
+   * @param   {Object}  ball  Object representing a ball
+   */
   voiceCall = (ball) => {
     // call the new ball, first call it all together, then call each character individually
     let ballstring = ball.number.toString();
@@ -228,6 +233,11 @@ class BingoGame extends Component {
     }
   }
 
+  /**
+   * Handles a wild ball call when the wild bingo game mode is active
+   *
+   * @param   {Object}  ball  Object representing a ball
+   */
   wildBallCall = (ball) => {
     // call the wild ball, 
     let ballstring = ball.number.toString();
@@ -520,11 +530,27 @@ class BingoGame extends Component {
     pattern[letter][index] = !slot;
     let unusedLetters = [];
     Object.keys(pattern).map(letter => {
-      if(pattern[letter].indexOf(true) < 0){
-        unusedLetters.push(letter);
+      // Check for free space ONLY first. If it's not the letter N, check for any used spaces.
+      if(letter === 'N'){
+        let markedSpaces = [];
+        // loop through each space in the pattern for the letter N
+        pattern[letter].forEach((space, index) => {
+          // if the space is marked, push the index of the space into markedSpaces array
+          if(space){
+            markedSpaces.push(index);
+          }
+        });
+        // if no spaces are marked, OR ONLY the free space is marked - push N to unused letters.
+        if(markedSpaces.length === 0 || (markedSpaces.length === 1 && markedSpaces[0] === 2)){
+          unusedLetters.push(letter);
+        }
+      } else {
+        if(pattern[letter].indexOf(true) < 0){
+          unusedLetters.push(letter);
+        }
       }
       return letter;
-    })
+    });
     let customPattern = {value: "Custom", label: "Custom", unusedLetters: unusedLetters, pattern: pattern};
     this.setState({selectedPattern: customPattern});
   };
@@ -965,6 +991,7 @@ class BingoGame extends Component {
                 Let's Play Bingo was last updated on <strong>5/8/2022</strong>. Recent updates include:
               </p>
               <ul className="small-text padding-left-xlg">
+                <li>Skip Unused Numbers: fixed 'N' numbers being called when only the free space is marked in the pattern.</li>
                 <li>Combined about and donation pages.</li>
                 <li>Added help/faq page.</li>
                 <li>Minimized info on home page</li>
