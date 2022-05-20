@@ -991,6 +991,7 @@ class BingoGame extends Component {
                 Let's Play Bingo was last updated on <strong>5/8/2022</strong>. Recent updates include:
               </p>
               <ul className="small-text padding-left-xlg">
+                <li>Skip Unused Numbers: fixed 'N' numbers being called when only the free space is marked in the pattern.</li>
                 <li>Combined about and donation pages.</li>
                 <li>Added help/faq page.</li>
                 <li>Minimized info on home page</li>

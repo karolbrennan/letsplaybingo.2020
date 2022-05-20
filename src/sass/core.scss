@@ -18,6 +18,9 @@ header {
 footer {
   border-top: 5px solid var(--primary-color);
 }
+ul li {
+  white-space: normal;
+}
 
 /* Menu */
 .menu {
