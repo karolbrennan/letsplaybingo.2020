@@ -14,5 +14,6 @@ import pop1 from './pop1.mp3';
 import pop2 from './pop2.mp3';
 import pop3 from './pop3.mp3';
 import pop4 from './pop4.mp3';
+import shuffle from './shuffle.wav';
 
-export {chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime9, chime10, chime11, chime12, pop1, pop2, pop3, pop4};
+export {chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime9, chime10, chime11, chime12, pop1, pop2, pop3, pop4, shuffle};
