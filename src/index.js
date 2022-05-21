@@ -14,6 +14,7 @@ import Help from './components/pages/Help.js';
 import Privacy from './components/pages/Privacy.js';
 import ReleaseNotes from './components/pages/ReleaseNotes.js';
 import Terms from './components/pages/Terms.js';
+import Patterns from './components/pages/Patterns.js';
 // import TellYourFriends from './components/subcomponents/TellYourFriends.js';
 
 const routing = (
@@ -43,6 +44,7 @@ const routing = (
     <Route path="/donate" component={Donate} />
     <Route path="/generator" component={CardGenerator} />
     <Route path="/terms" component={Terms} />
+    <Route path="/patterns" component={Patterns} />
     <Route path="/privacy" component={Privacy} />
     <Route path="/releases" component={ReleaseNotes} />
     <Route path="/help" component={Help} />

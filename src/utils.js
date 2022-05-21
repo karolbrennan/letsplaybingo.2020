@@ -181,11 +181,11 @@ export const getPresetPatterns = () => {
       label: "6 Pack Anywhere",
       unusedLetters: [],
       pattern: {
-        B: [true, true, false, false, false],
-        I: [true, true, false, false, false],
-        N: [true, true, false, false, false],
-        G: [false, false, false, false, false],
-        O: [false, false, false, false, false]
+        B: [false, false, false, false, false],
+        I: [false, false, false, false, false],
+        N: [false, false, false, false, false],
+        G: [false, true, true, true, false],
+        O: [false, true, true, true, false]
       }
     },
     { value: "8 Pack As Shown",
@@ -203,10 +203,10 @@ export const getPresetPatterns = () => {
       label: "8 Pack Anywhere",
       unusedLetters: [],
       pattern: {
-        B: [false, false, false, true, true],
-        I: [false, false, false, true, true],
-        N: [false, false, false, true, true],
-        G: [false, false, false, true, true],
+        B: [true, true, false, false, false],
+        I: [true, true, false, false, false],
+        N: [true, true, false, false, false],
+        G: [true, true, false, false, false],
         O: [false, false, false, false, false]
       }
     },
@@ -226,14 +226,13 @@ export const getPresetPatterns = () => {
       unusedLetters: [],
       pattern: {
         B: [false, false, false, false, false],
-        I: [false, false, false, false, false],
-        N: [false, false, true, true, true],
-        G: [false, false, true, true, true],
-        O: [false, false, true, true, true]
+        I: [true, true, true, false, false],
+        N: [true, true, true, false, false],
+        G: [true, true, true, false, false],
+        O: [false, false, false, false, false]
       }
     },
-    {
-      value: "Add Subtract",
+    { value: "Add Subtract",
       label: "Add & Subtract",
       unusedLetters: ["B","O"],
       pattern: {
@@ -242,6 +241,39 @@ export const getPresetPatterns = () => {
         N: [true, true, true, false, true],
         G: [false, true, false, false, true],
         O: [false, false, false, false, false]
+      },
+    },
+    { value: "Airplane",
+      label: "Airplane",
+      unusedLetters: [],
+      pattern: {
+        B: [false, true, true, true, false],
+        I: [false, false, true, false, false],
+        N: [false, false, true, false, false],
+        G: [true, true, true, true, true],
+        O: [false, false, true, false, false]
+      },
+    },
+    { value: "Anchor",
+      label: "Anchor",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, false, true, true],
+        I: [true, false, false, false, true],
+        N: [true, true, true, true, true],
+        G: [true, false, false, false, true],
+        O: [false, false, false, true, true]
+      },
+    },
+    { value: "Arrowhead",
+      label: "Arrowhead",
+      unusedLetters: ["B","I"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, false, false, false, false],
+        N: [true, false, false, false, false],
+        G: [true, true, false, false, false],
+        O: [true, true, true, false, false]
       },
     },
     { value: "Blackout",
@@ -254,6 +286,17 @@ export const getPresetPatterns = () => {
         G: [true, true, true, true, true],
         O: [true, true, true, true, true]
       }
+    },
+    { value: "BO",
+      label: "B and O",
+      unusedLetters: ["I","N","G"],
+      pattern: {
+        B: [true, true, true, true, true],
+        I: [false, false, false, false, false],
+        N: [false, false, false, false, false],
+        G: [false, false, false, false, false],
+        O: [true, true, true, true, true]
+      },
     },
     { value: "Bow Tie",
       label: "Bow Tie",
@@ -277,8 +320,7 @@ export const getPresetPatterns = () => {
         O: [true, true, false, true, true]
       }
     },
-    {
-      value: "Broken Frame",
+    { value: "Broken Frame",
       label: "Broken Frame",
       unusedLetters: ["I","G"],
       pattern: {
@@ -289,8 +331,18 @@ export const getPresetPatterns = () => {
         O: [true, false, true, false, true]
       },
     },
-    {
-      value: "Cent Sign",
+    { value: "Candlestick",
+      label: "Candlestick",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, true, false, false],
+        I: [false, false, true, false, true],
+        N: [true, true, true, true, true],
+        G: [false, false, true, false, true],
+        O: [true, true, true, false, false]
+      },
+    },
+    { value: "Cent Sign",
       label: "Cent Sign",
       unusedLetters: ["B","O"],
       pattern: {
@@ -299,6 +351,17 @@ export const getPresetPatterns = () => {
         N: [true, true, false, true, true],
         G: [false, true, false, true, false],
         O: [false, false, false, false, false]
+      },
+    },
+    { value: "Checkerboard",
+      label: "Checkerboard",
+      unusedLetters: [],
+      pattern: {
+        B: [true, false, true, false, true],
+        I: [false, true, false, true, false],
+        N: [true, false, true, false, true],
+        G: [false, true, false, true, false],
+        O: [true, false, true, false, true]
       },
     },
     { value: "Clover",
@@ -312,8 +375,7 @@ export const getPresetPatterns = () => {
         O: [false, true, true, true, false]
       }
     },
-    {
-      value: "Clover Leaf",
+    { value: "Clover Leaf",
       label: "Clover Leaf",
       unusedLetters: ["N"],
       pattern: {
@@ -322,6 +384,39 @@ export const getPresetPatterns = () => {
         N: [false, false, false, false, false],
         G: [true, true, false, true, true],
         O: [true, true, false, true, true]
+      },
+    },
+    { value: "Champagne Glass",
+      label: "Champagne Glass",
+      unusedLetters: [],
+      pattern: {
+        B: [true, false, false, false, false],
+        I: [true, true, false, false, true],
+        N: [true, true, true, true, true],
+        G: [true, true, false, false, true],
+        O: [true, false, false, false, false]
+      },
+    },
+    { value: "Checkmark",
+      label: "Checkmark",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, true, true, true],
+        I: [false, false, false, true, false],
+        N: [false, false, true, false, false],
+        G: [false, true, false, false, false],
+        O: [true, false, false, false, false]
+      },
+    },
+    { value: "Coverall",
+      label: "Coverall",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, true, true, true],
+        I: [true, true, true, true, true],
+        N: [true, true, true, true, true],
+        G: [true, true, true, true, true],
+        O: [true, true, true, true, true]
       },
     },
     { value: "Crazy Arrow",
@@ -335,8 +430,7 @@ export const getPresetPatterns = () => {
         O: [true, true, true, false, false]
       }
     },
-    {
-      value: "Crazy Arrowhead",
+    { value: "Crazy Arrowhead",
       label: "Crazy Arrowhead",
       unusedLetters: [],
       pattern: {
@@ -380,6 +474,17 @@ export const getPresetPatterns = () => {
         O: [false, false, true, false, false]
       }
     },
+    { value: "Cross",
+      label: "Cross",
+      unusedLetters: [],
+      pattern: {
+        B: [false, true, false, false, false],
+        I: [false, true, false, false, false],
+        N: [true, true, true, true, true],
+        G: [false, true, false, false, false],
+        O: [false, true, false, false, false]
+      },
+    },
     { value: "Diamond",
       label: "Diamond",
       unusedLetters: [],
@@ -390,6 +495,28 @@ export const getPresetPatterns = () => {
         G: [false, true, false, true, false],
         O: [false, false, true, false, false]
       }
+    },
+    { value: "Diamond Filled",
+      label: "Diamond Filled",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, true, false, false],
+        I: [false, true, true, true, false],
+        N: [true, true, true, true, true],
+        G: [false, true, true, true, false],
+        O: [false, false, true, false, false]
+      }
+    },
+    { value: "Diamond Inside",
+      label: "Diamond Inside",
+      unusedLetters: ["B","O"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, false, true, false, false],
+        N: [false, true, true, true, false],
+        G: [false, false, true, false, false],
+        O: [false, false, false, false, false]
+      },
     },
     { value: "Dog Bone",
       label: "Dog Bone",
@@ -402,8 +529,18 @@ export const getPresetPatterns = () => {
         O: [false, true, true, true, false]
       }
     },
-    {
-      value: "Double Chevron",
+    { value: "Double Bingo",
+      label: "Double Bingo",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, true, false, false],
+        I: [true, true, true, true, true],
+        N: [false, false, true, false, false],
+        G: [false, false, true, false, false],
+        O: [false, false, true, false, false]
+      },
+    },
+    { value: "Double Chevron",
       label: "Double Chevron",
       unusedLetters: [],
       pattern: {
@@ -414,19 +551,73 @@ export const getPresetPatterns = () => {
         O: [false, false, true, false, true]
       },
     },
-    { value: "Filled in Diamond",
-      label: "Filled in Diamond",
+    { value: "Double X",
+      label: "Double X",
       unusedLetters: [],
       pattern: {
-        B: [false, false, true, false, false],
-        I: [false, true, true, true, false],
-        N: [true, true, true, true, true],
-        G: [false, true, true, true, false],
-        O: [false, false, true, false, false]
-      }
+        B: [true, false, true, false, false],
+        I: [false, true, false, false, false],
+        N: [true, false, true, false, true],
+        G: [false, false, false, true, false],
+        O: [false, false, true, false, true]
+      },
     },
-    {
-      value: "Hardway",
+    { value: "Field Goal",
+      label: "Field Goal",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, true, false, false],
+        I: [false, false, true, false, false],
+        N: [true, false, true, true, true],
+        G: [false, false, true, false, false],
+        O: [true, true, true, false, false]
+      },
+    },
+    { value: "Flag",
+      label: "Flag",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, true, true, true],
+        I: [true, true, true, false, false],
+        N: [true, true, true, false, false],
+        G: [true, true, true, false, false],
+        O: [true, true, true, false, false]
+      },
+    },
+    { value: "Four Corners",
+      label: "Four Corners",
+      unusedLetters: ["I","N","G"],
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [false, false, false, false, false],
+        N: [false, false, false, false, false],
+        G: [false, false, false, false, false],
+        O: [true, false, false, false, true]
+      },
+    },
+    { value: "Four Corners Small",
+      label: "Four Corners Small",
+      unusedLetters: ["B","N","O"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, true, false, true, false],
+        N: [false, false, false, false, false],
+        G: [false, true, false, true, false],
+        O: [false, false, false, false, false]
+      },
+    },
+    { value: "GO",
+      label: "GO",
+      unusedLetters: ["B","I","N"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [false, false, false, false, false],
+        N: [false, false, false, false, false],
+        G: [true, true, true, true, true],
+        O: [true, true, true, true, true]
+      },
+    },
+    { value: "Hardway",
       label: "Hardway",
       unusedLetters: [],
       pattern: {
@@ -437,8 +628,7 @@ export const getPresetPatterns = () => {
         O: [false, true, false, false, false]
       },
     },
-    {
-      value: "Heart",
+    { value: "Heart",
       label: "Heart",
       unusedLetters: [],
       pattern: {
@@ -447,6 +637,39 @@ export const getPresetPatterns = () => {
         N: [false, true, true, true, true],
         G: [true, true, true, true, false],
         O: [false, true, true, false, false]
+      },
+    },
+    { value: "Hourglass",
+      label: "Hourglass",
+      unusedLetters: [],
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [true, true, false, true, true],
+        N: [true, false, true, false, true],
+        G: [true, true, false, true, true],
+        O: [true, false, false, false, true]
+      },
+    },
+    { value: "ING Game",
+      label: "ING Game",
+      unusedLetters: ["B","O"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [true, true, true, true, true],
+        N: [true, true, true, true, true],
+        G: [true, true, true, true, true],
+        O: [false, false, false, false, false]
+      },
+    },
+    { value: "Ladder",
+      label: "Ladder",
+      unusedLetters: ["B","O"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [true, true, true, true, true],
+        N: [false, true, false, true, false],
+        G: [true, true, true, true, true],
+        O: [false, false, false, false, false]
       },
     },
     { value: "Large Frame",
@@ -482,8 +705,62 @@ export const getPresetPatterns = () => {
         O: [true, false, false, false, true]
       }
     },
-    {
-      value: "Picnic Table",
+    { value: "Love Letter",
+      label: "Love Letter",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, true, true, true],
+        I: [false, false, false, false, true],
+        N: [false, false, false, false, true],
+        G: [true, true, false, false, true],
+        O: [true, true, false, false, true]
+      },
+    },
+    { value: "Lucky 7",
+      label: "Lucky 7",
+      unusedLetters: [],
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [true, false, false, true, false],
+        N: [true, false, true, false, false],
+        G: [true, true, false, false, false],
+        O: [true, false, false, false, false]
+      },
+    },
+    { value: "Number Sign",
+      label: "Number Sign",
+      unusedLetters: [],
+      pattern: {
+        B: [false, true, false, true, false],
+        I: [true, true, true, true, true],
+        N: [false, true, false, true, false],
+        G: [true, true, true, true, true],
+        O: [false, true, false, true, false]
+      },
+    },
+    { value: "One Away",
+      label: "One Away",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, true, true, true],
+        I: [true, true, true, true, true],
+        N: [true, true, true, true, true],
+        G: [true, true, true, false, true],
+        O: [true, true, true, true, true]
+      },
+    },
+    { value: "Percent Sign",
+      label: "Percent Sign",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, false, false, true],
+        I: [true, true, false, true, false],
+        N: [false, false, true, false, false],
+        G: [false, true, false, true, true],
+        O: [true, false, false, true, true]
+      },
+    },
+    { value: "Picnic Table",
       label: "Picnic Table",
       unusedLetters: [],
       pattern: {
@@ -492,6 +769,17 @@ export const getPresetPatterns = () => {
         N: [true, false, true, false, false],
         G: [true, true, false, true, false],
         O: [true, false, false, false, true]
+      },
+    },
+    { value: "Plus Sign",
+      label: "Plus Sign",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, true, false, false],
+        I: [false, false, true, false, false],
+        N: [true, true, true, true, true],
+        G: [false, false, true, false, false],
+        O: [false, false, true, false, false]
       },
     },
     { value: "Postage Stamps",
@@ -504,6 +792,28 @@ export const getPresetPatterns = () => {
         G: [false, false, false, true, true],
         O: [false, false, false, true, true]
       }
+    },
+    { value: "Pyramid",
+      label: "Pyramid",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, false, false, true],
+        I: [false, false, false, true, true],
+        N: [false, false, true, true, true],
+        G: [false, false, false, true, true],
+        O: [false, false, false, false, true]
+      },
+    },
+    { value: "Railroad Tracks",
+      label: "Railroad Tracks",
+      unusedLetters: ["B","N","G"],
+      pattern: {
+        B: [false, false, false, false, false],
+        I: [true, true, true, true, true],
+        N: [false, false, false, false, false],
+        G: [true, true, true, true, true],
+        O: [false, false, false, false, false]
+      },
     },
     { value: "Regular or 4 Corners",
       label: "Regular or 4 Corners",
@@ -527,6 +837,17 @@ export const getPresetPatterns = () => {
         O: [false, false, false, false, false]
       }
     },
+    { value: "Smile",
+      label: "Smile",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, false, true, false],
+        I: [false, true, false, false, true],
+        N: [false, false, true, false, true],
+        G: [false, true, false, false, true],
+        O: [false, false, false, true, false]
+      },
+    },
     { value: "Sputnik",
       label: "Sputnik",
       unusedLetters: [],
@@ -538,8 +859,40 @@ export const getPresetPatterns = () => {
         O: [true, false, false, false, true]
       }
     },
-    {
-      value: "Starburst",
+    { value: "Staircase",
+      label: "Staircase",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, false, false, true],
+        I: [false, false, false, true, true],
+        N: [false, false, true, true, true],
+        G: [false, true, true, true, true],
+        O: [true, true, true, true, true]
+      },
+    },
+    { value: "Stamp and 4 Corners",
+      label: "Stamp and 4 Corners",
+      unusedLetters: ["N"],
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [false, false, false, false, false],
+        N: [false, false, false, false, false],
+        G: [true, true, false, false, false],
+        O: [true, true, false, false, true]
+      },
+    },
+    { value: "Stamp and Line",
+      label: "Stamp and Line",
+      unusedLetters: [],
+      pattern: {
+        B: [true, true, false, false, true],
+        I: [true, true, false, true, false],
+        N: [false, false, true, false, false],
+        G: [false, true, false, false, false],
+        O: [true, false, false, false, false]
+      },
+    },
+    { value: "Starburst",
       label: "Starburst",
       unusedLetters: [],
       pattern: {
@@ -550,8 +903,40 @@ export const getPresetPatterns = () => {
         O: [true, false, true, false, true]
       },
     },
-    {
-      value: "Triangle Game",
+    { value: "Top and Bottom",
+      label: "Top and Bottom",
+      unusedLetters: [],
+      pattern: {
+        B: [true, false, false, false, true],
+        I: [true, false, false, false, true],
+        N: [true, false, false, false, true],
+        G: [true, false, false, false, true],
+        O: [true, false, false, false, true]
+      },
+    },
+    { value: "Top Hat",
+      label: "Top Hat",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, false, false, true],
+        I: [false, true, true, true, true],
+        N: [false, true, true, true, true],
+        G: [false, true, true, true, true],
+        O: [false, false, false, false, true]
+      },
+    },
+    { value: "Tree",
+      label: "Tree",
+      unusedLetters: [],
+      pattern: {
+        B: [false, false, false, true, false],
+        I: [false, true, true, true, false],
+        N: [true, true, true, true, true],
+        G: [false, true, true, true, false],
+        O: [false, false, false, true, false]
+      },
+    },
+    { value: "Triangle Game",
       label: "Triangle Game",
       unusedLetters: [],
       pattern: {
@@ -562,8 +947,18 @@ export const getPresetPatterns = () => {
         O: [true, false, false, false, false]
       },
     },
-    {
-      value: "Two Brackets",
+    { value: "Turtle",
+      label: "Turtle",
+      unusedLetters: [],
+      pattern: {
+        B: [false, true, false, false, true],
+        I: [false, true, true, true, false],
+        N: [true, true, true, true, false],
+        G: [false, true, true, true, false],
+        O: [false, true, false, false, true]
+      },
+    },
+    { value: "Two Brackets",
       label: "Two Brackets",
       unusedLetters: ["N"],
       pattern: {
@@ -574,8 +969,18 @@ export const getPresetPatterns = () => {
         O: [false, false, false, true, true]
       },
     },
-    // {
-    //   value: "",
+    { value: "Umbrella",
+      label: "Umbrella",
+      unusedLetters: [],
+      pattern: {
+        B: [false, true, true, false, false],
+        I: [true, true, false, false, true],
+        N: [true, true, true, true, true],
+        G: [true, true, false, false, false],
+        O: [false, true, true, false, false]
+      },
+    },
+    // { value: "",
     //   label: "",
     //   unusedLetters: [],
     //   pattern: {

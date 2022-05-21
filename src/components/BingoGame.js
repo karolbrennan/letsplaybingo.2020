@@ -19,7 +19,7 @@ import CallHistory from './subcomponents/CallHistory.js';
 import { generateBingoBoard, getRandomBingoNumber, getPresetPatterns, getBallDisplay, getLogoBallDisplay, getLanguageText} from '../utils.js';
 
 // Chimes
-import {chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime9, chime10, chime11, chime12, pop1, pop2, pop3, pop4} from '../chimes';
+import {chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime9, chime10, chime11, chime12, pop1, pop2, pop3, pop4, shuffle} from '../chimes';
 class BingoGame extends Component {
   
   constructor(props) {
@@ -47,7 +47,8 @@ class BingoGame extends Component {
       {label: 'Pop 2', value: pop2},
       {label: 'Pop 3', value: pop3},
       {label: 'Pop 4', value: pop4}
-    ]
+    ];
+    this.shuffleSound = shuffle;
 
     // Patterns
     this.patternPlaceholder = "Choose a pattern";
@@ -478,6 +479,41 @@ class BingoGame extends Component {
     }
   }
 
+  shuffleBalls = () => {
+    let balls = generateBingoBoard();
+    let letters = ['B','I','N','G','O'];
+    let sound = new Audio(this.shuffleSound);
+    let duration = 1000;
+    for(let i = 0; i <= duration; i++){
+      window.setTimeout(() => {
+        if(i === 0){
+          sound.play();
+        }
+        if(i > 0 && i <= duration){
+          flashRandomBall();
+          this.setState({board: balls});
+        }
+        if(i === duration){
+          sound.pause();
+          this.confirmResetGame();
+        }
+      },duration);
+    }
+
+    function flashRandomBall(){
+      let randomLetter = letters[Math.floor(Math.random() * 5)];
+      let randomNumber = Math.floor(Math.random() * 15);
+      Object.keys(balls).forEach(letter => {
+        Object.values(balls[letter]).forEach(ball => {
+          if(ball.letter === randomLetter){
+            balls[randomLetter][randomNumber].active = !balls[randomLetter][randomNumber].active;
+            balls[randomLetter][randomNumber].called = !balls[randomLetter][randomNumber].called;
+          }
+          return ball;
+        })
+      })
+    }
+  }
 
   /* ------------------ Handlers */
   handleDelayChange = (e) => {
@@ -824,6 +860,10 @@ class BingoGame extends Component {
                 <button onClick={this.toggleResetModal} disabled={this.state.running || this.totalBallsCalled === 0}>
                   Reset Board
                 </button>
+
+                <button onClick={this.shuffleBalls} disabled={this.state.running || this.totalBallsCalled > 0}>
+                  Shuffle Board
+                </button>
               </section>
               {this.resetConfirmationModalDisplay}
             </div>
@@ -988,17 +1028,13 @@ class BingoGame extends Component {
             <div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
               <h4 className="margin-vertical-md">Latest Updates</h4>
               <p className="wrap-text small-text">
-                Let's Play Bingo was last updated on <strong>5/8/2022</strong>. Recent updates include:
+                Let's Play Bingo was last updated on <strong>5/21/2022</strong>. Recent updates include:
               </p>
               <ul className="small-text padding-left-xlg">
+                <li>Added lots of new patterns!</li>
+                <li>Added a <a href="/patterns">page that shows all patterns</a></li>
+                <li>Added a way to "shuffle" the board just for fun!</li>
                 <li>Skip Unused Numbers: fixed 'N' numbers being called when only the free space is marked in the pattern.</li>
-                <li>Combined about and donation pages.</li>
-                <li>Added help/faq page.</li>
-                <li>Minimized info on home page</li>
-                <li>Full call history added</li>
-                <li>Reset game confirmation</li>
-                <li>Local storage of games</li>
-                <li>Audible chime option for when balls are called</li>
               </ul>
               <p className="x-small-text">See the full <a href="/releases">Release Notes</a>!</p>
               <p className="x-small-text">Need to report a bug? <button className="textOnly secondary" onClick={this.handleBugReport}>Email me!</button></p>

@@ -7,23 +7,29 @@ class ReleaseNotes extends React.Component {
         <div className="container row">
           <div className="col padding-xxlg">
             <h1>Release Notes!</h1>
-
+             {/* ---------------------------------- */}
+             <h2>
+              <span className="date">5/21/2022</span> | New Patterns! |
+              <span className="version">v3.2.3</span><span className="tag release">release</span>
+            </h2>
+            <ul>
+              <li>Added lots of new patterns!</li>
+              <li>Added <a href="/patterns">page that shows all patterns.</a></li>
+              <li>Added a way to "shuffle" the board just for fun!</li>
+            </ul>
             {/* ---------------------------------- */}
-
             <h2>
               <span className="date">5/19/2022</span> | Bug fixes |
               <span className="version">v3.2.2</span><span className="tag bugfix">bug fixes</span>
-              </h2>
+            </h2>
             <ul>
               <li>Fixed an issue where Ns were still called even though only the freespace was marked in a pattern.</li>
             </ul>
-
             {/* ---------------------------------- */}
-
             <h2>
               <span className="date">5/8/2022</span> | Bug fixes |
               <span className="version">v3.2.1</span><span className="tag bugfix">bug fixes</span>
-              </h2>
+            </h2>
             <ul>
               <li>Optimized the chime files to make them shorter and smaller files.</li>
               <li>Added 4 additional pop style chime options.</li>
