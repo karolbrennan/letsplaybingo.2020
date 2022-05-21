@@ -181,11 +181,11 @@ export const getPresetPatterns = () => {
       label: "6 Pack Anywhere",
       unusedLetters: [],
       pattern: {
-        B: [true, true, false, false, false],
-        I: [true, true, false, false, false],
-        N: [true, true, false, false, false],
-        G: [false, false, false, false, false],
-        O: [false, false, false, false, false]
+        B: [false, false, false, false, false],
+        I: [false, false, false, false, false],
+        N: [false, false, false, false, false],
+        G: [false, true, true, true, false],
+        O: [false, true, true, true, false]
       }
     },
     { value: "8 Pack As Shown",
@@ -203,10 +203,10 @@ export const getPresetPatterns = () => {
       label: "8 Pack Anywhere",
       unusedLetters: [],
       pattern: {
-        B: [false, false, false, true, true],
-        I: [false, false, false, true, true],
-        N: [false, false, false, true, true],
-        G: [false, false, false, true, true],
+        B: [true, true, false, false, false],
+        I: [true, true, false, false, false],
+        N: [true, true, false, false, false],
+        G: [true, true, false, false, false],
         O: [false, false, false, false, false]
       }
     },
@@ -226,10 +226,10 @@ export const getPresetPatterns = () => {
       unusedLetters: [],
       pattern: {
         B: [false, false, false, false, false],
-        I: [false, false, false, false, false],
-        N: [false, false, true, true, true],
-        G: [false, false, true, true, true],
-        O: [false, false, true, true, true]
+        I: [true, true, true, false, false],
+        N: [true, true, true, false, false],
+        G: [true, true, true, false, false],
+        O: [false, false, false, false, false]
       }
     },
     { value: "Add Subtract",

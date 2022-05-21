@@ -68,6 +68,7 @@ class Help extends React.Component {
             <p>On the left side of the caller is a bingo card display that can be used to show players what pattern they should be trying to match for the current bingo game.</p>
             <p>You can choose a preset pattern in the dropdown below the display (you can type in the dropdown to search!) OR you can click on the individual spaces on the bingo card to create your own custom pattern!</p>
             <p><strong>"Crazy" Patterns</strong> - Any pattern that starts with the word "Crazy" means it can be played in any direction on the card.</p>
+            <p><strong>Pattern Listing</strong> you can <a href="/patterns">view all of the patterns</a>, and print them at <a href="/patterns">/patterns</a>!</p>
 
             <section className="margin-top-xxlg padding-top-sm pale-gray-bg"></section>
 
