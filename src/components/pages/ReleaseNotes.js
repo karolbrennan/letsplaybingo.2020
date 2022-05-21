@@ -10,7 +10,7 @@ class ReleaseNotes extends React.Component {
              {/* ---------------------------------- */}
              <h2>
               <span className="date">5/21/2022</span> | New Patterns! |
-              <span className="version">v3.2.3</span><span className="tag release">release</span>
+              <span className="version">v3.3.0</span><span className="tag release">release</span>
             </h2>
             <ul>
               <li>Added lots of new patterns!</li>
