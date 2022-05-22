@@ -1028,9 +1028,10 @@ class BingoGame extends Component {
             <div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
               <h4 className="margin-vertical-md">Latest Updates</h4>
               <p className="wrap-text small-text">
-                Let's Play Bingo was last updated on <strong>5/21/2022</strong>. Recent updates include:
+                Let's Play Bingo was last updated on <strong>5/22/2022</strong>. Recent updates include:
               </p>
               <ul className="small-text padding-left-xlg">
+                <li>Added new <a href="https://90ball.letsplaybingo.io" target="_blank" rel="noreferrer">90 Ball</a> game version!</li>
                 <li>Added lots of new patterns!</li>
                 <li>Added a <a href="/patterns">page that shows all patterns</a></li>
                 <li>Added a way to "shuffle" the board just for fun!</li>

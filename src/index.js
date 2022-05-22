@@ -30,7 +30,8 @@ const routing = (
             <li><Link to="/generator">Card Generator</Link></li>
             <li><Link to="/help">Help</Link></li>
             <li><Link to="/about">About / Donate</Link></li>
-            <li><a href="https://classic.letsplaybingo.io">Classic</a></li>
+            <li><a href="https://90ball.letsplaybingo.io" target="_blank" rel="noreferrer">90 Ball</a></li>
+            <li><a href="https://classic.letsplaybingo.io" target="_blank" rel="noreferrer">Classic</a></li>
           </ul>
         </div>
         <div className="col shrink text-right margin-left-lg">

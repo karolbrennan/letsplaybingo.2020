@@ -9,6 +9,14 @@ class ReleaseNotes extends React.Component {
             <h1>Release Notes!</h1>
              {/* ---------------------------------- */}
              <h2>
+              <span className="date">5/22/2022</span> | New Game Mode! |
+              <span className="version">v3.4.0</span><span className="tag release">release</span>
+            </h2>
+            <ul>
+              <li>Added new <a href="https://90ball.letsplaybingo.io" target="_blank" rel="noreferrer">90 Ball</a> game version!</li>
+            </ul>
+             {/* ---------------------------------- */}
+             <h2>
               <span className="date">5/21/2022</span> | New Patterns! |
               <span className="version">v3.3.0</span><span className="tag release">release</span>
             </h2>
