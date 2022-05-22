@@ -483,7 +483,7 @@ class BingoGame extends Component {
     let balls = generateBingoBoard();
     let letters = ['B','I','N','G','O'];
     let sound = new Audio(this.shuffleSound);
-    let duration = 1000;
+    let duration = 1500;
     for(let i = 0; i <= duration; i++){
       window.setTimeout(() => {
         if(i === 0){
