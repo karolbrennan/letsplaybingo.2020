@@ -164,6 +164,12 @@ class BingoGame extends Component {
   loadVoices = () => {
     this.voices = this.synth.getVoices();
     let selectedCaller = this.state.selectedCaller;
+    if(selectedCaller === null){
+      // if the selected caller is STILL null, set to the first voice available.
+      // this is a one off that really would only happen if the user's browser
+      // has a language that doesn't have a caller available for it.
+      selectedCaller = this.voices[0];
+    }
     let userLanguage = window.navigator.userLanguage || window.navigator.language;
     // loop through voices and either choose the one that matches the selection or choose the first one that matches user's language
     this.voices.forEach(voice => {
@@ -177,12 +183,6 @@ class BingoGame extends Component {
         }
       }
     });
-    if(selectedCaller === null){
-      // if the selected caller is STILL null, set to the first voice available.
-      // this is a one off that really would only happen if the user's browser
-      // has a language that doesn't have a caller available for it.
-      selectedCaller = this.voices[0];
-    }
     this.setState({selectedCaller: selectedCaller});
   };
 
