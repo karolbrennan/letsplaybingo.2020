@@ -8,6 +8,10 @@ a {
     color: #222222;
   }
 }
+// links that are within a paragraph
+p > a:not(.plain){
+  border-bottom: 2px solid var(--secondary-color);
+}
 
 .light-links {
   .button {
