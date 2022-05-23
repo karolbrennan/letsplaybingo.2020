@@ -3,8 +3,10 @@
 .container .container {
   padding: 0;
 }
-button {
-  float: right;
+#pattern-list {
+  button {
+    float: right;
+  }
 }
 .pattern-block {
   flex-basis: calc(19% - 10px) !important;
