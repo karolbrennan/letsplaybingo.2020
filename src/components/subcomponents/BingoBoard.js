@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-
+/**
+ * Renders the BingoBoard component
+ */
 class BingoBoard extends Component {
   /**
    * Constructor for this class,
