@@ -9,7 +9,6 @@ import logo from "./images/logo.svg";
 import About from "./components/pages/About.js";
 import BingoGame from "./components/BingoGame.js";
 import CardGenerator from "./components/pages/CardGenerator.js";
-import Donate from "./components/pages/Donate.js";
 import Help from "./components/pages/Help.js";
 import Privacy from "./components/pages/Privacy.js";
 import ReleaseNotes from "./components/pages/ReleaseNotes.js";
@@ -75,10 +74,6 @@ const routing = (
     <Route
       path="/about"
       component={About}
-    />
-    <Route
-      path="/donate"
-      component={Donate}
     />
     <Route
       path="/generator"
