@@ -86,9 +86,11 @@ ul li {
         &:before {
           display: inline-block;
           content: '\2329';
-          font-size: 1.5rem;
+          font-size: 14px;
+          font-weight: 500;
           transform: rotate(-90deg);
-          padding-right: 1rem;
+          padding: 0 1em 0 0;
+          margin: -0.25em;
         }
       }
     }
