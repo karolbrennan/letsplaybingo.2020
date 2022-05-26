@@ -114,12 +114,18 @@ div[class$="-indicatorContainer"] svg {
   fill: #444444;
 }
 
+/* Settings Control for menu */
+.final-element {
+  padding-right: 2.5rem !important;
+}
+
 /* Slider */
 .rc-slider {
   position: relative;
   touch-action: none;
   max-width: 300px;
   min-width: 200px;
+  margin-top: 10px;
 
   .rc-slider-rail,
   .rc-slider-track {
@@ -129,11 +135,11 @@ div[class$="-indicatorContainer"] svg {
   .rc-slider-track {
     position: absolute;
     top: 0;
-    background: #0c0c0c;
-    border: 1px solid #000000;
+    background: #ffffff;
+    border: 1px solid var(--secondary-color);
   }
   .rc-slider-rail {
-    background: #ffffff;
+    background: var(--secondary-color);
   }
   .rc-slider-handle {
     cursor: grab;

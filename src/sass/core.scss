@@ -7,6 +7,9 @@ body, html {
   margin: 0;
   padding: 0;
 }
+body {
+  overflow-x: hidden;
+}
 
 /* Header & Footer */
 header, footer {
@@ -33,10 +36,10 @@ ul li {
   }
   li {
     display: inline-block;
-    padding: 0.25em 0.5em;
+    margin: 0 10px;
     a {
-      font-size: 1.5rem;
-      padding: 0.5em;
+      font-size: 1.25rem;
+      padding: 0.5rem;
       font-weight: 700;
       border: 3px solid transparent;
       &:hover {
@@ -48,7 +51,7 @@ ul li {
 
 /* Images */
 .logo {
-  height: 3.5rem;
+  height: 3rem;
   width: auto;
 }
 .donate {
