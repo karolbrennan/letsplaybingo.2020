@@ -1,4 +1,4 @@
-# Let's Play Bingo - ReactJS Version
+# Let's Play Bingo - BETA Edition (for testing new features)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/57e19ada-a3d8-4c74-b5a7-3a642c418b14/deploy-status)](https://app.netlify.com/sites/letsplaybingo/deploys)
 
