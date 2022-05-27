@@ -1,89 +1,5 @@
-/* Settings Panel */
-.settings-component {
-  .settings-button {
-    position: absolute;
-    right: 2rem;
-    top: 1.8rem;
-  }
-  .gameSettings {
-    * {
-      transition: var(--ease-transition);
-    }
-
-    h3, h6, h4 {
-      color: var(--dk-gray-text);
-      line-height: 1.5;
-    }
-
-    .settings-panel {
-      width: 100%;
-      background: #f8f8f8;
-      padding: 1.5rem 2rem 2rem;
-      border-left: 5px solid var(--primary-color);
-      bottom: 0;
-      height: 100vh;
-      overflow-y: scroll;
-      position: fixed;
-      right: -100vw;
-      top: 0;
-      width: 400px;
-      z-index: 2;
-    }
-
-    .backdrop {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      overflow: hidden;
-      left: -100vw;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 1;
-    }
-
-    &.open {
-      .settings-panel {
-        right: 0;
-      }
-
-      .backdrop {
-        left: 0;
-      }
-
-      .settings-button {
-        position: absolute;
-        right: 1rem;
-      }
-    }
-  }
-
-  .settings-button {
-    border: none;
-    margin: 0;
-    padding: 0;
-
-    #Settings_Icon,
-    .settings-icon {
-      fill: var(--primary-color);
-      fill-rule: evenodd;
-      height: 1.5rem;
-      width: auto;
-      transition: var(--ease-transition);
-      &:hover {
-        fill: var(--secondary-color);
-      }
-    }
-
-    &:hover {
-      background: transparent;
-    }
-  }
-}
-
-/* Game Controls */
-.game-controls {
+.call-side {
+  width: 220px;
   /* Ball Display */
   .ball-display {
     width: 100%;
@@ -194,40 +110,65 @@
       justify-content: center;
       align-items: center;
       align-content: stretch;
-      flex: 0 0 34px;
-      margin: 0 1%;
+      flex: 0 0 30px;
+      margin: 0 2px;
       border-radius: 100%;
-      height: 2rem;
-      padding: 3px;
+      height: 30px;
+      padding: 7px;
       box-sizing: content-box;
       
-      span {
-        color: white;
+      > span {
+        color: var(--ball-color-text);
+        background-color: var(--ball-color-inner);
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        span {
+          display: block;
+        }
+      }
+      .call-letter {
+        font-size: 10px;
+        font-weight: bold;
+        line-height: 1;
+      }
+      .call-number {
+        font-weight: normal;
+        line-height: 1;
       }
 
       &.blue {
-        background-color: #0000FF;
-      }
-  
-      &.red {
-        background-color: #FF0000;
-      }
-  
-      &.white {
-        background-color: #FFFFFF;
-        span {
-          color: #222222;
+        background-color: var(--ball-color-blue);
+        > span {
+          border: 1px solid var(--ball-color-blue);
         }
       }
-  
-      &.green {
-        background-color: #008000;
+
+      &.red {
+        background-color: var(--ball-color-red);
+        > span {
+          border: 1px solid var(--ball-color-red);
+        }
       }
-  
+
+      &.white {
+        background-color: var(--ball-color-white);
+        > span {
+          border: 1px solid var(--ball-color-red);
+        }
+      }
+
+      &.green {
+        background-color: var(--ball-color-green);
+        > span {
+          border: 1px solid var(--ball-color-green);
+        }
+      }
+
       &.yellow {
-        background-color: #f7bd00;
-        span {
-          color: #222222;
+        background-color: var(--ball-color-yellow);
+        > span {
+          border: 1px solid var(--ball-color-yellow);
         }
       }
     }
@@ -237,50 +178,6 @@
     div {
       flex: 0 0 32px;
       margin: 5px;
-    }
-  }
-
-  /* Gameplay Controls */
-  .gameplay-controls {
-    button {
-      width: 175px;
-      display: inline-block;
-      margin: 0.5rem;
-    }
-  }
-
-  /* Game Settings */
-  .game-settings {
-    span {
-      line-height: 2.5;
-    }
-    .select-input {
-      margin: 10px 0;
-      width: 100%;
-      min-width: 200px;
-      max-width: 360px;
-      border: 1px solid #fff;
-      
-      div[class$="-singleValue"] {
-        color: #888888;
-      }
-      div[class$="-Input"] {
-        color: white;
-      }
-      div[class$="-control"] {
-        background: #222;
-        border: none;
-        color: #efefef;
-        border-radius: 0;
-      }
-      div[class$="-menu"] * {
-        color:#222222;
-      }
-    }
-    @media screen and (max-width: 700px){
-      .row {
-        flex-direction: column;
-      }
     }
   }
 }

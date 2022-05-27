@@ -10,13 +10,14 @@
 }
 
 .container {
-  // width: 1600px;
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
   @media screen and (min-width: 700px){
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }
 
@@ -95,44 +96,18 @@
     }
   }
 
+  &:not(.maintain-gutters){
+    > .col {
+      @media screen and (min-width: 700px){
+        &:first-of-type { padding-left: 0; }
+        &:last-of-type { padding-right: 0; }
+      }
+    }
+  }
+
   > .col {
     flex: 1 1 auto; /* grow, shrink and basis */
 
-    @media screen and (min-width: 700px){
-      &:first-of-type { padding-left: 0; }
-      &:last-of-type { padding-right: 0; }
-    }
-
-    &.min-size-100{
-      min-width: 100px;
-    }
-    &.min-size-150{
-      min-width: 150px;
-    }
-    &.min-size-200{
-      min-width: 200px;
-    }
-    &.min-size-225{
-      min-width: 225px;
-    }
-    &.min-size-250{
-      min-width: 250px;
-    }
-    &.min-size-300{
-      min-width: 300px;
-    }
-    &.min-size-350{
-      min-width: 350px;
-    }
-    &.min-size-400{
-      min-width: 400px;
-    }
-    &.max-size-250 {
-      max-width: 250px;
-    }
-    &.max-size-400 {
-      max-width: 400px;
-    }
     &:first-child {
       margin-left: 0;
     }
@@ -154,13 +129,6 @@
       display: block;
       width: 100%;
       margin: 0 auto;
-
-      &.min-size-250 {
-        width: 250px;
-        max-width: 100%;
-        display: block;
-        flex: auto;
-      }
     }
   }
 }

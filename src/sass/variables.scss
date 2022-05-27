@@ -1,11 +1,31 @@
 :root {
+  /* -------- Colors ---------- */
   --primary-color: #00487b;
   --secondary-color: #1396d3;
+  --near-black: #161616;
+  --pale-gray: #eaeaea;
+  /* -------- Fonts -----------*/
   --condensed-font: "Roboto Condensed", sans-serif;
   --heading-font: "Roboto Condensed", sans-serif;
   --body-font: 'Roboto', sans-serif;
   --digital-font: "ZCOOL QingKe HuangYou", "Roboto Condensed", "Helvetica", cursive;
+  /* -------- Release Notes -----------*/
   --release-color: #5cb3ee;
   --bugfix-color: #ff8b9f;
+  /* -------- Transitions -----------*/
   --ease-transition: all ease 0.5s;
+  /* Ball Colors */
+  --ball-color-blue: #0000FF;
+  --ball-color-green: #008000;
+  --ball-color-white: #FFFFFF;
+  --ball-color-red: #FF0000;
+  --ball-color-yellow: #f7bd00;
+  --ball-color-inner: #ffffff;
+  --ball-color-text: #222222;
+  /* Sizes */
+  --size-sm: .25rem;
+  --size-md: .5rem;
+  --size-lg: .75rem;
+  --size-xlg: 1rem;
+  --size-xxlg: 2rem;
 }

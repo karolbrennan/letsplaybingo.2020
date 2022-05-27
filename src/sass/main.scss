@@ -5,13 +5,15 @@
 @import './grid.scss';
 @import './utilities.scss';
 @import './typography.scss';
-@import './colors.scss';
 @import './buttons.scss';
+@import './colors.scss';
 @import './print.scss';
-// Components
 @import './animations.scss';
+// Components
+@import './bingopattern.scss';
 @import './bingoboard.scss';
+@import './bingocalls.scss';
 @import './cardgeneration.scss';
-@import './gamecontrols.scss';
+@import './gamesettings.scss';
 // Media Queries
 @import './mediaqueries.scss';

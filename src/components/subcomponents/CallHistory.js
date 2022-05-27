@@ -41,8 +41,8 @@ class CallHistory extends React.Component {
                     key={call.number}
                     className={call.color}>
                     <span>
-                      {call.letter}
-                      {call.number}
+                      <span className="call-letter">{call.letter}</span>
+                      <span className="call-number">{call.number}</span>
                     </span>
                   </div>
                 );
@@ -89,8 +89,8 @@ class CallHistory extends React.Component {
                     key={call.number}
                     className={call.color}>
                     <span>
-                      {call.letter}
-                      {call.number}
+                      <span className="call-letter">{call.letter}</span>
+                      <span className="call-number">{call.number}</span>
                     </span>
                   </div>
                 );

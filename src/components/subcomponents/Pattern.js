@@ -23,7 +23,7 @@ class Pattern extends React.Component {
           return (
             <div
               key={letter + index}
-              className="row vertical-row text-center">
+              className="row vertical text-center">
               <div className="col dark-bg white-text">
                 <span>{letter}</span>
               </div>

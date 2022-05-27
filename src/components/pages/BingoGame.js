@@ -836,18 +836,18 @@ class BingoGame extends Component {
 
         {/* ----------- Bingo Board ------------- */}
         <section className="board-block">
-          <div className="container row no-wrap align-stretch">
+          <div className="container row maintain-gutters no-wrap align-stretch">
             {/* ------ Board ------- */}
-            <div className="col pattern-side shrink padding-xlg">
+            <div className="col pattern-side shrink padding-vertical-xxlg padding-horizontal-xlg">
               {/* -------- Digital Displays --------- */}
               <div className="row no-wrap margin-bottom-lg justify-space-between white-text">
-                <div className="col text-center margin-sm">
+                <div className="col total-call-display text-center">
                   <div className="callNumber notranslate">
                     {this.numberDisplay}
                   </div>
                   <div className="callNumber-text uppercase">Total Calls</div>
                 </div>
-                <div className="col text-center margin-sm">
+                <div className="col previous-call-display text-center">
                   <div className="callNumber notranslate">
                     {this.previousCallDisplay}
                   </div>
@@ -872,36 +872,13 @@ class BingoGame extends Component {
                 />
               </div>
             </div>
-            <div className="col board-side">
+            <div className="col board-side padding-vertical-xxlg padding-horizontal-xlg">
               <BingoBoard
                 board={this.state.board}
                 manualMode={_gameSettings.manualMode}
                 manualCall={this.manualCall}
               />
-            </div>
-          </div>
-        </section>
 
-        {/* ----------- BOTTOM SECTION ------------- */}
-        <section className="game-controls dark-bg">
-          <div className="container row justify-start align-start">
-            {/* ----------- Current Ball Display ------------- */}
-            <div className="col min-size-250 padding-vertical-xxlg padding-horizontal-md notranslate">
-              {this.currentBallDisplay}
-            </div>
-            <div className="col min-size-250 padding-vertical-xxlg padding-horizontal-md notranslate">
-              <CallHistory
-                calledBalls={this.state.previousCallList}></CallHistory>
-
-              <div
-                data-visibility={_gameSettings.wildBingo ? "show" : "hide"}
-                className="white-text text-center margin-top-lg">
-                <strong>Wild Ball: </strong> {_gameSettings.wildBall}
-              </div>
-            </div>
-
-            {/* ----------- Gameplay Controls ------------- */}
-            <div className="col grow padding-vertical-xxlg padding-horizontal-md">
               <section className="gameplay-controls">
                 <button
                   data-visibility={_gameSettings.manualMode ? "hide" : "true"}
@@ -928,6 +905,19 @@ class BingoGame extends Component {
                 </button>
               </section>
               {this.resetConfirmationModalDisplay}
+            </div>
+            <div className="col call-side shrink padding-vertical-xxlg padding-horizontal-xlg">
+              {this.currentBallDisplay}
+              <div className="notranslate">
+                <CallHistory
+                  calledBalls={this.state.previousCallList}></CallHistory>
+
+                <div
+                  data-visibility={_gameSettings.wildBingo ? "show" : "hide"}
+                  className="white-text text-center margin-top-lg">
+                  <strong>Wild Ball: </strong> {_gameSettings.wildBall}
+                </div>
+              </div>
             </div>
           </div>
         </section>

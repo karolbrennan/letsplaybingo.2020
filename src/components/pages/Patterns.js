@@ -1,7 +1,7 @@
 import React from "react";
 import PatternDisplay from "../subcomponents/PatternDisplay";
 import Utilities from "../helpers/Utilities";
-import "../../sass/bingopattern.scss";
+import "../../sass/patternlist.scss";
 
 /**
  * Renders the patterns page which allows users
