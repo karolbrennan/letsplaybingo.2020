@@ -5,29 +5,52 @@
     right: 2rem;
     top: 1.8rem;
   }
-
   .gameSettings {
-    background: #f8f8f8;
-    bottom: 0;
-    height: 100vh;
-    overflow-y: scroll;
-    padding: 1.5rem 2rem 2rem;
-    position: fixed;
-    right: -100vw;
-    top: 0;
-    transition: var(--ease-transition);
-    width: 400px;
-    border-left: 5px solid var(--primary-color);
+    * {
+      transition: var(--ease-transition);
+    }
 
-  
     h3, h6, h4 {
       color: var(--dk-gray-text);
       line-height: 1.5;
     }
-  
-    &.open {
-      right: 0;
+
+    .settings-panel {
+      width: 100%;
+      background: #f8f8f8;
+      padding: 1.5rem 2rem 2rem;
+      border-left: 5px solid var(--primary-color);
+      bottom: 0;
+      height: 100vh;
+      overflow-y: scroll;
+      position: fixed;
+      right: -100vw;
+      top: 0;
+      width: 400px;
       z-index: 2;
+    }
+
+    .backdrop {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      overflow: hidden;
+      left: -100vw;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1;
+    }
+
+    &.open {
+      .settings-panel {
+        right: 0;
+      }
+
+      .backdrop {
+        left: 0;
+      }
 
       .settings-button {
         position: absolute;
@@ -220,10 +243,9 @@
   /* Gameplay Controls */
   .gameplay-controls {
     button {
-      min-width: 175px;
-      width: 80%;
-      display: block;
-      margin: 0.5rem auto;
+      width: 175px;
+      display: inline-block;
+      margin: 0.5rem;
     }
   }
 
