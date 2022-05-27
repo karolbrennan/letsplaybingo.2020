@@ -325,7 +325,7 @@ class CardGenerator extends React.Component {
                   data-visibility={
                     this.state.generatedCards.length > 0 ? "show" : "hide"
                   }
-                  className="altBtn"
+                  className="secondaryBtn"
                   onClick={() => {
                     window.print();
                     return false;
