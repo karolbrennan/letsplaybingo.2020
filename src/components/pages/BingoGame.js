@@ -29,6 +29,7 @@ const _speechEnabled = Object.prototype.hasOwnProperty.call(
   "speechSynthesis"
 );
 let _synth = window.speechSynthesis;
+
 let _gameSettings = {
   autoplay: false,
   manualMode: false,
@@ -42,6 +43,7 @@ let _gameSettings = {
   chime: false,
   selectedChime: chimes[0],
   selectedCaller: null,
+  voices: null,
 };
 
 class BingoGame extends Component {
@@ -58,6 +60,7 @@ class BingoGame extends Component {
     let gameSettings = JSON.parse(
       localStorage.getItem("letsplaybingo-settings")
     );
+
     if (gameSettings) {
       _gameSettings = gameSettings;
     }
@@ -152,9 +155,9 @@ class BingoGame extends Component {
       msg.volume = 1;
       if (
         Object.prototype.hasOwnProperty.call(_gameSettings, "selectedCaller") &&
-        Object.prototype.hasOwnProperty.call(_gameSettings, "voiceOptions")
+        Object.prototype.hasOwnProperty.call(_gameSettings, "voices")
       ) {
-        _gameSettings.voiceOptions.forEach((voice) => {
+        _gameSettings.voices.forEach((voice) => {
           if (voice.name === _gameSettings.selectedCaller.value) {
             msg.voice = voice;
           }
