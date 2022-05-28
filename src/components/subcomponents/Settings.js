@@ -17,6 +17,7 @@ const _speechEnabled = Object.prototype.hasOwnProperty.call(
   "speechSynthesis"
 );
 let _synth = window.speechSynthesis;
+let _voices;
 
 class Settings extends React.Component {
   /* ------------- State Handlers ------------- */
@@ -42,6 +43,11 @@ class Settings extends React.Component {
     this.state.totalBallsCalled = props.totalBallsCalled;
     this.state.fullscreen = false;
     this.state.settingsPanelOpen = props.settingsPanelOpen;
+
+    // if speech is enabled, initialize other speech properties
+    if (!_voices && _speechEnabled === true) {
+      _synth.onvoiceschanged = this.setUpVoices.bind(this);
+    }
   }
 
   componentDidUpdate(props, state) {
@@ -61,14 +67,6 @@ class Settings extends React.Component {
     this.updatePropertiesOnParent(values);
   }
 
-  /* ------------- Component Mounted ------------- */
-  componentDidMount() {
-    // if speech is enabled, initialize other speech properties
-    if (!this.state.voiceOptions && _speechEnabled === true) {
-      _synth.onvoiceschanged = this.setUpVoices.bind(this);
-    }
-  }
-
   /**
    * Returns the options for the voice selection menu
    *
@@ -79,10 +77,12 @@ class Settings extends React.Component {
 
     let userLanguage =
       window.navigator.userLanguage || window.navigator.language;
-    let voices = _synth.getVoices();
+    if (!_voices) {
+      _voices = _synth.getVoices();
+    }
     let voiceOptions = [];
-    if (_speechEnabled === true && voices.length > 0) {
-      voices.forEach((voice) => {
+    if (_speechEnabled === true && _voices?.length > 0) {
+      _voices.forEach((voice) => {
         let voiceObj = voice;
         voiceObj.value = voice.name;
         voiceObj.label =
@@ -104,6 +104,7 @@ class Settings extends React.Component {
       });
     }
     this.updateState([
+      { property: "voices", value: _voices },
       { property: "voiceOptions", value: voiceOptions },
       { property: "selectedCaller", value: selectedCaller },
     ]);
@@ -160,6 +161,15 @@ class Settings extends React.Component {
    */
   handleChooseCaller = (caller) => {
     this.updateState([{ property: "selectedCaller", value: caller }]);
+    let msg = new SpeechSynthesisUtterance();
+    msg.text = "Let's Play Bingo!";
+    msg.volume = 1;
+    _voices.forEach((voice) => {
+      if (voice.name === caller.value) {
+        msg.voice = voice;
+      }
+    });
+    _synth.speak(msg);
   };
 
   /**
@@ -207,63 +217,110 @@ class Settings extends React.Component {
         {this.settingsButton}
         <div className={this.settingsPanelClass}>
           <div className="settings-panel">
+            {/* ----------- Game Settings ---------- */}
             <h3 className="margin-top-none margin-bottom-xlg">
               Game Settings
               {this.settingsButton}
             </h3>
+
             <section className="game-settings">
-              {/* ----------- Gameplay Settings ---------- */}
-
-              {/* Display Board Only */}
-              <div className="padding-vertical-md">
-                <div className="row vertical">
-                  <div
-                    className="col padding-vertical-lg"
-                    data-disabled={this.state.totalBallsCalled > 0}>
-                    <label
-                      className={
-                        this.state.manualMode ? "toggle checked" : "toggle"
-                      }>
-                      <span className="toggle-span"></span>
-                      <span>Manual Calling Mode</span>
-                      <input
-                        type="checkbox"
-                        data-gamemode="manualMode"
-                        onChange={this.handleCheckbox}
-                        checked={this.state.manualMode}></input>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
               {/* Full Screen */}
               <div className="padding-vertical-md">
-                <div className="row vertical">
-                  <div className="col">
+                <label
+                  className={
+                    this.state.fullscreen ? "toggle checked" : "toggle"
+                  }>
+                  <span className="toggle-span"></span>
+                  <span>Display Fullscreen</span>
+                  <input
+                    type="checkbox"
+                    onChange={this.handleFullScreenToggle}
+                    checked={this.state.fullscreen}></input>
+                </label>
+              </div>
+
+              {/* Skip Unused Numbers - disabled if totalBallsCalled > 0 */}
+              <div
+                className="padding-vertical-md"
+                data-disabled={this.state.totalBallsCalled > 0}>
+                <label
+                  className={
+                    this.state.skipUnused ? "toggle checked" : "toggle"
+                  }>
+                  <span className="toggle-span"></span>
+                  <span>Skip Unused Numbers</span>
+                  <input
+                    type="checkbox"
+                    data-gamemode="skipUnused"
+                    onChange={this.handleCheckbox}
+                    checked={this.state.skipUnused}></input>
+                </label>
+              </div>
+
+              {/* Game Mode Settings */}
+              <div className="margin-vertical-xlg">
+                <h4 className="margin-top-md margin-bottom-none">Game Modes</h4>
+
+                {/* Manual Mode */}
+                <div
+                  className="padding-vertical-md"
+                  data-disabled={this.state.totalBallsCalled > 0}>
+                  <label
+                    className={
+                      this.state.manualMode ? "toggle checked" : "toggle"
+                    }>
+                    <span className="toggle-span"></span>
+                    <span>Manual Calling Mode</span>
+                    <input
+                      type="checkbox"
+                      data-gamemode="manualMode"
+                      onChange={this.handleCheckbox}
+                      checked={this.state.manualMode}></input>
+                  </label>
+                </div>
+
+                {/* Wild Bingo Settings */}
+                <div
+                  className="padding-vertical-md"
+                  data-disabled={this.state.totalBallsCalled > 0}>
+                  <div className="padding-bottom-sm">
                     <label
                       className={
-                        this.state.fullscreen ? "toggle checked" : "toggle"
+                        this.state.wildBingo ? "toggle checked" : "toggle"
                       }>
                       <span className="toggle-span"></span>
-                      <span>Display Fullscreen</span>
+                      <span>Enable Wild Bingo</span>
                       <input
                         type="checkbox"
-                        onChange={this.handleFullScreenToggle}
-                        checked={this.state.fullscreen}></input>
+                        data-gamemode="wildBingo"
+                        onChange={this.handleCheckbox}
+                        checked={this.state.wildBingo}></input>
+                    </label>
+                  </div>
+                  <div data-disabled={!this.state.wildBingo}>
+                    <label
+                      className={
+                        this.state.evensOdds ? "toggle checked" : "toggle"
+                      }>
+                      <span className="toggle-span"></span>
+                      <span>Evens/Odds Mode</span>
+                      <input
+                        type="checkbox"
+                        data-gamemode="evensOdds"
+                        onChange={this.handleCheckbox}
+                        checked={this.state.evensOdds}></input>
                     </label>
                   </div>
                 </div>
               </div>
 
-              {/* Other Settings */}
-              <div
-                className="padding-vertical-md"
-                data-visibility={
-                  this.state.manualMode === true ? "hide" : "show"
-                }>
-                {/* Autoplay Settings */}
-                <h4 className="margin-vertical-sm">Autoplay Settings</h4>
+              {/* Autoplay Settings */}
+              <div className="margin-vertical-xlg">
+                <h4 className="margin-top-md margin-bottom-none">
+                  Autoplay Settings
+                </h4>
 
+                {/* Enable Autoplay */}
                 <div className="padding-vertical-md">
                   <label
                     className={
@@ -279,6 +336,7 @@ class Settings extends React.Component {
                   </label>
                 </div>
 
+                {/* Autoplay Speed */}
                 <div className="padding-vertical-md">
                   <h6>Autoplay Speed</h6>
                   <div className="align-center slider margin-bottom-lg">
@@ -292,78 +350,20 @@ class Settings extends React.Component {
                     />
                   </div>
                 </div>
+              </div>
 
-                {/* Skip Unused Numbers */}
-                <div className="padding-vertical-lg">
-                  <div
-                    className="row vertical"
-                    data-disabled={this.state.totalBallsCalled > 0}>
-                    <div className="col">
-                      <label
-                        className={
-                          this.state.skipUnused ? "toggle checked" : "toggle"
-                        }>
-                        <span className="toggle-span"></span>
-                        <span>Skip Unused Numbers</span>
-                        <input
-                          type="checkbox"
-                          data-gamemode="skipUnused"
-                          onChange={this.handleCheckbox}
-                          checked={this.state.skipUnused}></input>
-                      </label>
-                    </div>
-                  </div>
-                </div>
+              {/* Audio Settings */}
+              <div className="margin-vertical-xlg">
+                <h4 className="margin-top-md margin-bottom-none">
+                  Audio Settings
+                </h4>
 
-                <h4 className="margin-vertical-sm">Game Modes</h4>
-                {/* Wild Bingo Settings */}
-                <div className="padding-vertical-lg">
-                  <div
-                    className="row vertical"
-                    data-disabled={this.state.totalBallsCalled > 0}>
-                    <div className="col padding-vertical-md">
-                      <label
-                        className={
-                          this.state.wildBingo ? "toggle checked" : "toggle"
-                        }>
-                        <span className="toggle-span"></span>
-                        <span>Enable Wild Bingo</span>
-                        <input
-                          type="checkbox"
-                          data-gamemode="wildBingo"
-                          onChange={this.handleCheckbox}
-                          checked={this.state.wildBingo}></input>
-                      </label>
-                    </div>
-                    <div
-                      className="col padding-vertical-md"
-                      data-disabled={
-                        !this.state.wildBingo || this.state.totalBallsCalled > 0
-                      }>
-                      <label
-                        className={
-                          this.state.evensOdds ? "toggle checked" : "toggle"
-                        }>
-                        <span className="toggle-span"></span>
-                        <span>Evens/Odds Mode</span>
-                        <input
-                          type="checkbox"
-                          data-gamemode="evensOdds"
-                          onChange={this.handleCheckbox}
-                          checked={this.state.evensOdds}></input>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <h4 className="margin-vertical-sm">Audio Settings</h4>
                 {/* Caller Enabler */}
                 {/* Only shown if speech is enabled by the browser */}
                 <div
-                  className="row vertical"
                   data-visibility={_speechEnabled === true ? "show" : "hide"}>
                   {/* Enable Caller */}
-                  <div className="col padding-vertical-md">
+                  <div className="padding-vertical-md">
                     <label
                       className={
                         this.state.enableCaller ? "toggle checked" : "toggle"
@@ -377,16 +377,33 @@ class Settings extends React.Component {
                         checked={this.state.enableCaller}></input>
                     </label>
                   </div>
+
+                  {/* Caller Select */}
+                  <div
+                    className="padding-vertical-md"
+                    data-visibility={
+                      this.state.enableCaller === true ? "show" : "hide"
+                    }>
+                    <h6>Caller Selection</h6>
+                    <Select
+                      className="select-input"
+                      placeholder="Choose Caller"
+                      menuPlacement="auto"
+                      value={this.state.selectedCaller}
+                      onChange={this.handleChooseCaller}
+                      options={this.state.voiceOptions}
+                    />
+                  </div>
                   {/* Double Calls */}
                   <div
-                    className="col padding-vertical-md"
+                    className="padding-vertical-md"
                     data-visibility={this.state.enableCaller ? "show" : "hide"}>
                     <label
                       className={
                         this.state.doubleCall ? "toggle checked" : "toggle"
                       }>
                       <span className="toggle-span"></span>
-                      <span>Double Call</span>
+                      <span>Call Numbers Twice</span>
                       <input
                         type="checkbox"
                         data-gamemode="doubleCall"
@@ -396,7 +413,7 @@ class Settings extends React.Component {
                   </div>
                   {/* Chatty Caller */}
                   <div
-                    className="col padding-vertical-md"
+                    className="padding-vertical-md"
                     data-visibility={this.state.enableCaller ? "show" : "hide"}>
                     <label
                       className={
@@ -412,36 +429,18 @@ class Settings extends React.Component {
                     </label>
                   </div>
                 </div>
+
                 {/* Only shown if speech is DISABLED by the browser */}
                 <div
-                  className="row no-wrap"
+                  className="padding-vertical-md"
                   data-visibility={_speechEnabled === true ? "hide" : "show"}>
-                  <div className="col padding-vertical-md">
-                    Sorry, but your browser does not support the audible bingo
-                    caller.
-                  </div>
-                </div>
-                {/* Caller Select */}
-                <div
-                  className="col padding-vertical-md margin-bottom-md"
-                  data-visibility={
-                    _speechEnabled === true && this.state.enableCaller === true
-                      ? "show"
-                      : "hide"
-                  }>
-                  <Select
-                    className="select-input"
-                    placeholder="Choose Caller"
-                    menuPlacement="auto"
-                    value={this.state.selectedCaller}
-                    onChange={this.handleChooseCaller}
-                    options={this.state.voiceOptions}
-                  />
+                  Sorry, but your browser does not support the audible bingo
+                  caller.
                 </div>
 
                 {/* Audible Chime */}
                 {/*  Enable Chime  */}
-                <div className="col padding-vertical-md">
+                <div className="padding-vertical-md">
                   <label
                     className={this.state.chime ? "toggle checked" : "toggle"}>
                     <span className="toggle-span"></span>
@@ -455,8 +454,9 @@ class Settings extends React.Component {
                 </div>
                 {/*  Chime Selection */}
                 <div
-                  className="col padding-vertical-md margin-bottom-md"
+                  className="padding-vertical-md"
                   data-visibility={this.state.chime ? "show" : "hide"}>
+                  <h6>Chime Selection</h6>
                   <Select
                     className="select-input"
                     placeholder="Choose Chime"
@@ -467,13 +467,16 @@ class Settings extends React.Component {
                   />
                 </div>
               </div>
+
+              {/* ----------- Note ------------- */}
               <div className="padding-vertical-md">
                 <p className="x-small-text dk-gray-text">
                   <strong>Note: </strong>
                   <em>
-                    Some settings are disabled when a game is in play to prevent
-                    any odd behavior. Come back after you reset the game to
-                    re-enable all settings.
+                    Some settings are disabled when a game is in play or
+                    depending on other settings to prevent any unwanted
+                    behavior. Come back after you reset the game to re-enable
+                    all settings.
                   </em>
                 </p>
               </div>
