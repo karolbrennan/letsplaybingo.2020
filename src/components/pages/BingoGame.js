@@ -881,6 +881,7 @@ class BingoGame extends Component {
 
               <section className="gameplay-controls">
                 <button
+                  className="primaryBtn"
                   data-visibility={_gameSettings.manualMode ? "hide" : "true"}
                   data-disabled={this.gameplayButtonDisabled}
                   onClick={this.handleGameplayButton}>
@@ -888,6 +889,7 @@ class BingoGame extends Component {
                 </button>
 
                 <button
+                  className="secondaryBtn"
                   onClick={this.toggleResetModal}
                   disabled={
                     this.state.running || this.state.totalBallsCalled === 0

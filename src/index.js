@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Styles
-import "./sass/main.scss";
+import "./sass/core.scss";
 
 // Header & Footer
 import Header from "./components/subcomponents/Header.js";

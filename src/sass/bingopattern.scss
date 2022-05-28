@@ -83,8 +83,8 @@
         // Pattern numbers
         &:not(:first-child) {
           height: calc(160px/5);
-          background: #efefef;
-          border: 1px solid #ffffff;
+          background: var(--pale-gray);
+          border: 1px solid  var(--white);
 
           span {
             position: absolute;
@@ -101,7 +101,7 @@
               margin: 5px 0;
               text-align: center;
               text-transform: uppercase;
-              color: #676767;
+              color: var(--med-gray);
             }
           }
 

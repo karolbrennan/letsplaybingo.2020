@@ -1,131 +1,19 @@
-
-/* Primary Styles */
-body, html, * {
-  box-sizing: border-box;
-}
-body, html {
-  margin: 0;
-  padding: 0;
-}
-body {
-  overflow-x: hidden;
-}
-
-/* Header & Footer */
-header, footer {
-  padding: 1rem;
-}
-header {
-  border-bottom: 5px solid var(--primary-color);
-}
-footer {
-  border-top: 5px solid var(--primary-color);
-}
-ul li {
-  white-space: normal;
-}
-
-/* Menu */
-.menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-family: var(--heading-font);
-  @media screen and (max-width: 700px){
-    white-space: pre-wrap;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-    a {
-      font-size: 1.25rem;
-      padding: 0.5rem;
-      font-weight: 700;
-      border: 3px solid transparent;
-      &:hover {
-        border: 3px solid var(--primary-color);
-      }
-    }
-  }
-}
-
-/* Images */
-.logo {
-  height: 3rem;
-  width: auto;
-}
-.donate {
-  max-height: 150px;
-  margin: 0.5rem;
-}
-.social-icon {
-  width: 2.5rem;
-  margin: 0.25em;
-}
-
-/* Tell Your Friends */
-.tell-your-friends {
-  text-align: center;
-  > div {
-    display: inline-block;
-    vertical-align: middle;
-  }
-}
-
-/* Google Translate */
-.goog-te-gadget-simple {
-  border: 0 !important;
-  font-family: var(--body-font);
-  .goog-te-menu-value {
-    span {
-      &:first-child {
-        font-family: var(--body-font);
-        font-size: .85rem;
-        line-height: 2.5;
-      }
-      &:last-child {
-        font-size: 0;
-        color: #3c3c3c !important;
-        &:before {
-          display: inline-block;
-          content: '\2329';
-          font-size: 14px;
-          font-weight: 500;
-          transform: rotate(-90deg);
-          padding: 0 1em 0 0;
-          margin: -0.25em;
-        }
-      }
-    }
-  }
-}
-
-/* Release Notes */
-.date {
-  color: var(--primary-color);
-}
-span{
-  &.version {
-    color: #aaa;
-    font-family: var(--body-font);
-    font-weight: normal;
-    vertical-align: middle;
-    margin: 0 10px;
-    font-size: 14px;
-  }
-  &.tag {
-    font-size: 12px;
-    font-family: var(--body-font);
-    font-weight: normal;
-    background-color: #ccc;
-    padding: 0.5em 1em;
-    vertical-align: middle;
-    border-radius: 12px;
-    &.release {
-      background-color: var(--release-color);
-    }
-    &.bugfix {
-      background-color: var(--bugfix-color);
-    }
-  }
-}
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,900|ZCOOL+QingKe+HuangYou&display=swap');
+// Core Sheets
+@import './variables.scss';
+@import './grid.scss';
+@import './common.scss';
+@import './utilities.scss';
+@import './typography.scss';
+@import './buttons.scss';
+@import './colors.scss';
+@import './print.scss';
+@import './animations.scss';
+// Components
+@import './bingopattern.scss';
+@import './bingoboard.scss';
+@import './bingocalls.scss';
+@import './cardgeneration.scss';
+@import './gamesettings.scss';
+// Media Queries
+@import './mediaqueries.scss';

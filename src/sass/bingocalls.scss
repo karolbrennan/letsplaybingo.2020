@@ -78,7 +78,7 @@
     }
 
     &.white {
-      background: radial-gradient(circle at 20% 20%, #ffffff, #b6b6b6);
+      background: radial-gradient(circle at 20% 20%,  var(--white), #b6b6b6);
       .content {
         border: 0.15rem solid #FF0000;
       }

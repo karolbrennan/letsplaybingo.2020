@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer>
+    <footer className="light-links">
       <div className="container row three-cols align-center">
         <div className="col">
           <div className="addthis_inline_share_toolbox"></div>

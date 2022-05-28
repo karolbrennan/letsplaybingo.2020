@@ -2,27 +2,30 @@
 /* Links & Buttons */
 a {
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--primary-link-color);
   transition: all ease .25s;
   &:hover {
-    color: #222222;
+    color: var(--primary-link-hover);
   }
 }
 // links that are within a paragraph
 p > a:not(.plain){
-  border-bottom: 2px solid var(--secondary-color);
+  border-bottom: 2px solid var(--primary-link-border);
 }
 
 .light-links {
   .button {
-    border: 2px solid #1396d3;
+    border: 2px solid var(--secondary-button-border);
     padding: 0.25em 1em;
+    &:hover {
+      border-color: var(--secondary-button-hover-border);
+    }
   }
 
-   a {
-    color: #1396d3;
+  a {
+    color: var(--secondary-link-color);
     &:hover {
-      color: #ffffff;
+      color: var(--secondary-link-hover);
     }
   }
 }
@@ -30,73 +33,84 @@ p > a:not(.plain){
 button {
   white-space: nowrap;
   font-size: 1rem;
-  border-radius: 0;
+  color: var(--standard-button-text);
+  background-color: var(--standard-button-background);
+  border: 2px solid var(--standard-button-border);
+  border-radius: var(--button-border-radius);
   padding: 0.55rem 1rem;
   margin: 0.25rem;
-  border: 2px solid #ffffff;
-  color: #FFFFFF;
-  background-color: transparent;
-  transition: all ease 0.25s;
+  transition: var(--quick-transition);
 
   &:hover {
     cursor: pointer;
-    color: var(--primary-color);
-    background-color: #F8F8F8;
+    color: var(--standard-button-hover-text);
+    background-color: var(--standard-button-hover-background);
+    border-color: var(--standard-button-hover-border);
   }
-  &[disabled] {
-    opacity: 0.25;
+
+  &[disabled],
+  &[disabled]:hover {
     cursor: not-allowed;
-    &:hover {
-      color: #FFFFFF;
-      background-color: transparent;
-    }
+    color: var(--standard-button-disabled-text);
+    border-color: var(--standard-button-disabled-border);
+    background-color: var(--standard-button-disabled-background);
   }
+
   &.textOnly {
     font-size: inherit;
     border: none;
     padding: 0;
-    color: #ffffff;
+    color: var(--standard-button-text-only);
     background:transparent;
+    &:hover {
+      color: var(--standard-button-text-only-hover);
+    }
     &.primary{
-      color: var(--primary-color);
+      color: var(--primary-button-text-only);
       &:hover {
-        color: var(--secondary-color);
+        color: var(--primary-button-text-only-hover);
       }
     }
     &.secondary{
-      color: var(--secondary-color);
+      color: var(--secondary-button-text-only);
       &:hover {
-        color: var(--primary-color);
+        color: var(--secondary-button-text-only-hover);
       }
     }
-    &:hover {
-      color: var(--primary-color);
-    }
   }
-  &.altBtn {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    &:hover {
-      background-color: var(--primary-color);
-      color: #ffffff;
-    }
-    &[disabled]:hover {
-      border-color: var(--primary-color);
-      color: var(--primary-color);
-    }
-  }
+
   &.primaryBtn {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    border-color: var(--primary-color);
+    background-color: var(--primary-button-background);
+    border-color: var(--primary-button-border);
+    color: var(--primary-button-text);
     &:hover {
-      background-color: #efefef;
-      color: var(--primary-color);
+      background-color: var(--primary-button-hover-background);
+      border-color: var(--primary-button-hover-border);
+      color: var(--primary-button-hover-text);
     }
+    &[disabled],
     &[disabled]:hover {
-      background-color: var(--primary-color);
-      color: #ffffff;
-      border-color: var(--primary-color);
+      background-color: var(--primary-button-disabled-background);
+      border-color: var(--primary-button-disabled-border);
+      color: var(--primary-button-disabled-text);
+    }
+  }
+
+  &.secondaryBtn {
+    background-color: var(--secondary-button-background);
+    border-color: var(--secondary-button-border);
+    color: var(--secondary-button-text);
+    &:hover {
+      background-color: var(--secondary-button-hover-background);
+      border-color: var(--secondary-button-hover-border);
+      color: var(--secondary-button-hover-text);
+    }
+    &[disabled],
+    &[disabled]:hover {
+      cursor: not-allowed;
+      color: var(--primary-button-disabled-text);
+      border-color: var(--primary-button-disabled-border);
+      background-color: var(--primary-button-disabled-background);
     }
   }
 }

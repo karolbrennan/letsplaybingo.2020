@@ -3,7 +3,14 @@
   --primary-color: #00487b;
   --secondary-color: #1396d3;
   --near-black: #161616;
-  --pale-gray: #eaeaea;
+  --pale-gray: #efefef;
+  --med-gray: #676767;
+  --dark-gray: #222222;
+  --off-white: #f8f8f8;
+  --white: #ffffff;
+  --black: #ffffff;
+  /* -------- Color Supports ------ */
+  --primary-color-text: #ffffff;
   /* -------- Fonts -----------*/
   --condensed-font: "Roboto Condensed", sans-serif;
   --heading-font: "Roboto Condensed", sans-serif;
@@ -13,6 +20,7 @@
   --release-color: #5cb3ee;
   --bugfix-color: #ff8b9f;
   /* -------- Transitions -----------*/
+  --quick-transition: all ease 0.25s;
   --ease-transition: all ease 0.5s;
   /* Ball Colors */
   --ball-color-blue: #0000FF;
@@ -28,4 +36,49 @@
   --size-lg: .75rem;
   --size-xlg: 1rem;
   --size-xxlg: 2rem;
+  /* Links */
+  --primary-link-color: #00487b;
+  --primary-link-hover: #222222;
+  --primary-link-border: #1396d3;
+  --secondary-link-color: #1396d3;
+  --secondary-link-hover: #ffffff;
+  --secondary-link-border: #ffffff;
+  /* Buttons */
+  --standard-button-text-only: #ffffff;
+  --standard-button-text-only-hover: #1396d3;
+  --standard-button-background: transparent;
+  --standard-button-text: #ffffff;
+  --standard-button-border: #ffffff;
+  --standard-button-hover-background: #transparent;
+  --standard-button-hover-border: #ffffff;
+  --standard-button-hover-text: #ffffff;
+  --standard-button-disabled-background: transparent !important;
+  --standard-button-disabled-border: #5e5e5e !important;
+  --standard-button-disabled-text: #5e5e5e !important;
+
+  --primary-button-text-only: #00487b;
+  --primary-button-text-hover: #1396d3;
+  --primary-button-background: transparent;
+  --primary-button-border: #1396d3;
+  --primary-button-text: #ffffff;
+  --primary-button-hover-background: #1396d3;
+  --primary-button-hover-border: #1396d3;
+  --primary-button-hover-text: #ffffff;
+  --primary-button-disabled-background: transparent !important;
+  --primary-button-disabled-border: #5e5e5e !important;
+  --primary-button-disabled-text: #5e5e5e !important;
+
+  --secondary-button-text-only: #1396d3;
+  --secondary-button-text-hover: #00487b;
+  --secondary-button-background: transparent;
+  --secondary-button-border: #00487b;
+  --secondary-button-text: #ffffff;
+  --secondary-button-hover-background: #00487b;
+  --secondary-button-hover-border: #00487b;
+  --secondary-button-hover-text: #ffffff;
+  --secondary-button-disabled-background: transparent !important;
+  --secondary-button-disabled-border: #5e5e5e !important;
+  --secondary-button-disabled-text: #5e5e5e !important;
+
+  --button-border-radius: 0;
 }

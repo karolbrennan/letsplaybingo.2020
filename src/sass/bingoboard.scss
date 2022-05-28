@@ -51,11 +51,11 @@
           }
         }
         &.called {
-          color: #ffffff;
+          color: var(--white);
         }
         &.active {
           animation: blink 1s infinite;
-          color: #ffffff;
+          color:  var(--white);
         }
       }
     }
