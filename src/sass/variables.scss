@@ -49,34 +49,36 @@
   --standard-button-background: transparent;
   --standard-button-text: #ffffff;
   --standard-button-border: #ffffff;
-  --standard-button-hover-background: #1396d3;
+  --standard-button-hover-background: #transparent;
   --standard-button-hover-border: #ffffff;
   --standard-button-hover-text: #ffffff;
-  --standard-button-disabled-background: #dddddd;
-  --standard-button-disabled-border: #dddddd;
-  --standard-button-disabled-text: #444444;
+  --standard-button-disabled-background: transparent !important;
+  --standard-button-disabled-border: #5e5e5e !important;
+  --standard-button-disabled-text: #5e5e5e !important;
 
   --primary-button-text-only: #00487b;
   --primary-button-text-hover: #1396d3;
-  --primary-button-background: #00487b;
-  --primary-button-border: #00487b;
+  --primary-button-background: transparent;
+  --primary-button-border: #1396d3;
   --primary-button-text: #ffffff;
-  --primary-button-hover-background: #ffffff;
-  --primary-button-hover-border: #ffffff;
-  --primary-button-hover-text: #222222;
-  --primary-button-disabled-background: #dddddd;
-  --primary-button-disabled-border: #dddddd;
-  --primary-button-disabled-text: #444444;
+  --primary-button-hover-background: #1396d3;
+  --primary-button-hover-border: #1396d3;
+  --primary-button-hover-text: #ffffff;
+  --primary-button-disabled-background: transparent !important;
+  --primary-button-disabled-border: #5e5e5e !important;
+  --primary-button-disabled-text: #5e5e5e !important;
 
   --secondary-button-text-only: #1396d3;
   --secondary-button-text-hover: #00487b;
-  --secondary-button-background: #1396d3;
-  --secondary-button-border: #1396d3;
+  --secondary-button-background: transparent;
+  --secondary-button-border: #00487b;
   --secondary-button-text: #ffffff;
-  --secondary-button-hover-background: #ffffff;
-  --secondary-button-hover-border: #ffffff;
+  --secondary-button-hover-background: #00487b;
+  --secondary-button-hover-border: #00487b;
   --secondary-button-hover-text: #ffffff;
-  --secondary-button-disabled-background: #dddddd;
-  --secondary-button-disabled-border: #dddddd;
-  --secondary-button-disabled-text: #444444;
+  --secondary-button-disabled-background: transparent !important;
+  --secondary-button-disabled-border: #5e5e5e !important;
+  --secondary-button-disabled-text: #5e5e5e !important;
+
+  --button-border-radius: 0;
 }

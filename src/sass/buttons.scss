@@ -33,30 +33,29 @@ p > a:not(.plain){
 button {
   white-space: nowrap;
   font-size: 1rem;
-  border-radius: 0;
+  color: var(--standard-button-text);
+  background-color: var(--standard-button-background);
+  border: 2px solid var(--standard-button-border);
+  border-radius: var(--button-border-radius);
   padding: 0.55rem 1rem;
   margin: 0.25rem;
-  border: 2px solid var(--standard-button-border);
-  color: var(--white);
-  background-color: var(--standard-button-background);
   transition: var(--quick-transition);
 
   &:hover {
     cursor: pointer;
     color: var(--standard-button-hover-text);
     background-color: var(--standard-button-hover-background);
+    border-color: var(--standard-button-hover-border);
   }
-  &[disabled] {
+
+  &[disabled],
+  &[disabled]:hover {
     cursor: not-allowed;
     color: var(--standard-button-disabled-text);
     border-color: var(--standard-button-disabled-border);
     background-color: var(--standard-button-disabled-background);
-    &:hover {
-      color: var(--standard-button-disabled-text);
-      border-color: var(--standard-button-disabled-border);
-      background-color: var(--standard-button-disabled-background);
-    }
   }
+
   &.textOnly {
     font-size: inherit;
     border: none;
@@ -79,6 +78,7 @@ button {
       }
     }
   }
+
   &.primaryBtn {
     background-color: var(--primary-button-background);
     border-color: var(--primary-button-border);
@@ -88,12 +88,14 @@ button {
       border-color: var(--primary-button-hover-border);
       color: var(--primary-button-hover-text);
     }
+    &[disabled],
     &[disabled]:hover {
       background-color: var(--primary-button-disabled-background);
       border-color: var(--primary-button-disabled-border);
       color: var(--primary-button-disabled-text);
     }
   }
+
   &.secondaryBtn {
     background-color: var(--secondary-button-background);
     border-color: var(--secondary-button-border);
@@ -103,10 +105,12 @@ button {
       border-color: var(--secondary-button-hover-border);
       color: var(--secondary-button-hover-text);
     }
+    &[disabled],
     &[disabled]:hover {
-      background-color: var(--primary-button-disabled-background);
-      border-color: var(--primary-button-disabled-border);
+      cursor: not-allowed;
       color: var(--primary-button-disabled-text);
+      border-color: var(--primary-button-disabled-border);
+      background-color: var(--primary-button-disabled-background);
     }
   }
 }
