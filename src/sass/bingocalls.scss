@@ -176,7 +176,12 @@
 .modal .previous-calls {
   max-width: 300px;
   div {
-    flex: 0 0 32px;
+    flex: 0 0 35px;
+    height: 35px;
     margin: 5px;
+    box-shadow: 0 0 8px 1px rgb(0 0 0 / 20%);
+    > span {
+      padding: 2px 0;
+    }
   }
 }
