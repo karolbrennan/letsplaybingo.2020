@@ -241,7 +241,7 @@ class Play extends React.Component {
    */
   render() {
     return (
-      <section className="page padding-vertical-xxlg padding-bottom-xxlg">
+      <section className="page padding-bottom-xxlg">
         <div className="container">
           <div className="row">
             <div className="col">
