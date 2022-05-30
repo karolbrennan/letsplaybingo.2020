@@ -184,7 +184,7 @@ class CardGenerator extends React.Component {
    */
   get numberOfCardsOptions() {
     let options = [];
-    for (let i = 0; i <= 100; i++) {
+    for (let i = 1; i <= 100; i++) {
       options.push({ value: i.toString(), label: i.toString() });
     }
     return options;

@@ -12,6 +12,7 @@ import BingoGame from "./components/pages/BingoGame.js";
 import CardGenerator from "./components/pages/CardGenerator.js";
 import Help from "./components/pages/Help.js";
 import Patterns from "./components/pages/Patterns.js";
+import Play from "./components/pages/Play.js";
 import Privacy from "./components/pages/Privacy.js";
 import ReleaseNotes from "./components/pages/ReleaseNotes.js";
 import Terms from "./components/pages/Terms.js";
@@ -32,10 +33,13 @@ const routing = (
         <div className="col grow padding-md no-text-wrap text-right">
           <ul className="menu">
             <li>
-              <Link to="/">Play</Link>
+              <Link to="/">Call</Link>
             </li>
             <li>
-              <Link to="/generator">Card Generator</Link>
+              <Link to="/play">Play</Link>
+            </li>
+            <li>
+              <Link to="/generator">Get Cards</Link>
             </li>
             <li>
               <Link to="/patterns">Patterns</Link>
@@ -84,12 +88,16 @@ const routing = (
       component={CardGenerator}
     />
     <Route
-      path="/terms"
-      component={Terms}
+      path="/help"
+      component={Help}
     />
     <Route
       path="/patterns"
       component={Patterns}
+    />
+    <Route
+      path="/play"
+      component={Play}
     />
     <Route
       path="/privacy"
@@ -100,8 +108,8 @@ const routing = (
       component={ReleaseNotes}
     />
     <Route
-      path="/help"
-      component={Help}
+      path="/terms"
+      component={Terms}
     />
 
     <footer className="light-links">
