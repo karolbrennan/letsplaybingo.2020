@@ -103,6 +103,18 @@
 }
 
 /* Form Elements */
+.number-select {
+  cursor: pointer;
+
+  div[class$="-menu"],
+  div[class$="-menu"] * {
+    cursor: pointer !important;
+  }
+  div[class$="-ValueContainer"],
+  div[class$="-ValueContainer"] * {
+    cursor: text !important;
+  }
+}
 
 // Placeholders
 div[class$="-placeholder"] {
@@ -111,6 +123,7 @@ div[class$="-placeholder"] {
 div[class$="-control"] {
   border-color: #444444;
   border-radius: 0;
+  cursor: pointer !important;
 }
 div[class$="-indicatorContainer"] svg {
   fill: #444444;

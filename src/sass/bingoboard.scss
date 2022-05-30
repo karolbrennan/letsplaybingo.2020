@@ -66,6 +66,9 @@
       width: 90%;
       display: block;
       margin: 1rem auto;
+      &:not([disabled]):hover {
+        color: var(--white);
+      }
     }
   }
 }

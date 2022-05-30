@@ -754,7 +754,7 @@ class BingoGame extends Component {
               </div>
               <div className="col">
                 <button
-                  className="primary-button light-background"
+                  className="primary-button"
                   onClick={this.confirmResetGame}>
                   Confirm
                 </button>

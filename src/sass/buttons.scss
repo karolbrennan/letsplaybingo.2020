@@ -44,12 +44,6 @@ button {
   margin: 0.25rem;
   transition: var(--quick-transition);
 
-  &.light-background {
-    &:hover {
-      color: var(--dark-gray) !important;
-    }
-  }
-
   &:hover {
     cursor: pointer;
     color: var(--standard-button-hover-text);
