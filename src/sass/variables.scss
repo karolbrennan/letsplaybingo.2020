@@ -5,23 +5,32 @@
   --near-black: #161616;
   --pale-gray: #efefef;
   --med-gray: #676767;
+  --semi-dark-gray: #2d2d2d;
   --dark-gray: #222222;
   --off-white: #f8f8f8;
   --white: #ffffff;
   --black: #ffffff;
+
   /* -------- Color Supports ------ */
   --primary-color-text: #ffffff;
+
+  /* -------- Shadows ---------- */
+  --big-shadow: 0px 0px 36px 0px #000000;
+
   /* -------- Fonts -----------*/
   --condensed-font: "Roboto Condensed", sans-serif;
   --heading-font: "Roboto Condensed", sans-serif;
   --body-font: 'Roboto', sans-serif;
   --digital-font: "ZCOOL QingKe HuangYou", "Roboto Condensed", "Helvetica", cursive;
+
   /* -------- Release Notes -----------*/
   --release-color: #5cb3ee;
   --bugfix-color: #ff8b9f;
+
   /* -------- Transitions -----------*/
-  --quick-transition: all ease 0.25s;
+  --quick-transition: all ease 0.5s;
   --ease-transition: all ease 0.5s;
+
   /* Ball Colors */
   --ball-color-blue: #0000FF;
   --ball-color-green: #008000;
@@ -30,55 +39,64 @@
   --ball-color-yellow: #f7bd00;
   --ball-color-inner: #ffffff;
   --ball-color-text: #222222;
+
   /* Sizes */
   --size-sm: .25rem;
   --size-md: .5rem;
   --size-lg: .75rem;
   --size-xlg: 1rem;
   --size-xxlg: 2rem;
+
   /* Links */
   --primary-link-color: #00487b;
   --primary-link-hover: #222222;
-  --primary-link-border: #1396d3;
+  --primary-link-border: 2px solid#1396d3;
   --secondary-link-color: #1396d3;
   --secondary-link-hover: #ffffff;
-  --secondary-link-border: #ffffff;
+  --secondary-link-border: 2px solid #ffffff;
+
   /* Buttons */
   --standard-button-text-only: #ffffff;
   --standard-button-text-only-hover: #1396d3;
   --standard-button-background: transparent;
   --standard-button-text: #ffffff;
-  --standard-button-border: #ffffff;
+  --standard-button-border: 1px solid #ffffff;
   --standard-button-hover-background: #transparent;
-  --standard-button-hover-border: #ffffff;
+  --standard-button-hover-border: 1px solid #ffffff;
   --standard-button-hover-text: #ffffff;
   --standard-button-disabled-background: transparent !important;
-  --standard-button-disabled-border: #5e5e5e !important;
+  --standard-button-disabled-border: 1px solid #5e5e5e !important;
   --standard-button-disabled-text: #5e5e5e !important;
+  --standard-button-shadow: 0 0 5px 3px none;
+  --standard-button-hover-shadow: 0 0 5px 3px #ffffff;
 
   --primary-button-text-only: #00487b;
   --primary-button-text-hover: #1396d3;
-  --primary-button-background: transparent;
-  --primary-button-border: #1396d3;
+  --primary-button-background: #1396d3;
+  --primary-button-border: 1px solid #1396d3;
   --primary-button-text: #ffffff;
-  --primary-button-hover-background: #1396d3;
-  --primary-button-hover-border: #1396d3;
+  --primary-button-hover-background: transparent;
+  --primary-button-hover-border: 1px solid #1396d3;
   --primary-button-hover-text: #ffffff;
   --primary-button-disabled-background: transparent !important;
-  --primary-button-disabled-border: #5e5e5e !important;
+  --primary-button-disabled-border: 1px solid #5e5e5e !important;
   --primary-button-disabled-text: #5e5e5e !important;
+  --primary-button-shadow: none;
+  --primary-button-hover-shadow: 0 0 5px 3px #1396d3;
 
   --secondary-button-text-only: #1396d3;
   --secondary-button-text-hover: #00487b;
   --secondary-button-background: transparent;
-  --secondary-button-border: #00487b;
+  --secondary-button-border: 1px solid #00487b;
   --secondary-button-text: #ffffff;
   --secondary-button-hover-background: #00487b;
-  --secondary-button-hover-border: #00487b;
+  --secondary-button-hover-border: 1px solid #00487b;
   --secondary-button-hover-text: #ffffff;
   --secondary-button-disabled-background: transparent !important;
-  --secondary-button-disabled-border: #5e5e5e !important;
+  --secondary-button-disabled-border: 1px solid #5e5e5e !important;
   --secondary-button-disabled-text: #5e5e5e !important;
+  --secondary-button-shadow: none;
+  --secondary-button-hover-shadow: 0 0 5px 3px #00487b;
 
-  --button-border-radius: 0;
+  --button-border-radius: 4px;
 }

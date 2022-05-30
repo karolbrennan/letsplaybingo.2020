@@ -42,10 +42,10 @@ export default function Header() {
                 Classic
               </a>
             </li>
+            <li className="final-element">
+              <div id="google_translate_element"></div>
+            </li>
           </ul>
-        </div>
-        <div className="col shrink text-right margin-left-lg final-element">
-          <div id="google_translate_element"></div>
         </div>
       </div>
     </header>

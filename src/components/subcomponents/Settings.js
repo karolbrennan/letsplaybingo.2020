@@ -240,9 +240,7 @@ class Settings extends React.Component {
               </div>
 
               {/* Skip Unused Numbers - disabled if totalBallsCalled > 0 */}
-              <div
-                className="padding-vertical-md"
-                data-disabled={this.state.totalBallsCalled > 0}>
+              <div className="padding-vertical-md">
                 <label
                   className={
                     this.state.skipUnused ? "toggle checked" : "toggle"
@@ -523,7 +521,7 @@ class Settings extends React.Component {
                 <p className="x-small-text">
                   Need to report a bug?{" "}
                   <button
-                    className="textOnly secondary"
+                    className="text-only secondary"
                     onClick={this.handleBugReport}>
                     Email me!
                   </button>

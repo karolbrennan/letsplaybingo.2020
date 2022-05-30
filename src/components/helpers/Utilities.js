@@ -92,7 +92,7 @@ export default class Utilities {
       for (let i = 1; i <= 15; i++) {
         let obj = {
           letter: letter,
-          color: getColor(letter),
+          color: this.getColor(letter),
           number: count,
           display: letter + count,
           called: false,
@@ -103,23 +103,24 @@ export default class Utilities {
       }
     });
 
-    function getColor(letter) {
-      switch (letter) {
-        case "B":
-          return "blue";
-        case "I":
-          return "red";
-        case "N":
-          return "white";
-        case "G":
-          return "green";
-        case "O":
-          return "yellow";
-        default:
-          return "white";
-      }
-    }
     return board;
+  };
+
+  static getColor = (letter) => {
+    switch (letter) {
+      case "B":
+        return "blue";
+      case "I":
+        return "red";
+      case "N":
+        return "white";
+      case "G":
+        return "green";
+      case "O":
+        return "yellow";
+      default:
+        return "white";
+    }
   };
 
   /**
