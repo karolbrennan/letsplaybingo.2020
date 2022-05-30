@@ -26,7 +26,7 @@ class Help extends React.Component {
    */
   render() {
     return (
-      <section className="padding-vertical-xxlg">
+      <section className="page padding-vertical-xxlg">
         <div className="container row">
           <div
             id="top"

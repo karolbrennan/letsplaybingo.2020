@@ -11,7 +11,9 @@ class Patterns extends React.Component {
   render() {
     const patterns = Utilities.getPresetPatterns().splice(1);
     return (
-      <section id="pattern-list">
+      <section
+        className="page"
+        id="pattern-list">
         <div className="container row">
           <div className="col padding-xxlg">
             <h1>

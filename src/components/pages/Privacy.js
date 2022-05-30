@@ -6,7 +6,7 @@ import React from "react";
 class Privacy extends React.Component {
   render() {
     return (
-      <section>
+      <section className="page">
         <div className="container row">
           <div className="col padding-xxlg">
             <h1>Privacy Policy</h1>

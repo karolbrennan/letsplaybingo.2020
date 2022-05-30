@@ -5,7 +5,7 @@ import React from "react";
 class Terms extends React.Component {
   render() {
     return (
-      <section>
+      <section className="page">
         <div className="container row">
           <div className="col padding-xxlg">
             <h1>Terms of Use</h1>

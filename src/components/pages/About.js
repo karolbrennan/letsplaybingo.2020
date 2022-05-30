@@ -7,7 +7,7 @@ import venmo from "../../images/venmo.jpg";
 class About extends React.Component {
   render() {
     return (
-      <section className="padding-vertical-xxlg">
+      <section className="page padding-vertical-xxlg">
         <div className="container row">
           <div className="col">
             <h1 className="no-margin">About</h1>

@@ -28,6 +28,17 @@ footer {
     margin: 3px 0;
   }
 }
+
+.page {
+  background: white;
+  padding-left: var(--size-xlg);
+  padding-right: var(--size-xlg);
+  @media screen and (min-size: 700px){
+    padding-left: var(--size-xxlg);
+    padding-right: var(--size-xxlg);
+  }
+}
+
 ul li {
   white-space: normal;
 }

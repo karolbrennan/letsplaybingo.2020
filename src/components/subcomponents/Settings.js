@@ -486,9 +486,21 @@ class Settings extends React.Component {
                 </h4>
                 <p className="wrap-text small-text">
                   Let's Play Bingo was last updated on{" "}
-                  <strong>5/22/2022</strong>. Recent updates include:
+                  <strong>5/30/2022</strong>. Recent updates include:
                 </p>
                 <ul className="small-text padding-left-xlg">
+                  <li>Moved all game settings into their own panel.</li>
+                  <li>
+                    Updated the translation component to be hidden under a globe
+                    instead of the big block of text.
+                  </li>
+                  <li>Updated styling to various elements.</li>
+                  <li>
+                    Moved last 5 calls to below the board and added the wild
+                    ball next to it if applicable. Updated styling of both.
+                  </li>
+                  <li>Added a setting for going full screen.</li>
+                  <li>Moved the latest updates to the new settings panel.</li>
                   <li>
                     Added new{" "}
                     <a
@@ -504,12 +516,8 @@ class Settings extends React.Component {
                     Added a <a href="/patterns">page that shows all patterns</a>
                   </li>
                   <li>Added a way to "shuffle" the board just for fun!</li>
-                  <li>
-                    Skip Unused Numbers: fixed 'N' numbers being called when
-                    only the free space is marked in the pattern.
-                  </li>
                 </ul>
-                <p className="x-small-text">
+                <p className="small-text">
                   See the full{" "}
                   <a
                     href="/releases"

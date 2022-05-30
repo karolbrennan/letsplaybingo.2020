@@ -5,25 +5,37 @@ import React from "react";
 class ReleaseNotes extends React.Component {
   render() {
     return (
-      <section>
+      <section className="page">
         <div className="container row">
           <div className="col padding-xxlg">
             <h1>Release Notes!</h1>
             {/* ---------------------------------- */}
             <h2>
-              <span className="date">5/30/2022</span> | Development cleanup and
-              some minor updates |<span className="version">v3.5.0</span>
+              <span className="date">5/30/2022</span> | Development and UI Clean
+              up |<span className="version">v3.5.0</span>
               <span className="tag release">release</span>
             </h2>
             <ul>
-              <li>Moved reused blocks of code into a new Utilities class</li>
-              <li>Implemented Prettier for consistent code formatting</li>
+              <li>Moved all game settings into their own panel.</li>
+              <li>
+                Updated the translation component to be hidden under a globe
+                instead of the big block of text.
+              </li>
+              <li>Updated styling to various elements.</li>
+              <li>
+                Moved last 5 calls to below the board and added the wild ball
+                next to it if applicable. Updated styling of both.
+              </li>
+              <li>Added a setting for going full screen.</li>
+              <li>Moved the latest updates to the new settings panel.</li>
+              <li>Moved reused blocks of code into a new Utilities class.</li>
+              <li>Implemented Prettier for consistent code formatting.</li>
               <li>
                 Removed unused components and references to things no longer in
-                use
+                use.
               </li>
-              <li>Updated the About/Donate page</li>
-              <li>Added documentation to all pages and components</li>
+              <li>Updated the About/Donate page.</li>
+              <li>Added documentation to all pages and components.</li>
             </ul>
             {/* ---------------------------------- */}
             <h2>
@@ -97,9 +109,9 @@ class ReleaseNotes extends React.Component {
               </li>
               <li>Removed social links since those accounts aren't active.</li>
               <li>Fixed the mobile modal positioning.</li>
-              <li>Cleaned up some code, optimized CSS</li>
+              <li>Cleaned up some code, optimized CSS.</li>
               <li>Combined the about and donation pages.</li>
-              <li>Rearranged menu items</li>
+              <li>Rearranged menu items.</li>
               <li>
                 Updated some styling and formatting on the Release Notes, added
                 version numbers and tags for releases vs bug fixes. Added a link
@@ -172,10 +184,10 @@ class ReleaseNotes extends React.Component {
                 Added an evens/odds game mode - in order to play this mode wild
                 bingo mode must be on.
               </li>
-              <li>Added last 5 numbers display below the game play buttons</li>
+              <li>Added last 5 numbers display below the game play buttons.</li>
               <li>
                 Fixed a typo within the code that would sometimes break the
-                reset button
+                reset button.
               </li>
               <li>
                 Fixed an issue where the bingo board was writing out the numbers
@@ -220,7 +232,7 @@ class ReleaseNotes extends React.Component {
             <ul>
               <li>
                 Added information to the About page to add clarification how the
-                game works and what the game modes mean
+                game works and what the game modes mean.
               </li>
               <li>
                 Moved the speech synthesis out of the state object to stabilize
@@ -238,7 +250,7 @@ class ReleaseNotes extends React.Component {
               </li>
               <li>
                 Added a proper error notice if the user's browser/device doesn't
-                support audible calling
+                support audible calling.
               </li>
             </ul>
             {/* ---------------------------------- */}
