@@ -17,7 +17,7 @@ class Patterns extends React.Component {
             <h1>
               Patterns
               <button
-                className="primaryBtn"
+                className="primary-button"
                 onClick={() => {
                   window.print();
                   return false;

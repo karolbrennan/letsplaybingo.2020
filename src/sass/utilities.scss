@@ -14,11 +14,12 @@
 }
 .small-text,
 .small-text * {
-  font-size: 0.9rem;
+  font-size: 0.9rem !important;
   line-height: 1.5;
 }
-.x-small-text {
-  font-size: 0.8rem;
+.x-small-text,
+.x-small-text * {
+  font-size: 0.8rem !important;
   line-height: 1.25;
 }
 .no-text-wrap {
@@ -62,7 +63,7 @@
 
 /* Modals */
 .modal {
-  color: white;
+  color: #444444;
   position: absolute;
   top: 10%;
   left: calc(50% - 25vw);
@@ -70,7 +71,7 @@
   margin: 0 auto;
   display: block;
   text-align: center;
-  background: #222222;
+  background: #ffffff;
   box-shadow: 0 0 5px 1px rgb(0 0 0 / 40%);
   padding: var(--size-xxlg);
   z-index:999;
@@ -113,11 +114,6 @@ div[class$="-control"] {
 }
 div[class$="-indicatorContainer"] svg {
   fill: #444444;
-}
-
-/* Settings Control for menu */
-.final-element {
-  padding-right: 2.5rem !important;
 }
 
 /* Slider */

@@ -70,6 +70,32 @@ class CallHistory extends React.Component {
   }
 
   /**
+   * Displays the wild ball if applicable
+   *
+   * @return  {[type]}  [return description]
+   */
+  get wildBallDisplay() {
+    if (!this.props.wildBall) {
+      return null;
+    } else {
+      const wildBall = this.props.wildBall;
+      return (
+        <div className="no-text-wrap">
+          <p className="uppercase condensed-text margin-none padding-right-xlg small-text white-text">
+            <strong>Wild Ball</strong>
+          </p>
+          <div className={wildBall.color + " text-center notranslate"}>
+            <span>
+              <span className="call-letter">{wildBall.letter}</span>
+              <span className="call-number">{wildBall.number}</span>
+            </span>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  /**
    *  Shows a list of the last 5 balls called
    *
    * @return  {[JSX]}  Div that contains a list of 5 most recent calls
@@ -77,17 +103,19 @@ class CallHistory extends React.Component {
   get previousCallListDisplay() {
     if (this.props.calledBalls.length > 0) {
       const previousCallList = [...this.props.calledBalls];
-      let last5Calls = previousCallList.reverse().slice(1, 6);
-      if (last5Calls.length > 0) {
+      let lastCalls = previousCallList.reverse().slice(1, 6);
+      if (lastCalls.length > 0) {
         return (
-          <div className="margin-vertical-xlg">
-            <h6 className="text-center">Last 5 Calls</h6>
-            <div className="previous-calls padding-vertical-xlg notranslate">
-              {last5Calls.map((call) => {
+          <div className="row align-center">
+            <div className="col grow previous-calls notranslate">
+              <p className="uppercase condensed-text margin-none padding-right-xlg small-text white-text">
+                <strong>Last {lastCalls.length} Calls</strong>
+              </p>
+              {lastCalls.map((call) => {
                 return (
                   <div
                     key={call.number}
-                    className={call.color}>
+                    className={call.color + " text-center"}>
                     <span>
                       <span className="call-letter">{call.letter}</span>
                       <span className="call-number">{call.number}</span>
@@ -95,15 +123,18 @@ class CallHistory extends React.Component {
                   </div>
                 );
               })}
-            </div>
-            <div className="text-center">
               <button
-                className="textOnly x-small-text"
+                className="text-only margin-horizontal-xlg x-small-text"
                 onClick={() => {
                   this.setState({ showFullCallHistory: true });
                 }}>
                 show full history
               </button>
+            </div>
+            <div
+              data-visibility={!this.props.wildBall ? "hide" : "show"}
+              className="col shrink previous-calls text-right">
+              {this.wildBallDisplay}
             </div>
             {this.fullHistoryDisplay}
           </div>
@@ -123,7 +154,9 @@ class CallHistory extends React.Component {
    */
   render() {
     if (this.props.calledBalls.length > 1) {
-      return <div className="text-center">{this.previousCallListDisplay}</div>;
+      return (
+        <div className="margin-vertical-md">{this.previousCallListDisplay}</div>
+      );
     } else {
       return null;
     }

@@ -11,14 +11,8 @@
 
 .container {
   width: 100%;
-  max-width: 100%;
+  // max-width: 1800px;
   margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  @media screen and (min-width: 700px){
-    padding-left: 25px;
-    padding-right: 25px;
-  }
 }
 
 .row {

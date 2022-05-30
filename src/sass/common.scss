@@ -23,9 +23,20 @@ header {
 footer {
   border-top: 5px solid var(--primary-color);
   color: var(--white);
+  p {
+    font-size: 14px;
+    margin: 3px 0;
+  }
 }
 ul li {
   white-space: normal;
+}
+
+/* Google Translate */
+.goog-te-menu-frame {
+  box-shadow: var(--big-shadow) !important;
+  border: 6px solid #ffffff;
+  margin-top: 20px;
 }
 
 /* Menu */
@@ -39,18 +50,48 @@ ul li {
   }
   li {
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 1rem;
     a {
       font-size: 1.25rem;
-      padding: 0.5rem;
       font-weight: 700;
-      border: 3px solid transparent;
+      border-bottom: 3px solid transparent;
       &:hover {
-        border: 3px solid var(--primary-color);
+        border-color: var(--primary-color);
+      }
+    }
+    #google_translate_element {
+      .goog-te-gadget-simple {
+        background-color: transparent;
+        border: none !important;
+        font-size: 10pt;
+        display: block;
+        padding: 0 !important;
+        cursor: pointer;
+        img {
+          display: none;
+        }
+        .goog-te-menu-value {
+          background: url(../images/icons/planet.svg) var(--black);
+          width: 1.5rem !important;
+          height: 1.5rem !important;
+          display: block;
+          position: relative;
+          top: 4px;
+          img, span { 
+            display: none;
+          }
+        }
+      }
+    }
+    &.final-element {
+      padding: 0 2rem 0 0;
+      a, a:hover {
+        border: none !important;
       }
     }
   }
 }
+
 
 /* Images */
 .logo {
@@ -72,34 +113,6 @@ ul li {
   > div {
     display: inline-block;
     vertical-align: middle;
-  }
-}
-
-/* Google Translate */
-.goog-te-gadget-simple {
-  border: 0 !important;
-  font-family: var(--body-font);
-  .goog-te-menu-value {
-    span {
-      &:first-child {
-        font-family: var(--body-font);
-        font-size: .85rem;
-        line-height: 2.5;
-      }
-      &:last-child {
-        font-size: 0;
-        color: #3c3c3c !important;
-        &:before {
-          display: inline-block;
-          content: '\2329';
-          font-size: 14px;
-          font-weight: 500;
-          transform: rotate(-90deg);
-          padding: 0 1em 0 0;
-          margin: -0.25em;
-        }
-      }
-    }
   }
 }
 

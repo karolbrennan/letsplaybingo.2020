@@ -10,12 +10,12 @@ a {
 }
 // links that are within a paragraph
 p > a:not(.plain){
-  border-bottom: 2px solid var(--primary-link-border);
+  border-bottom: var(--primary-link-border);
 }
 
 .light-links {
   .button {
-    border: 2px solid var(--secondary-button-border);
+    border: var(--secondary-button-border);
     padding: 0.25em 1em;
     &:hover {
       border-color: var(--secondary-button-hover-border);
@@ -33,37 +33,50 @@ p > a:not(.plain){
 button {
   white-space: nowrap;
   font-size: 1rem;
+  font-family: var(--condensed-font);
+  text-transform: uppercase;
   color: var(--standard-button-text);
   background-color: var(--standard-button-background);
-  border: 2px solid var(--standard-button-border);
+  border: var(--standard-button-border);
   border-radius: var(--button-border-radius);
+  box-shadow: var(--standard-button-shadow);
   padding: 0.55rem 1rem;
   margin: 0.25rem;
   transition: var(--quick-transition);
+
+  &.light-background {
+    &:hover {
+      color: var(--dark-gray) !important;
+    }
+  }
 
   &:hover {
     cursor: pointer;
     color: var(--standard-button-hover-text);
     background-color: var(--standard-button-hover-background);
-    border-color: var(--standard-button-hover-border);
+    border: var(--standard-button-hover-border);
+    box-shadow: var(--standard-button-hover-shadow);
   }
 
   &[disabled],
   &[disabled]:hover {
     cursor: not-allowed;
     color: var(--standard-button-disabled-text);
-    border-color: var(--standard-button-disabled-border);
+    border: var(--standard-button-disabled-border);
     background-color: var(--standard-button-disabled-background);
+    box-shadow: none !important;
   }
 
-  &.textOnly {
+  &.text-only {
     font-size: inherit;
     border: none;
     padding: 0;
     color: var(--standard-button-text-only);
     background:transparent;
+    box-shadow: none !important;
     &:hover {
       color: var(--standard-button-text-only-hover);
+      box-shadow: none !important;
     }
     &.primary{
       color: var(--primary-button-text-only);
@@ -79,37 +92,41 @@ button {
     }
   }
 
-  &.primaryBtn {
+  &.primary-button {
     background-color: var(--primary-button-background);
-    border-color: var(--primary-button-border);
+    border: var(--primary-button-border);
     color: var(--primary-button-text);
+    box-shadow: var(--primary-button-shadow);
     &:hover {
       background-color: var(--primary-button-hover-background);
-      border-color: var(--primary-button-hover-border);
+      border: var(--primary-button-hover-border);
       color: var(--primary-button-hover-text);
+      box-shadow: var(--primary-button-hover-shadow);
     }
     &[disabled],
     &[disabled]:hover {
       background-color: var(--primary-button-disabled-background);
-      border-color: var(--primary-button-disabled-border);
+      border: var(--primary-button-disabled-border);
       color: var(--primary-button-disabled-text);
     }
   }
 
-  &.secondaryBtn {
+  &.secondary-button {
     background-color: var(--secondary-button-background);
-    border-color: var(--secondary-button-border);
+    border: var(--secondary-button-border);
     color: var(--secondary-button-text);
+    box-shadow: var(--secondary-button-shadow);
     &:hover {
       background-color: var(--secondary-button-hover-background);
-      border-color: var(--secondary-button-hover-border);
+      border: var(--secondary-button-hover-border);
       color: var(--secondary-button-hover-text);
+      box-shadow: var(--secondary-button-hover-shadow);
     }
     &[disabled],
     &[disabled]:hover {
       cursor: not-allowed;
       color: var(--primary-button-disabled-text);
-      border-color: var(--primary-button-disabled-border);
+      border: var(--primary-button-disabled-border);
       background-color: var(--primary-button-disabled-background);
     }
   }

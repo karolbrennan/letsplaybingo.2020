@@ -3,7 +3,7 @@
   .settings-button {
     position: absolute;
     right: 2rem;
-    top: 1.8rem;
+    top: 1.95rem;
   }
   .gameSettings {
     * {
@@ -79,17 +79,6 @@
     &:hover {
       background: transparent;
     }
-  }
-}
-
-/* Gameplay Controls */
-.gameplay-controls {
-  margin-top: 1rem;
-  text-align: center;
-  button {
-    width: 175px;
-    display: inline-block;
-    margin: 0.5rem;
   }
 }
 

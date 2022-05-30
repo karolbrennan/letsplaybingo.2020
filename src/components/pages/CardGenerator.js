@@ -290,7 +290,7 @@ class CardGenerator extends React.Component {
               </div>
               <div className="col shrink padding-horizontal-md margin-right-xlg">
                 <button
-                  className="primaryBtn"
+                  className="primary-button"
                   onClick={this.handleButton.bind(this)}
                   disabled={this.generateButtonDisabled}>
                   Generate Cards
@@ -325,7 +325,7 @@ class CardGenerator extends React.Component {
                   data-visibility={
                     this.state.generatedCards.length > 0 ? "show" : "hide"
                   }
-                  className="secondaryBtn"
+                  className="secondary-button"
                   onClick={() => {
                     window.print();
                     return false;

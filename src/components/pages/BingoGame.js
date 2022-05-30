@@ -309,7 +309,7 @@ class BingoGame extends Component {
       board[letter].forEach((number) => {
         if (!number.called) {
           if (number.number === randomBingoNumber) {
-            this.setState({ wildBall: letter + " " + randomBingoNumber });
+            this.setState({ wildBall: number });
             number.called = true;
             number.active = true;
             wildBall = number;
@@ -744,14 +744,22 @@ class BingoGame extends Component {
             <p className="red-text">
               This action <strong>cannot</strong> be undone.
             </p>
-            <p>
-              <button onClick={this.toggleResetModal}>Cancel</button>
-              <button
-                className="primaryBtn"
-                onClick={this.confirmResetGame}>
-                Confirm
-              </button>
-            </p>
+            <div className="row align-center">
+              <div className="col">
+                <button
+                  className="text-only primary"
+                  onClick={this.toggleResetModal}>
+                  Cancel
+                </button>
+              </div>
+              <div className="col">
+                <button
+                  className="primary-button light-background"
+                  onClick={this.confirmResetGame}>
+                  Confirm
+                </button>
+              </div>
+            </div>
           </div>
           <div
             className="modal-backdrop"
@@ -881,10 +889,17 @@ class BingoGame extends Component {
                 manualMode={_gameSettings.manualMode}
                 manualCall={this.manualCall}
               />
-
-              <section className="gameplay-controls">
+              <CallHistory
+                calledBalls={this.state.previousCallList}
+                wildBall={
+                  _gameSettings.wildBingo ? this.state.wildBall : null
+                }></CallHistory>
+            </div>
+            <div className="col call-side shrink padding-vertical-xxlg padding-horizontal-xlg">
+              {this.currentBallDisplay}
+              <div className="gameplay-controls">
                 <button
-                  className="primaryBtn"
+                  className="primary-button"
                   data-visibility={_gameSettings.manualMode ? "hide" : "true"}
                   data-disabled={this.gameplayButtonDisabled}
                   onClick={this.handleGameplayButton}>
@@ -892,7 +907,7 @@ class BingoGame extends Component {
                 </button>
 
                 <button
-                  className="secondaryBtn"
+                  className="primary-button"
                   onClick={this.toggleResetModal}
                   disabled={
                     this.state.running || this.state.totalBallsCalled === 0
@@ -908,20 +923,7 @@ class BingoGame extends Component {
                   }>
                   Shuffle Board
                 </button>
-              </section>
-              {this.resetConfirmationModalDisplay}
-            </div>
-            <div className="col call-side shrink padding-vertical-xxlg padding-horizontal-xlg">
-              {this.currentBallDisplay}
-              <div className="notranslate">
-                <CallHistory
-                  calledBalls={this.state.previousCallList}></CallHistory>
-
-                <div
-                  data-visibility={_gameSettings.wildBingo ? "show" : "hide"}
-                  className="white-text text-center margin-top-lg">
-                  <strong>Wild Ball: </strong> {_gameSettings.wildBall}
-                </div>
+                {this.resetConfirmationModalDisplay}
               </div>
             </div>
           </div>

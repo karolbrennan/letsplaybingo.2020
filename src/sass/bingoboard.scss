@@ -1,8 +1,5 @@
 .board-block {
   border-bottom: 5px solid var(--primary-color);
-  > .container {
-    padding: 0;
-  }
   @media screen and (max-width: 1024px){
     > .row {
       align-items: center;
@@ -58,6 +55,16 @@
           color:  var(--white);
         }
       }
+    }
+  }
+  /* Gameplay Controls */
+  .gameplay-controls {
+    text-align: center;
+    margin-top: var(--size-xxlg);
+    button {
+      width: 90%;
+      display: block;
+      margin: 1rem auto;
     }
   }
 }
