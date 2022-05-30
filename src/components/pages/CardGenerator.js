@@ -237,7 +237,7 @@ class CardGenerator extends React.Component {
           break;
       }
     }
-    return classes + " page";
+    return classes + " page padding-bottom-xxlg";
   }
 
   /**

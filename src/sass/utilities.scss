@@ -76,6 +76,11 @@
   padding: var(--size-xxlg);
   z-index:999;
   white-space: pre-wrap;
+  button{
+    &:not([disabled]):hover {
+      color: var(--primary-color) !important;
+    }
+  }
   @media screen and (max-width: 700px){
     top: unset;
     left: 0;

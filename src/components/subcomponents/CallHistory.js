@@ -50,7 +50,7 @@ class CallHistory extends React.Component {
             </div>
             <p>
               <button
-                className="text-only primary"
+                className="primary-button"
                 onClick={() => {
                   this.setState({ showFullCallHistory: false });
                 }}>
