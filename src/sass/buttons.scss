@@ -42,7 +42,7 @@ button {
   box-shadow: var(--standard-button-shadow);
   padding: 0.55rem 1rem;
   margin: 0.25rem;
-  transition: var(--quick-transition);
+  transition: var(--ease-transition);
 
   &:hover {
     cursor: pointer;
