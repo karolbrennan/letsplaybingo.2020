@@ -239,6 +239,22 @@ class Settings extends React.Component {
                 </label>
               </div>
 
+              {/* Vertical Board */}
+              <div className="padding-vertical-md">
+                <label
+                  className={
+                    this.state.verticalBoard ? "toggle checked" : "toggle"
+                  }>
+                  <span className="toggle-span"></span>
+                  <span>Vertical Bingo Board</span>
+                  <input
+                    type="checkbox"
+                    data-gamemode="verticalBoard"
+                    onChange={this.handleCheckbox}
+                    checked={this.state.verticalBoard}></input>
+                </label>
+              </div>
+
               {/* Skip Unused Numbers - disabled if totalBallsCalled > 0 */}
               <div className="padding-vertical-md">
                 <label
@@ -489,18 +505,31 @@ class Settings extends React.Component {
                   <strong>5/30/2022</strong>. Recent updates include:
                 </p>
                 <ul className="small-text padding-left-xlg">
-                  <li>Moved all game settings into their own panel.</li>
+                  <li>
+                    Moved all game settings into their own panel on the top
+                    right hand side.
+                    <ul>
+                      <li>Added a new vertical board mode.</li>
+                      <li>Added the ability to turn on/off autoplay.</li>
+                      <li>Added a setting for going full screen.</li>
+                      <li>Simplified some of the game settings.</li>
+                      <li>Moved latest updates block into this panel.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Simplified the game control buttons. New Game will take into
+                    consideration if autoplay is turned on and will change into
+                    a pause button if it is - or a call button if it isn't.
+                  </li>
                   <li>
                     Updated the translation component to be hidden under a globe
-                    instead of the big block of text.
+                    instead of the big drop down menu.
                   </li>
-                  <li>Updated styling to various elements.</li>
                   <li>
                     Moved last 5 calls to below the board and added the wild
-                    ball next to it if applicable. Updated styling of both.
+                    ball next to it if applicable.
                   </li>
-                  <li>Added a setting for going full screen.</li>
-                  <li>Moved the latest updates to the new settings panel.</li>
+                  <li>Updated the About/Donate page.</li>
                   <li>
                     Added new{" "}
                     <a

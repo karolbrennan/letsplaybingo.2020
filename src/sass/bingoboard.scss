@@ -5,6 +5,16 @@
       align-items: center;
     }
   }
+  &.vertical {
+    .call-history > div > .row {
+
+    flex-flow: column;
+    flex-wrap: nowrap;
+    .col {
+      width: 100%;
+    }
+    }
+  }
   .board-side {
     #board {
       display: flex;
@@ -12,6 +22,21 @@
       align-self: stretch;
       justify-content: space-between;
       background: #1a1a1a;
+
+      &.vertical {
+        flex-flow: row;
+        width: 500px;
+        .row {
+          flex: 1 0 20%;
+          flex-flow: column;
+        }
+        * {
+          font-size: 1.75rem;  
+        }
+        .call-side {
+          margin-top: 20px;
+        }
+      }
 
       * {
         font-size: 2.7rem;

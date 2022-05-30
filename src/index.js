@@ -38,6 +38,9 @@ const routing = (
               <Link to="/generator">Card Generator</Link>
             </li>
             <li>
+              <Link to="/patterns">Patterns</Link>
+            </li>
+            <li>
               <Link to="/help">Help</Link>
             </li>
             <li>

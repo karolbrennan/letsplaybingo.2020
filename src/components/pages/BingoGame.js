@@ -43,6 +43,7 @@ let _gameSettings = {
   chime: false,
   selectedChime: chimes[0],
   selectedCaller: null,
+  verticalBoard: false,
   voices: null,
 };
 
@@ -618,6 +619,9 @@ class BingoGame extends Component {
           }
           this.setState({ running: false });
           break;
+        case "verticalBoard":
+          this.setState({ trigger: true });
+          break;
         default:
           break;
       }
@@ -833,6 +837,75 @@ class BingoGame extends Component {
     );
   };
 
+  get callSide() {
+    return (
+      <div className="call-side">
+        {this.currentBallDisplay}
+        <div className="gameplay-controls">
+          <button
+            className="primary-button"
+            data-visibility={_gameSettings.manualMode ? "hide" : "true"}
+            data-disabled={this.gameplayButtonDisabled}
+            onClick={this.handleGameplayButton}>
+            {this.gameplayButtonText}
+          </button>
+
+          <button
+            className="primary-button"
+            onClick={this.toggleResetModal}
+            disabled={this.state.running || this.state.totalBallsCalled === 0}>
+            Reset Board
+          </button>
+
+          <button
+            data-visiblity={!_gameSettings.manualMode}
+            onClick={this.shuffleBalls}
+            disabled={this.state.running || this.state.totalBallsCalled > 0}>
+            Shuffle Board
+          </button>
+          {this.resetConfirmationModalDisplay}
+        </div>
+      </div>
+    );
+  }
+
+  get patternSide() {
+    return (
+      <div className="pattern-side">
+        {/* -------- Digital Displays --------- */}
+        <div className="row no-wrap margin-bottom-lg justify-space-between white-text">
+          <div className="col total-call-display text-center">
+            <div className="callNumber notranslate">{this.numberDisplay}</div>
+            <div className="callNumber-text uppercase">Total Calls</div>
+          </div>
+          <div className="col previous-call-display text-center">
+            <div className="callNumber notranslate">
+              {this.previousCallDisplay}
+            </div>
+            <div className="callNumber-text uppercase">Previous Call</div>
+          </div>
+        </div>
+
+        {/* -------- Pattern --------- */}
+        <Pattern
+          pattern={this.state.selectedPattern}
+          update={this.handleUpdatePattern}
+        />
+        <div className="padding-vertical-lg">
+          <Select
+            className="pattern-select"
+            placeholder="Choose Pattern"
+            value={this.state.selectedPattern}
+            onChange={(e) => {
+              this.setState({ selectedPattern: e });
+            }}
+            options={presetPatterns}
+          />
+        </div>
+      </div>
+    );
+  }
+
   /* ------------------- Render */
   render() {
     return (
@@ -846,85 +919,38 @@ class BingoGame extends Component {
           settingsPanelControl={this.handleSettingsPanel}></Settings>
 
         {/* ----------- Bingo Board ------------- */}
-        <section className="board-block">
+        <section
+          className={
+            _gameSettings.verticalBoard ? "vertical board-block" : "board-block"
+          }>
           <div className="container row maintain-gutters no-wrap align-stretch">
-            {/* ------ Board ------- */}
-            <div className="col pattern-side shrink padding-vertical-xxlg padding-horizontal-xlg">
-              {/* -------- Digital Displays --------- */}
-              <div className="row no-wrap margin-bottom-lg justify-space-between white-text">
-                <div className="col total-call-display text-center">
-                  <div className="callNumber notranslate">
-                    {this.numberDisplay}
-                  </div>
-                  <div className="callNumber-text uppercase">Total Calls</div>
-                </div>
-                <div className="col previous-call-display text-center">
-                  <div className="callNumber notranslate">
-                    {this.previousCallDisplay}
-                  </div>
-                  <div className="callNumber-text uppercase">Previous Call</div>
-                </div>
-              </div>
-
-              {/* -------- Pattern --------- */}
-              <Pattern
-                pattern={this.state.selectedPattern}
-                update={this.handleUpdatePattern}
-              />
-              <div className="padding-vertical-lg">
-                <Select
-                  className="pattern-select"
-                  placeholder="Choose Pattern"
-                  value={this.state.selectedPattern}
-                  onChange={(e) => {
-                    this.setState({ selectedPattern: e });
-                  }}
-                  options={presetPatterns}
-                />
+            <div className="col shrink padding-vertical-xxlg padding-horizontal-xlg">
+              {this.patternSide}
+              <div
+                data-visibility={_gameSettings.verticalBoard ? "show" : "hide"}>
+                {this.callSide}
               </div>
             </div>
+            {/* ------ Board ------- */}
             <div className="col board-side padding-vertical-xxlg padding-horizontal-xlg">
               <BingoBoard
                 board={this.state.board}
+                verticalBoard={_gameSettings.verticalBoard}
                 manualMode={_gameSettings.manualMode}
                 manualCall={this.manualCall}
               />
-              <CallHistory
-                calledBalls={this.state.previousCallList}
-                wildBall={
-                  _gameSettings.wildBingo ? this.state.wildBall : null
-                }></CallHistory>
-            </div>
-            <div className="col call-side shrink padding-vertical-xxlg padding-horizontal-xlg">
-              {this.currentBallDisplay}
-              <div className="gameplay-controls">
-                <button
-                  className="primary-button"
-                  data-visibility={_gameSettings.manualMode ? "hide" : "true"}
-                  data-disabled={this.gameplayButtonDisabled}
-                  onClick={this.handleGameplayButton}>
-                  {this.gameplayButtonText}
-                </button>
-
-                <button
-                  className="primary-button"
-                  onClick={this.toggleResetModal}
-                  disabled={
-                    this.state.running || this.state.totalBallsCalled === 0
-                  }>
-                  Reset Board
-                </button>
-
-                <button
-                  data-visiblity={!_gameSettings.manualMode}
-                  onClick={this.shuffleBalls}
-                  disabled={
-                    this.state.running || this.state.totalBallsCalled > 0
-                  }>
-                  Shuffle Board
-                </button>
-                {this.resetConfirmationModalDisplay}
+              <div className="call-history">
+                <CallHistory
+                  calledBalls={this.state.previousCallList}
+                  wildBall={
+                    _gameSettings.wildBingo ? this.state.wildBall : null
+                  }></CallHistory>
               </div>
+            </div>
+            <div
+              data-visibility={_gameSettings.verticalBoard ? "hide" : "show"}
+              className="col shrink padding-vertical-xxlg padding-horizontal-xlg">
+              {this.callSide}
             </div>
           </div>
         </section>

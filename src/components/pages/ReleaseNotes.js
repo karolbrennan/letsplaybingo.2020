@@ -16,26 +16,46 @@ class ReleaseNotes extends React.Component {
               <span className="tag release">release</span>
             </h2>
             <ul>
-              <li>Moved all game settings into their own panel.</li>
+              <li>
+                Moved all game settings into their own panel on the top right
+                hand side.
+                <ul>
+                  <li>Added a new vertical board mode.</li>
+                  <li>Added the ability to turn on/off autoplay.</li>
+                  <li>Added a setting for going full screen.</li>
+                  <li>Simplified some of the game settings.</li>
+                  <li>Moved latest updates block into this panel.</li>
+                </ul>
+              </li>
+              <li>
+                Simplified the game control buttons. New Game will take into
+                consideration if autoplay is turned on and will change into a
+                pause button if it is - or a call button if it isn't.
+              </li>
               <li>
                 Updated the translation component to be hidden under a globe
-                instead of the big block of text.
+                instead of the big drop down menu.
               </li>
-              <li>Updated styling to various elements.</li>
               <li>
                 Moved last 5 calls to below the board and added the wild ball
-                next to it if applicable. Updated styling of both.
-              </li>
-              <li>Added a setting for going full screen.</li>
-              <li>Moved the latest updates to the new settings panel.</li>
-              <li>Moved reused blocks of code into a new Utilities class.</li>
-              <li>Implemented Prettier for consistent code formatting.</li>
-              <li>
-                Removed unused components and references to things no longer in
-                use.
+                next to it if applicable.
               </li>
               <li>Updated the About/Donate page.</li>
-              <li>Added documentation to all pages and components.</li>
+              <li>
+                Technical Updates and Styling Updates
+                <ul>
+                  <li>Updated styling across the site.</li>
+                  <li>
+                    Moved reused blocks of code into a new Utilities class.
+                  </li>
+                  <li>Implemented Prettier for consistent code formatting.</li>
+                  <li>
+                    Removed unused components and references to things no longer
+                    in use.
+                  </li>
+                  <li>Added documentation to all pages and components.</li>
+                </ul>
+              </li>
             </ul>
             {/* ---------------------------------- */}
             <h2>

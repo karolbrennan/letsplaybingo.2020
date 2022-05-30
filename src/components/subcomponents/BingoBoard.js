@@ -41,7 +41,7 @@ class BingoBoard extends Component {
     return (
       <div
         id="board"
-        className="flex">
+        className={this.props.verticalBoard ? "vertical flex" : "flex"}>
         {Object.keys(this.state.board).map((letter, i) => {
           return (
             <div
