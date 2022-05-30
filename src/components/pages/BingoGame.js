@@ -48,6 +48,11 @@ let _gameSettings = {
 };
 
 class BingoGame extends Component {
+  /**
+   * Constructor for the component
+   *
+   * @param   {Object}  props
+   */
   constructor(props) {
     super(props);
     // -------------------------- Set properties ----- //
@@ -127,7 +132,8 @@ class BingoGame extends Component {
    */
   componentDidMount() {
     // ensure the reset modal doesn't show at initial load
-    this.setState({ showResetModal: false });
+    // ensure the game is not running from a previous game
+    this.setState({ showResetModal: false, running: false });
   }
 
   /**
@@ -140,6 +146,14 @@ class BingoGame extends Component {
    */
   componentDidUpdate(prevProps, state) {
     localStorage.setItem("letsplaybingo-state", JSON.stringify(this.state));
+  }
+
+  /**
+   * On unmount, stop the current game play
+   */
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    this.setState({ running: false });
   }
 
   /* ------------------- Speech Synthesis Functions */
@@ -599,6 +613,7 @@ class BingoGame extends Component {
 
   handleSettingsUpdate = (values) => {
     let newSettings = { ..._gameSettings };
+    let newStateProperties = {};
     values.forEach((setting) => {
       newSettings[setting.property] = setting.value;
       switch (setting.property) {
@@ -613,19 +628,29 @@ class BingoGame extends Component {
             this.cancelSpeech();
           }
           break;
+        case "autoplay":
+          if (setting.value === false && this.state.running === true) {
+            clearInterval(this.interval);
+            newStateProperties.running = false;
+          }
+          break;
         case "manualMode":
           if (setting.value === true && this.state.running) {
             clearInterval(this.interval);
           }
-          this.setState({ running: false });
+          newStateProperties.running = false;
           break;
         case "verticalBoard":
-          this.setState({ trigger: true });
+          newStateProperties.trigger = true;
           break;
         default:
           break;
       }
     });
+
+    if (newStateProperties !== {}) {
+      this.setState(newStateProperties);
+    }
 
     localStorage.setItem("letsplaybingo-settings", JSON.stringify(newSettings));
     _gameSettings = { ...newSettings };

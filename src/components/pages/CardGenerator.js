@@ -257,99 +257,101 @@ class CardGenerator extends React.Component {
   render() {
     return (
       <section className={this.sectionClasses}>
-        <div className="container row no-print">
-          <div className="col">
-            <h1>Card Generator</h1>
-            <p>
-              Generate your own cards to print for playing at home! Simply
-              choose a number and a color and click Generate!
-            </p>
-            <p className="medium-text">
-              Printing your cards will default to color and 4 cards per page.
-              Use the options below to change these settings. <br />
-              Printing 2 per page will result in larger cards for people who
-              like bigger cards or have vision impairment.
-            </p>
+        <div className="container">
+          <div className="row no-print">
+            <div className="col">
+              <h1>Card Generator</h1>
+              <p>
+                Generate your own cards to print for playing at home! Simply
+                choose a number and a color and click Generate!
+              </p>
+              <p className="medium-text">
+                Printing your cards will default to color and 4 cards per page.
+                Use the options below to change these settings. <br />
+                Printing 2 per page will result in larger cards for people who
+                like bigger cards or have vision impairment.
+              </p>
 
-            <div className="row justify-start align-center extra-pale-gray-bg padding-xlg">
-              <div className="col shrink padding-horizontal-md">
-                <Select
-                  className="number-select"
-                  placeholder="Number of Cards"
-                  onChange={this.handleNumberSelect}
-                  options={this.numberOfCardsOptions}
-                />
-              </div>
-              <div className="col shrink padding-horizontal-md">
-                <Select
-                  className="number-select"
-                  placeholder="Card Colors"
-                  onChange={this.handleColorSelect}
-                  options={this.colorOptions}
-                />
-              </div>
-              <div className="col shrink padding-horizontal-md margin-right-xlg">
-                <button
-                  className="primary-button"
-                  onClick={this.handleButton.bind(this)}
-                  disabled={this.generateButtonDisabled}>
-                  Generate Cards
-                </button>
-              </div>
-              <div className="col shrink padding-horizontal-lg">
-                <h5>Printing Options</h5>
-              </div>
-              <div className="col shrink padding-horizontal-md">
-                <Select
-                  className="number-select single"
-                  placeholder="Per Page"
-                  onChange={this.handlePerPageSelect}
-                  options={this.perPageOptions}
-                />
-              </div>
-              <div className="col shrink padding-horizontal-md">
-                <label
-                  className={
-                    this.state.blackWhite ? "toggle checked" : "toggle"
-                  }>
-                  <span className="toggle-span"></span>
-                  <span>Print in Black/White</span>
-                  <input
-                    type="checkbox"
-                    onChange={this.handleBWCheckbox}
-                    checked={this.state.blackWhite}></input>
-                </label>
-              </div>
-              <div className="col padding-horizontal-md text-right">
-                <button
-                  data-visibility={
-                    this.state.generatedCards.length > 0 ? "show" : "hide"
-                  }
-                  className="secondary-button"
-                  onClick={() => {
-                    window.print();
-                    return false;
-                  }}>
-                  Print Cards
-                </button>
+              <div className="row justify-start align-center extra-pale-gray-bg padding-xlg">
+                <div className="col shrink padding-horizontal-md">
+                  <Select
+                    className="number-select"
+                    placeholder="Number of Cards"
+                    onChange={this.handleNumberSelect}
+                    options={this.numberOfCardsOptions}
+                  />
+                </div>
+                <div className="col shrink padding-horizontal-md">
+                  <Select
+                    className="number-select"
+                    placeholder="Card Colors"
+                    onChange={this.handleColorSelect}
+                    options={this.colorOptions}
+                  />
+                </div>
+                <div className="col shrink padding-horizontal-md margin-right-xlg">
+                  <button
+                    className="primary-button"
+                    onClick={this.handleButton.bind(this)}
+                    disabled={this.generateButtonDisabled}>
+                    Generate Cards
+                  </button>
+                </div>
+                <div className="col shrink padding-horizontal-lg">
+                  <h5>Printing Options</h5>
+                </div>
+                <div className="col shrink padding-horizontal-md">
+                  <Select
+                    className="number-select single"
+                    placeholder="Per Page"
+                    onChange={this.handlePerPageSelect}
+                    options={this.perPageOptions}
+                  />
+                </div>
+                <div className="col shrink padding-horizontal-md">
+                  <label
+                    className={
+                      this.state.blackWhite ? "toggle checked" : "toggle"
+                    }>
+                    <span className="toggle-span"></span>
+                    <span>Print in Black/White</span>
+                    <input
+                      type="checkbox"
+                      onChange={this.handleBWCheckbox}
+                      checked={this.state.blackWhite}></input>
+                  </label>
+                </div>
+                <div className="col padding-horizontal-md text-right">
+                  <button
+                    data-visibility={
+                      this.state.generatedCards.length > 0 ? "show" : "hide"
+                    }
+                    className="secondary-button"
+                    onClick={() => {
+                      window.print();
+                      return false;
+                    }}>
+                    Print Cards
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="row card-block justify-center margin-vertical-lg">
-          <div className="col text-center">
-            {this.state.generatedCards.map((card, index) => {
-              return (
-                <div
-                  data-color={
-                    this.state.blackWhite ? "dk-gray" : this.state.color
-                  }
-                  className="card"
-                  key={"a" + index}>
-                  <BingoCard card={card} />
-                </div>
-              );
-            })}
+          <div className="row card-block justify-center margin-vertical-lg">
+            <div className="col text-center">
+              {this.state.generatedCards.map((card, index) => {
+                return (
+                  <div
+                    data-color={
+                      this.state.blackWhite ? "dk-gray" : this.state.color
+                    }
+                    className="card"
+                    key={"a" + index}>
+                    <BingoCard card={card} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

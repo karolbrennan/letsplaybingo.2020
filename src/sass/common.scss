@@ -37,6 +37,10 @@ footer {
     padding-left: var(--size-xxlg);
     padding-right: var(--size-xxlg);
   }
+  .container {
+    width: 1200px;
+    max-width: 100%;
+  }
 }
 
 ul li {
