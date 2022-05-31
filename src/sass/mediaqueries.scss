@@ -1,3 +1,21 @@
+@media screen and (max-width: 1000px){
+  .menu-block {
+    display: none !important;
+    flex: 0 !important;
+  }
+  #menu-icon {
+    display: block !important;
+  }
+}
+@media screen and (min-width: 1001px){
+  .menu-block {
+    display: block !important;
+  }
+  #menu-icon {
+    display: none !important;
+  }
+}
+
 @media screen and (min-width: 1000px) and (max-width: 1200px){
   .pattern-side,
   .call-side {
@@ -62,12 +80,6 @@
     }
   }
 
-  // Menu
-  .menu li a {
-    font-size: 18px;
-    padding: 0.25em;
-  }
-
   // Slider
   .slider {
     flex: none;
@@ -83,13 +95,6 @@
         margin: 0 !important;
       }
     }
-  }
-
-  // Social icons
-  .social.col {
-    display: block;
-    width: 100%;
-    flex: none !important;
   }
 
   // Footer

@@ -16,157 +16,238 @@ import Play from "./components/pages/Play.js";
 import Privacy from "./components/pages/Privacy.js";
 import ReleaseNotes from "./components/pages/ReleaseNotes.js";
 import Terms from "./components/pages/Terms.js";
+class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuOpen: false,
+      page: "home",
+    };
+  }
 
-const routing = (
-  <Router>
-    <header>
-      <div className="container row align-center">
-        <div className="col shrink">
-          <Link to="/">
-            <img
-              src={logo}
-              alt="Let's Play Bingo!"
-              className="logo"
-            />
-          </Link>
-        </div>
-        <div className="col grow padding-md no-text-wrap text-right">
-          <ul className="menu">
-            <li className={window.location.href.endsWith("/") ? "active" : ""}>
-              <Link to="/">Call</Link>
-            </li>
-            <li
-              className={
-                window.location.href.includes("/play") ? "active" : ""
-              }>
-              <Link to="/play">Play</Link>
-            </li>
-            <li
-              className={
-                window.location.href.includes("/generator") ? "active" : ""
-              }>
-              <Link to="/generator">Get Cards</Link>
-            </li>
-            <li
-              className={
-                window.location.href.includes("/patterns") ? "active" : ""
-              }>
-              <Link to="/patterns">Patterns</Link>
-            </li>
-            <li
-              className={
-                window.location.href.includes("/help") ? "active" : ""
-              }>
-              <Link to="/help">Help</Link>
-            </li>
-            <li
-              className={
-                window.location.href.includes("/about") ? "active" : ""
-              }>
-              <Link to="/about">About / Donate</Link>
-            </li>
-            <li>
-              <a
-                href="https://90ball.letsplaybingo.io"
-                target="_blank"
-                rel="noreferrer">
-                90 Ball
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://classic.letsplaybingo.io"
-                target="_blank"
-                rel="noreferrer">
-                Classic
-              </a>
-            </li>
-            <li className="final-element">
-              <div id="google_translate_element"></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
+  updateLocation = (pageName) => {
+    this.setState({ page: pageName, menuOpen: false });
+  };
 
-    <Route
-      exact
-      path="/"
-      component={BingoGame}
-    />
-    <Route
-      path="/about"
-      component={About}
-    />
-    <Route
-      path="/generator"
-      component={CardGenerator}
-    />
-    <Route
-      path="/help"
-      component={Help}
-    />
-    <Route
-      path="/patterns"
-      component={Patterns}
-    />
-    <Route
-      path="/play"
-      component={Play}
-    />
-    <Route
-      path="/privacy"
-      component={Privacy}
-    />
-    <Route
-      path="/releases"
-      component={ReleaseNotes}
-    />
-    <Route
-      path="/terms"
-      component={Terms}
-    />
+  toggleMenu = () => {
+    this.setState({ menuOpen: this.state.menuOpen ? false : true });
+  };
 
-    <footer className="light-links">
-      <div className="container row three-cols align-start">
-        <div className="col">
-          <p>Love Let's Play Bingo? Tell your friends!</p>
-          <div className="addthis_inline_share_toolbox margin-top-sm"></div>
-        </div>
-        <div className="col text-center">
-          <p>&copy; 2017 - {new Date().getFullYear()}&nbsp;</p>
-          <p>
-            <a
-              href="mailto:hello@letsplaybingo.io"
-              className="plain">
-              Let's Play Bingo
-            </a>
-          </p>
-        </div>
-        <div className="col text-right">
-          <p>For entertainment purposes only.</p>
-          <p>
-            <Link
-              to="/releases"
-              className="plain">
-              Release Notes
-            </Link>{" "}
-            |{" "}
-            <Link
-              to="/terms"
-              className="plain">
-              Terms of Use
-            </Link>{" "}
-            |{" "}
-            <Link
-              to="/privacy"
-              className="plain">
-              Cookies &amp; Privacy Policy
-            </Link>
-          </p>
-        </div>
-      </div>
-    </footer>
-  </Router>
-);
-ReactDOM.render(routing, document.getElementById("root"));
+  render() {
+    return (
+      <Router>
+        <header>
+          <div className="container row align-center">
+            <div className="col shrink">
+              <Link
+                to="/"
+                onClick={this.updateLocation.bind("home")}>
+                <img
+                  src={logo}
+                  alt="Let's Play Bingo!"
+                  className="logo"
+                />
+              </Link>
+            </div>
+            <div className="col grow padding-md no-text-wrap text-right">
+              <div className="row align-center justify-end">
+                <div className="col shrink">
+                  <button
+                    id="menu-icon"
+                    className={
+                      this.state.menuOpen === true
+                        ? "mobile-menu open"
+                        : "mobile-menu closed"
+                    }
+                    onClick={this.toggleMenu}>
+                    <span>&nbsp;</span>
+                  </button>
+                </div>
+                <div
+                  className={
+                    this.state.menuOpen === true
+                      ? "menu-block col grow open"
+                      : "menu-block col grow closed"
+                  }>
+                  <ul
+                    className={
+                      this.state.menuOpen === true ? "menu open" : "menu closed"
+                    }>
+                    <li
+                      className={
+                        window.location.href.endsWith("/") ? "active" : ""
+                      }>
+                      <Link
+                        to="/"
+                        onClick={this.updateLocation.bind("home")}>
+                        Call
+                      </Link>
+                    </li>
+                    <li
+                      className={
+                        window.location.href.includes("/play") ? "active" : ""
+                      }>
+                      <Link
+                        to="/play"
+                        onClick={this.updateLocation.bind("play")}>
+                        Play
+                      </Link>
+                    </li>
+                    <li
+                      className={
+                        window.location.href.includes("/generator")
+                          ? "active"
+                          : ""
+                      }>
+                      <Link
+                        to="/generator"
+                        onClick={this.updateLocation.bind("generator")}>
+                        Get Cards
+                      </Link>
+                    </li>
+                    <li
+                      className={
+                        window.location.href.includes("/patterns")
+                          ? "active"
+                          : ""
+                      }>
+                      <Link
+                        to="/patterns"
+                        onClick={this.updateLocation.bind("patterns")}>
+                        Patterns
+                      </Link>
+                    </li>
+                    <li
+                      className={
+                        window.location.href.includes("/help") ? "active" : ""
+                      }>
+                      <Link
+                        to="/help"
+                        onClick={this.updateLocation.bind("help")}>
+                        Help
+                      </Link>
+                    </li>
+                    <li
+                      className={
+                        window.location.href.includes("/about") ? "active" : ""
+                      }>
+                      <Link
+                        to="/about"
+                        onClick={this.updateLocation.bind("about")}>
+                        About / Donate
+                      </Link>
+                    </li>
+                    <li>
+                      <a
+                        href="https://90ball.letsplaybingo.io"
+                        target="_blank"
+                        rel="noreferrer">
+                        90 Ball
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://classic.letsplaybingo.io"
+                        target="_blank"
+                        rel="noreferrer">
+                        Classic
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="col shrink">
+                  <div id="google_translate_element"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <Route
+          exact
+          path="/"
+          component={BingoGame}
+        />
+        <Route
+          path="/about"
+          component={About}
+        />
+        <Route
+          path="/generator"
+          component={CardGenerator}
+        />
+        <Route
+          path="/help"
+          component={Help}
+        />
+        <Route
+          path="/patterns"
+          component={Patterns}
+        />
+        <Route
+          path="/play"
+          component={Play}
+        />
+        <Route
+          path="/privacy"
+          component={Privacy}
+        />
+        <Route
+          path="/releases"
+          component={ReleaseNotes}
+        />
+        <Route
+          path="/terms"
+          component={Terms}
+        />
+
+        <footer className="light-links">
+          <div className="container row three-cols align-start">
+            <div className="col">
+              <p>Love Let's Play Bingo? Tell your friends!</p>
+              <div className="addthis_inline_share_toolbox margin-top-sm"></div>
+            </div>
+            <div className="col text-center">
+              <p>&copy; 2017 - {new Date().getFullYear()}&nbsp;</p>
+              <p>
+                <a
+                  href="mailto:hello@letsplaybingo.io"
+                  className="plain">
+                  Let's Play Bingo
+                </a>
+              </p>
+            </div>
+            <div className="col text-right">
+              <p>For entertainment purposes only.</p>
+              <p>
+                <Link
+                  to="/releases"
+                  className="plain"
+                  onClick={this.updateLocation.bind("releases")}>
+                  Release Notes
+                </Link>{" "}
+                |{" "}
+                <Link
+                  to="/terms"
+                  className="plain"
+                  onClick={this.updateLocation.bind("terms")}>
+                  Terms of Use
+                </Link>{" "}
+                |{" "}
+                <Link
+                  to="/privacy"
+                  className="plain"
+                  onClick={this.updateLocation.bind("privacy")}>
+                  Cookies &amp; Privacy Policy
+                </Link>
+              </p>
+            </div>
+          </div>
+        </footer>
+      </Router>
+    );
+  }
+}
+
+export default Index;
+ReactDOM.render(<Index />, document.getElementById("root"));
