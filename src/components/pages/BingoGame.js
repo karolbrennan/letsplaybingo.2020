@@ -767,7 +767,7 @@ class BingoGame extends Component {
     if (this.state.showResetModal === true) {
       return (
         <div>
-          <div className="modal">
+          <div className="modal narrow">
             <h4>Reset Game</h4>
             <p>Are you sure you want to reset the game?</p>
             <p className="red-text">

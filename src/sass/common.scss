@@ -66,6 +66,11 @@ ul li {
   li {
     display: inline-block;
     margin: 0 1rem;
+    &.active {
+      a {
+        border-color: var(--primary-color);
+      }
+    }
     a {
       font-size: 1.25rem;
       font-weight: 700;

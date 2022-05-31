@@ -32,22 +32,37 @@ const routing = (
         </div>
         <div className="col grow padding-md no-text-wrap text-right">
           <ul className="menu">
-            <li>
+            <li className={window.location.href.endsWith("/") ? "active" : ""}>
               <Link to="/">Call</Link>
             </li>
-            <li>
+            <li
+              className={
+                window.location.href.includes("/play") ? "active" : ""
+              }>
               <Link to="/play">Play</Link>
             </li>
-            <li>
+            <li
+              className={
+                window.location.href.includes("/generator") ? "active" : ""
+              }>
               <Link to="/generator">Get Cards</Link>
             </li>
-            <li>
+            <li
+              className={
+                window.location.href.includes("/patterns") ? "active" : ""
+              }>
               <Link to="/patterns">Patterns</Link>
             </li>
-            <li>
+            <li
+              className={
+                window.location.href.includes("/help") ? "active" : ""
+              }>
               <Link to="/help">Help</Link>
             </li>
-            <li>
+            <li
+              className={
+                window.location.href.includes("/about") ? "active" : ""
+              }>
               <Link to="/about">About / Donate</Link>
             </li>
             <li>

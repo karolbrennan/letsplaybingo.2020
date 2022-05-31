@@ -68,6 +68,7 @@
   top: 10%;
   left: calc(50% - 25vw);
   width: 50vw;
+  max-width: 90%;
   margin: 0 auto;
   display: block;
   text-align: center;
@@ -76,6 +77,10 @@
   padding: var(--size-xxlg);
   z-index:999;
   white-space: pre-wrap;
+  &.narrow {
+    width: 600px;
+    left: calc(50% - 300px);
+  }
   button{
     &:not([disabled]):hover {
       color: var(--primary-color) !important;

@@ -1,3 +1,55 @@
+@media screen and (min-width: 1000px) and (max-width: 1200px){
+  .pattern-side,
+  .call-side {
+    width: 170px;
+  }
+  .ball-display {
+    min-width: 140px;
+    max-width: 170px;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1000px){
+  .pattern-side,
+  .call-side {
+    width: 150px;
+    #bingopattern {
+      width: 150px;
+      .row .col:not(:first-child) {
+        height: 30px;
+      }
+    }
+  }
+  #board * {
+    font-size: 2.2rem;
+    font-size: 2.5vw;
+    line-height: 1.5;
+  }
+  .ball-display {
+    min-width: 130px;
+    max-width: 150px;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 900px){
+  .board-block {
+    width: 100%;
+    > .row {
+      justify-content: center;
+      flex-wrap: wrap;
+      > .col:first-of-type {
+        order: 2;
+      }
+      > .col:nth-of-type(2) {
+        order: 1;
+      }
+      > .col:last-of-type {
+        order: 3;
+      }
+    }
+  }
+}
+
 /* Mobile to Portrait Tablet */
 @media screen and (max-width: 700px){
   // Header
