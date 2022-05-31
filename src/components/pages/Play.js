@@ -226,11 +226,13 @@ class Play extends React.Component {
 
   get numberOfCards() {
     let returnValue = null;
-    this.numberOfCardsOptions.forEach((number) => {
-      if (number.value === this.state.numberOfCards.toString()) {
-        returnValue = number;
-      }
-    });
+    if (this.state.numberOfCards !== null) {
+      this.numberOfCardsOptions.forEach((number) => {
+        if (number.value === this.state.numberOfCards.toString()) {
+          returnValue = number;
+        }
+      });
+    }
     return returnValue;
   }
 
