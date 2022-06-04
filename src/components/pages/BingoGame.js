@@ -15,6 +15,10 @@ import Pattern from "../subcomponents/Pattern.js";
 import CallHistory from "../subcomponents/CallHistory.js";
 import Settings from "../subcomponents/Settings.js";
 
+// Display Components
+import PreviousCall from "../subcomponents/PreviousCall.js";
+import TotalCalls from "../subcomponents/TotalCalls.js";
+
 // Utilities
 import Utilities from "../helpers/Utilities";
 
@@ -541,35 +545,6 @@ class BingoGame extends Component {
     }
   };
 
-  get gameplayButtonText() {
-    let text = "";
-    if (this.state.totalBallsCalled === 0) {
-      text = "New Game";
-    } else {
-      if (this.state.running) {
-        text = "Pause";
-      } else if (_gameSettings.autoplay && !this.state.running) {
-        text = "Play";
-      } else {
-        text = "Call";
-      }
-    }
-    return text;
-  }
-
-  get gameplayButtonDisabled() {
-    let disabled = false;
-    if (
-      this.state.totalBallsCalled >= 75 ||
-      (this.state.totalBallsCalled > 0 &&
-        this.state.running &&
-        !_gameSettings.autoplay)
-    ) {
-      disabled = true;
-    }
-    return disabled;
-  }
-
   handleUpdatePattern = (pattern, letter, index, slot) => {
     pattern[letter][index] = !slot;
     let unusedLetters = [];
@@ -656,150 +631,35 @@ class BingoGame extends Component {
     _gameSettings = { ...newSettings };
   };
 
-  /* ------------------- JSX Display Functions */
+  /* ------------------- Getters */
 
-  /**
-   * Returns a JSX element to display the current ball
-   *
-   * @return  {JSX}  JSX Element
-   */
-  get currentBallDisplay() {
-    return this.state.currentBall !== null
-      ? Utilities.getBallDisplay(this.state.currentBall)
-      : Utilities.getLogoBallDisplay();
-  }
-
-  /**
-   * Get Number Display shown above the pattern display
-   *
-   * @return  {JSX}  html element
-   */
-  get numberDisplay() {
-    let numbers = this.state.totalBallsCalled.toString().split("");
-    if (numbers.length === 1) {
-      return (
-        <div>
-          <span>&nbsp;</span>
-          <span>{numbers[0]}</span>
-        </div>
-      );
+  get gameplayButtonText() {
+    let text = "";
+    if (this.state.totalBallsCalled === 0) {
+      text = "New Game";
     } else {
-      return numbers.map((number, index) => (
-        <span key={"numDisplay" + number + index}>{number}</span>
-      ));
-    }
-  }
-
-  /**
-   * Get the current call display
-   *
-   * @return  {JSX}  html element
-   */
-  get currentCallDisplay() {
-    const currentCall = this.state.currentBall;
-    if (currentCall) {
-      let numbers = ["0"];
-      if (Object.prototype.hasOwnProperty.call(currentCall, "number")) {
-        numbers = currentCall.number.toString().split("");
-      }
-      if (numbers.length === 1) {
-        return (
-          <div>
-            <span>&nbsp;</span>
-            <span>{numbers[0]}</span>
-          </div>
-        );
+      if (this.state.running) {
+        text = "Pause";
+      } else if (_gameSettings.autoplay && !this.state.running) {
+        text = "Play";
       } else {
-        return numbers.map((number, index) => (
-          <span key={"call" + number + index}>{number}</span>
-        ));
+        text = "Call";
       }
-    } else {
-      return (
-        <div>
-          <span>&nbsp;</span>
-          <span>&nbsp;</span>
-        </div>
-      );
     }
+    return text;
   }
 
-  /**
-   * Get the previous call display
-   *
-   * @return  {JSX}  html element
-   */
-  get previousCallDisplay() {
-    const previousCall = this.state.previousBall;
-    if (previousCall) {
-      let numbers = ["0"];
-      if (Object.prototype.hasOwnProperty.call(previousCall, "number")) {
-        numbers = previousCall.number.toString().split("");
-      }
-      if (numbers.length === 1) {
-        return (
-          <div>
-            <span>&nbsp;</span>
-            <span>{numbers[0]}</span>
-          </div>
-        );
-      } else {
-        return numbers.map((number, index) => (
-          <span key={"call" + number + index}>{number}</span>
-        ));
-      }
-    } else {
-      return (
-        <div>
-          <span>&nbsp;</span>
-          <span>&nbsp;</span>
-        </div>
-      );
+  get gameplayButtonDisabled() {
+    let disabled = false;
+    if (
+      this.state.totalBallsCalled >= 75 ||
+      (this.state.totalBallsCalled > 0 &&
+        this.state.running &&
+        !_gameSettings.autoplay)
+    ) {
+      disabled = true;
     }
-  }
-
-  /**
-   * Reset confirmation modal display
-   *
-   * @return  {[JSX]}  Return modal or empty div
-   */
-  get resetConfirmationModalDisplay() {
-    if (this.state.showResetModal === true) {
-      return (
-        <div>
-          <div className="modal narrow">
-            <h4>Reset Game</h4>
-            <p>Are you sure you want to reset the game?</p>
-            <p className="red-text">
-              This action <strong>cannot</strong> be undone.
-            </p>
-            <div className="row align-center">
-              <div className="col">
-                <button
-                  className="text-only primary"
-                  onClick={this.toggleResetModal}>
-                  Cancel
-                </button>
-              </div>
-              <div className="col">
-                <button
-                  className="primary-button"
-                  onClick={this.confirmResetGame}>
-                  Confirm
-                </button>
-              </div>
-            </div>
-          </div>
-          <div
-            className="modal-backdrop"
-            onClick={(e) => {
-              e.preventDefault();
-            }}></div>
-        </div>
-      );
-    } else {
-      return null;
-    }
+    return disabled;
   }
 
   /* ------------------- Display Board Only Mode */
@@ -862,10 +722,58 @@ class BingoGame extends Component {
     );
   };
 
+  /* ------------------- JSX Display Functions */
+
+  /**
+   * Reset confirmation modal display
+   *
+   * @return  {[JSX]}  Return modal or empty div
+   */
+  get resetConfirmationModalDisplay() {
+    if (this.state.showResetModal === true) {
+      return (
+        <div>
+          <div className="modal narrow">
+            <h4>Reset Game</h4>
+            <p>Are you sure you want to reset the game?</p>
+            <p className="red-text">
+              This action <strong>cannot</strong> be undone.
+            </p>
+            <div className="row align-center">
+              <div className="col">
+                <button
+                  className="text-only primary"
+                  onClick={this.toggleResetModal}>
+                  Cancel
+                </button>
+              </div>
+              <div className="col">
+                <button
+                  className="primary-button"
+                  onClick={this.confirmResetGame}>
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className="modal-backdrop"
+            onClick={(e) => {
+              e.preventDefault();
+            }}></div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
   get callSide() {
     return (
       <div className="call-side">
-        {this.currentBallDisplay}
+        {this.state.currentBall !== null
+          ? Utilities.getBallDisplay(this.state.currentBall)
+          : Utilities.getLogoBallDisplay()}
         <div className="gameplay-controls">
           <button
             className="primary-button"
@@ -898,16 +806,12 @@ class BingoGame extends Component {
     return (
       <div className="pattern-side">
         {/* -------- Digital Displays --------- */}
-        <div className="row no-wrap margin-bottom-lg justify-space-between white-text">
-          <div className="col total-call-display text-center">
-            <div className="callNumber notranslate">{this.numberDisplay}</div>
-            <div className="callNumber-text uppercase">Total Calls</div>
+        <div className="row no-wrap margin-bottom-lg justify-center white-text">
+          <div className="col shrink">
+            <TotalCalls props={this.state.totalBallsCalled} />
           </div>
-          <div className="col previous-call-display text-center">
-            <div className="callNumber notranslate">
-              {this.previousCallDisplay}
-            </div>
-            <div className="callNumber-text uppercase">Previous Call</div>
+          <div className="col shrink">
+            <PreviousCall props={this.state.previousBall} />
           </div>
         </div>
 

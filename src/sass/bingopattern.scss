@@ -1,6 +1,6 @@
 
 .pattern-side {
-  width: 220px;
+  width: 180px;
   margin: 0 auto;
   /* Total Calls + Current Call */
   .total-call-display,
@@ -11,7 +11,7 @@
   .callNumber {
     font-family: var(--digital-font);
     width: 100%;
-    max-width: 75px;
+    min-width: 80px;
     font-size: 50px;
     text-align: center;
     color: red;
