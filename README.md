@@ -1,20 +1,17 @@
-# Let's Play Bingo - ReactJS Version
+# Let's Play Bingo 3.0 - Stable
 [![Netlify Status](https://api.netlify.com/api/v1/badges/57e19ada-a3d8-4c74-b5a7-3a642c418b14/deploy-status)](https://app.netlify.com/sites/letsplaybingo/deploys)
 
-This is a very simple bingo caller - it generates random bingo numbers, keeps track of them on a live bingo board.
-If voice synthesis is supported by the browser the balls will be called aloud using the web speech synthesis api.
+This is the stable version of Let's Play Bingo. This is the 3rd major version of the site that was ever released. 
+Previous versions include classic and the original which exists on Github.
 
 #### Current URL
-http://letsplaybingo.io
+http://stable.letsplaybingo.io
 
 ## Technology
 HTML, CSS and ReactJS
 
 ### Development
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-#### Future Improvements
-- add tracked bingo cards that can be checked against the current game via an ientification number
 
 ### Languages Used
 - HTML
