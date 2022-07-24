@@ -399,7 +399,7 @@ export const getPresetPatterns = () => {
     },
     { value: "Checkmark",
       label: "Checkmark",
-      unusedLetters: [],
+      unusedLetters: ["N"],
       pattern: {
         B: [false, false, true, true, true],
         I: [false, false, false, true, false],
