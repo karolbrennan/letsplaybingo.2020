@@ -26,7 +26,6 @@
     .callNumber-text {
       font-family: var(--condensed-font);
       font-size: 0.8rem;
-      font-size: 0.8vw;
 
       @media screen and (max-width: 700px) {
         font-size: 1rem;
@@ -69,19 +68,16 @@
         }
       }
       .col {
-        padding: 1.75vh 0.5vw;
-        @media screen and (max-width: 1024px){
-          padding: 2vh 0.5vw;
-        }
+        padding: 4px;
+        height: 32px;
+        width: 32px;
         position: relative;
         // Letters along the top
         &:first-child {
           line-height: 1.5;
           height: 3rem;
-          height: 3vw;
           span {
             font-size: 1.5rem;
-            font-size: 1.5vw;
             font-family: var(--body-font);
             font-weight: 800;
 
@@ -106,9 +102,8 @@
 
           &.free-space {
             font-size: 0.5rem;
-            font-size: 1vh;
             line-height: 1.5;
-            margin: 0.2vw;
+            margin: 2px;
             text-align: center;
             text-transform: uppercase;
             color: #676767;
@@ -121,9 +116,9 @@
         &.selected {
           span {
             background-color:#c70600;
-            margin: 0.25vw;
+            margin: 3px;
             @media screen and (max-width: 1024px){
-              margin: 0.5vw;
+              margin: 3px;
             }
             &.free-space {
               overflow: hidden;
@@ -169,7 +164,6 @@
 
       * {
         font-size: 2.7rem;
-        font-size: 3vw;
         line-height: 1.5;
 
         @media screen and (max-width: 700px){
