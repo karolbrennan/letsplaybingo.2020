@@ -1,89 +1,91 @@
 
 /* Pattern */
-.container .container {
-  padding: 0;
-}
-button {
-  float: right;
-}
-.pattern-block {
-  flex-basis: calc(19% - 10px) !important;
-  margin: 10px !important;
-  background: #fcfcfc;
-  border: 1px solid #ccc;
-  white-space: nowrap;
-  width: 180px;
-
-  h5 {
+#pattern-list {
+  .container .container {
     padding: 0;
-    margin: 10px 0 0;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    text-align: center;
-    display: block;
-    color: #444444;
-    font-weight: 500;
   }
+  button {
+    float: right;
+  }
+  .pattern-block {
+    flex-basis: calc(19% - 10px) !important;
+    margin: 10px !important;
+    background: #fcfcfc;
+    border: 1px solid #ccc;
+    white-space: nowrap;
+    width: 180px;
 
-  .bingopattern {
-    display: block;
-    margin: 10px auto;
-    width: 135px;
-    .row {
-      flex-basis: 1 1 20%;
+    h5 {
+      padding: 0;
+      margin: 10px 0 0;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      text-align: center;
+      display: block;
+      color: #444444;
+      font-weight: 500;
     }
-    .col {    
-      padding: 12px;
-      position: relative;
-      // Letters along the top
-      &:first-child {
-        line-height: 1.5;
-        padding: 0;  
-        background: #2f2f2f !important;
-        span {
-          position: relative;
-          font-size: 14px;
-          font-family: var(--body-font);
-          font-weight: 500;
-        }
-      }
-      // Pattern letters
-      &:not(:first-child) {
-        background: #efefef;
-        border: 1px solid #ffffff;
-      }
-      span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 100%;
-        margin: 0 auto;
 
-        &.free-space {
-          display: block;
-          line-height: 1.25;
-          font-size: 7px;
-          margin: 4px auto;
-          text-align: center;
-          text-transform: uppercase;
-          white-space: normal;
-          color: #676767;
-        }
+    .bingopattern {
+      display: block;
+      margin: 10px auto;
+      width: 135px;
+      .row {
+        flex-basis: 1 1 20%;
       }
-      &.selected {
-        span {
-          background-color:#c70600;
-          margin: 4px;
-          &.free-space {
-            overflow: hidden;
-            color: #c70600;
+      .col {    
+        padding: 12px;
+        position: relative;
+        // Letters along the top
+        &:first-child {
+          line-height: 1.5;
+          padding: 0;  
+          background: #2f2f2f !important;
+          span {
+            position: relative;
+            font-size: 14px;
+            font-family: var(--body-font);
+            font-weight: 500;
           }
         }
-      }
-      &:hover {
-        cursor: pointer;
+        // Pattern letters
+        &:not(:first-child) {
+          background: #efefef;
+          border: 1px solid #ffffff;
+        }
+        span {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 100%;
+          margin: 0 auto;
+
+          &.free-space {
+            display: block;
+            line-height: 1.25;
+            font-size: 7px;
+            margin: 4px auto;
+            text-align: center;
+            text-transform: uppercase;
+            white-space: normal;
+            color: #676767;
+          }
+        }
+        &.selected {
+          span {
+            background-color:#c70600;
+            margin: 4px;
+            &.free-space {
+              overflow: hidden;
+              color: #c70600;
+            }
+          }
+        }
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
