@@ -866,7 +866,7 @@ export const getPresetPatterns = () => {
     {
       value: "Railroad Tracks",
       label: "Railroad Tracks",
-      unusedLetters: ["B", "N", "G"],
+      unusedLetters: ["B", "N", "O"],
       pattern: {
         B: [false, false, false, false, false],
         I: [true, true, true, true, true],
