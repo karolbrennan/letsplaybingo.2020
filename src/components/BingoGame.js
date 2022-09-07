@@ -399,11 +399,17 @@ class BingoGame extends Component {
 
   callBingoNumber = () => {
     let totalBallsCalled = this.totalBallsCalled;
-    if(totalBallsCalled < 75){
+    let selectedPattern = this.state.selectedPattern;
+    let totalPossibleBalls = 75;
+    if(this.state.skipUnused){
+      if(selectedPattern !== this.patternPlaceholder){
+        totalPossibleBalls = 75 - (selectedPattern.unusedLetters.length * 15);
+      }
+    }
+    if(totalBallsCalled < totalPossibleBalls){
       let board = this.state.board;
       let currentBall = null;
       let previousBall = this.currentBall;
-      let selectedPattern = this.state.selectedPattern;
       let randomBingoNumber = getRandomBingoNumber();
       let callAgain = false;
       let updateState = false;
@@ -419,8 +425,6 @@ class BingoGame extends Component {
           if(number.number === randomBingoNumber){
             // if the number was not called, do logic. Else call again
             if(!number.called){
-              // increment the total balls called.
-              totalBallsCalled++;
               // set to called and add to previously called numbers
               number.called = true;
               previousCallList.push(number);
@@ -431,6 +435,8 @@ class BingoGame extends Component {
               if(this.state.skipUnused && (selectedPattern.value !== this.patternPlaceholder) && (selectedPattern.unusedLetters.indexOf(letter) >= 0)){
                 callAgain = true;
               } else {
+                // increment the total balls called.
+                totalBallsCalled++;
                 // set ball to active since we won't be calling again
                 number.active = true;
 
@@ -471,7 +477,7 @@ class BingoGame extends Component {
       }
     } else {
       clearInterval(this.interval);
-      this.totalBallsCalled = 75;
+      this.totalBallsCalled = totalPossibleBalls;
       this.say("Someone better have a bingo because we have run out of balls to call!");
       this.previousBall = this.currentBall;
       this.currentBall = null;
