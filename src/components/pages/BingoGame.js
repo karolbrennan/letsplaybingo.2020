@@ -425,15 +425,13 @@ class BingoGame extends Component {
           if (number.number === randomBingoNumber) {
             // if the number was not called, do logic. Else call again
             if (!number.called) {
-              // increment the total balls called.
-              totalBallsCalled++;
               // set to called and add to previously called numbers
               number.called = true;
               previousCallList.push(number);
 
               currentBall = number;
               // if we are skipping unused numbers, a pattern has been selected, and this letter is not in use, we want to call a new number when
-              // we are done here.
+              // we are done here. Also we don't want to increment the balls called if we aren't using this one.
               if (
                 _gameSettings.skipUnused &&
                 selectedPattern.value !== patternPlaceholder &&
@@ -443,6 +441,9 @@ class BingoGame extends Component {
               } else {
                 // set ball to active since we won't be calling again
                 number.active = true;
+
+                // increment the total balls called.
+                totalBallsCalled++;
 
                 //If chime is enabled, play the chime
                 if (_gameSettings.chime) {
