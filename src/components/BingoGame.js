@@ -451,10 +451,8 @@ class BingoGame extends Component {
 		let totalBallsCalled = this.totalBallsCalled;
 		let selectedPattern = this.state.selectedPattern;
 		let totalPossibleBalls = 75;
-		if (this.state.skipUnused === true && selectedPattern.label !== "Choose a pattern") {
-			if (selectedPattern !== this.patternPlaceholder) {
-				totalPossibleBalls = 75 - selectedPattern.unusedLetters.length * 15;
-			}
+		if (this.state.skipUnused === true && selectedPattern.value !== this.patternPlaceholder) {
+			totalPossibleBalls = 75 - selectedPattern.unusedLetters.length * 15;
 		}
 		if (totalBallsCalled < totalPossibleBalls) {
 			let board = this.state.board;
