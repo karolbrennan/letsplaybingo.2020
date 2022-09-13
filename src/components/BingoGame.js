@@ -1034,16 +1034,15 @@ class BingoGame extends Component {
             <div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
               <h4 className="margin-vertical-md">Latest Updates</h4>
               <p className="wrap-text small-text">
-                Let's Play Bingo was last updated on <strong>5/22/2022</strong>. Recent updates include:
+                Let's Play Bingo was last updated on <strong>9/10/2022</strong>. Recent updates include:
               </p>
               <ul className="small-text padding-left-xlg">
+                <li>Fixed an issue with the <strong>Railroad Tracks</strong> pattern where Gs were not being called instead of Os when "skip unused numbers" was selected.</li>
+                <li>Fixed the tracking of how many total calls there have been when skipping unused numbers</li>
                 <li>Added new <a href="https://90ball.letsplaybingo.io" target="_blank" rel="noreferrer">90 Ball</a> game version!</li>
-                <li>Added lots of new patterns!</li>
-                <li>Added a <a href="/patterns">page that shows all patterns</a></li>
-                <li>Added a way to "shuffle" the board just for fun!</li>
-                <li>Skip Unused Numbers: fixed 'N' numbers being called when only the free space is marked in the pattern.</li>
               </ul>
               <p className="x-small-text">See the full <a href="/releases">Release Notes</a>!</p>
+              <p className="x-small-text">There is a new release of Let's Play Bingo being developed that will include performance updates as well as new features. Check out the beta edition with a sneak peek of some of the coming improvements by visiting <a href="https://beta.letsplaybingo.io/">beta.letsplaybingo.io</a>!</p>
               <p className="x-small-text">Need to report a bug? <button className="textOnly secondary" onClick={this.handleBugReport}>Email me!</button></p>
             </div>
 
