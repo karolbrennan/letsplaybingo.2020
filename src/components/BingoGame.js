@@ -1162,9 +1162,10 @@ class BingoGame extends Component {
 						<div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
 							<h4 className="margin-vertical-md">Latest Updates</h4>
 							<p className="wrap-text small-text">
-								Let's Play Bingo was last updated on <strong>9/10/2022</strong>. Recent updates include:
+								Let's Play Bingo was last updated on <strong>9/13/2022</strong>. Recent updates include:
 							</p>
 							<ul className="small-text padding-left-xlg">
+								<li>Fixed a bug where if Skip Unused Numbers was enabled gameplay would break.</li>
 								<li>
 									Fixed an issue with the <strong>Railroad Tracks</strong> pattern where Gs were not being called instead of Os when
 									"skip unused numbers" was selected.
