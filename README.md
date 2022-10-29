@@ -13,9 +13,6 @@ HTML, CSS and ReactJS
 ### Development
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-#### Future Improvements
-- add tracked bingo cards that can be checked against the current game via an ientification number
-
 ### Languages Used
 - HTML
 - CSS
