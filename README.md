@@ -10,9 +10,6 @@ http://letsplaybingo.io
 ## Technology
 HTML, CSS and ReactJS
 
-### Development
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
 ### Languages Used
 - HTML
 - CSS
