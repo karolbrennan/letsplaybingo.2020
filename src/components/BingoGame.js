@@ -941,6 +941,7 @@ class BingoGame extends Component {
 									<button
 										data-disabled={this.state.displayBoardOnly}
 										data-newgame={this.totalBallsCalled === 0}
+										className={this.state.running ? "pause-button" : "play-button"}
 										onClick={this.totalBallsCalled === 0 ? this.startNewAutoplayGame : this.toggleGame}>
 										{this.state.running ? "Pause Autoplay" : "Start Autoplay"}
 									</button>
@@ -1162,21 +1163,14 @@ class BingoGame extends Component {
 						<div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
 							<h4 className="margin-vertical-md">Latest Updates</h4>
 							<p className="wrap-text small-text">
-								Let's Play Bingo was last updated on <strong>9/13/2022</strong>. Recent updates include:
+								Let's Play Bingo was last updated on <strong>12/29/2022</strong>. Recent updates include:
 							</p>
 							<ul className="small-text padding-left-xlg">
+								<li>Changed the color of the play/pause buttons to be more clear.</li>
 								<li>Fixed a bug where if Skip Unused Numbers was enabled gameplay would break.</li>
 								<li>
 									Fixed an issue with the <strong>Railroad Tracks</strong> pattern where Gs were not being called instead of Os when
 									"skip unused numbers" was selected.
-								</li>
-								<li>Fixed the tracking of how many total calls there have been when skipping unused numbers</li>
-								<li>
-									Added new{" "}
-									<a href="https://90ball.letsplaybingo.io" target="_blank" rel="noreferrer">
-										90 Ball
-									</a>{" "}
-									game version!
 								</li>
 							</ul>
 							<p className="x-small-text">
