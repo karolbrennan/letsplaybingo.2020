@@ -1,46 +1,60 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Free Online Bingo Caller: use this bingo caller to host your own bingo games at home! Now with a bingo card generation tool so you can print cards to play with! Completely free bingo app - no ads and no downloads necessary!" />
-    <meta
-      name="keywords"
-      content="bingo, free online bingo caller, ad free bingo app, free bingo caller, bingo caller, host your own bingo games, bingo games at home, free bingo app no downloads, bingo number generator, bingo board, lets play bingo, bingo blower" />
-    <meta
-      name="author"
-      content="Karol Brennan" />
+    <title>Let's Play Bingo! | The #1 free bingo caller application</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
     <meta
+      property="url"
+      content="https://letsplaybingo.io" />
+    <meta
+      name="description"
+      content="Let's Play Bingo is a free bingo calling application with absolutely ZERO ADS. It can be used to host bingo games from anywhere: home, church, school, the bar, or through zoom or live streaming! " />
+    <meta
+      name="keywords"
+      content="bingo, bingo board, bingo flashboard, bingo game, bingo caller, 90 ball bingo, custom bingo app, let's play bingo, audible bingo caller, online bingo caller" />
+    <!-- Open Graph-->
+    <meta
+      property="og:type"
+      content="website" />
+    <meta
       property="og:image"
-      content="https://letsplaybingo.io/images/icons/ogimage.png" />
+      content="%PUBLIC_URL%/images/ogimage.png" />
     <meta
-      name="theme-color"
-      content="#1396d3" />
+      property="og:image:width"
+      content="2986" />
     <meta
-      name="twitter:card"
+      property="og:image:height"
+      content="1746" />
+    <meta
+      property="og:image:type"
+      content="image/png" />
+    <meta
+      property="og:title"
+      content="Let's Play Bingo! | The #1 free bingo caller application" />
+    <meta
+      property="og:description"
+      content="Let's Play Bingo is a completely free bingo caller with absolutely ZERO ADS." />
+    <meta
+      property="og:site_name"
+      content="Let's Play Bingo" />
+    <!-- Twitter -->
+    <meta
+      property="twitter:card"
       content="summary_large_image" />
     <meta
-      name="twitter:site"
-      content="@lets_play_bingo" />
+      property="twitter:url"
+      content="https://letsplaybingo.io" />
     <meta
-      name="twitter:creator"
-      content="@carolbutwithak" />
+      property="twitter:title"
+      content="Your site title" />
     <meta
-      name="twitter:title"
-      content="Let's Play Bingo!" />
+      property="twitter:description"
+      content="Let's Play Bingo! | The #1 free bingo caller application" />
     <meta
-      name="twitter:description"
-      content="Free Online Bingo Caller: use this bingo caller to host your own bingo games at home! Now with a bingo card generation tool so you can print cards to play with! Completely free bingo app - no downloads necessary!" />
-    <meta
-      name="twitter:image"
-      content="https://letsplaybingo.io/images/icons/ogimage.png" />
-    <meta
-      name="twitter:image:alt"
-      content="Let's Play Bingo Site Preview" />
+      property="twitter:image"
+      content="%PUBLIC_URL%/images/ogimage.png" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -49,87 +63,63 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/images/icons/favicon-32x32.png" />
+      href="/favicon-32x32.png" />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/images/icons/favicon-16x16.png" />
+      href="/favicon-16x16.png" />
     <link
       rel="manifest"
-      href="/images/icons/site.webmanifest" />
-    <link
-      rel="mask-icon"
-      href="/images/icons/safari-pinned-tab.svg"
-      color="#5bbad5" />
-    <meta
-      name="msapplication-TileColor"
-      content="#ffffff" />
-    <meta
-      name="theme-color"
-      content="#ffffff" />
-    <link
-      rel="shortcut icon"
-      href="/favicon.svg" />
-    <title>Let's Play Bingo! | Free Online Bingo Caller</title>
+      href="/site.webmanifest" />
+    <!-- Global Google Analytics @TODO --/>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-89776307-5"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-89776307-5');
+      </script>
+    <!-- END Google Analytics -->
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div
+      id="root"
+      role="main"></div>
+    <form
+      name="contactlpb"
+      netlify="true"
+      netlify-honeypot="bot-field"
+      hidden>
+      <input
+        type="text"
+        name="name" />
+      <input
+        type="email"
+        name="email" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <script src="bundle.js"></script>
     <!-- START Google Translate -->
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
           {
             pageLanguage: "en",
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
             gaTrack: true,
             gaId: "UA-89776307-5",
           },
           "google_translate_element"
         );
-      }</script
-    ><script
-      type="text/javascript"
-      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "https://www.google-analytics.com/analytics.js",
-        "ga"
-      );
-      ga("create", "UA-89776307-5", "auto");
-      ga("send", "pageview");
+      }
     </script>
     <!-- END Google Translate -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-89776307-5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-89776307-5");
-    </script>
-    <!-- END Google Analytics -->
     <!-- START Add This -->
     <script
       type="text/javascript"

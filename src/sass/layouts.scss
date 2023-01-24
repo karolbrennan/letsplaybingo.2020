@@ -1,0 +1,148 @@
+// Classic/Classic Reversed ---------------------------- */
+main.classic,
+main.classic-reverse {
+  .logo {
+    height: 5rem;
+    .logo-dark {
+      fill: var(--white);
+    }
+  }
+  .current-call-block {
+    padding: var(--size-xlg);
+    margin-right: var(--size-lg);
+  }
+  .previous-call-block {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: var(--size-lg);
+    &.no-calls {
+      .logo {
+        height: 8rem;
+        display: block;
+        margin: 0 auto;
+        .logo-dark {
+          fill: var(--white);
+        }
+      }
+    }
+  }
+}
+
+// Stacked ---------------------------- */
+main.stacked {
+  .logo {
+    height: 3.5rem;
+    margin: 0 auto 0.5rem;
+    display: block;
+    .logo-dark {
+      fill: var(--white);
+    }
+  }
+  .call-info {
+    flex-direction: column;
+    min-width: unset;
+    .col {
+      margin: 0 auto 0.5em !important;
+    }
+  }
+  .pattern-block {
+    --space-size: 1.75rem;
+    margin-top: 0;
+  }
+  .current-call-block,
+  .previous-call-block {
+    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .current-call-block {
+    .current-call {
+      --ball-size: 160px;
+    }
+  }
+  .previous-call-block {
+    display: flex;
+    flex-flow: column;
+    .previous-call {
+      --ball-size: 140px;
+    }
+    > .row:first-of-type {
+      flex: 1 1;
+      padding-bottom: 1rem;
+    }
+  }
+  .controls button {
+    min-width: 150px;
+    width: 100%;
+  }
+  .countdown {
+    min-width: 200px;
+    margin: 0;
+  }
+}
+
+// Vertical ---------------------------- */
+main.vertical {
+  .logo {
+    height: 5rem;
+    margin: 0 auto 0.5rem;
+    display: block;
+    .logo-dark {
+      fill: var(--white);
+    }
+  }
+
+  .bingo-board {
+    flex-flow: row;
+    --board-font-size: 2.25rem;
+    --board-line-height: 140%;
+    &-row {
+      flex-direction: column;
+      flex-basis: 20%;
+    }
+    .bingo-board-letter,
+    .bingo-board-ball {
+      width: 100%;
+      padding: 0 0.5em;
+    }
+  }
+  .call-info {
+    --digital-font-size: 4rem;
+    min-width: unset !important;
+  }
+  .countdown {
+    height: auto;
+    margin: 1rem 0 0;
+  }
+  .previous-call-block {
+    padding: 1rem;
+    > .row {
+      flex-direction: column;
+      align-items: center;
+    }
+    .previous-call {
+      --ball-size: 100px;
+    }
+    h2.uppercase-text-small {
+      display: flex;
+      flex-direction: column;
+      margin: 0.5rem 0 0;
+    }
+  }
+  .current-call-block {
+    padding: 1rem;
+    margin-bottom: var(--size-xlg);
+    .current-call {
+      --ball-size: 150px;
+    }
+    .uppercase-text-small.margin-vertical-lg {
+      margin-bottom: 0;
+    }
+  }
+  footer .row {
+    text-align: left;
+  }
+}

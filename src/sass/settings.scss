@@ -1,0 +1,108 @@
+// --------------- Settings Panel
+.settings-panel {
+  bottom: 0;
+  font-family: var(--condensed-font);
+  height: 100vh;
+  position: absolute;
+  max-width: 100%;
+  top: 0;
+  transition: var(--ease-transition);
+  width: var(--settings-panel-width);
+  z-index: 3;
+
+  .inner-panel {
+    background-color: var(--white);
+    border-left-width: 5px;
+    border-left-style: solid;
+    border-image: var(--primary-border-source);
+    color: var(--black);
+    padding-bottom: var(--size-xlg);
+    position: relative;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+
+    h2 {
+      padding: 0.5em var(--size-xlg);
+      position: relative;
+      .icon-button {
+        position: absolute;
+        right: var(--size-md);
+        top: var(--size-lg);
+        border: none;
+      }
+    }
+
+    .text-block {
+      padding: var(--size-xlg);
+    }
+
+    .sub-section {
+      padding: var(--size-lg) var(--size-xlg);
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .backdrop {
+    z-index: -1;
+    transition: var(--ease-transition);
+    background: rgba(0, 0, 0, 0.75);
+    right: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+  }
+
+  &.closed {
+    right: -100%;
+    .backdrop {
+      left: -100%;
+    }
+  }
+
+  &.open {
+    right: 0;
+    .backdrop {
+      left: 0;
+    }
+    .save-block {
+      right: 15px;
+    }
+  }
+}
+
+.setting-group .pattern .pattern-block {
+  --space-size: 1rem;
+  .pattern-display {
+    flex: 0 0;
+    align-self: flex-start;
+    margin: 0;
+  }
+}
+
+.setting-group {
+  padding: var(--size-lg) var(--size-xlg);
+  h5 {
+    margin: 6px 0;
+  }
+}
+.setting-inner {
+  padding: var(--size-lg) var(--size-sm);
+  line-height: 1;
+}
+
+.detail-box {
+  margin: 0.5em 0;
+  border: var(--input-border-focus);
+  padding: 0.5em;
+  font-size: var(--small-font-size);
+  code {
+    background: var(--light-gray);
+    line-height: 2;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+}

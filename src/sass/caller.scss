@@ -1,0 +1,127 @@
+.bingo-board {
+  --board-font-size: 3rem;
+  --board-line-height: 160%;
+  background-color: var(--black);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--condensed-font);
+  .bingo-board-row {
+    display: inline-flex;
+    > div {
+      flex: 1 1;
+      font-size: var(--board-font-size);
+      line-height: var(--board-line-height);
+      text-align: center;
+      &.bingo-board-letter {
+        background-color: var(--white);
+        color: var(--primary-color);
+        font-weight: 900;
+      }
+      &.bingo-board-ball {
+        color: var(--med-dark-gray);
+        &.called {
+          color: var(--white);
+        }
+        &.active {
+          animation: blink 1s infinite;
+        }
+      }
+      &.bingo-board-ball-button {
+        padding: 0;
+        margin: 0;
+        border: none;
+        color: inherit;
+        font-size: inherit;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// Countdown ----------------------------
+.countdown {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  height: 100%;
+  margin-left: var(--size-xlg);
+  padding: var(--size-lg);
+  text-align: center;
+  span {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .tick {
+    font-size: 6rem;
+  }
+  &.flashing {
+    animation: countdown 1000ms infinite;
+  }
+}
+// Controls -----------------------------
+.controls {
+  margin: auto;
+  padding: var(--size-xlg) 0;
+  text-align: center;
+  button {
+    display: block;
+    width: 90%;
+    margin: 0.5em auto;
+  }
+}
+.popout-controls {
+  .col {
+    padding: 0 var(--size-sm);
+  }
+  button {
+    display: block;
+    width: 100%;
+  }
+  .call-info {
+    width: 225px;
+    margin: 0 auto;
+  }
+}
+
+// Call Info ---------------------------
+.call-info {
+  --digital-font-size: 4.5rem;
+  min-width: calc((var(--digital-font-size) * 2) + (0.5rem * 4));
+  .digital-display {
+    background-color: var(--black);
+    color: var(--near-black);
+    display: flex;
+    font-family: var(--digital-font);
+    font-size: var(--digital-font-size);
+    height: calc(var(--digital-font-size) + 4px);
+    padding: 0 0.5rem;
+    position: relative;
+    width: calc(var(--digital-font-size) * 1.3);
+    &:before,
+    &:after {
+      content: "8";
+      position: absolute;
+      z-index: 1;
+    }
+    &:before {
+      left: 0.5rem;
+    }
+    &:after {
+      right: 0.5rem;
+    }
+    .digit {
+      z-index: 2;
+      color: var(--white);
+      position: absolute;
+      &:first-of-type {
+        left: 0.5rem;
+      }
+      &:last-of-type {
+        right: 0.5rem;
+      }
+    }
+  }
+}

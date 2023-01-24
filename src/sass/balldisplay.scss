@@ -1,0 +1,118 @@
+// ---------------- Ball Display
+// Current call only which is a larger ball
+.current-call {
+  --ball-size: 190px;
+}
+.previous-call {
+  --ball-size: 140px;
+}
+.ball-history .previous-call {
+  --ball-size: 75px;
+}
+.ball-display {
+  width: var(--ball-size);
+  height: var(--ball-size);
+  display: flex;
+  border-radius: 100%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: inset 20px 20px 20px 5px rgb(255 255 255 / 20%),
+    inset -10px -10px 20px 0px rgb(0 0 0 / 40%);
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  .content {
+    text-align: center;
+    border-radius: 100%;
+    background: var(--white);
+    color: var(--black);
+    position: relative;
+    width: calc(var(--ball-size) - 40%);
+    height: calc(var(--ball-size) - 40%);
+    padding: 25%;
+    box-shadow: inset -10px -10px 15px 0 rgba(0, 0, 0, 0.16),
+      0 0 0 3px var(--white);
+    background: radial-gradient(
+      circle at 20% 20%,
+      var(--white),
+      var(--light-gray)
+    );
+
+    .ball-content {
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: inline-flex;
+      flex-direction: column;
+      .ball-letter,
+      .ball-number {
+        display: block;
+        width: 100%;
+        font-family: var(--condensed-font);
+      }
+      .ball-letter {
+        font-size: calc(var(--ball-size) * 0.2);
+        font-weight: bold;
+        line-height: 0.75;
+      }
+      .ball-number {
+        font-size: calc(var(--ball-size) * 0.35);
+        line-height: 1;
+      }
+    }
+
+    .logo {
+      padding: 5px;
+      max-width: 100%;
+      .logo-dark {
+        fill: var(--med-dark-gray);
+      }
+    }
+  }
+
+  &.blue {
+    background: var(--ball-gradient-blue);
+    .content {
+      border: 3px solid var(--ball-color-blue);
+    }
+  }
+
+  &.red {
+    background: var(--ball-gradient-red);
+    .content {
+      border: 3px solid var(--ball-color-red);
+    }
+  }
+
+  &.white {
+    background: var(--ball-gradient-white);
+    .content {
+      border: 3px solid var(--ball-color-red);
+    }
+  }
+
+  &.green {
+    background: var(--ball-gradient-green);
+    .content {
+      border: 3px solid var(--ball-color-green);
+    }
+  }
+
+  &.yellow {
+    background: var(--ball-gradient-yellow);
+    .content {
+      border: 3px solid var(--ball-color-yellow);
+    }
+  }
+}

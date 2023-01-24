@@ -1,0 +1,261 @@
+// --------------- Buttons and Links
+a {
+  transition: var(--ease-transition);
+  color: var(--link-color);
+  &:hover {
+    color: var(--link-color-hover);
+  }
+}
+button,
+.primary-button,
+.secondary-button {
+  @include button-base;
+  .fi {
+    color: var(--foreground-color);
+  }
+  &:hover,
+  &:hover .fi {
+    color: var(--foreground-color);
+  }
+}
+button {
+  &.primary-button {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    &:hover {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+    }
+  }
+  &.secondary-button {
+    border-color: var(--white);
+    background-color: rgba(0, 0, 0, 0.1);
+    &:hover {
+      border-color: var(--secondary-color);
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+  &.cancel-button {
+    border-color: transparent;
+    color: var(--light-gray);
+    &:hover {
+      border-color: transparent;
+    }
+  }
+  &:disabled,
+  &:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+    color: var(--med-gray);
+  }
+  &.close-button {
+    color: var(--primary-color);
+    &:hover {
+      color: var(--secondary-color);
+    }
+  }
+}
+button.text-button,
+p button {
+  @include text-button;
+  color: var(--primary-color);
+}
+
+// --------------- Forms, Inputs, Sliders
+input,
+select,
+textarea {
+  @include user-input;
+}
+textarea {
+  cursor: text !important;
+}
+
+.dropdown-group {
+  position: relative;
+  width: 250px;
+  max-width: 90%;
+  .dropdown-control {
+    position: relative;
+    .dropdown-trigger {
+      background: white;
+      border: none;
+      color: var(--dark-gray);
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      bottom: 4px;
+      padding: 5px;
+    }
+  }
+  .dropdown {
+    position: absolute;
+    max-height: 0;
+    transition: var(--ease-transition);
+    width: 100%;
+    z-index: 4;
+    &.open {
+      background: var(--white);
+      border: var(--input-border-focus);
+      border-radius: var(--input-border-radius);
+      max-height: 150px;
+      overflow-y: auto;
+    }
+    &.closed {
+      overflow-y: hidden;
+    }
+    button {
+      @include text-button;
+      background: transparent;
+      border-radius: 0;
+      color: var(--dark-gray);
+      display: block;
+      padding: 5px;
+      text-align: left;
+      width: 100%;
+      &:hover {
+        background: var(--accent-background);
+        color: var(--accent-foreground);
+      }
+    }
+  }
+}
+label button.dropdown-reset,
+button.dropdown-reset {
+  padding: 0 0.5em;
+  border: none;
+  float: right;
+  i.fi {
+    font-size: 14px;
+    color: var(--gray);
+    transition: var(--ease-transition);
+  }
+  &:hover {
+    i.fi {
+      color: var(--primary-color);
+    }
+  }
+  &:active i.fi {
+    color: var(--primary-color) !important;
+  }
+  &:focus {
+    @include focus;
+  }
+}
+
+label:has(:disabled):not(.range) .label-text {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggle {
+  color: var(--gray);
+  padding: 0;
+  vertical-align: bottom;
+  margin-right: 0.5em;
+  border: none;
+  &:active,
+  &:hover {
+    border: none;
+  }
+  &:focus {
+    @include focus;
+  }
+  &.active {
+    border: none;
+    color: var(--primary-color);
+    i.fi {
+      color: var(--primary-color);
+    }
+  }
+}
+
+.range {
+  .range-value {
+    color: var(--primary-color);
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: normal;
+    padding: 0 7px;
+  }
+  .range-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 250px;
+    padding-top: 10px;
+    .range-buttons {
+      display: flex;
+      flex: 1 0;
+      align-items: center;
+      div {
+        flex: 0 1 auto;
+        &.range-input {
+          flex: 1 0 auto;
+          input {
+            border: none;
+          }
+        }
+        button {
+          text-align: center;
+          color: var(--primary-color);
+          font-size: 24px;
+          font-weight: 900;
+          padding: 0;
+          border: none;
+          transition: var(--ease-transition);
+          &:focus {
+            @include focus;
+          }
+          &:hover {
+            color: var(--secondary-color);
+          }
+        }
+      }
+    }
+  }
+  input[type="range"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%; /* Specific width is required for Firefox. */
+    background: transparent; /* Otherwise white in Chrome */
+    height: 0;
+    &::-webkit-slider-runnable-track {
+      background: transparent;
+      border-top: 3px solid var(--gray);
+      border-radius: 3px;
+      height: 0px;
+    }
+    &::-webkit-slider-thumb {
+      margin-top: -9px;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--primary-color);
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      cursor: pointer;
+      z-index: 2;
+      transition: var(--ease-transition);
+    }
+    &:active {
+      &::-webkit-slider-thumb {
+        transform: scale(1.5);
+      }
+    }
+    &:focus {
+      @include focus; /* Removes the blue border. */
+    }
+    &::-ms-track {
+      width: 100%;
+      cursor: pointer;
+
+      /* Hides the slider so custom styles can be added */
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+  }
+}

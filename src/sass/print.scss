@@ -1,79 +1,51 @@
 @media print {
-  @page {
-    margin: 0.15in 0.15in 0.15in 0.15in !important;
-    orientation: landscape;
-  }
-  @page:blank {
-    display: none;
-  }
+  // ::-webkit-scrollbar {
+  //   display: none;
+  // }
+
   div {
     page-break-inside: avoid;
     break-inside: avoid;
     -webkit-break-inside: avoid;
   }
-  header, footer, .no-print {
-    display: none;
+  header,
+  footer,
+  .no-print {
+    display: none !important;
   }
   body {
     -webkit-print-color-adjust: exact !important;
+    background-color: white !important;
+    overflow: visible !important;
   }
   .card-block {
-    max-width: unset;
     margin: 1rem auto;
-  }
-  .pale-gray-bg {
-    background: white;
+    .break {
+      page-break-inside: auto;
+      break-inside: auto;
+      -webkit-break-inside: auto;
+      height: 20px;
+    }
   }
   .print-bw {
-     filter: Gray();
-     filter: url('#grayscale'); 
-     -webkit-filter: grayscale(100%); 
-     filter: grayscale(100%); 
+    filter: Gray();
+    filter: url("#grayscale");
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
   }
   .print-two {
-    .card {
-      .col {
-        .freespace {
-          padding: 0.58rem 0 !important;
-        }
-      }
+    .card-block {
+      --space-size: 85px;
     }
   }
   .print-four {
-    .card {
-      .col {
-        .card-letter,
-        .card-number {
-          font-size: 2.5rem !important; 
-          line-height: 1 !important;
-        }
-        .freespace {
-          padding: 0.25rem 0;
-          span {
-            font-size: .74rem !important;
-            line-height: 1;
-          }
-        }
-      }
+    .card-block {
+      --space-size: 60px;
     }
   }
   .print-six {
-    .card {
-      width: 30%;
-      .col {
-        .card-letter,
-        .card-number {
-          font-size: 2.5rem !important; 
-          line-height: 1 !important;
-        }
-        .freespace {
-          padding: 0.25rem 0;
-          span {
-            font-size: 1rem;
-            line-height: 1;
-          }
-        }
-      }
+    .card-block {
+      --space-size: 50px;
     }
   }
 }

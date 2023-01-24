@@ -1,13 +1,61 @@
 /* Animations */
 @keyframes blink {
   0% {
-    color: white;
+    color: var(--white);
+  }
+  25% {
+    color: var(light-gray);
   }
   50% {
-    color: #3c3c3c;
+    color: var(--dark-gray);
+  }
+  75% {
+    color: var(--light-gray);
   }
   100% {
-    color: white;
+    color: var(--white);
+  }
+}
+
+@keyframes countdown {
+  0% {
+    color: transparent;
+  }
+  25% {
+    color: var(--primary-color);
+  }
+  75% {
+    color: var(--primary-color);
+  }
+  100% {
+    color: transparent;
+  }
+}
+
+@keyframes countdown-rainbow {
+  0% {
+    color: transparent;
+  }
+  14% {
+    color: var(--red);
+  }
+  28% {
+    color: var(--orange);
+  }
+  42% {
+    color: var(--yellow);
+  }
+  56% {
+    color: var(--green);
+  }
+  70% {
+    color: var(--blue);
+  }
+  84% {
+    color: var(--purple);
+  }
+  100% {
+    color: transparent;
   }
 }
 
@@ -20,5 +68,50 @@
   }
   100% {
     bottom: 2rem;
+  }
+}
+
+@keyframes rainbowGradient {
+  0% {
+    fill: var(--white);
+  }
+  14% {
+    fill: var(--red);
+  }
+  28% {
+    fill: var(--orange);
+  }
+  42% {
+    fill: var(--yellow);
+  }
+  56% {
+    fill: var(--green);
+  }
+  70% {
+    fill: var(--blue);
+  }
+  84% {
+    fill: var(--purple);
+  }
+}
+
+@keyframes rainbowGradientColor {
+  0% {
+    color: var(--red);
+  }
+  16% {
+    color: var(--orange);
+  }
+  33% {
+    color: var(--yellow);
+  }
+  50% {
+    color: var(--green);
+  }
+  67% {
+    color: var(--blue);
+  }
+  83% {
+    color: var(--purple);
   }
 }

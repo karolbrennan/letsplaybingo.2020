@@ -1,0 +1,64 @@
+.pattern-block {
+  --space-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  .pattern-display {
+    background-color: var(--secondary-color);
+    border: 5px solid var(--secondary-color);
+    border-radius: 5px;
+    display: flex;
+    flex: 0 1;
+    margin: 0 auto;
+
+    .col:not(.pattern-letter):hover {
+      cursor: default;
+    }
+
+    &.editable {
+      .col:not(.pattern-letter):hover {
+        cursor: pointer;
+      }
+    }
+
+    .row {
+      .col {
+        margin: 1px;
+        height: var(--space-size);
+        padding: calc(var(--space-size) / 14) !important;
+        width: var(--space-size);
+        overflow: hidden;
+        span {
+          border-radius: 100%;
+          display: block;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          &.free-space {
+            color: var(--dark-gray);
+            font-size: calc(var(--space-size) / 3.5);
+            font-weight: 600;
+            font-family: var(--condensed-font);
+            line-height: 1.5;
+            text-transform: uppercase;
+            white-space: normal;
+          }
+        }
+        &.pattern-letter {
+          color: white;
+          font-weight: 800;
+          font-size: calc(var(--space-size) / 1.5);
+        }
+        &:not(.pattern-letter) {
+          background-color: var(--white);
+        }
+        &.selected span {
+          &.free-space {
+            color: transparent;
+          }
+          background-color: var(--primary-color);
+        }
+      }
+    }
+  }
+}

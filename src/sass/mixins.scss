@@ -1,0 +1,93 @@
+//  Mixins ---------------------------------- */
+@mixin button-base {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  cursor: pointer;
+  color: var(--white);
+  font-family: var(--condensed-font);
+  font-size: var(--button-font-size);
+  outline: none;
+  padding: var(--size-md) var(--size-lg);
+  text-transform: uppercase;
+  transition: var(--ease-transition);
+
+  &:active,
+  &:focus,
+  &:hover {
+    border: var(--input-border-hover);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    color: var(--gray) !important;
+    cursor: not-allowed;
+  }
+}
+
+@mixin text-button {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 0 0.5em;
+  text-transform: inherit;
+}
+
+@mixin user-input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--white);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  color: var(--dark-gray);
+  cursor: pointer;
+  display: block;
+  font-family: var(--condensed-font);
+  font-size: var(--base-font-size);
+  margin: 0.25em 0;
+  outline: none;
+  padding: 0.5em 1em;
+  transition: var(--ease-transition);
+  width: 100%;
+  &[type="text"] {
+    cursor: text;
+    &:hover {
+      cursor: text;
+    }
+  }
+  * {
+    font-family: var(--condensed-font);
+  }
+  &::placeholder {
+    color: var(--med-gray);
+  }
+  &:hover {
+    cursor: pointer;
+    border: var(--input-border-hover);
+  }
+  &:active {
+    border: var(--input-border-active);
+  }
+  &:focus {
+    border: var(--input-border-focus);
+  }
+  &:disabled {
+    border: var(--input-border-disabled);
+    color: var(--gray) !important;
+    cursor: not-allowed;
+  }
+}
+
+@mixin focus {
+  border: none !important;
+  color: var(--focus-color) !important;
+  * {
+    color: var(--focus-color) !important;
+  }
+}

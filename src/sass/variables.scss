@@ -1,113 +1,811 @@
+/* Variables */
 :root {
-  /* -------- Colors ---------- */
-  --primary-color: #00487b;
-  --secondary-color: #1396d3;
-  --near-black: #161616;
-  --pale-gray: #efefef;
-  --med-gray: #676767;
-  --semi-dark-gray: #2d2d2d;
-  --dark-gray: #222222;
-  --off-white: #f8f8f8;
-  --white: #ffffff;
-  --black: #000000;
+  // Core  ---------------------------------- */
+  --container-width: 1600px;
+  --single-col-width: 10%;
 
-  --red: #db0202;
-  --orange: #ffa500;
-  --yellow: #fff700;
-  --green: #00bd0d;
-  --blue: #0033ff;
-  --purple: #8000ff;
-  --pink: #ffc0cb;
-  --aqua: #00fbff;
-  --brown: #573000;
-
-  /* -------- Color Supports ------ */
-  --primary-color-text: #ffffff;
-
-  /* -------- Shadows ---------- */
-  --big-shadow: 0px 0px 36px 0px #000000;
-  --small-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.4);
-
-  /* -------- Fonts -----------*/
+  // Fonts ---------------------------------- */
   --condensed-font: "Roboto Condensed", sans-serif;
   --heading-font: "Roboto Condensed", sans-serif;
-  --body-font: 'Roboto', sans-serif;
-  --digital-font: "ZCOOL QingKe HuangYou", "Roboto Condensed", "Helvetica", cursive;
+  --body-font: "Roboto", sans-serif;
+  --digital-font: "Digital", "Roboto Condensed", "Helvetica", cursive;
+  --base-font: 18px;
+  --x-small-font-size: 0.65rem;
+  --small-font-size: 0.75rem;
+  --medium-font-size: 1rem;
+  --large-font-size: 1.2rem;
+  --x-large-font-size: 1.5rem;
+  --button-font-size: 1rem;
 
-  /* -------- Release Notes -----------*/
+  // Sizes ---------------------------------- */
+  --size-sm: 0.25rem;
+  --size-md: 0.5rem;
+  --size-lg: 0.75rem;
+  --size-xlg: 1rem;
+  --size-xxlg: 1.5rem;
+  --size-xxxlg: 2rem;
+  --icon-size: 24px;
+
+  // Misc ---------------------------------- */
+  --settings-panel-width: 400px;
+
+  // Colors ---------------------------------- */
+  --body-background: var(--dark-gray);
+  --body-foreground: var(--white);
+  --accent-foreground: var(--white);
+  --accent-background: #4ac3fa;
+  --background: var(--near-black);
+  --foreground: var(--off-white);
+  --muted-foreground: var(--med-gray);
+  --muted-foreground-hover: var(--light-gray);
+  --focus-color: #ffb400;
+  --primary-color: #00487b;
+  --primary-text-color: #ffffff;
+  --secondary-color: #1396d3;
+  --secondary-text-color: #000000;
+  --primary-background: linear-gradient(
+    45deg,
+    var(--lpb-blue),
+    var(--lpb-dark-blue)
+  );
+
+  // Neutrals ---------------------------------- */
+  --black: #181818;
+  --white: #ffffff;
+  --off-white: #f8f8f8;
+  --light-gray: #efefef;
+  --gray: #9f9f9f;
+  --med-gray: #676767;
+  --med-dark-gray: #323232;
+  --dark-gray: #222222;
+  --near-black: #1d1d1d;
+
+  // Supporting Colors  ---------------------------------- */
   --release-color: #5cb3ee;
   --bugfix-color: #ff8b9f;
 
-  /* -------- Transitions -----------*/
+  // Theme Colors  ---------------------------------- */
+  // LPB
+  --lpb-light-blue: #35aee6;
+  --lpb-blue: #1396d3;
+  --lpb-dark-blue: #00487b;
+  // Amber
+  --light-amber: #ffc233;
+  --amber: #fcb000;
+  --dark-amber: #e4a104;
+  // Blue
+  --light-blue: #2b48ff;
+  --blue: #0022ff;
+  --dark-blue: #041dc0;
+  // Brown
+  --light-brown: rgb(113, 80, 39);
+  --brown: #824f11;
+  --dark-brown: #5d3607;
+  // Chartreuse
+  --light-chartreuse: #a1f955;
+  --chartreuse: #88e03b;
+  --dark-chartreuse: #70c626;
+  // Green
+  --light-green: #29f029;
+  --green: #00cd00;
+  --dark-green: #00a400;
+  // Magenta
+  --light-magenta: #c054c0;
+  --magenta: #aa31aa;
+  --dark-magenta: #781678;
+  // Orange
+  --light-orange: #f89f22;
+  --orange: #ee8b00;
+  --dark-orange: #ba6900;
+  // Pink
+  --light-pink: #ffd2da;
+  --pink: #ff8fb8;
+  --dark-pink: #f8659b;
+  // Purple
+  --light-purple: #9e41c6;
+  --purple: #7a1ea0;
+  --dark-purple: #5d0f7e;
+  // Red
+  --light-red: #f41818;
+  --red: #d40000;
+  --dark-red: #a30000;
+  // Teal
+  --light-teal: #34ab99;
+  --teal: #188e7d;
+  --dark-teal: #0b6d5e;
+  // Vermillion
+  --light-vermillion: #ff7835;
+  --vermillion: #f95300;
+  --dark-vermillion: #d14600;
+  // Violet
+  --light-violet: #8b61ff;
+  --violet: #7543ff;
+  --dark-violet: #5722e8;
+  // Yellow
+  --light-yellow: #ffeb50;
+  --yellow: #ffd000;
+  --dark-yellow: #edb100;
+
+  // Links / Buttons ---------------------------------- */
+  --link-color: #1b8500;
+  --link-color-hover: #25c000;
+  --input-border: 3px dashed #efefef;
+  --input-border-focus: 3px solid var(--focus-color);
+  --input-border-active: 3px solid var(--secondary-color);
+  --input-border-disabled: 3px solid var(--light-gray);
+  --input-border-hover: 3px solid var(--primary-color);
+  --input-border-radius: 8px;
+  --input-border-transparent: 3px dashed transparent;
+  --input-border-subtle: 3px dashed rgba(255, 255, 255, 0.1);
+
+  // Transitions ---------------------------------- */
   --quick-transition: all ease 0.25s;
   --ease-transition: all ease 0.5s;
 
-  /* Ball Colors */
-  --ball-color-blue: #0000FF;
+  // Shadows ---------------------------------- */
+  --big-shadow: 0px 0px 36px 0px #000000;
+  --small-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.4);
+
+  // Ball Colors ---------------------------------- */
+  --ball-color-blue: #0000ff;
+  --ball-gradient-blue: radial-gradient(circle at 20% 20%, #0000ff, #0000ad);
   --ball-color-green: #008000;
-  --ball-color-white: #FFFFFF;
-  --ball-color-red: #FF0000;
+  --ball-gradient-green: radial-gradient(circle at 20% 20%, #008000, #004a00);
+  --ball-color-white: #ffffff;
+  --ball-gradient-white: radial-gradient(
+    circle at 20% 20%,
+    var(--white),
+    #ebebeb
+  );
+  --ball-color-red: #ff0000;
+  --ball-gradient-red: radial-gradient(circle at 20% 20%, #ff0000, #910000);
   --ball-color-yellow: #f7bd00;
+  --ball-gradient-yellow: radial-gradient(circle at 20% 20%, #ffe52a, #f7bd00);
   --ball-color-inner: #ffffff;
   --ball-color-text: #222222;
 
-  /* Sizes */
-  --size-sm: .25rem;
-  --size-md: .5rem;
-  --size-lg: .75rem;
-  --size-xlg: 1rem;
-  --size-xxlg: 2rem;
+  // Themes ---------------------------------- */
+  .lpb {
+    --accent-background: var(--lpb-light-blue);
+    --focus-color: var(--lpb-light-blue);
+    --link-color: var(--lpb-blue);
+    --link-color-hover: var(--lpb-dark-blue);
+    --primary-color: var(--lpb-blue);
+    --secondary-color: var(--lpb-dark-blue);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--lpb-blue),
+      var(--lpb-dark-blue)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--lpb-blue),
+      var(--lpb-dark-blue)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--lpb-blue),
+        var(--lpb-dark-blue)
+      )
+      1 100%;
 
-  /* Links */
-  --primary-link-color: #00487b;
-  --primary-link-hover: #222222;
-  --primary-link-border: 2px solid#1396d3;
-  --secondary-link-color: #1396d3;
-  --secondary-link-hover: #ffffff;
-  --secondary-link-border: 2px solid #ffffff;
+    .logo-o,
+    .logo-color {
+      fill: var(--lpb-blue);
+    }
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
 
-  /* Buttons */
-  --standard-button-text-only: #ffffff;
-  --standard-button-text-only-hover: #1396d3;
-  --standard-button-background: transparent;
-  --standard-button-text: #ffffff;
-  --standard-button-border: 1px solid #ffffff;
-  --standard-button-hover-background: transparent;
-  --standard-button-hover-border: 1px solid #ffffff;
-  --standard-button-hover-text: #222222;
-  --standard-button-disabled-background: transparent !important;
-  --standard-button-disabled-border: 1px solid #5e5e5e !important;
-  --standard-button-disabled-text: #5e5e5e !important;
-  --standard-button-shadow: 0 0 5px 3px none;
-  --standard-button-hover-shadow: 0 0 5px 3px #ffffff;
+  .amber {
+    --accent-background: var(--light-amber);
+    --focus-color: var(--light-amber);
+    --link-color: var(--amber);
+    --link-color-hover: var(--dark-amber);
+    --primary-color: var(--amber);
+    --secondary-color: var(--dark-amber);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-amber),
+      var(--amber),
+      var(--dark-amber)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-amber),
+      var(--amber),
+      var(--dark-amber)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-amber),
+        var(--amber),
+        var(--dark-amber)
+      )
+      1 100%;
+    .logo-o,
+    .logo-color {
+      fill: var(--amber);
+    }
 
-  --primary-button-text-only: #1396d3;
-  --primary-button-text-hover: #00487b;
-  --primary-button-background: #1396d3;
-  --primary-button-border: 1px solid #1396d3;
-  --primary-button-text: #ffffff;
-  --primary-button-hover-background: transparent;
-  --primary-button-hover-border: 1px solid #1396d3;
-  --primary-button-hover-text: #1396d3;
-  --primary-button-disabled-background: transparent !important;
-  --primary-button-disabled-border: 1px solid #5e5e5e !important;
-  --primary-button-disabled-text: #5e5e5e !important;
-  --primary-button-shadow: none;
-  --primary-button-hover-shadow: 0 0 5px 3px #1396d3;
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
 
-  --secondary-button-text-only: #00487b;
-  --secondary-button-text-hover: #1396d3;
-  --secondary-button-background: #00487b;
-  --secondary-button-border: 1px solid #00487b;
-  --secondary-button-text: #ffffff;
-  --secondary-button-hover-background: transparent;
-  --secondary-button-hover-border: 1px solid #00487b;
-  --secondary-button-hover-text: #00487b;
-  --secondary-button-disabled-background: transparent !important;
-  --secondary-button-disabled-border: 1px solid #5e5e5e !important;
-  --secondary-button-disabled-text: #5e5e5e !important;
-  --secondary-button-shadow: none;
-  --secondary-button-hover-shadow: 0 0 5px 3px #00487b;
+  .blue {
+    --accent-background: var(--light-blue);
+    --focus-color: var(--light-blue);
+    --link-color: var(--blue);
+    --link-color-hover: var(--dark-blue);
+    --primary-color: var(--blue);
+    --secondary-color: var(--dark-blue);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-blue),
+      var(--blue),
+      var(--dark-blue)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-blue),
+      var(--blue),
+      var(--dark-blue)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-blue),
+        var(--blue),
+        var(--dark-blue)
+      )
+      1 100%;
 
-  --button-border-radius: 4px;
+    .logo-o,
+    .logo-color {
+      fill: var(--blue);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .brown {
+    --accent-background: var(--light-brown);
+    --focus-color: var(--light-brown);
+    --link-color: var(--brown);
+    --link-color-hover: var(--dark-brown);
+    --primary-color: var(--brown);
+    --secondary-color: var(--dark-brown);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-brown),
+      var(--brown),
+      var(--dark-brown)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-brown),
+      var(--brown),
+      var(--dark-brown)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-brown),
+        var(--brown),
+        var(--dark-brown)
+      )
+      1 100%;
+
+    .logo-o,
+    .logo-color {
+      fill: var(--brown);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .chartreuse {
+    --accent-background: var(--light-chartreuse);
+    --focus-color: var(--light-chartreuse);
+    --link-color: var(--chartreuse);
+    --link-color-hover: var(--dark-chartreuse);
+    --primary-color: var(--chartreuse);
+    --secondary-color: var(--dark-chartreuse);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-chartreuse),
+      var(--chartreuse),
+      var(--dark-chartreuse)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-chartreuse),
+      var(--chartreuse),
+      var(--dark-chartreuse)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-chartreuse),
+        var(--chartreuse),
+        var(--dark-chartreuse)
+      )
+      1 100%;
+
+    .logo-o,
+    .logo-color {
+      fill: var(--chartreuse);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .green {
+    --accent-background: var(--light-green);
+    --focus-color: var(--light-green);
+    --link-color: var(--green);
+    --link-color-hover: var(--dark-green);
+    --primary-color: var(--green);
+    --secondary-color: var(--dark-green);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-green),
+      var(--green),
+      var(--dark-green)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-green),
+      var(--green),
+      var(--dark-green)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-green),
+        var(--green),
+        var(--dark-green)
+      )
+      1 100%;
+
+    .logo-o,
+    .logo-color {
+      fill: var(--green);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .magenta {
+    --accent-background: var(--light-magenta);
+    --focus-color: var(--light-magenta);
+    --link-color: var(--magenta);
+    --link-color-hover: var(--dark-magenta);
+    --primary-color: var(--magenta);
+    --secondary-color: var(--dark-magenta);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-magenta),
+      var(--magenta),
+      var(--dark-magenta)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-magenta),
+      var(--magenta),
+      var(--dark-magenta)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-magenta),
+        var(--magenta),
+        var(--dark-magenta)
+      )
+      1 100%;
+
+    .logo-o,
+    .logo-color {
+      fill: var(--magenta);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .orange {
+    --accent-background: var(--light-orange);
+    --focus-color: var(--light-orange);
+    --link-color: var(--orange);
+    --link-color-hover: var(--dark-orange);
+    --primary-color: var(--orange);
+    --secondary-color: var(--dark-orange);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-orange),
+      var(--orange),
+      var(--dark-orange)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-orange),
+      var(--orange),
+      var(--dark-orange)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-orange),
+        var(--orange),
+        var(--dark-orange)
+      )
+      1 100%;
+    .logo-o,
+    .logo-color {
+      fill: var(--orange);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .pink {
+    --accent-background: var(--light-pink);
+    --focus-color: var(--light-pink);
+    --link-color: var(--pink);
+    --link-color-hover: var(--dark-pink);
+    --primary-color: var(--pink);
+    --secondary-color: var(--dark-pink);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-pink),
+      var(--pink),
+      var(--dark-pink)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-pink),
+      var(--pink),
+      var(--dark-pink)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-pink),
+        var(--pink),
+        var(--dark-pink)
+      )
+      1 100%;
+    .logo-o,
+    .logo-color {
+      fill: var(--pink);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .purple {
+    --accent-background: var(--light-purple);
+    --focus-color: var(--light-purple);
+    --link-color: var(--light-purple);
+    --link-color-hover: var(--purple);
+    --primary-color: var(--purple);
+    --secondary-color: var(--dark-purple);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-purple),
+      var(--purple),
+      var(--dark-purple)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-purple),
+      var(--purple),
+      var(--dark-purple)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-purple),
+        var(--purple),
+        var(--dark-purple)
+      )
+      1 100%;
+    .logo-o,
+    .logo-color {
+      fill: var(--light-purple);
+    }
+    .text-button {
+      color: var(--light-purple);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .rainbow {
+    --accent-background: var(--light-amber);
+    --focus-color: var(--amber);
+    --link-color: var(--red);
+    --link-color-hover: var(--dark-red);
+    --primary-color: var(--red);
+    --secondary-color: var(--dark-red);
+    --primary-background: linear-gradient(
+      45deg,
+      #d40000,
+      #ee8b00,
+      #ffee00,
+      #00ff00,
+      #0022ff,
+      #8800c7
+    );
+    --primary-fill: rainbowGradient 5s infinite;
+    --primary-animation: rainbowGradientColor 5s infinite;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        #d40000,
+        #ee8b00,
+        #ffee00,
+        #00ff00,
+        #0022ff,
+        #8800c7
+      )
+      1 100%;
+
+    header {
+      background: var(--primary-background);
+    }
+
+    a:hover {
+      animation: var(--primary-animation);
+    }
+
+    .ball-content .logo .logo-color {
+      fill: black;
+    }
+
+    .logo-color {
+      fill: var(--white);
+    }
+
+    .logo-o {
+      fill: white;
+      animation: var(--primary-fill);
+    }
+
+    .pattern-block .pattern-display .row {
+      &:nth-of-type(0) .col.selected span {
+        background-color: #d40000;
+      }
+      &:nth-of-type(1) .col.selected span {
+        background-color: #ee8b00;
+      }
+      &:nth-of-type(2) .col.selected span {
+        background-color: #ffee00;
+      }
+      &:nth-of-type(3) .col.selected span {
+        background-color: #00ff00;
+      }
+      &:nth-of-type(4) .col.selected span {
+        background-color: #0022ff;
+      }
+      &:nth-of-type(5) .col.selected span {
+        background-color: #8800c7;
+      }
+    }
+
+    .countdown.flashing {
+      animation: countdown-rainbow 1000ms infinite;
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .red {
+    --accent-background: var(--light-red);
+    --focus-color: var(--light-red);
+    --link-color: var(--red);
+    --link-color-hover: var(--dark-red);
+    --primary-color: var(--red);
+    --secondary-color: var(--dark-red);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-red),
+      var(--red),
+      var(--dark-red)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-red),
+      var(--red),
+      var(--dark-red)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-red),
+        var(--red),
+        var(--dark-red)
+      )
+      1 100%;
+    .logo-o,
+    .logo-color {
+      fill: var(--red);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .teal {
+    --accent-background: var(--light-teal);
+    --focus-color: var(--light-teal);
+    --link-color: var(--teal);
+    --link-color-hover: var(--dark-teal);
+    --primary-color: var(--teal);
+    --secondary-color: var(--dark-teal);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-teal),
+      var(--teal),
+      var(--dark-teal)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-teal),
+      var(--teal),
+      var(--dark-teal)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-teal),
+        var(--teal),
+        var(--dark-teal)
+      )
+      1 100%;
+
+    .logo-o,
+    .logo-color {
+      fill: var(--teal);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .vermillion {
+    --accent-background: var(--light-vermillion);
+    --focus-color: var(--light-vermillion);
+    --link-color: var(--vermillion);
+    --link-color-hover: var(--dark-vermillion);
+    --primary-color: var(--vermillion);
+    --secondary-color: var(--dark-vermillion);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-vermillion),
+      var(--vermillion),
+      var(--dark-vermillion)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-vermillion),
+      var(--vermillion),
+      var(--dark-vermillion)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-vermillion),
+        var(--vermillion),
+        var(--dark-vermillion)
+      )
+      1 100%;
+
+    .logo-o,
+    .logo-color {
+      fill: var(--vermillion);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .violet {
+    --accent-background: var(--light-violet);
+    --focus-color: var(--light-violet);
+    --link-color: var(--violet);
+    --link-color-hover: var(--dark-violet);
+    --primary-color: var(--violet);
+    --secondary-color: var(--dark-violet);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-violet),
+      var(--violet),
+      var(--dark-violet)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-violet),
+      var(--violet),
+      var(--dark-violet)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-violet),
+        var(--violet),
+        var(--dark-violet)
+      )
+      1 100%;
+
+    .logo-o,
+    .logo-color {
+      fill: var(--violet);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
+
+  .yellow {
+    --accent-foreground: var(--dark-gray);
+    --accent-background: var(--light-yellow);
+    --focus-color: var(--light-yellow);
+    --link-color: var(--yellow);
+    --link-color-hover: var(--dark-yellow);
+    --primary-color: var(--dark-yellow);
+    --secondary-color: var(--yellow);
+    --primary-background: linear-gradient(
+      45deg,
+      var(--light-yellow),
+      var(--yellow),
+      var(--dark-yellow)
+    );
+    --primary-fill: linear-gradient(
+      45deg,
+      var(--light-yellow),
+      var(--yellow),
+      var(--dark-yellow)
+    );
+    --primary-animation: none;
+    --primary-border-source: linear-gradient(
+        to bottom,
+        var(--light-yellow),
+        var(--yellow),
+        var(--dark-yellow)
+      )
+      1 100%;
+    .logo-o,
+    .logo-color {
+      fill: var(--yellow);
+    }
+
+    --input-border-focus: 3px solid var(--focus-color);
+    --input-border-active: 3px solid var(--secondary-color);
+    --input-border-hover: 3px solid var(--primary-color);
+  }
 }

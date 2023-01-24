@@ -1,153 +1,522 @@
-@media screen and (max-width: 1000px){
-  .menu-block {
-    display: none !important;
-    flex: 0 !important;
-  }
-  #menu-icon {
-    display: block !important;
-  }
-}
-@media screen and (min-width: 1001px){
-  .menu-block {
-    display: block !important;
-  }
-  #menu-icon {
-    display: none !important;
-  }
-}
-
-@media screen and (min-width: 1000px) and (max-width: 1200px){
-  .pattern-side,
-  .call-side {
-    width: 170px;
-  }
-  .ball-display {
-    min-width: 140px;
-    max-width: 170px;
-  }
-}
-
-@media screen and (min-width: 900px) and (max-width: 1000px){
-  .pattern-side,
-  .call-side {
-    width: 150px;
-    #bingopattern {
-      width: 150px;
-      .row .col:not(:first-child) {
-        height: 30px;
+/* Top Screen Resolutions --------------------
+1920 x 1080
+1366 x 768
+810 x 1080
+1536 x 864
+390 x 844
+1280 x 720
+414 x 896
+------------------------------------------- */
+body {
+  @media (min-width: 1537px) {
+    main.classic {
+      // largest screens
+      --small-font-size: 18px;
+      --button-font-size: 1.25rem;
+      .logo {
+        height: 5rem;
       }
-    }
-  }
-  #board * {
-    font-size: 2.2rem;
-    font-size: 2.5vw;
-    line-height: 1.5;
-  }
-  .ball-display {
-    min-width: 130px;
-    max-width: 150px;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 900px){
-  .board-block {
-    width: 100%;
-    > .row {
-      justify-content: center;
-      flex-wrap: wrap;
-      > .col:first-of-type {
-        order: 2;
+      .bingo-board {
+        --board-font-size: 65px;
+        --board-line-height: 160%;
       }
-      > .col:nth-of-type(2) {
-        order: 1;
-      }
-      > .col:last-of-type {
-        order: 3;
-      }
-    }
-  }
-}
-
-/* Mobile to Portrait Tablet */
-@media screen and (max-width: 700px){
-  // Header
-  header .row {
-    .col:nth-of-type(2) {
-      order: 2;
-    }
-    .col:last-child {
-      order: 1;
-    }
-  }
-
-  // Slider
-  .slider {
-    flex: none;
-    display: block;
-    .col {
-      width: 55%;
-      vertical-align: middle;
-      flex: none !important;
-      display: inline-block !important;
-      &.shrink {
-        flex: none !important;
-        width: 15%;
-        margin: 0 !important;
-      }
-    }
-  }
-
-  // Footer
-  footer .row {
-    flex-flow: column;
-    text-align: center;
-    > .col {
-      width: 100% !important;
-      text-align: center;
-      padding: 0.5em;
-    }
-  }
-
-  // Board display
-  .board-block {
-    > .row {
-      display: block;
-    }
-    .board-side, 
-    .pattern-side {
-      #board {
-        padding: 1rem;
-        display: block !important;
-        flex-flow: unset;
-        align-self: unset;
-        justify-content: unset;
-        width: 350px;
-        max-width: 100%;
-        margin: 0 auto;
-        .row {
-          display: inline-block;
-          width: 20%;
+      .call-info {
+        --small-font-size: 14px;
+        .digital-display {
+          --digital-font-size: 80px;
         }
       }
-      #bingopattern {
-        width: 175px;
-        margin: 0 auto;
-        max-width: 100%;
-      }
-      &.min-size-200 {
-        width: 250px;
-        max-width: 100%;
-        display: block;
-        flex: none !important;
-        margin: 0 auto !important;
+      .pattern-block {
+        --space-size: 38px;
       }
     }
   }
-}
 
-/* Small Mobile */
-@media screen and (max-width: 500px){
-  .gameSettings {
-    width: 100%;
+  @media (max-width: 1537px) {
+    // large laptop
+    main.vertical {
+      padding-bottom: 0;
+
+      .logo {
+        height: 3.5rem;
+      }
+      .bingo-board {
+        flex-flow: row;
+        --board-font-size: 1.9rem;
+        --board-line-height: 139%;
+      }
+      .current-call-block .current-call {
+        --ball-size: 130px;
+      }
+      .pattern-block {
+        --space-size: 1.75rem;
+      }
+      .previous-call-block .previous-call {
+        --ball-size: 80px;
+      }
+      .countdown .tick {
+        font-size: 4rem;
+      }
+      .call-info .digital-display {
+        --digital-font-size: 62px;
+      }
+      .controls button {
+        font-size: 0.8rem;
+      }
+    }
+    main.stacked {
+      .current-call-block .current-call {
+        --ball-size: 120px;
+      }
+      .previous-call-block .previous-call {
+        --ball-size: 90px;
+      }
+      .countdown .tick {
+        font-size: 4rem;
+      }
+      .call-info {
+        --digital-font-size: 4rem;
+      }
+      .controls {
+        padding: 0;
+      }
+    }
+  }
+
+  @media (max-width: 1366px) {
+    main.classic,
+    main.classic-reverse {
+      .logo {
+        height: 3rem;
+      }
+
+      .bingo-board {
+        --board-font-size: 2.5rem;
+        --board-line-height: 160%;
+      }
+      .current-call-block .current-call {
+        --ball-size: 130px;
+      }
+      .previous-call-block .show-5 .previous-call {
+        --ball-size: 100px;
+      }
+      .previous-call-block .show-4 .previous-call {
+        --ball-size: 120px;
+      }
+      .previous-call-block .show-3 .previous-call,
+      .previous-call-block .show-2 .previous-call,
+      .previous-call-block .show-2 .previous-call {
+        --ball-size: 140px;
+      }
+      .countdown .tick {
+        font-size: 3rem;
+      }
+    }
+
+    main.stacked {
+      padding-bottom: 0;
+      .current-call-block .current-call {
+        --ball-size: 100px;
+      }
+      .previous-call-block .previous-call {
+        --ball-size: 70px;
+      }
+      .countdown .tick {
+        font-size: 3.5rem;
+      }
+      .pattern-block {
+        --space-size: 1.4rem;
+      }
+      .call-info {
+        --digital-font-size: 3.5rem;
+      }
+      .controls {
+        button {
+          font-size: 0.8rem;
+        }
+      }
+    }
+
+    main.vertical {
+      padding-bottom: 0;
+      padding-top: var(--size-md);
+
+      .logo {
+        height: 3rem;
+      }
+      .bingo-board {
+        flex-flow: row;
+        --board-font-size: 1.7rem;
+        --board-line-height: 135%;
+      }
+      .current-call-block .current-call {
+        --ball-size: 110px;
+      }
+      .pattern-block {
+        --space-size: 1.6rem;
+      }
+      .previous-call-block .previous-call {
+        --ball-size: 70px;
+      }
+      .countdown {
+        padding: 0.5em 0;
+        .tick {
+          font-size: 3rem;
+        }
+      }
+      .call-info {
+        width: auto !important;
+        min-width: 0 !important;
+        .digital-display {
+          --digital-font-size: 56px;
+        }
+      }
+      .controls button {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  @media (max-width: 1280px) {
+    main.classic,
+    main.classic-reverse {
+      .logo {
+        height: 3rem;
+      }
+
+      .previous-call-block .show-5 .previous-call {
+        --ball-size: 100px;
+      }
+      .previous-call-block .show-4 .previous-call {
+        --ball-size: 120px;
+      }
+      .previous-call-block .show-3 .previous-call,
+      .previous-call-block .show-2 .previous-call,
+      .previous-call-block .show-2 .previous-call {
+        --ball-size: 140px;
+      }
+    }
+
+    main.stacked {
+      padding-top: var(--size-md);
+      padding-bottom: 0;
+      > div.margin-xxlg {
+        margin: var(--size-lg);
+      }
+      .current-call-block .current-call {
+        --ball-size: 100px;
+      }
+      .previous-call-block .previous-call {
+        --ball-size: 60px;
+      }
+      div.margin-xlg {
+        margin: var(--size-md);
+      }
+    }
+  }
+
+  @media (max-width: 810px) {
+    // portrait tablet
+    main.classic,
+    main.classic-reverse {
+      .bingo-board {
+        --board-font-size: 2rem;
+        --board-line-height: 125%;
+        flex-direction: row;
+        &-row {
+          display: block;
+          flex-basis: 20%;
+          flex-wrap: wrap;
+        }
+      }
+      .current-call-block .current-call {
+        --ball-size: 90px !important;
+      }
+      .previous-call-block {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        .previous-call {
+          --ball-size: 70px !important;
+        }
+      }
+      .col.colspan2:has(.current-call) {
+        width: auto;
+        flex: 0 1;
+        max-width: unset;
+      }
+      .countdown {
+        span {
+          white-space: nowrap;
+        }
+      }
+    }
+    main.stacked {
+      padding: var(--size-md) var(--size-sm);
+      .bingo-board {
+        --board-font-size: 1.5rem;
+        --board-line-height: 160%;
+        .bingo-board-row {
+          .bingo-board-ball {
+            padding: 0 0.25em;
+          }
+        }
+      }
+      .current-call-block .current-call {
+        --ball-size: 120px;
+      }
+      .row.align-stretch.justify-start.gutters-md {
+        justify-content: center;
+        > .col {
+          margin-bottom: var(--size-md);
+        }
+        .col:has(.logo),
+        .col:has(.previous-call-block) {
+          order: 1;
+        }
+      }
+
+      .pattern-block {
+        --space-size: 1.7rem;
+      }
+    }
+
+    .modal {
+      top: 10px;
+      left: 0;
+      right: 0;
+      width: 90%;
+      z-index: 9999;
+      overflow: scroll !important;
+      display: block;
+      width: 100%;
+      max-height: 100%;
+
+      &.large-modal {
+        padding: var(--size-xlg) var(--size-md);
+      }
+      .ball-history {
+        .col {
+          padding: var(--size-sm);
+        }
+        .previous-call {
+          --ball-size: 57px;
+        }
+      }
+    }
+    .modal-backdrop {
+      position: fixed;
+    }
+  }
+
+  @media (max-width: 414px) {
+    .settings-panel.open {
+      width: 100%;
+      .inner-panel {
+        overflow-x: hidden;
+      }
+    }
+    // smallest screens
+    main.stacked {
+      .bingo-board {
+        --board-font-size: 1rem;
+        --board-line-height: 150%;
+        .bingo-board-row .bingo-board-ball {
+          padding: 0;
+        }
+      }
+      .logo {
+        height: 2.5rem;
+      }
+      .controls button {
+        font-size: 0.7rem;
+        min-width: 100px;
+        display: inline-block;
+        margin: 0.5em;
+        width: auto;
+      }
+      .row.align-stretch.justify-start.gutters-md {
+        .col:has(.logo) {
+          order: -1;
+        }
+        .col:has(a .logo) {
+          display: none;
+        }
+        .col:has(.pattern) {
+          order: 0;
+        }
+        .col:has(.current-call) {
+          order: 3;
+        }
+        .countdown {
+          min-width: 120px;
+        }
+      }
+      .pattern-block {
+        --space-size: 1.25rem;
+      }
+      .call-info {
+        --digital-font-size: 3rem;
+      }
+    }
+    main.vertical {
+      padding: 0;
+      padding-top: var(--size-md);
+
+      > .row {
+        justify-content: start;
+        > .col {
+          &:nth-of-type(1) {
+            width: auto;
+            margin: 0;
+            padding-left: var(--size-xlg);
+          }
+          &:nth-of-type(2) {
+            width: 40%;
+          }
+          &:nth-of-type(3) {
+            width: 100%;
+            max-width: 91% !important;
+            flex: 1 1;
+          }
+        }
+      }
+
+      .logo {
+        height: 2rem;
+      }
+
+      .bingo-board {
+        flex-flow: row;
+        --board-font-size: 1.25rem;
+        --board-line-height: 160%;
+        .bingo-board-row {
+          .bingo-board-ball {
+            padding: 0 0.25em;
+          }
+        }
+      }
+
+      .pattern-block {
+        --space-size: 1.2rem;
+      }
+
+      .current-call-block .current-call {
+        --ball-size: 90px;
+      }
+      .previous-call-block {
+        padding: 0.5rem;
+        .previous-call {
+          --ball-size: 55px;
+        }
+        > .row {
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+
+      .controls {
+        padding: var(--size-md) 0;
+        button {
+          font-size: 0.7rem;
+          padding: 0.5em;
+        }
+      }
+    }
+
+    main.classic,
+    main.classic-reverse {
+      position: relative;
+      padding: var(--size-md) 0 0;
+      .bingo-board {
+        --board-font-size: 1rem;
+        --board-line-height: 150%;
+        .bingo-board-row .bingo-board-ball {
+          padding: 0;
+        }
+        + div.margin-xxlg {
+          margin: var(--size-md);
+        }
+      }
+      .logo {
+        height: 2.5rem;
+      }
+      .digital-display + .uppercase-text-small {
+        line-height: 1.25;
+      }
+      .controls button {
+        font-size: 0.7rem;
+        min-width: 100px;
+        display: inline-block;
+        margin: 0.5em;
+        width: auto;
+      }
+      .pattern-block {
+        --space-size: 1.25rem;
+      }
+      .call-info {
+        --digital-font-size: 3rem;
+      }
+      .row:has(.previous-calls) {
+        flex-wrap: wrap;
+        > .col {
+          display: block;
+        }
+      }
+      .bingo-board + .margin-xxlg + .row > .col:has(.previous-call-block) {
+        width: 100%;
+        height: 150px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: absolute;
+        bottom: -160px;
+        left: 0;
+      }
+      .previous-call-block {
+        .previous-call {
+          --ball-size: 60px !important;
+        }
+      }
+
+      .current-call-block {
+        padding: var(--size-lg);
+        margin-right: 0 !important;
+        .current-call {
+          --ball-size: 80px !important;
+          .uppercase-text-small {
+            margin: 0 !important;
+            line-height: 1.25;
+          }
+        }
+      }
+      .row:has(.col.colspan2) {
+        margin: 0;
+        padding: 0 !important;
+        justify-content: space-between !important;
+      }
+      .col.colspan2 {
+        &:has(.current-call) {
+          width: auto !important;
+          max-width: 50%;
+          .uppercase-text-small {
+            line-height: 1;
+            margin-bottom: 0;
+          }
+        }
+        &:has(.countdown) {
+          width: auto !important;
+          max-width: 50%;
+          margin: 0 !important;
+          min-height: 100%;
+          .countdown {
+            padding: var(--size-md);
+            margin-left: 0 !important;
+            min-height: 100%;
+          }
+          .uppercase-text-small {
+            margin: 0 !important;
+            line-height: 1.25;
+          }
+        }
+      }
+    }
   }
 }

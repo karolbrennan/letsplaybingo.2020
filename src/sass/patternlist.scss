@@ -1,115 +1,121 @@
-
 /* Pattern */
-#pattern-list {
+.pattern-list {
   button {
     float: right;
   }
-}
-.pattern-block {
-  flex-basis: calc(19% - 10px) !important;
-  margin: 10px !important;
-  background: #fcfcfc;
-  border: 1px solid #ccc;
-  white-space: nowrap;
-  width: 180px;
-
-  h5 {
-    padding: 0;
-    margin: 10px 0 0;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    text-align: center;
-    display: block;
-    color: #444444;
-    font-weight: 500;
+  > .row {
+    justify-content: flex-start;
+    > .pattern-col {
+      flex-grow: 0;
+    }
   }
 
-  .bingopattern {
-    display: block;
-    margin: 10px auto;
-    width: 135px;
-    .row {
-      flex-basis: 1 1 20%;
-    }
-    .col {    
-      padding: 12px;
-      position: relative;
-      // Letters along the top
-      &:first-child {
-        line-height: 1.5;
-        padding: 0;  
-        background: #2f2f2f !important;
-        span {
-          position: relative;
-          font-size: 14px;
-          font-family: var(--body-font);
-          font-weight: 500;
-        }
-      }
-      // Pattern letters
-      &:not(:first-child) {
-        background: #efefef;
-        border: 1px solid #ffffff;
-      }
-      span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 100%;
-        margin: 0 auto;
+  .pattern-block {
+    border: 3px dashed var(--light-gray);
+    border-radius: 5px;
+    white-space: nowrap;
+    padding: 0 12px 12px;
 
-        &.free-space {
-          display: block;
-          line-height: 1.25;
-          font-size: 7px;
-          margin: 4px auto;
-          text-align: center;
-          text-transform: uppercase;
-          white-space: normal;
-          color: #676767;
-        }
-      }
-      &.selected {
-        span {
-          background-color:#c70600;
-          margin: 4px;
-          &.free-space {
-            overflow: hidden;
-            color: #c70600;
-          }
-        }
-      }
-      &:hover {
-        cursor: default;
-      }
+    section {
+      text-align: center;
+    }
+
+    h5 {
+      padding: 0;
+      margin: 10px 0 0;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      text-align: center;
+      display: block;
+      color: var(--foreground);
+      font-weight: 500;
+    }
+    .pattern-display .row .col:not(.pattern-letter).selected span.free-space {
+      border-radius: 100%;
     }
   }
 }
+
+@page {
+  orientation: landscape !important;
+  margin: 0.5in 0.3in 0.5in 0.3in !important;
+}
+
 @media print {
-  @page {
-    orientation: landscape !important;
-    margin: 0.4in 0.4in 0.4in 0.4in !important;
+  body,
+  html,
+  section,
+  main {
+    background: white;
+    border: none !important;
+    border-top: none !important;
   }
-  h1 {
+  header {
+    text-align: center;
+    .home-link {
+      border: none !important;
+    }
+  }
+  footer,
+  header .header-icon {
     display: none;
   }
-  .pattern-block {
-    width: 160px;
-    .bingopattern {
-      width: 130px;
-    }
+  h1,
+  h2 {
+    display: none;
   }
-  .container, .row, .row > .col {
+  .pattern-col {
     page-break-inside: avoid !important;
     break-inside: avoid !important;
     -webkit-break-inside: avoid !important;
+    * {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
   }
-  .container > .row.patterns {
+  h5 {
+    font-size: var(--small-font-size);
+  }
+  .pattern-list > .row {
     display: table !important;
-  }
-  .container > .row.patterns > .pattern-block.col {
-    display: inline-block !important;
+    .pattern-col.col {
+      display: inline-block !important;
+      margin: 0;
+      width: 145px;
+      text-align: center;
+      .pattern-block {
+        padding: 0 10px;
+        display: block;
+        margin: 0 auto;
+        .pattern-display {
+          margin-bottom: 10px;
+        }
+        .row {
+          width: 20px;
+          .col {
+            height: 20px !important;
+            &.pattern-letter {
+              line-height: 1.5;
+              height: 25px;
+              span {
+                font-size: 14px;
+              }
+            }
+            &.selected {
+              span {
+                margin: 2px;
+                border-radius: 100%;
+              }
+            }
+            .span {
+              &.free-space {
+                font-size: 10px !important;
+                line-height: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

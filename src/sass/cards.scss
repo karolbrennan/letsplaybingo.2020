@@ -1,0 +1,190 @@
+/* Card Generator */
+.card-block {
+  --space-size: 5.5rem;
+  margin: 1rem auto;
+
+  .break {
+    display: none;
+  }
+
+  .card {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    margin: 0.5%;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    color: var(--near-black);
+
+    .col {
+      padding: 0 !important;
+      margin: 0 !important;
+
+      .freespace {
+        align-self: center;
+        > span {
+          display: block;
+          text-align: center;
+          font-size: calc(var(--space-size) / 5);
+          line-height: calc(var(--space-size) / 5.5);
+          text-transform: uppercase;
+          font-weight: 700;
+          font-family: var(--condensed-font);
+        }
+      }
+
+      .card-number,
+      .card-letter {
+        height: var(--space-size);
+        width: var(--space-size);
+        line-height: var(--space-size);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        font-size: calc(var(--space-size) / 2);
+        line-height: calc(var(--space-size) / 2.5);
+      }
+
+      .card-letter {
+        color: white;
+      }
+
+      .card-numbers {
+        border-top: 1px solid #cecece;
+        border-bottom: 1px solid #cecece;
+
+        .card-number {
+          background-color: white;
+          border: 1px solid #cecece;
+
+          &:first-child {
+            border-top: 0;
+          }
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.print-six .card-block {
+  --space-size: 75px;
+}
+.play-along {
+  --daub-color: yellow;
+  .card-block {
+    margin: 2rem auto;
+    .card-number {
+      cursor: pointer;
+      > span {
+        border-radius: 100%;
+        height: 100%;
+        width: 100%;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+      }
+      &.daubed > span {
+        background-color: var(--daub-color);
+      }
+    }
+  }
+  &.small .card-block {
+    max-width: 80%;
+    --space-size: 50px;
+  }
+  &.medium .card-block {
+    max-width: 90%;
+    --space-size: 70px;
+  }
+  &.large .card-block {
+    --space-size: 90px;
+  }
+  &.xlarge .card-block {
+    --space-size: 120px;
+  }
+}
+
+[data-color="red"] {
+  background-color: red;
+}
+[data-color="orange"] {
+  background-color: orange;
+  .card-letter {
+    color: black !important;
+  }
+}
+[data-color="yellow"] {
+  background-color: yellow;
+  .card-letter {
+    color: black !important;
+  }
+}
+[data-color="green"] {
+  background-color: green;
+}
+[data-color="blue"] {
+  background-color: blue;
+}
+[data-color="purple"] {
+  background-color: purple;
+}
+[data-color="aqua"] {
+  background-color: aqua;
+  .card-letter {
+    color: black !important;
+  }
+}
+[data-color="brown"] {
+  background-color: brown;
+}
+[data-color="gray"] {
+  background-color: gray;
+  .card-letter {
+    color: black !important;
+  }
+}
+[data-color="pink"] {
+  background-color: pink;
+  .card-letter {
+    color: black !important;
+  }
+}
+[data-color="dk-gray"] {
+  background-color: rgb(53, 53, 53);
+}
+
+// Dauber Colors ---------------------
+.red-dauber {
+  --daub-color: red;
+}
+.orange-dauber {
+  --daub-color: orange;
+}
+.yellow-dauber {
+  --daub-color: yellow;
+}
+.green-dauber {
+  --daub-color: green;
+}
+.blue-dauber {
+  --daub-color: blue;
+}
+.purple-dauber {
+  --daub-color: purple;
+}
+.aqwa-dauber {
+  --daub-color: aqua;
+}
+.brown-dauber {
+  --daub-color: brown;
+}
+.gray-dauber {
+  --daub-color: gray;
+}
+.pink-dauber {
+  --daub-color: pink;
+}
