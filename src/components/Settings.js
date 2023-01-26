@@ -286,7 +286,8 @@ class Settings extends React.Component {
                 disabled={
                   this.props.totalCalls > 0 ||
                   this.state.settings.wildBingoEvens ||
-                  this.state.settings.wildBingoOdds
+                  this.state.settings.wildBingoOdds ||
+                  this.state.settings.wildBingoCustom
                 }
                 info="Two wild balls will be called at the start of the game."
                 label="Wild Bingo: Two Wilds"
@@ -299,7 +300,8 @@ class Settings extends React.Component {
                 disabled={
                   this.props.totalCalls > 0 ||
                   this.state.settings.wildBingoDouble ||
-                  this.state.settings.wildBingoOdds
+                  this.state.settings.wildBingoOdds ||
+                  this.state.settings.wildBingoCustom
                 }
                 info="All even numbers will be called at the start of the game."
                 label="Wild Bingo: Evens"
@@ -311,13 +313,40 @@ class Settings extends React.Component {
                 disabled={
                   this.props.totalCalls > 0 ||
                   this.state.settings.wildBingoEvens ||
-                  this.state.settings.wildBingoDouble
+                  this.state.settings.wildBingoDouble ||
+                  this.state.settings.wildBingoCustom
                 }
                 eventName="settingupdate"
                 info="All odd numbers will be called at the start of the game."
                 label="Wild Bingo: Odds"
                 name="wildBingoOdds"
                 value={this.state.settings.wildBingoOdds}
+              />
+              <Toggle
+                show={this.state.settings.wildBingo}
+                disabled={
+                  this.props.totalCalls > 0 ||
+                  this.state.settings.wildBingoEvens ||
+                  this.state.settings.wildBingoOdds ||
+                  this.state.settings.wildBingoDouble
+                }
+                eventName="settingupdate"
+                info="Choose which number you want to be while. 10 will be all numbers ending in 0."
+                label="Wild Bingo: Custom"
+                name="wildBingoCustom"
+                value={this.state.settings.wildBingoCustom}
+              />
+              <Slider
+                show={this.state.settings.wildBingoCustom === true}
+                eventName="settingupdate"
+                label="Wild Bingo: Custom"
+                name="wildBingoCustomValue"
+                measurement=""
+                measurementplural=""
+                min="1"
+                max="10"
+                step="1"
+                value={this.state.settings.wildBingoCustomValue}
               />
               <CurrentPattern
                 disabled={this.props.totalCalls > 0}

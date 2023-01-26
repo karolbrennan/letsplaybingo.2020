@@ -171,6 +171,18 @@ label:has(:disabled):not(.range) .label-text {
 }
 
 .range {
+  &.disabled {
+    .label-text,
+    .range-controls {
+      opacity: 0.5;
+    }
+    &:hover {
+      .label-text,
+      .range-controls {
+        cursor: not-allowed;
+      }
+    }
+  }
   .range-value {
     color: var(--primary-color);
     display: inline-block;

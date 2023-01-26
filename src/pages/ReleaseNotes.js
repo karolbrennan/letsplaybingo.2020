@@ -75,6 +75,7 @@ class ReleaseNotes extends React.Component {
                     <li>Current calls display</li>
                     <li>Previous calls display options</li>
                     <li>Countdown to next number</li>
+                    <li>New Wild Bingo modes</li>
                     <li>Themes</li>
                     <li>Layouts</li>
                     <li>Upgraded the time between calls controller.</li>
@@ -83,7 +84,7 @@ class ReleaseNotes extends React.Component {
                 <li>
                   Upgraded the technology used for bingo calls and card
                   generation to now utilize the browser's built in cryptographic
-                  randomizer for better randomization.
+                  randomizer for more true randomization.
                 </li>
               </ul>
             </div>

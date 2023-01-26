@@ -163,12 +163,17 @@ export function getDefaultSettings() {
     popOutControls: false,
     previousCallsToShow: 5,
     settingsPanelOpen: false,
-    showCountdown: true,
+    showCountdown: false,
+    showCurrentCall: true,
     showPreviousCalls: true,
     skipUnusedNumbers: false,
     theme: "lpb",
     wildBingo: false,
     wildBingoDouble: false,
+    wildBingoEvens: false,
+    wildBingoOdds: false,
+    wildBingoCustom: false,
+    wildBingoCustomValue: 1,
     settingsPanelOpen: false,
   };
 }

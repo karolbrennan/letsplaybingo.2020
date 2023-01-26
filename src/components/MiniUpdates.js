@@ -38,7 +38,7 @@ export default function MiniUpdates(props) {
         <p>
           <strong>Version:</strong>&nbsp;4.0.0
           <span className="padding-horizontal-md">|</span>
-          <strong>Released:</strong>&nbsp;1.1.2023
+          <strong>Released:</strong>&nbsp;1.26.2023
         </p>
         <ul>
           <li>Moved all game controls and settings to this settings menu.</li>
@@ -47,6 +47,7 @@ export default function MiniUpdates(props) {
           <li>Added full screen mode.</li>
           <li>Added different layouts.</li>
           <li>Added different themes.</li>
+          <li>Added more game modes.</li>
           <li>Upgraded the time between calls controller.</li>
           <li>
             Upgraded the technology used for bingo calls and card generation to

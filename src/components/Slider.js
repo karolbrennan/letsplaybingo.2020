@@ -24,7 +24,7 @@ class Slider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value,
+      value: props.value ? props.value : props.min,
     };
   }
 
@@ -73,7 +73,7 @@ class Slider extends React.Component {
       return (
         <div className="setting-inner">
           {this.props.heading ? <h5>{this.props.heading}</h5> : null}
-          <label className="range">
+          <div className={this.props.disabled ? "disabled range" : "range"}>
             <label>
               <span className="label-text">{this.props.label}</span>
               {this.getHelperText()}
@@ -90,7 +90,7 @@ class Slider extends React.Component {
                   <button
                     value="decrease"
                     disabled={
-                      this.props.min
+                      this.props.disabled || this.props.min
                         ? this.state.value === parseInt(this.props.min)
                         : false
                     }
@@ -101,6 +101,7 @@ class Slider extends React.Component {
                 <div className="range-input">
                   <input
                     type="range"
+                    disabled={this.props.disabled}
                     id={this.props.name}
                     name={this.props.name}
                     min={this.props.min}
@@ -114,7 +115,7 @@ class Slider extends React.Component {
                   <button
                     value="increase"
                     disabled={
-                      this.props.max
+                      this.props.disabled || this.props.max
                         ? this.state.value === parseInt(this.props.max)
                         : false
                     }
@@ -124,7 +125,7 @@ class Slider extends React.Component {
                 </div>
               </div>
             </div>
-          </label>
+          </div>
         </div>
       );
     } else {

@@ -473,7 +473,13 @@ class Caller extends React.Component {
         });
       });
     } else {
-      const randomBall = getRandomNumberInRange(1, 75, called);
+      console.log(this.state.settings);
+      const randomBall =
+        this.state.settings.wildBingoCustom === true &&
+        this.state.settings.wildBingoCustomValue !== null
+          ? this.state.settings.wildBingoCustomValue
+          : getRandomNumberInRange(1, 75, called);
+      console.log("randomBall", randomBall);
       const wildNumber = randomBall.toString().slice(-1);
       Object.keys(board).forEach((letter) => {
         Object.values(board[letter]).forEach((ball, index) => {
