@@ -73,12 +73,15 @@ class BingoGame extends Component {
 
 		// Speech Synthesis
 		this.speechEnabled = Object.prototype.hasOwnProperty.call(window, "speechSynthesis");
-		this.synth = window.speechSynthesis;
 
 		// if speech is enabled, initialize other speech properties
 		if (this.speechEnabled === true) {
+			this.synth = window.speechSynthesis;
 			this.synth.onvoiceschanged = this.loadVoices;
 			this.voices = this.synth.getVoices();
+		} else {
+			this.synth = null;
+			this.voices = [];
 		}
 
 		let gameData = JSON.parse(localStorage.getItem("lpb-gameData"));
@@ -180,27 +183,29 @@ class BingoGame extends Component {
 	 */
 	loadVoices = () => {
 		this.voices = this.synth.getVoices();
-		let selectedCaller = this.state.selectedCaller;
-		if (selectedCaller === null) {
-			// if the selected caller is STILL null, set to the first voice available.
-			// this is a one off that really would only happen if the user's browser
-			// has a language that doesn't have a caller available for it.
-			selectedCaller = this.voices[0];
-		}
-		let userLanguage = window.navigator.userLanguage || window.navigator.language;
-		// loop through voices and either choose the one that matches the selection or choose the first one that matches user's language
-		this.voices.forEach((voice) => {
-			if (selectedCaller !== null && Object.prototype.hasOwnProperty.call(selectedCaller, "value")) {
-				if (voice.name === selectedCaller.value) {
-					this.setState({ selectedCaller: voice });
-				}
-			} else {
-				if (voice.lang === userLanguage) {
-					selectedCaller = voice;
-				}
+		if (this.voices.length > 0) {
+			let selectedCaller = this.state.selectedCaller;
+			if (!selectedCaller) {
+				// if the selected caller is STILL null, set to the first voice available.
+				// this is a one off that really would only happen if the user's browser
+				// has a language that doesn't have a caller available for it.
+				selectedCaller = this.voices[0];
 			}
-		});
-		this.setState({ selectedCaller: selectedCaller });
+			let userLanguage = window.navigator.userLanguage || window.navigator.language;
+			// loop through voices and either choose the one that matches the selection or choose the first one that matches user's language
+			this.voices.forEach((voice) => {
+				if (Object.prototype.hasOwnProperty.call(selectedCaller, "value")) {
+					if (voice.name === selectedCaller.value) {
+						this.setState({ selectedCaller: voice });
+					}
+				} else {
+					if (voice.lang === userLanguage) {
+						selectedCaller = voice;
+					}
+				}
+			});
+			this.setState({ selectedCaller: selectedCaller });
+		}
 	};
 
 	/*
@@ -1163,29 +1168,31 @@ class BingoGame extends Component {
 						<div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
 							<h4 className="margin-vertical-md">Latest Updates</h4>
 							<p className="wrap-text small-text">
-								Let's Play Bingo was last updated on <strong>12/29/2022</strong>. Recent updates include:
+								Please note that this version of Let's Play Bingo is scheduled to be retired by the end of March 2023. It will be
+								replaced with a new edition that comes with a ton of improvements to the game, including:
 							</p>
 							<ul className="small-text padding-left-xlg">
-								<li>Changed the color of the play/pause buttons to be more clear.</li>
-								<li>Fixed a bug where if Skip Unused Numbers was enabled gameplay would break.</li>
+								<li>Tons of new patterns (200 in total)!</li>
+								<li>New wild bingo game modes and the addition of a Hot Ball mode!</li>
+								<li>Larger display that works great for broadcasting on TVs/projectors!</li>
+								<li>Ability to hide controls and various parts of the UI!</li>
+								<li>New countdown panel to show time between numbers!</li>
+								<li>All game settings hidden behind a settings menu!</li>
+								<li>Ability for players to generate cards and daub along on their own screens!</li>
 								<li>
-									Fixed an issue with the <strong>Railroad Tracks</strong> pattern where Gs were not being called instead of Os when
-									"skip unused numbers" was selected.
+									Re-developed randomization for cards and calls using the browser's cryptographically strong randomization engine!
 								</li>
+								<li>Full screen mode! Theme color options! Layout options! And more!</li>
 							</ul>
-							<p className="x-small-text">
-								See the full <a href="/releases">Release Notes</a>!
-							</p>
-							<p className="x-small-text wrap-text">
-								There is a new release of Let's Play Bingo being developed that will include performance updates as well as new
-								features. Check out the beta edition with a sneak peek of some of the coming improvements by visiting{" "}
-								<a href="https://beta.letsplaybingo.io/">beta.letsplaybingo.io</a>!
+							<p className="wrap-text small-text">
+								For a sneak peek of the latest version check out <a href="https://beta.letsplaybingo.io/">beta.letsplaybingo.io</a>!
 							</p>
 							<p className="x-small-text">
-								Need to report a bug?{" "}
-								<button className="textOnly secondary" onClick={this.handleBugReport}>
-									Email me!
-								</button>
+								You will continue to be able to access this version of the game here:{" "}
+								<a href="https://previous.letsplaybingo.io/" target="_blank" rel="noreferrer">
+									2020 Edition
+								</a>
+								.
 							</p>
 						</div>
 					</div>
