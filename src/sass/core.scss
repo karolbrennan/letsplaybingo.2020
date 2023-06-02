@@ -1,126 +1,129 @@
-
 /* Primary Styles */
-body, html, * {
-  box-sizing: border-box;
+body,
+html,
+* {
+	box-sizing: border-box;
 }
-body, html {
-  margin: 0;
-  padding: 0;
+body,
+html {
+	margin: 0;
+	padding: 0;
 }
 
 /* Header & Footer */
-header, footer {
-  padding: 1rem;
+header,
+footer {
+	padding: 1rem;
 }
 header {
-  border-bottom: 5px solid var(--primary-color);
+	border-bottom: 5px solid var(--primary-color);
 }
 footer {
-  border-top: 5px solid var(--primary-color);
+	border-top: 5px solid var(--primary-color);
 }
 ul li {
-  white-space: normal;
+	white-space: normal;
 }
 
 /* Menu */
 .menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-family: var(--heading-font);
-  @media screen and (max-width: 700px){
-    white-space: pre-wrap;
-  }
-  li {
-    display: inline-block;
-    padding: 0.25em 0.5em;
-    a {
-      font-size: 1.5rem;
-      padding: 0.5em;
-      font-weight: 700;
-      border: 3px solid transparent;
-      &:hover {
-        border: 3px solid var(--primary-color);
-      }
-    }
-  }
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-family: var(--heading-font);
+	@media screen and (max-width: 700px) {
+		white-space: pre-wrap;
+	}
+	li {
+		display: inline-block;
+		padding: 0.25em 0.5em;
+		a {
+			font-size: 1.5rem;
+			padding: 0.5em;
+			font-weight: 700;
+			border: 3px solid transparent;
+			&:hover {
+				border: 3px solid var(--primary-color);
+			}
+		}
+	}
 }
 
 /* Images */
 .logo {
-  height: 3.5rem;
-  width: auto;
+	height: 3.5rem;
+	width: auto;
 }
-.donate {
-  max-height: 150px;
-  margin: 0.5rem;
+.qr-code {
+	max-height: 150px;
+	margin: 0.5rem;
 }
 .social-icon {
-  width: 2.5rem;
-  margin: 0.25em;
+	width: 2.5rem;
+	margin: 0.25em;
 }
 
 /* Tell Your Friends */
 .tell-your-friends {
-  text-align: center;
-  > div {
-    display: inline-block;
-    vertical-align: middle;
-  }
+	text-align: center;
+	> div {
+		display: inline-block;
+		vertical-align: middle;
+	}
 }
 
 /* Google Translate */
 .goog-te-gadget-simple {
-  border: 0 !important;
-  font-family: var(--body-font);
-  .goog-te-menu-value {
-    span {
-      &:first-child {
-        font-family: var(--body-font);
-        font-size: .85rem;
-        line-height: 2.5;
-      }
-      &:last-child {
-        font-size: 0;
-        color: #3c3c3c !important;
-        &:before {
-          display: inline-block;
-          content: '\2329';
-          font-size: 1.5rem;
-          transform: rotate(-90deg);
-          padding-right: 1rem;
-        }
-      }
-    }
-  }
+	border: 0 !important;
+	font-family: var(--body-font);
+	.goog-te-menu-value {
+		span {
+			&:first-child {
+				font-family: var(--body-font);
+				font-size: 0.85rem;
+				line-height: 2.5;
+			}
+			&:last-child {
+				font-size: 0;
+				color: #3c3c3c !important;
+				&:before {
+					display: inline-block;
+					content: "\2329";
+					font-size: 1.5rem;
+					transform: rotate(-90deg);
+					padding-right: 1rem;
+				}
+			}
+		}
+	}
 }
 
 /* Release Notes */
 .date {
-  color: var(--primary-color);
+	color: var(--primary-color);
 }
-span{
-  &.version {
-    color: #aaa;
-    font-family: var(--body-font);
-    font-weight: normal;
-    vertical-align: middle;
-    margin: 0 10px;
-    font-size: 14px;
-  }
-  &.tag {
-    font-size: 12px;
-    font-family: var(--body-font);
-    font-weight: normal;
-    background-color: #ccc;
-    padding: 0.5em 1em;
-    vertical-align: middle;
-    border-radius: 12px;
-    &.release {
-      background-color: var(--release-color);
-    }
-    &.bugfix {
-      background-color: var(--bugfix-color);
-    }
-  }
+span {
+	&.version {
+		color: #aaa;
+		font-family: var(--body-font);
+		font-weight: normal;
+		vertical-align: middle;
+		margin: 0 10px;
+		font-size: 14px;
+	}
+	&.tag {
+		font-size: 12px;
+		font-family: var(--body-font);
+		font-weight: normal;
+		background-color: #ccc;
+		padding: 0.5em 1em;
+		vertical-align: middle;
+		border-radius: 12px;
+		&.release {
+			background-color: var(--release-color);
+		}
+		&.bugfix {
+			background-color: var(--bugfix-color);
+		}
+	}
 }

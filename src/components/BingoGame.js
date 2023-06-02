@@ -1166,33 +1166,25 @@ class BingoGame extends Component {
 
 						{/* ----------- Mini Updates ------------- */}
 						<div className="col grow min-size-350 padding-vertical-xxlg padding-horizontal-xxlg white-text">
-							<h4 className="margin-vertical-md">Latest Updates</h4>
+							<h4 className="margin-vertical-md">Retired Edition</h4>
 							<p className="wrap-text small-text">
-								Please note that this version of Let's Play Bingo is scheduled to be retired by the end of March 2023. It will be
-								replaced with a new edition that comes with a ton of improvements to the game, including:
-							</p>
-							<ul className="small-text padding-left-xlg">
-								<li>Tons of new patterns (200 in total)!</li>
-								<li>New wild bingo game modes and the addition of a Hot Ball mode!</li>
-								<li>Larger display that works great for broadcasting on TVs/projectors!</li>
-								<li>Ability to hide controls and various parts of the UI!</li>
-								<li>New countdown panel to show time between numbers!</li>
-								<li>All game settings hidden behind a settings menu!</li>
-								<li>Ability for players to generate cards and daub along on their own screens!</li>
-								<li>
-									Re-developed randomization for cards and calls using the browser's cryptographically strong randomization engine!
-								</li>
-								<li>Full screen mode! Theme color options! Layout options! And more!</li>
-							</ul>
-							<p className="wrap-text small-text">
-								For a sneak peek of the latest version check out <a href="https://beta.letsplaybingo.io/">beta.letsplaybingo.io</a>!
-							</p>
-							<p className="x-small-text">
-								You will continue to be able to access this version of the game here:{" "}
-								<a href="https://previous.letsplaybingo.io/" target="_blank" rel="noreferrer">
-									2020 Edition
+								This edition of Let's Play Bingo has been retired. Please try the latest edition that has many improvements at{" "}
+								<a href="https://letsplaybingo.io/" target="_blank" rel="noreferrer">
+									Let's Play Bingo
 								</a>
-								.
+								!
+							</p>
+							<p className="wrap-text small-text">
+								You can also check out these other editions:
+								<br />
+								<a href="https://classic.letsplaybingo.io/" target="_blank" rel="noreferrer">
+									Let's Play Bingo - Classic
+								</a>
+								<br />
+								<a href="https://90ball.letsplaybingo.io/" target="_blank" rel="noreferrer">
+									Let's Play Bingo - 90 Ball
+								</a>
+								<br />
 							</p>
 						</div>
 					</div>
