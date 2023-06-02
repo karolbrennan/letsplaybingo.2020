@@ -15,7 +15,6 @@ import Privacy from "./components/pages/Privacy.js";
 import ReleaseNotes from "./components/pages/ReleaseNotes.js";
 import Terms from "./components/pages/Terms.js";
 import Patterns from "./components/pages/Patterns.js";
-// import TellYourFriends from './components/subcomponents/TellYourFriends.js';
 
 const routing = (
 	<Router>
@@ -65,15 +64,11 @@ const routing = (
 
 		<footer>
 			<div className="container row three-cols align-center">
-				<div className="col">
-					<div className="addthis_inline_share_toolbox"></div>
-				</div>
+				<div className="col">For entertainment purposes only.</div>
 				<div className="col text-center">
 					&copy; 2017 - {new Date().getFullYear()} <a href="mailto:hello@letsplaybingo.io">Let's Play Bingo</a>
 				</div>
 				<div className="col text-right">
-					For entertainment purposes only.
-					<br />
 					<Link to="/releases">Release Notes</Link> | <Link to="/terms">Terms of Use</Link> |{" "}
 					<Link to="/privacy">Cookies &amp; Privacy Policy</Link>
 				</div>
