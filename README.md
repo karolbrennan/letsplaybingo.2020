@@ -1,26 +1,26 @@
-# Let's Play Bingo - ReactJS Version
-[![Netlify Status](https://api.netlify.com/api/v1/badges/57e19ada-a3d8-4c74-b5a7-3a642c418b14/deploy-status)](https://app.netlify.com/sites/letsplaybingo/deploys)
+# Let's Play Bingo - 2020 Edition [![Netlify Status](https://api.netlify.com/api/v1/badges/eed26650-d663-4789-8b12-ca2447351b01/deploy-status)](https://app.netlify.com/sites/letsplaybingo2020/deploys)
 
-This is a very simple bingo caller - it generates random bingo numbers, keeps track of them on a live bingo board.
-If voice synthesis is supported by the browser the balls will be called aloud using the web speech synthesis api.
+This is the 2020 edition of Let's Play Bingo. It was retired on 6/1/2023.
 
 #### Current URL
-http://letsplaybingo.io
+
+http://2020.letsplaybingo.io
 
 ## Technology
+
 HTML, CSS and ReactJS
 
 ### Development
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-#### Future Improvements
-- add tracked bingo cards that can be checked against the current game via an ientification number
-
 ### Languages Used
-- HTML
-- CSS
-- JavaScript
-- ReactJS
+
+-   HTML
+-   CSS
+-   JavaScript
+-   ReactJS
 
 ### Frameworks / Libraries Used
-- [Web Speech Synthesis API](https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API) (this is an experimental technology)
+
+-   [Web Speech Synthesis API](https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API) (this is an experimental technology)
