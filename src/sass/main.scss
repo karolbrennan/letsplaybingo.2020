@@ -1,17 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,900|ZCOOL+QingKe+HuangYou&display=swap');
 // Core Sheets
-@import './variables.scss';
-@import './core.scss';
-@import './grid.scss';
-@import './utilities.scss';
-@import './typography.scss';
-@import './colors.scss';
-@import './buttons.scss';
-@import './print.scss';
+@import "./variables.scss";
+@import "./core.scss";
+@import "./grid.scss";
+@import "./utilities.scss";
+@import "./typography.scss";
+@import "./colors.scss";
+@import "./buttons.scss";
+@import "./print.scss";
 // Components
-@import './animations.scss';
-@import './bingoboard.scss';
-@import './cardgeneration.scss';
-@import './gamecontrols.scss';
+@import "./animations.scss";
+@import "./bingoboard.scss";
+@import "./cardgeneration.scss";
+@import "./gamecontrols.scss";
 // Media Queries
-@import './mediaqueries.scss';
+@import "./mediaqueries.scss";
